@@ -1,0 +1,17 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://cafpotranto.dev/sitemap.xml
+
+# Disallow admin areas
+Disallow: /admin/
+Disallow: /api/auth/
+Disallow: /_next/
+Disallow: /drafts/
+
+# Allow crawling of important pages
+Allow: /
+Allow: /about
+Allow: /services
+Allow: /contact
