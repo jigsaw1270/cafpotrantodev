@@ -2,12 +2,12 @@
 
 import { motion } from 'framer-motion';
 import {
-  Code,
-  Smartphone,
-  Search,
-  Palette,
-  ShoppingCart,
-  Zap,
+  FileText,
+  Users,
+  CreditCard,
+  Shield,
+  Calculator,
+  Briefcase,
   CheckCircle,
 } from 'lucide-react';
 import { SEO } from '@/components/seo';
@@ -15,75 +15,75 @@ import { CTAButton } from '@/components/ui/cta-button';
 
 const services = [
   {
-    icon: Code,
-    title: 'Web Development',
+    icon: FileText,
+    title: 'CAF Services',
     description:
-      'Custom web applications built with modern technologies like React, Next.js, and TypeScript.',
+      'Complete tax assistance and fiscal consultation for individuals and businesses.',
     features: [
-      'Responsive design',
-      'Performance optimization',
-      'SEO-friendly',
-      'Scalable architecture',
+      'Tax return preparation',
+      'Fiscal consultation',
+      'Document assistance',
+      'Online tax filing',
     ],
   },
   {
-    icon: Smartphone,
-    title: 'Mobile-First Design',
+    icon: Users,
+    title: 'Patronato Services',
     description:
-      'Mobile-optimized experiences that work seamlessly across all devices and screen sizes.',
+      'Professional assistance with work benefits, pensions, and social security matters.',
     features: [
-      'Progressive Web Apps',
-      'Cross-platform compatibility',
-      'Touch-friendly interfaces',
-      'Offline functionality',
+      'Pension calculations',
+      'Disability benefits',
+      'Maternity benefits',
+      'Work injury claims',
     ],
   },
   {
-    icon: Search,
-    title: 'SEO Optimization',
+    icon: CreditCard,
+    title: 'Financial Assistance',
     description:
-      'Comprehensive SEO strategies to improve your website\'s visibility and search rankings.',
+      'Expert guidance on financial matters, loans, and economic support programs.',
     features: [
-      'Technical SEO audit',
-      'Content optimization',
-      'Performance enhancement',
-      'Analytics setup',
+      'Loan applications',
+      'Financial planning',
+      'Subsidy applications',
+      'Economic consultation',
     ],
   },
   {
-    icon: Palette,
-    title: 'UI/UX Design',
+    icon: Shield,
+    title: 'Legal Protection',
     description:
-      'Beautiful, intuitive interfaces designed with user experience and accessibility in mind.',
+      'Comprehensive legal support and protection services for businesses and individuals.',
     features: [
-      'User research',
-      'Wireframing & prototyping',
-      'Design systems',
-      'Accessibility compliance',
+      'Legal consultation',
+      'Document review',
+      'Dispute resolution',
+      'Contract assistance',
     ],
   },
   {
-    icon: ShoppingCart,
-    title: 'E-commerce Solutions',
+    icon: Calculator,
+    title: 'Administrative Procedures',
     description:
-      'Complete e-commerce platforms with secure payment processing and inventory management.',
+      'Simplify complex administrative processes with our expert assistance.',
     features: [
-      'Payment integration',
-      'Inventory management',
-      'Order processing',
-      'Customer management',
+      'Permit applications',
+      'License renewals',
+      'Bureaucratic procedures',
+      'Document preparation',
     ],
   },
   {
-    icon: Zap,
-    title: 'Performance Optimization',
+    icon: Briefcase,
+    title: 'Business Services',
     description:
-      'Speed up your website with advanced optimization techniques and best practices.',
+      'Comprehensive business support including company formation and compliance.',
     features: [
-      'Code splitting',
-      'Image optimization',
-      'Caching strategies',
-      'Bundle optimization',
+      'Company registration',
+      'Business compliance',
+      'Corporate procedures',
+      'Regulatory assistance',
     ],
   },
 ];
@@ -91,39 +91,39 @@ const services = [
 const process = [
   {
     step: '01',
-    title: 'Discovery',
+    title: 'Initial Consultation',
     description:
-      'We start by understanding your business goals, target audience, and project requirements.',
+      'We start by understanding your legal needs and providing expert guidance on your situation.',
   },
   {
     step: '02',
-    title: 'Planning',
+    title: 'Document Review',
     description:
-      'We create a detailed project plan with timelines, milestones, and deliverables.',
+      'We carefully review all relevant documents and assess your case requirements.',
   },
   {
     step: '03',
-    title: 'Design',
+    title: 'Strategy Development',
     description:
-      'We design wireframes and prototypes to visualize the user experience and interface.',
+      'We develop a tailored approach to address your specific legal and administrative needs.',
   },
   {
     step: '04',
-    title: 'Development',
+    title: 'Process Execution',
     description:
-      'We build your application using modern technologies and best practices.',
+      'We handle all procedures, applications, and legal processes on your behalf.',
   },
   {
     step: '05',
-    title: 'Testing',
+    title: 'Follow-up Support',
     description:
-      'We thoroughly test your application across devices and browsers to ensure quality.',
+      'We provide ongoing support and ensure all procedures are completed successfully.',
   },
   {
     step: '06',
-    title: 'Launch',
+    title: 'Final Resolution',
     description:
-      'We deploy your application and provide ongoing support and maintenance.',
+      'We deliver final results and provide you with all necessary documentation.',
   },
 ];
 
@@ -131,8 +131,8 @@ export default function Services() {
   return (
     <>
       <SEO
-        title="Our Services - CafPotranto Dev"
-        description="Comprehensive web development services including custom applications, mobile-first design, SEO optimization, and more. Built with modern technologies."
+        title="Our Services - CafPotranto Legal Services"
+        description="Comprehensive legal services including CAF assistance, Patronato services, administrative procedures, and legal consultation. Expert help for all your legal needs."
         url="/services"
       />
 
@@ -155,8 +155,8 @@ export default function Services() {
               transition={{ duration: 0.5, delay: 0.1 }}
               className="mb-8 text-xl text-muted-foreground"
             >
-              Comprehensive web development solutions tailored to your business
-              needs. From concept to deployment, we've got you covered.
+              Professional legal services and administrative assistance tailored to your
+              needs. From CAF services to legal consultation, we're here to help.
             </motion.p>
           </div>
         </div>

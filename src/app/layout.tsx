@@ -16,31 +16,31 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: 'CafPotranto Dev - Modern Web Development',
-    template: '%s | CafPotranto Dev',
+    default: 'CafPotranto - Legal Services & Administrative Assistance',
+    template: '%s | CafPotranto',
   },
   description:
-    'Professional web development services with modern technologies. Specializing in React, Next.js, and TypeScript applications.',
-  keywords: ['web development', 'react', 'nextjs', 'typescript', 'frontend'],
-  authors: [{ name: 'CafPotranto Dev' }],
-  creator: 'CafPotranto Dev',
+    'Professional legal services for businesses and citizens to manage online procedures. Expert assistance with CAF and Patronato services, work benefits, pensions, and administrative procedures.',
+  keywords: ['legal services', 'CAF services', 'Patronato', 'online procedures', 'work benefits', 'pensions', 'ISEE', 'NASpI', 'SPID'],
+  authors: [{ name: 'CafPotranto Legal Services' }],
+  creator: 'CafPotranto Legal Services',
   metadataBase: new URL(
-    process.env.NEXT_PUBLIC_SITE_URL || 'https://cafpotranto.dev'
+    process.env.NEXT_PUBLIC_SITE_URL || 'https://cafpotranto.it'
   ),
   openGraph: {
     type: 'website',
-    locale: 'en_US',
-    url: process.env.NEXT_PUBLIC_SITE_URL || 'https://cafpotranto.dev',
-    siteName: 'CafPotranto Dev',
-    title: 'CafPotranto Dev - Modern Web Development',
+    locale: 'it_IT',
+    url: process.env.NEXT_PUBLIC_SITE_URL || 'https://cafpotranto.it',
+    siteName: 'CafPotranto Legal Services',
+    title: 'CafPotranto - Legal Services & Administrative Assistance',
     description:
-      'Professional web development services with modern technologies.',
+      'Professional legal services for businesses and citizens to manage online procedures.',
     images: [
       {
         url: '/og-image.jpg',
         width: 1200,
         height: 630,
-        alt: 'CafPotranto Dev',
+        alt: 'CafPotranto Legal Services',
       },
     ],
   },
@@ -48,9 +48,9 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     site: '@cafpotranto',
     creator: '@cafpotranto',
-    title: 'CafPotranto Dev - Modern Web Development',
+    title: 'CafPotranto - Legal Services & Administrative Assistance',
     description:
-      'Professional web development services with modern technologies.',
+      'Professional legal services for businesses and citizens to manage online procedures.',
     images: ['/og-image.jpg'],
   },
   robots: {

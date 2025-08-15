@@ -9,7 +9,7 @@ import { Button } from '@/components/ui/button';
 interface FormData {
   name: string;
   email: string;
-  company: string;
+  phone: string;
   subject: string;
   message: string;
 }
@@ -18,19 +18,19 @@ const contactInfo = [
   {
     icon: Mail,
     title: 'Email',
-    content: 'hello@cafpotranto.dev',
-    href: 'mailto:hello@cafpotranto.dev',
+    content: 'info@cafpotranto.it',
+    href: 'mailto:info@cafpotranto.it',
   },
   {
     icon: Phone,
     title: 'Phone',
-    content: '+1 (555) 123-4567',
-    href: 'tel:+15551234567',
+    content: '+39 06 1234 5678',
+    href: 'tel:+390612345678',
   },
   {
     icon: MapPin,
     title: 'Location',
-    content: 'Remote & Global',
+    content: 'Rome, Italy',
     href: null,
   },
 ];
@@ -39,7 +39,7 @@ export default function Contact() {
   const [formData, setFormData] = useState<FormData>({
     name: '',
     email: '',
-    company: '',
+    phone: '',
     subject: '',
     message: '',
   });
@@ -70,7 +70,7 @@ export default function Contact() {
       setFormData({
         name: '',
         email: '',
-        company: '',
+        phone: '',
         subject: '',
         message: '',
       });
@@ -80,8 +80,8 @@ export default function Contact() {
   return (
     <>
       <SEO
-        title="Contact Us - CafPotranto Dev"
-        description="Get in touch with CafPotranto Dev for your web development needs. We'd love to discuss your project and bring your vision to life."
+        title="Contact Us - CafPotranto Legal Services"
+        description="Contact CafPotranto for professional legal services and administrative assistance. We're here to help with all your legal needs."
         url="/contact"
       />
 
@@ -104,8 +104,8 @@ export default function Contact() {
               transition={{ duration: 0.5, delay: 0.1 }}
               className="mb-8 text-xl text-muted-foreground"
             >
-              Ready to start your next project? We'd love to hear from you.
-              Let's discuss how we can bring your vision to life.
+              Need legal assistance or administrative support? We're here to help.
+              Contact us for professional legal services and expert guidance.
             </motion.p>
           </div>
         </div>
@@ -251,19 +251,19 @@ export default function Contact() {
 
                     <div>
                       <label
-                        htmlFor="company"
+                        htmlFor="phone"
                         className="block text-sm font-medium text-foreground"
                       >
-                        Company
+                        Phone
                       </label>
                       <input
-                        type="text"
-                        id="company"
-                        name="company"
-                        value={formData.company}
+                        type="tel"
+                        id="phone"
+                        name="phone"
+                        value={formData.phone}
                         onChange={handleChange}
                         className="mt-1 block w-full rounded-md border border-input bg-background px-3 py-2 text-foreground placeholder-muted-foreground focus:border-ring focus:outline-none focus:ring-2 focus:ring-ring"
-                        placeholder="Your company"
+                        placeholder="Your phone number"
                       />
                     </div>
 

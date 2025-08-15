@@ -7,43 +7,43 @@ import { SEO } from '@/components/seo';
 const values = [
   {
     icon: Target,
-    title: 'Mission-Driven',
+    title: 'Client-Focused',
     description:
-      'We are committed to delivering exceptional results that exceed expectations and drive business growth.',
+      'We are committed to providing personalized legal services that address each client\'s unique needs and circumstances.',
   },
   {
     icon: Users,
-    title: 'Collaborative',
+    title: 'Professional',
     description:
-      'We work closely with our clients as partners, ensuring transparent communication throughout the process.',
+      'Our experienced team provides reliable legal assistance with the highest standards of professionalism and confidentiality.',
   },
   {
     icon: Lightbulb,
-    title: 'Innovative',
+    title: 'Expert Knowledge',
     description:
-      'We stay ahead of the curve by embracing new technologies and industry best practices.',
+      'We stay current with evolving laws and regulations to provide accurate, up-to-date legal guidance.',
   },
   {
     icon: Award,
-    title: 'Quality-Focused',
+    title: 'Trusted Service',
     description:
-      'We maintain the highest standards in code quality, design, and user experience.',
+      'We maintain the highest ethical standards and build lasting relationships based on trust and results.',
   },
 ];
 
 const stats = [
-  { label: 'Projects Completed', value: '100+' },
-  { label: 'Happy Clients', value: '50+' },
-  { label: 'Years Experience', value: '5+' },
-  { label: 'Technologies Mastered', value: '20+' },
+  { label: 'Cases Handled', value: '500+' },
+  { label: 'Satisfied Clients', value: '200+' },
+  { label: 'Years Experience', value: '15+' },
+  { label: 'Legal Specializations', value: '10+' },
 ];
 
 export default function About() {
   return (
     <>
       <SEO
-        title="About Us - CafPotranto Dev"
-        description="Learn about our mission, values, and the team behind CafPotranto Dev. We're passionate about creating exceptional digital experiences."
+        title="About Us - CafPotranto Legal Services"
+        description="Learn about our mission, values, and the experienced legal team at CafPotranto. We're dedicated to providing exceptional legal services and administrative assistance."
         url="/about"
       />
 
@@ -57,7 +57,7 @@ export default function About() {
               transition={{ duration: 0.5 }}
               className="mb-6 text-4xl font-bold tracking-tight text-foreground sm:text-6xl"
             >
-              About <span className="text-primary">Our Story</span>
+              About <span className="text-primary">Our Firm</span>
             </motion.h1>
 
             <motion.p
@@ -66,8 +66,8 @@ export default function About() {
               transition={{ duration: 0.5, delay: 0.1 }}
               className="mb-8 text-xl text-muted-foreground"
             >
-              We're a passionate team of developers and designers dedicated to
-              creating exceptional digital experiences that make a difference.
+              We're a dedicated team of legal professionals committed to
+              providing exceptional legal services and administrative assistance to our clients.
             </motion.p>
           </div>
         </div>
@@ -84,25 +84,23 @@ export default function About() {
               viewport={{ once: true }}
             >
               <h2 className="mb-6 text-3xl font-bold tracking-tight text-foreground">
-                Our Journey
+                Our Heritage
               </h2>
               <div className="space-y-4 text-muted-foreground">
                 <p>
-                  Founded with a vision to bridge the gap between cutting-edge
-                  technology and practical business solutions, CafPotranto Dev
-                  has grown from a small team of passionate developers into a
-                  trusted partner for businesses seeking digital excellence.
+                  Established with a commitment to providing accessible and professional
+                  legal services, CafPotranto has grown from a local practice into a
+                  trusted legal partner for individuals and businesses across the region.
                 </p>
                 <p>
-                  Our expertise spans across modern web technologies, with a
-                  focus on React, Next.js, and TypeScript. We believe in
-                  writing clean, maintainable code and creating user experiences
-                  that delight and engage.
+                  Our expertise encompasses CAF and Patronato services, labor law,
+                  pension planning, and administrative procedures. We believe in
+                  making complex legal processes simple and accessible for everyone.
                 </p>
                 <p>
-                  Every project we undertake is an opportunity to push
-                  boundaries, solve complex problems, and deliver solutions that
-                  not only meet requirements but exceed expectations.
+                  Every client we serve receives personalized attention and expert
+                  guidance, ensuring their legal needs are met with professionalism,
+                  efficiency, and care.
                 </p>
               </div>
             </motion.div>

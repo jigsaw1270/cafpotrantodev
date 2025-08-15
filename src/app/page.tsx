@@ -1,45 +1,45 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { ArrowRight, CheckCircle, Code, Rocket, Users } from 'lucide-react';
+import { ArrowRight, CheckCircle, FileText, Shield, Users } from 'lucide-react';
 import { CTAButton } from '@/components/ui/cta-button';
 import { Button } from '@/components/ui/button';
 import { SEO } from '@/components/seo';
 
 const features = [
   {
-    icon: Code,
-    title: 'Modern Development',
+    icon: FileText,
+    title: 'Administrative Assistance',
     description:
-      'Built with the latest technologies including React, Next.js, and TypeScript.',
+      'Expert help with forms, procedures, and bureaucratic processes for citizens and businesses.',
   },
   {
-    icon: Rocket,
-    title: 'Performance Optimized',
+    icon: Shield,
+    title: 'Legal Compliance',
     description:
-      'Fast loading times and optimized for search engines and user experience.',
+      'Ensure your procedures are compliant with Italian regulations and requirements.',
   },
   {
     icon: Users,
-    title: 'User-Centered Design',
+    title: 'Personalized Service',
     description:
-      'Designed with accessibility and user experience at the forefront.',
+      'Dedicated support tailored to your specific needs and circumstances.',
   },
 ];
 
 const benefits = [
-  'Responsive design for all devices',
-  'SEO optimized for better visibility',
-  'Modern development practices',
-  'Professional support and maintenance',
+  'Professional CAF and Patronato services',
+  'ISEE, NASpI, and SPID assistance',
+  'Work and pension consultations',
+  'Family benefits and income support',
 ];
 
 export default function Home() {
   return (
     <>
       <SEO
-        title="CafPotranto Dev - Modern Web Development"
-        description="Professional web development services with modern technologies. Specializing in React, Next.js, and TypeScript applications."
+        title="CafPotranto - Legal Services & Administrative Assistance"
+        description="Professional legal services for businesses and citizens to manage online procedures. Expert assistance with CAF and Patronato services, work benefits, pensions, and administrative procedures."
         url="/"
       />
 
@@ -53,8 +53,8 @@ export default function Home() {
               transition={{ duration: 0.5 }}
               className="mb-6 text-4xl font-bold tracking-tight text-foreground sm:text-6xl"
             >
-              Modern Web Development
-              <span className="text-primary"> Solutions</span>
+              Legal Services &
+              <span className="text-primary"> Administrative Assistance</span>
             </motion.h1>
 
             <motion.p
@@ -63,9 +63,9 @@ export default function Home() {
               transition={{ duration: 0.5, delay: 0.1 }}
               className="mb-8 text-xl text-muted-foreground"
             >
-              We build exceptional digital experiences with cutting-edge
-              technologies. From concept to deployment, we deliver professional
-              web applications that drive results.
+              Professional legal services for businesses and citizens to manage
+              online procedures. Expert assistance with CAF and Patronato services,
+              work benefits, pensions, and administrative procedures.
             </motion.p>
 
             <motion.div
@@ -75,10 +75,10 @@ export default function Home() {
               className="flex flex-col gap-4 sm:flex-row sm:justify-center"
             >
               <CTAButton size="lg" className="text-lg">
-                Get Started
+                Our Services
               </CTAButton>
               <Button variant="outline" size="lg" className="text-lg">
-                View Our Work
+                Free Consultation
               </Button>
             </motion.div>
           </div>
@@ -111,8 +111,8 @@ export default function Home() {
               viewport={{ once: true }}
               className="mb-16 text-lg text-muted-foreground"
             >
-              We combine technical expertise with creative vision to deliver
-              outstanding results.
+              We provide comprehensive legal assistance and administrative support
+              to simplify your bureaucratic processes.
             </motion.p>
           </div>
 
@@ -198,14 +198,14 @@ export default function Home() {
             className="mx-auto max-w-2xl text-center"
           >
             <h2 className="mb-4 text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-              Ready to Get Started?
+              Need Legal Assistance?
             </h2>
             <p className="mb-8 text-lg text-muted-foreground">
-              Let's discuss your project and bring your vision to life with our
-              expert development team.
+              Contact us today for professional legal services and administrative support.
+              Our expert team is ready to help you navigate complex procedures.
             </p>
             <CTAButton size="lg" className="text-lg">
-              Contact Us Today
+              Schedule Consultation
             </CTAButton>
           </motion.div>
         </div>
