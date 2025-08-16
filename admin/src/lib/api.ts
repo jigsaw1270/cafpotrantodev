@@ -117,27 +117,27 @@ class ApiClient {
 
   // HTTP Methods
   async get<T = any>(url: string, params?: any): Promise<ApiResponse<T>> {
-    const response = await this.instance.get(url, { params });
+    const response: AxiosResponse<ApiResponse<T>> = await this.instance.get(url, { params });
     return response.data;
   }
 
   async post<T = any>(url: string, data?: any, config?: any): Promise<ApiResponse<T>> {
-    const response = await this.instance.post(url, data, config);
+    const response: AxiosResponse<ApiResponse<T>> = await this.instance.post(url, data, config);
     return response.data;
   }
 
   async put<T = any>(url: string, data?: any, config?: any): Promise<ApiResponse<T>> {
-    const response = await this.instance.put(url, data, config);
+    const response: AxiosResponse<ApiResponse<T>> = await this.instance.put(url, data, config);
     return response.data;
   }
 
   async delete<T = any>(url: string): Promise<ApiResponse<T>> {
-    const response = await this.instance.delete(url);
+    const response: AxiosResponse<ApiResponse<T>> = await this.instance.delete(url);
     return response.data;
   }
 
   // File upload helper
-  async uploadFile<T = any>(url: string, file: File, additionalData?: any): Promise<ApiResponse<T>> {
+  async uploadFile<T = any>(url: string, file: File, additionalData?: any, method: 'POST' | 'PUT' = 'POST'): Promise<ApiResponse<T>> {
     const formData = new FormData();
     formData.append('image', file);
     
@@ -152,11 +152,19 @@ class ApiClient {
       });
     }
 
-    const response = await this.instance.post(url, formData, {
+    const config = {
       headers: {
         'Content-Type': 'multipart/form-data',
       },
-    });
+    };
+
+    let response: AxiosResponse<ApiResponse<T>>;
+    
+    if (method === 'PUT') {
+      response = await this.instance.put(url, formData, config);
+    } else {
+      response = await this.instance.post(url, formData, config);
+    }
     
     return response.data;
   }
@@ -208,7 +216,7 @@ class ApiClient {
 
   async updateCategory(id: string, data: any, file?: File) {
     if (file) {
-      return this.uploadFile(`/categories/${id}`, file, data);
+      return this.uploadFile(`/categories/${id}`, file, data, 'PUT');
     }
     return this.put(`/categories/${id}`, data);
   }
@@ -231,17 +239,35 @@ class ApiClient {
   }
 
   async createSubservice(data: any, file?: File) {
+    // Ensure arrays are properly handled
+    const processedData = {
+      ...data,
+      tags: data.tags || [],
+      features: data.features || [],
+      requirements: data.requirements || [],
+      metadata: data.metadata || {}
+    };
+
     if (file) {
-      return this.uploadFile('/subservices', file, data);
+      return this.uploadFile('/subservices', file, processedData);
     }
-    return this.post('/subservices', data);
+    return this.post('/subservices', processedData);
   }
 
   async updateSubservice(id: string, data: any, file?: File) {
+    // Ensure arrays are properly handled
+    const processedData = {
+      ...data,
+      tags: data.tags || [],
+      features: data.features || [],
+      requirements: data.requirements || [],
+      metadata: data.metadata || {}
+    };
+
     if (file) {
-      return this.uploadFile(`/subservices/${id}`, file, data);
+      return this.uploadFile(`/subservices/${id}`, file, processedData, 'PUT');
     }
-    return this.put(`/subservices/${id}`, data);
+    return this.put(`/subservices/${id}`, processedData);
   }
 
   async deleteSubservice(id: string) {

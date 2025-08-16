@@ -14,6 +14,7 @@
     "@hookform/resolvers": "^5.2.1",
     "@types/js-cookie": "^3.0.6",
     "@types/react-toastify": "^4.0.2",
+    "@uiw/react-md-editor": "^4.0.8",
     "axios": "^1.11.0",
     "clsx": "^2.1.1",
     "js-cookie": "^3.0.5",

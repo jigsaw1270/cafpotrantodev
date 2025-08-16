@@ -209,20 +209,41 @@ router.post('/', [
     .withMessage('Display order must be a positive integer'),
   body('tags')
     .optional()
-    .isArray()
-    .withMessage('Tags must be an array'),
+    .custom((value) => {
+      if (Array.isArray(value) || typeof value === 'string') {
+        return true;
+      }
+      throw new Error('Tags must be an array or string');
+    }),
   body('features')
     .optional()
-    .isArray()
-    .withMessage('Features must be an array'),
+    .custom((value) => {
+      if (Array.isArray(value) || typeof value === 'string') {
+        return true;
+      }
+      throw new Error('Features must be an array or string');
+    }),
   body('requirements')
     .optional()
-    .isArray()
-    .withMessage('Requirements must be an array'),
+    .custom((value) => {
+      if (Array.isArray(value) || typeof value === 'string') {
+        return true;
+      }
+      throw new Error('Requirements must be an array or string');
+    }),
 ], async (req, res) => {
   try {
+    // Debug logging
+    console.log('=== CREATE SUBSERVICE DEBUG ===');
+    console.log('Request body:', JSON.stringify(req.body, null, 2));
+    console.log('Tags type:', typeof req.body.tags, 'Value:', req.body.tags);
+    console.log('Features type:', typeof req.body.features, 'Value:', req.body.features);
+    console.log('Requirements type:', typeof req.body.requirements, 'Value:', req.body.requirements);
+    console.log('================================');
+
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
+      console.log('Validation errors:', errors.array());
       if (req.file) {
         deleteFile(req.file.path);
       }
@@ -252,7 +273,20 @@ router.post('/', [
     const subserviceData = {
       ...req.body,
       price_start: parseFloat(req.body.price_start),
+      rating: parseFloat(req.body.rating || 0),
+      reviews_count: parseInt(req.body.reviews_count || 0),
+      displayOrder: parseInt(req.body.displayOrder || 1),
+      isActive: req.body.isActive === 'true' || req.body.isActive === true,
+      isFeatured: req.body.isFeatured === 'true' || req.body.isFeatured === true,
     };
+
+    // Debug the converted data
+    console.log('=== CONVERTED DATA DEBUG ===');
+    console.log('price_start:', subserviceData.price_start, 'type:', typeof subserviceData.price_start);
+    console.log('rating:', subserviceData.rating, 'type:', typeof subserviceData.rating);
+    console.log('reviews_count:', subserviceData.reviews_count, 'type:', typeof subserviceData.reviews_count);
+    console.log('displayOrder:', subserviceData.displayOrder, 'type:', typeof subserviceData.displayOrder);
+    console.log('=================================');
 
     // Add image data if uploaded
     if (req.fileData) {
@@ -281,6 +315,15 @@ router.post('/', [
         subserviceData.requirements = JSON.parse(req.body.requirements);
       } catch (e) {
         subserviceData.requirements = [];
+      }
+    }
+
+    // Parse metadata if it's a string
+    if (typeof req.body.metadata === 'string') {
+      try {
+        subserviceData.metadata = JSON.parse(req.body.metadata);
+      } catch (e) {
+        subserviceData.metadata = {};
       }
     }
 

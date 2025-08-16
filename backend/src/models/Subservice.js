@@ -28,12 +28,6 @@ const subserviceSchema = new mongoose.Schema({
     type: Number,
     required: [true, 'Starting price is required'],
     min: [0, 'Price cannot be negative'],
-    get: function(value) {
-      return parseFloat(value?.toFixed(2));
-    },
-    set: function(value) {
-      return parseFloat(value?.toFixed(2));
-    },
   },
   priceType: {
     type: String,
@@ -45,12 +39,6 @@ const subserviceSchema = new mongoose.Schema({
     min: [0, 'Rating cannot be less than 0'],
     max: [5, 'Rating cannot be more than 5'],
     default: 0,
-    get: function(value) {
-      return parseFloat(value?.toFixed(1));
-    },
-    set: function(value) {
-      return parseFloat(value?.toFixed(1));
-    },
   },
   reviews_count: {
     type: Number,
