@@ -82,6 +82,13 @@ class ApiClient {
             toast.error(data?.message || 'Validation error');
           }
           break;
+        case 423:
+          this.removeToken();
+          toast.error('Account is locked due to too many failed login attempts. Please login again.');
+          if (typeof window !== 'undefined') {
+            window.location.href = '/login';
+          }
+          break;
         case 429:
           toast.error('Too many requests. Please try again later.');
           break;

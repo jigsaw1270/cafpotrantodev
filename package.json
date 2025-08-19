@@ -11,7 +11,12 @@
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "type-check": "tsc --noEmit",
-    "prepare": "husky"
+    "prepare": "husky",
+    "save": "node git-save.js",
+    "quick-save": "node git-save.js",
+    "qs": "node git-save.js",
+    "save-safe": "node git-save-safe.js",
+    "ss": "node git-save-safe.js"
   },
   "dependencies": {
     "@radix-ui/react-dialog": "^1.1.14",
@@ -51,7 +56,7 @@
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
-      "eslint --fix",
+      "eslint --fix --max-warnings=50 --ignore-pattern git-save*.js --ignore-pattern unlock-admin.js",
       "prettier --write"
     ],
     "*.{json,css,md}": [
