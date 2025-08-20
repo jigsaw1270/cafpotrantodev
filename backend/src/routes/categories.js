@@ -16,7 +16,9 @@ router.get('/', [
   query('sort').optional().isIn(['name', 'createdAt', 'updatedAt', 'displayOrder']).withMessage('Invalid sort field'),
   query('order').optional().isIn(['asc', 'desc']).withMessage('Order must be asc or desc'),
   query('search').optional().isLength({ min: 1 }).withMessage('Search term cannot be empty'),
-  query('active').optional().isBoolean().withMessage('Active must be boolean'),
+  query('active').optional().custom((value) => {
+    return value === true || value === false || value === 'true' || value === 'false';
+  }).withMessage('Active must be boolean'),
 ], async (req, res) => {
   try {
     const errors = validationResult(req);
@@ -409,7 +411,9 @@ router.get('/:id/subservices', [
   query('limit').optional().isInt({ min: 1, max: 100 }).withMessage('Limit must be between 1 and 100'),
   query('sort').optional().isIn(['name', 'price_start', 'rating', 'createdAt', 'displayOrder']).withMessage('Invalid sort field'),
   query('order').optional().isIn(['asc', 'desc']).withMessage('Order must be asc or desc'),
-  query('active').optional().isBoolean().withMessage('Active must be boolean'),
+  query('active').optional().custom((value) => {
+    return value === true || value === false || value === 'true' || value === 'false';
+  }).withMessage('Active must be boolean'),
 ], async (req, res) => {
   try {
     const errors = validationResult(req);
@@ -443,7 +447,8 @@ router.get('/:id/subservices', [
 
     const query = { categoryId: req.params.id };
     if (active !== undefined) {
-      query.isActive = active === 'true';
+      // Handle both boolean and string values
+      query.isActive = active === true || active === 'true';
     }
 
     const subservices = await Subservice.find(query)

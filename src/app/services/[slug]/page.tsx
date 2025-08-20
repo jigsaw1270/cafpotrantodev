@@ -231,7 +231,7 @@ export default function CategoryPage() {
               viewport={{ once: true }}
             >
               {subservices.map((subservice, index) => (
-                <motion.div
+                  <motion.div
                   key={subservice._id}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -241,77 +241,79 @@ export default function CategoryPage() {
                     ease: "easeOut"
                   }}
                   viewport={{ once: true }}
-                  className="group bg-card border rounded-xl p-6 shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1"
+                  className="group bg-card border rounded-xl shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1"
                 >
+                  <Link href={`/services/subservice/${subservice.slug}`} className="block p-6 h-full">
                   
-                  {/* Service Header */}
-                  <div className="mb-4">
-                    <h3 className="text-xl font-semibold text-foreground group-hover:text-primary transition-colors line-clamp-2">
-                      {subservice.name}
-                    </h3>
-                    
-                    {subservice.rating > 0 && (
-                      <div className="flex items-center gap-1 mt-2">
-                        <Star className="h-4 w-4 text-yellow-500 fill-current" />
-                        <span className="text-sm text-muted-foreground">
-                          {subservice.rating.toFixed(1)} ({subservice.reviews_count} recensioni)
-                        </span>
-                      </div>
-                    )}
-                  </div>
-
-                  {/* Service Description */}
-                  <p className="text-muted-foreground text-sm mb-4 line-clamp-3">
-                    {subservice.shortDescription || subservice.description}
-                  </p>
-
-                  {/* Service Details */}
-                  <div className="space-y-3">
-                    
-                    {/* Price */}
-                    <div className="flex items-center gap-2">
-                      <Euro className="h-4 w-4 text-primary" />
-                      <span className="font-semibold text-primary">
-                        {formatPrice(subservice.price_start, subservice.priceType)}
-                      </span>
+                    {/* Service Header */}
+                    <div className="mb-4">
+                      <h3 className="text-xl font-semibold text-foreground group-hover:text-primary transition-colors line-clamp-2">
+                        {subservice.name}
+                      </h3>
+                      
+                      {subservice.rating > 0 && (
+                        <div className="flex items-center gap-1 mt-2">
+                          <Star className="h-4 w-4 text-yellow-500 fill-current" />
+                          <span className="text-sm text-muted-foreground">
+                            {subservice.rating.toFixed(1)} ({subservice.reviews_count} recensioni)
+                          </span>
+                        </div>
+                      )}
                     </div>
 
-                    {/* Duration */}
-                    {subservice.estimatedDuration && (
+                    {/* Service Description */}
+                    <p className="text-muted-foreground text-sm mb-4 line-clamp-3">
+                      {subservice.shortDescription || subservice.description}
+                    </p>
+
+                    {/* Service Details */}
+                    <div className="space-y-3">
+                      
+                      {/* Price */}
                       <div className="flex items-center gap-2">
-                        <Clock className="h-4 w-4 text-muted-foreground" />
-                        <span className="text-sm text-muted-foreground">
-                          Durata stimata: {formatDuration(subservice.estimatedDuration)}
+                        <Euro className="h-4 w-4 text-primary" />
+                        <span className="font-semibold text-primary">
+                          {formatPrice(subservice.price_start, subservice.priceType)}
                         </span>
                       </div>
-                    )}
 
-                    {/* Tags */}
-                    {subservice.tags && subservice.tags.length > 0 && (
-                      <div className="flex flex-wrap gap-1">
-                        {subservice.tags.slice(0, 3).map((tag, tagIndex) => (
-                          <span
-                            key={tagIndex}
-                            className="inline-block px-2 py-1 text-xs bg-secondary/50 text-secondary-foreground rounded-full"
-                          >
-                            {tag}
+                      {/* Duration */}
+                      {subservice.estimatedDuration && (
+                        <div className="flex items-center gap-2">
+                          <Clock className="h-4 w-4 text-muted-foreground" />
+                          <span className="text-sm text-muted-foreground">
+                            Durata stimata: {formatDuration(subservice.estimatedDuration)}
                           </span>
-                        ))}
-                        {subservice.tags.length > 3 && (
-                          <span className="text-xs text-muted-foreground">
-                            +{subservice.tags.length - 3} altri
-                          </span>
-                        )}
+                        </div>
+                      )}
+
+                      {/* Tags */}
+                      {subservice.tags && subservice.tags.length > 0 && (
+                        <div className="flex flex-wrap gap-1">
+                          {subservice.tags.slice(0, 3).map((tag, tagIndex) => (
+                            <span
+                              key={tagIndex}
+                              className="inline-block px-2 py-1 text-xs bg-secondary/50 text-secondary-foreground rounded-full"
+                            >
+                              {tag}
+                            </span>
+                          ))}
+                          {subservice.tags.length > 3 && (
+                            <span className="text-xs text-muted-foreground">
+                              +{subservice.tags.length - 3} altri
+                            </span>
+                          )}
+                        </div>
+                      )}
+                    </div>
+
+                    {/* CTA */}
+                    <div className="mt-6 pt-4 border-t">
+                      <div className="w-full bg-primary text-primary-foreground py-2 rounded-lg hover:bg-primary/90 transition-colors text-sm font-medium text-center">
+                        Scopri di più
                       </div>
-                    )}
-                  </div>
-
-                  {/* CTA */}
-                  <div className="mt-6 pt-4 border-t">
-                    <button className="w-full bg-primary text-primary-foreground py-2 rounded-lg hover:bg-primary/90 transition-colors text-sm font-medium">
-                      Richiedi informazioni
-                    </button>
-                  </div>
+                    </div>
+                  </Link>
                 </motion.div>
               ))}
             </motion.div>

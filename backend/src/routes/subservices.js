@@ -17,8 +17,12 @@ router.get('/', [
   query('order').optional().isIn(['asc', 'desc']).withMessage('Order must be asc or desc'),
   query('search').optional().isLength({ min: 1 }).withMessage('Search term cannot be empty'),
   query('categoryId').optional().isMongoId().withMessage('Invalid category ID'),
-  query('active').optional().isBoolean().withMessage('Active must be boolean'),
-  query('featured').optional().isBoolean().withMessage('Featured must be boolean'),
+  query('active').optional().custom((value) => {
+    return value === true || value === false || value === 'true' || value === 'false';
+  }).withMessage('Active must be boolean'),
+  query('featured').optional().custom((value) => {
+    return value === true || value === false || value === 'true' || value === 'false';
+  }).withMessage('Featured must be boolean'),
   query('minPrice').optional().isFloat({ min: 0 }).withMessage('Min price must be a positive number'),
   query('maxPrice').optional().isFloat({ min: 0 }).withMessage('Max price must be a positive number'),
 ], async (req, res) => {
@@ -98,6 +102,53 @@ router.get('/', [
 
   } catch (error) {
     console.error('Get subservices error:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Internal server error',
+    });
+  }
+});
+
+// @desc    Get single subservice by slug
+// @route   GET /api/subservices/slug/:slug
+// @access  Public
+router.get('/slug/:slug', [
+  param('slug').notEmpty().withMessage('Slug is required'),
+], async (req, res) => {
+  try {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({
+        success: false,
+        message: 'Validation failed',
+        errors: errors.array(),
+      });
+    }
+
+    const subservice = await Subservice.findOne({ slug: req.params.slug })
+      .populate('categoryId', 'name slug description');
+
+    if (!subservice) {
+      return res.status(404).json({
+        success: false,
+        message: 'Subservice not found',
+      });
+    }
+
+    // Increment view count (optional, only for public views)
+    if (!req.admin) {
+      await subservice.incrementViews();
+    }
+
+    res.json({
+      success: true,
+      data: {
+        subservice,
+      },
+    });
+
+  } catch (error) {
+    console.error('Get subservice by slug error:', error);
     res.status(500).json({
       success: false,
       message: 'Internal server error',

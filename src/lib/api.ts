@@ -104,6 +104,10 @@ class ApiClient {
     return this.request<Subservice>(`/subservices/${id}`);
   }
 
+  async getSubserviceBySlug(slug: string) {
+    return this.request<{ subservice: Subservice }>(`/subservices/slug/${slug}`);
+  }
+
   async getSubservicesByCategory(categoryId: string, query: Omit<SubservicesQuery, 'categoryId'> = {}) {
     const searchParams = new URLSearchParams();
     
