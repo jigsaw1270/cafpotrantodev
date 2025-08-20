@@ -150,11 +150,11 @@ export default function DashboardPage() {
                           <p className="text-sm text-gray-500">{category.description}</p>
                         </div>
                         <span className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${
-                          category.status === 'active' 
+                          category.isActive 
                             ? 'bg-green-100 text-green-800' 
                             : 'bg-yellow-100 text-yellow-800'
                         }`}>
-                          {category.status}
+                          {category.isActive ? 'Active' : 'Inactive'}
                         </span>
                       </div>
                     ))}
@@ -189,14 +189,14 @@ export default function DashboardPage() {
                         </div>
                         <div className="text-right">
                           <p className="text-sm font-medium text-gray-900">
-                            ${subservice.price?.amount || subservice.price_start || 0}
+                            €{subservice.price_start || 0}
                           </p>
                           <span className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${
-                            subservice.status === 'active' 
+                            subservice.isActive 
                               ? 'bg-green-100 text-green-800' 
                               : 'bg-yellow-100 text-yellow-800'
                           }`}>
-                            {subservice.status}
+                            {subservice.isActive ? 'Active' : 'Inactive'}
                           </span>
                         </div>
                       </div>

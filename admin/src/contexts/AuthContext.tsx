@@ -20,14 +20,22 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [admin, setAdmin] = useState<Admin | null>(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [mounted, setMounted] = useState(false);
   const router = useRouter();
 
-  const isAuthenticated = !!admin && apiClient.isAuthenticated();
+  const isAuthenticated = !!admin && mounted && apiClient.isAuthenticated();
+
+  // Ensure we're on the client side before doing auth checks
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   // Check authentication status on app load
   useEffect(() => {
-    checkAuth();
-  }, []);
+    if (mounted) {
+      checkAuth();
+    }
+  }, [mounted]);
 
   const checkAuth = async () => {
     try {
@@ -130,7 +138,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   return (
     <AuthContext.Provider value={value}>
-      {children}
+      <div suppressHydrationWarning>
+        {children}
+      </div>
     </AuthContext.Provider>
   );
 }
