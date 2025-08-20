@@ -1,92 +1,9 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import {
-  FileText,
-  Users,
-  CreditCard,
-  Shield,
-  Calculator,
-  Briefcase,
-  CheckCircle,
-} from 'lucide-react';
 import { SEO } from '@/components/seo';
 import { CTAButton } from '@/components/ui/cta-button';
-
-const services = [
-  {
-    icon: FileText,
-    title: 'CAF Services',
-    description:
-      'Complete tax assistance and fiscal consultation for individuals and businesses.',
-    features: [
-      'Tax return preparation',
-      'Fiscal consultation',
-      'Document assistance',
-      'Online tax filing',
-    ],
-  },
-  {
-    icon: Users,
-    title: 'Patronato Services',
-    description:
-      'Professional assistance with work benefits, pensions, and social security matters.',
-    features: [
-      'Pension calculations',
-      'Disability benefits',
-      'Maternity benefits',
-      'Work injury claims',
-    ],
-  },
-  {
-    icon: CreditCard,
-    title: 'Financial Assistance',
-    description:
-      'Expert guidance on financial matters, loans, and economic support programs.',
-    features: [
-      'Loan applications',
-      'Financial planning',
-      'Subsidy applications',
-      'Economic consultation',
-    ],
-  },
-  {
-    icon: Shield,
-    title: 'Legal Protection',
-    description:
-      'Comprehensive legal support and protection services for businesses and individuals.',
-    features: [
-      'Legal consultation',
-      'Document review',
-      'Dispute resolution',
-      'Contract assistance',
-    ],
-  },
-  {
-    icon: Calculator,
-    title: 'Administrative Procedures',
-    description:
-      'Simplify complex administrative processes with our expert assistance.',
-    features: [
-      'Permit applications',
-      'License renewals',
-      'Bureaucratic procedures',
-      'Document preparation',
-    ],
-  },
-  {
-    icon: Briefcase,
-    title: 'Business Services',
-    description:
-      'Comprehensive business support including company formation and compliance.',
-    features: [
-      'Company registration',
-      'Business compliance',
-      'Corporate procedures',
-      'Regulatory assistance',
-    ],
-  },
-];
+import CategoriesGrid from '@/components/services/CategoriesGrid';
 
 const process = [
   {
@@ -162,7 +79,7 @@ export default function Services() {
         </div>
       </section>
 
-      {/* Services Grid */}
+      {/* Categories Grid */}
       <section className="py-24">
         <div className="container mx-auto px-4">
           <motion.div
@@ -173,44 +90,15 @@ export default function Services() {
             className="mx-auto max-w-2xl text-center"
           >
             <h2 className="mb-4 text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-              What We Offer
+              Our Service Categories
             </h2>
             <p className="mb-16 text-lg text-muted-foreground">
-              Full-stack development services designed to bring your digital
-              vision to life with modern technologies and best practices.
+              Explore our comprehensive range of legal services and administrative assistance. 
+              Each category offers specialized support tailored to your specific needs.
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-            {services.map((service, index) => (
-              <motion.div
-                key={service.title}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                viewport={{ once: true }}
-                className="rounded-lg border bg-card p-6 shadow-sm"
-              >
-                <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-primary/10">
-                  <service.icon className="h-6 w-6 text-primary" />
-                </div>
-                <h3 className="mb-2 text-xl font-semibold">{service.title}</h3>
-                <p className="mb-4 text-muted-foreground">
-                  {service.description}
-                </p>
-                <ul className="space-y-2">
-                  {service.features.map(feature => (
-                    <li key={feature} className="flex items-center gap-2">
-                      <CheckCircle className="h-4 w-4 text-primary" />
-                      <span className="text-sm text-muted-foreground">
-                        {feature}
-                      </span>
-                    </li>
-                  ))}
-                </ul>
-              </motion.div>
-            ))}
-          </div>
+          <CategoriesGrid />
         </div>
       </section>
 
