@@ -105,7 +105,29 @@ class ApiClient {
   }
 
   async getSubservicesByCategory(categoryId: string, query: Omit<SubservicesQuery, 'categoryId'> = {}) {
-    return this.getSubservices({ ...query, categoryId });
+    const searchParams = new URLSearchParams();
+    
+    if (query.active !== undefined) searchParams.append('active', query.active.toString());
+    if (query.featured !== undefined) searchParams.append('featured', query.featured.toString());
+    if (query.search) searchParams.append('search', query.search);
+    if (query.sortBy) searchParams.append('sort', query.sortBy);
+    if (query.sortOrder) searchParams.append('order', query.sortOrder);
+    if (query.page) searchParams.append('page', query.page.toString());
+    if (query.limit) searchParams.append('limit', query.limit.toString());
+
+    const queryString = searchParams.toString();
+    const endpoint = `/categories/${categoryId}/subservices${queryString ? `?${queryString}` : ''}`;
+    
+    return this.request<{ 
+      category: { id: string; name: string; slug: string };
+      subservices: Subservice[]; 
+      pagination: { 
+        page: number; 
+        limit: number; 
+        total: number; 
+        pages: number; 
+      } 
+    }>(endpoint);
   }
 
   // Health check
