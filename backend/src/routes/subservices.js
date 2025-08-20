@@ -221,8 +221,8 @@ router.post('/', [
     .withMessage('Subservice name must be between 2 and 100 characters'),
   body('description')
     .notEmpty()
-    .isLength({ min: 10, max: 1000 })
-    .withMessage('Description must be between 10 and 1000 characters'),
+    .isLength({ min: 10 })
+    .withMessage('Description must be at least 10 characters'),
   body('shortDescription')
     .optional()
     .isLength({ max: 200 })
@@ -426,8 +426,8 @@ router.put('/:id', [
     .withMessage('Subservice name must be between 2 and 100 characters'),
   body('description')
     .optional()
-    .isLength({ min: 10, max: 1000 })
-    .withMessage('Description must be between 10 and 1000 characters'),
+    .isLength({ min: 10 })
+    .withMessage('Description must be at least 10 characters'),
   body('shortDescription')
     .optional()
     .isLength({ max: 200 })

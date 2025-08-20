@@ -17,7 +17,6 @@ const subserviceSchema = new mongoose.Schema({
     type: String,
     required: [true, 'Subservice description is required'],
     trim: true,
-    maxlength: [1000, 'Description cannot exceed 1000 characters'],
   },
   shortDescription: {
     type: String,
