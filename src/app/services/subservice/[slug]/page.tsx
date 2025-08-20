@@ -7,6 +7,7 @@ import { ArrowLeft, Euro, Clock, Star, Users, Phone, MessageCircle, CreditCard, 
 import Link from 'next/link';
 import { SEO } from '@/components/seo';
 import { Subservice, Category } from '@/lib/types';
+import { markdownToHtml } from '@/lib/markdown';
 import apiClient from '@/lib/api';
 
 export default function SubservicePage() {
@@ -219,8 +220,8 @@ export default function SubservicePage() {
                 <div className="prose prose-lg max-w-none">
                   {/* Rich text description */}
                   <div 
-                    className="text-muted-foreground leading-relaxed"
-                    dangerouslySetInnerHTML={{ __html: subservice.description }}
+                    className="text-muted-foreground leading-relaxed prose"
+                    dangerouslySetInnerHTML={{ __html: markdownToHtml(subservice.description) }}
                   />
                 </div>
               </motion.div>
