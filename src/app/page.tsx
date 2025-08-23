@@ -50,7 +50,7 @@ export default function Home() {
         <div className="container mx-auto px-4">
           <div className="mx-auto max-w-2xl">
             <div className="text-center mb-4">
-              <h2 className="text-lg font-semibold text-accent-foreground mb-2">
+              <h2 className="text-2xl lg:text-lg font-semibold text-accent-foreground mb-2">
                 Find Legal Services
               </h2>
               <p className="text-sm text-accent-foreground">
@@ -75,7 +75,7 @@ export default function Home() {
       </section>
 
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-background to-secondary/20 py-24">
+      <section className="relative overflow-hidden bg-gradient-to-br from-background to-secondary/20 py-24 hidden lg:block">
         <div className="container mx-auto px-4">
           <div className="mx-auto max-w-4xl text-center">
             <motion.h1
@@ -123,7 +123,7 @@ export default function Home() {
       </section>
 
       {/* Service Categories Section */}
-      <section className="py-24">
+      <section className="py-12 lg:py-24">
         <div className="container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
