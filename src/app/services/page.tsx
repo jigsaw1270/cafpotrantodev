@@ -89,10 +89,10 @@ export default function Services() {
             viewport={{ once: true }}
             className="mx-auto max-w-2xl text-center"
           >
-            <h2 className="mb-4 text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
+            <h2 className="mb-4 text-3xl font-bold tracking-tight text-foreground sm:text-4xl hidden lg:block">
               Our Service Categories
             </h2>
-            <p className="mb-16 text-lg text-muted-foreground">
+            <p className="mb-16 text-lg text-muted-foreground hidden lg:block">
               Explore our comprehensive range of legal services and administrative assistance. 
               Each category offers specialized support tailored to your specific needs.
             </p>

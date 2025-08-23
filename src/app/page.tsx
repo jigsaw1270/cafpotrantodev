@@ -45,7 +45,7 @@ export default function Home() {
       />
 
       {/* Search/Filter Section */}
-      <section className="border-b bg-foreground py-6">
+      <section className="border-b bg-foreground py-6 z-30">
         <div className="container mx-auto px-4">
           <div className="mx-auto max-w-2xl">
             <div className="text-center mb-4">
