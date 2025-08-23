@@ -5,6 +5,7 @@ import { ArrowRight, CheckCircle, FileText, Shield, Users } from 'lucide-react';
 import { CTAButton } from '@/components/ui/cta-button';
 import { Button } from '@/components/ui/button';
 import { Combobox } from '@/components/ui/combobox';
+import CategoriesGrid from '@/components/services/CategoriesGrid';
 import { SEO } from '@/components/seo';
 
 const features = [
@@ -118,6 +119,29 @@ export default function Home() {
         <div className="absolute inset-0 -z-10 overflow-hidden">
           <div className="absolute -top-40 -right-32 h-80 w-80 rounded-full bg-primary/5 blur-3xl" />
           <div className="absolute -bottom-40 -left-32 h-80 w-80 rounded-full bg-secondary/30 blur-3xl" />
+        </div>
+      </section>
+
+      {/* Service Categories Section */}
+      <section className="py-24">
+        <div className="container mx-auto px-4">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            viewport={{ once: true }}
+            className="mx-auto max-w-2xl text-center"
+          >
+            <h2 className="mb-4 text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
+              Our Service Categories
+            </h2>
+            <p className="mb-16 text-lg text-muted-foreground">
+              Explore our comprehensive range of legal services and administrative assistance. 
+              Each category offers specialized support tailored to your specific needs.
+            </p>
+          </motion.div>
+
+          <CategoriesGrid />
         </div>
       </section>
 
