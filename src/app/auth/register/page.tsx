@@ -101,7 +101,7 @@ export default function Register() {
                 <div>
                   <label
                     htmlFor="firstName"
-                    className="block text-sm font-medium text-foreground"
+                    className="block text-sm font-medium text-background"
                   >
                     First name
                   </label>
@@ -124,7 +124,7 @@ export default function Register() {
                 <div>
                   <label
                     htmlFor="lastName"
-                    className="block text-sm font-medium text-foreground"
+                    className="block text-sm font-medium text-background"
                   >
                     Last name
                   </label>
@@ -149,7 +149,7 @@ export default function Register() {
               <div>
                 <label
                   htmlFor="email"
-                  className="block text-sm font-medium text-foreground"
+                  className="block text-sm font-medium text-background"
                 >
                   Email address
                 </label>
@@ -173,7 +173,7 @@ export default function Register() {
               <div>
                 <label
                   htmlFor="password"
-                  className="block text-sm font-medium text-foreground"
+                  className="block text-sm font-medium text-background"
                 >
                   Password
                 </label>
@@ -204,7 +204,7 @@ export default function Register() {
               <div>
                 <label
                   htmlFor="confirmPassword"
-                  className="block text-sm font-medium text-foreground"
+                  className="block text-sm font-medium text-background"
                 >
                   Confirm password
                 </label>
