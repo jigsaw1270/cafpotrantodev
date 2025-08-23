@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -14,8 +15,16 @@ interface MobileNavigationProps {
 
 export function MobileNavigation({ links }: MobileNavigationProps) {
   const [isOpen, setIsOpen] = useState(false);
+  const pathname = usePathname();
 
   const toggleMenu = () => setIsOpen(!isOpen);
+
+  const isActivePath = (href: string) => {
+    if (href === '/') {
+      return pathname === '/';
+    }
+    return pathname.startsWith(href);
+  };
 
   return (
     <>
@@ -62,28 +71,35 @@ export function MobileNavigation({ links }: MobileNavigationProps) {
                   onClick={toggleMenu}
                   aria-label="Close menu"
                 >
-                  <X className="h-6 w-6 text-white" />
+                  <X className="h-6 w-6" />
                 </Button>
               </div>
 
-              <nav className="px-4 bg-foreground rounded-2xl">
-                <ul className="space-y-2 py-4 ">
-                  {links.map((link, index) => (
-                    <motion.li
-                      key={link.href}
-                      initial={{ opacity: 0, x: 20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: index * 0.1 }}
-                    >
-                      <a
-                        href={link.href}
-                        className="block rounded-md px-4 py-3 text-foreground transition-colors hover:bg-accent hover:text-accent-foreground bg-accent text-lg font-bold"
-                        onClick={toggleMenu}
+              <nav className="px-4">
+                <ul className="space-y-2 py-4">
+                  {links.map((link, index) => {
+                    const isActive = isActivePath(link.href);
+                    return (
+                      <motion.li
+                        key={link.href}
+                        initial={{ opacity: 0, x: 20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: index * 0.1 }}
                       >
-                        {link.label}
-                      </a>
-                    </motion.li>
-                  ))}
+                        <a
+                          href={link.href}
+                          className={`block rounded-md px-4 py-3 font-medium transition-colors ${
+                            isActive
+                              ? 'bg-slate-800 text-white'
+                              : 'text-foreground hover:bg-accent hover:text-accent-foreground'
+                          }`}
+                          onClick={toggleMenu}
+                        >
+                          {link.label}
+                        </a>
+                      </motion.li>
+                    );
+                  })}
                 </ul>
               </nav>
             </motion.div>

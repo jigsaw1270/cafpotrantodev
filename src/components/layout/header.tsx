@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { motion } from 'framer-motion';
 import { MobileNavigation } from '@/components/ui/mobile-navigation';
 import { Button } from '@/components/ui/button';
@@ -14,6 +15,15 @@ const navigation = [
 ];
 
 export function Header() {
+  const pathname = usePathname();
+
+  const isActivePath = (href: string) => {
+    if (href === '/') {
+      return pathname === '/';
+    }
+    return pathname.startsWith(href);
+  };
+
   return (
     <motion.header
       initial={{ y: -100 }}
@@ -34,15 +44,22 @@ export function Header() {
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex md:items-center md:space-x-8">
-          {navigation.map(link => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className="text-foreground transition-colors hover:text-primary"
-            >
-              {link.label}
-            </Link>
-          ))}
+          {navigation.map(link => {
+            const isActive = isActivePath(link.href);
+            return (
+              <Link
+                key={link.href}
+                href={link.href}
+                className={`px-4 py-2 rounded-lg font-medium transition-all duration-200 ${
+                  isActive
+                    ? 'bg-slate-800 text-white shadow-sm'
+                    : 'text-foreground hover:text-primary hover:bg-primary/5'
+                }`}
+              >
+                {link.label}
+              </Link>
+            );
+          })}
         </nav>
 
         {/* Desktop CTA */}

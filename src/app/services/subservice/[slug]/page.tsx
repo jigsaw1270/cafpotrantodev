@@ -299,7 +299,7 @@ export default function SubservicePage() {
 
             {/* Sidebar - Payment & Contact */}
             <div className="lg:col-span-1">
-              <div className="sticky top-6 space-y-6">
+              <div className="sticky top-6 space-y-6 text-accent-foreground">
                 
                 {/* Payment Details Card */}
                 <motion.div
@@ -308,12 +308,12 @@ export default function SubservicePage() {
                   transition={{ duration: 0.5, delay: 0.3 }}
                   className="bg-card border rounded-xl p-6 shadow-sm"
                 >
-                  <h3 className="text-lg font-bold text-foreground mb-4">Dettagli di Pagamento</h3>
+                  <h3 className="text-lg font-bold mb-4">Dettagli di Pagamento</h3>
                   
                   <div className="space-y-4">
                     <div className="flex justify-between items-center pb-2 border-b">
-                      <span className="text-muted-foreground">Prezzo:</span>
-                      <span className="font-bold text-primary">
+                      <span>Prezzo:</span>
+                      <span className="font-bold">
                         {formatPrice(subservice.price_start, subservice.priceType)}
                       </span>
                     </div>
@@ -377,8 +377,8 @@ export default function SubservicePage() {
                   transition={{ duration: 0.5, delay: 0.5 }}
                   className="space-y-3"
                 >
-                  {/* WhatsApp Button */}
-                  <button className="w-full bg-green-500 hover:bg-green-600 text-white py-3 px-4 rounded-lg font-medium transition-colors flex items-center justify-center gap-2">
+                  {/* WhatsApp Button - Hidden on mobile (shown as floating) */}
+                  <button className="w-full bg-green-500 hover:bg-green-600 text-white py-3 px-4 rounded-lg font-medium transition-colors hidden md:flex items-center justify-center gap-2">
                     <MessageCircle className="h-5 w-5" />
                     Contatta via WhatsApp
                   </button>
@@ -432,6 +432,16 @@ export default function SubservicePage() {
           </div>
         </section>
       )}
+
+      {/* Mobile Floating WhatsApp Button */}
+      <div className="md:hidden">
+        <button 
+          className="fixed bottom-6 right-6 w-14 h-14 bg-green-500 hover:bg-green-600 text-white rounded-full shadow-lg transition-all duration-300 flex items-center justify-center z-50 hover:scale-110"
+          aria-label="Contatta via WhatsApp"
+        >
+          <MessageCircle className="h-6 w-6" />
+        </button>
+      </div>
     </>
   );
 }

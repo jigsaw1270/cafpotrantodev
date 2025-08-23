@@ -241,13 +241,13 @@ export default function CategoryPage() {
                     ease: "easeOut"
                   }}
                   viewport={{ once: true }}
-                  className="group bg-card border rounded-xl shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1"
+                  className="group bg-card border rounded-xl shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1 hover:bg-secondary"
                 >
                   <Link href={`/services/subservice/${subservice.slug}`} className="block p-6 h-full">
                   
                     {/* Service Header */}
                     <div className="mb-4">
-                      <h3 className="text-xl font-semibold text-foreground group-hover:text-primary transition-colors line-clamp-2">
+                      <h3 className="text-xl font-semibold text-accent-foreground group-hover:text-white transition-colors line-clamp-2">
                         {subservice.name}
                       </h3>
                       
@@ -262,7 +262,7 @@ export default function CategoryPage() {
                     </div>
 
                     {/* Service Description */}
-                    <p className="text-muted-foreground text-sm mb-4 line-clamp-3">
+                    <p className="text-accent-foreground text-sm mb-4 line-clamp-3">
                       {subservice.shortDescription || subservice.description}
                     </p>
 
@@ -271,8 +271,8 @@ export default function CategoryPage() {
                       
                       {/* Price */}
                       <div className="flex items-center gap-2">
-                        <Euro className="h-4 w-4 text-primary" />
-                        <span className="font-semibold text-primary">
+                        <Euro className="h-4 w-4 text-white" />
+                        <span className="font-semibold text-white">
                           {formatPrice(subservice.price_start, subservice.priceType)}
                         </span>
                       </div>
@@ -309,7 +309,7 @@ export default function CategoryPage() {
 
                     {/* CTA */}
                     <div className="mt-6 pt-4 border-t">
-                      <div className="w-full bg-primary text-primary-foreground py-2 rounded-lg hover:bg-primary/90 transition-colors text-sm font-medium text-center">
+                      <div className="w-full bg-primary text-primary-foreground py-2 rounded-lg  transition-colors text-sm font-medium text-center hover:bg-popover border-2 border-popover">
                         Scopri di più
                       </div>
                     </div>
