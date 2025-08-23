@@ -1,6 +1,6 @@
-import { NextSeo, type NextSeoProps } from 'next-seo';
+import Head from 'next/head';
 
-export interface SEOProps extends NextSeoProps {
+export interface SEOProps {
   title: string;
   description: string;
   image?: string;
@@ -14,67 +14,39 @@ export function SEO({
   image = '/og-image.jpg',
   url,
   type = 'website',
-  ...props
 }: SEOProps) {
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://cafpotranto.dev';
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://cafpotranto.it';
   const fullUrl = url ? `${siteUrl}${url}` : siteUrl;
   const imageUrl = image.startsWith('http') ? image : `${siteUrl}${image}`;
 
   return (
-    <NextSeo
-      title={title}
-      description={description}
-      canonical={fullUrl}
-      openGraph={{
-        type,
-        title,
-        description,
-        url: fullUrl,
-        images: [
-          {
-            url: imageUrl,
-            width: 1200,
-            height: 630,
-            alt: title,
-          },
-        ],
-        siteName: 'CafPotranto Dev',
-      }}
-      twitter={{
-        handle: '@cafpotranto',
-        site: '@cafpotranto',
-        cardType: 'summary_large_image',
-      }}
-      additionalMetaTags={[
-        {
-          name: 'viewport',
-          content: 'width=device-width, initial-scale=1',
-        },
-        {
-          name: 'author',
-          content: 'CafPotranto Dev',
-        },
-        {
-          name: 'keywords',
-          content: 'web development, frontend, react, nextjs, typescript',
-        },
-      ]}
-      additionalLinkTags={[
-        {
-          rel: 'icon',
-          href: '/favicon.ico',
-        },
-        {
-          rel: 'apple-touch-icon',
-          href: '/apple-touch-icon.png',
-          sizes: '180x180',
-        },
-        {
-          rel: 'manifest',
-          href: '/site.webmanifest',
-        },
-      ]}
-      {...props}
-    />
+    <Head>
+      <title>{title}</title>
+      <meta name="description" content={description} />
+      <link rel="canonical" href={fullUrl} />
+      
+      {/* Open Graph */}
+      <meta property="og:type" content={type} />
+      <meta property="og:title" content={title} />
+      <meta property="og:description" content={description} />
+      <meta property="og:url" content={fullUrl} />
+      <meta property="og:image" content={imageUrl} />
+      <meta property="og:image:width" content="1200" />
+      <meta property="og:image:height" content="630" />
+      <meta property="og:image:alt" content={title} />
+      <meta property="og:site_name" content="CafPotranto Legal Services" />
+      
+      {/* Twitter */}
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:site" content="@cafpotranto" />
+      <meta name="twitter:creator" content="@cafpotranto" />
+      <meta name="twitter:title" content={title} />
+      <meta name="twitter:description" content={description} />
+      <meta name="twitter:image" content={imageUrl} />
+      
+      {/* Additional meta tags */}
+      <meta name="author" content="CafPotranto Legal Services" />
+      <meta name="keywords" content="legal services, CAF services, Patronato, online procedures, work benefits, pensions, ISEE, NASpI, SPID" />
+    </Head>
   );
 }

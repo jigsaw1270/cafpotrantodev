@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { ArrowRight, CheckCircle, FileText, Shield, Users } from 'lucide-react';
 import { CTAButton } from '@/components/ui/cta-button';
 import { Button } from '@/components/ui/button';
+import { Combobox } from '@/components/ui/combobox';
 import { SEO } from '@/components/seo';
 
 const features = [
@@ -42,6 +43,35 @@ export default function Home() {
         description="Professional legal services for businesses and citizens to manage online procedures. Expert assistance with CAF and Patronato services, work benefits, pensions, and administrative procedures."
         url="/"
       />
+
+      {/* Search/Filter Section */}
+      <section className="border-b bg-foreground py-6">
+        <div className="container mx-auto px-4">
+          <div className="mx-auto max-w-2xl">
+            <div className="text-center mb-4">
+              <h2 className="text-lg font-semibold text-accent-foreground mb-2">
+                Find Legal Services
+              </h2>
+              <p className="text-sm text-accent-foreground">
+                Search for specific legal services or administrative assistance
+              </p>
+            </div>
+            <Combobox
+              placeholder="Search services (e.g., CAF, Patronato, ISEE)..."
+              options={[
+                { value: "caf", label: "CAF Services" },
+                { value: "patronato", label: "Patronato Services" },
+                { value: "isee", label: "ISEE Assistance" },
+                { value: "naspi", label: "NASpI Support" },
+                { value: "spid", label: "SPID Services" },
+                { value: "pension", label: "Pension Planning" },
+                { value: "benefits", label: "Family Benefits" },
+              ]}
+              className="max-w-md mx-auto"
+            />
+          </div>
+        </div>
+      </section>
 
       {/* Hero Section */}
       <section className="relative overflow-hidden bg-gradient-to-br from-background to-secondary/20 py-24">
@@ -124,13 +154,13 @@ export default function Home() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 viewport={{ once: true }}
-                className="rounded-lg border bg-card p-6 text-center shadow-sm"
+                className="rounded-lg border bg-card p-6 text-center shadow-sm text-accent-foreground"
               >
                 <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-primary/10">
                   <feature.icon className="h-8 w-8 text-primary" />
                 </div>
                 <h3 className="mb-2 text-xl font-semibold">{feature.title}</h3>
-                <p className="text-muted-foreground">{feature.description}</p>
+                <p className="text-accent-foreground">{feature.description}</p>
               </motion.div>
             ))}
           </div>

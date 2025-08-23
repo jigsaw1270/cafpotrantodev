@@ -103,7 +103,7 @@ export default function CategoryPage() {
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto mb-4"></div>
-          <p className="text-gray-600">Caricamento categoria...</p>
+          <p className="text-muted-foreground">Caricamento categoria...</p>
         </div>
       </div>
     );
@@ -113,8 +113,8 @@ export default function CategoryPage() {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
-          <h1 className="text-2xl font-bold text-gray-900 mb-4">Categoria non trovata</h1>
-          <p className="text-gray-600 mb-6">{error || 'La categoria richiesta non esiste.'}</p>
+          <h1 className="text-2xl font-bold text-foreground mb-4">Categoria non trovata</h1>
+          <p className="text-muted-foreground mb-6">{error || 'La categoria richiesta non esiste.'}</p>
           <Link
             href="/services"
             className="inline-flex items-center gap-2 px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors"

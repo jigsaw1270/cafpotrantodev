@@ -146,13 +146,13 @@ export default function About() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 viewport={{ once: true }}
-                className="rounded-lg border bg-card p-6 text-center shadow-sm"
+                className="rounded-lg border bg-card p-6 text-center shadow-sm text-accent-foreground"
               >
                 <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-primary/10">
                   <value.icon className="h-8 w-8 text-primary" />
                 </div>
                 <h3 className="mb-2 text-lg font-semibold">{value.title}</h3>
-                <p className="text-sm text-muted-foreground">
+                <p className="text-sm text-accent-foreground">
                   {value.description}
                 </p>
               </motion.div>
@@ -202,45 +202,82 @@ export default function About() {
         </div>
       </section>
 
-      {/* Team Section */}
+      {/* Mission & Vision Section */}
       <section className="bg-secondary/30 py-24">
         <div className="container mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            viewport={{ once: true }}
-            className="mx-auto max-w-2xl text-center"
-          >
-            <h2 className="mb-4 text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-              Meet the Team
-            </h2>
-            <p className="mb-16 text-lg text-muted-foreground">
-              The talented individuals who bring your digital visions to life
-              with expertise, creativity, and passion.
-            </p>
-          </motion.div>
-
-          <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-            {[1, 2, 3].map((member, index) => (
-              <motion.div
-                key={member}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                viewport={{ once: true }}
-                className="rounded-lg border bg-card p-6 text-center shadow-sm"
-              >
-                <div className="mx-auto mb-4 h-24 w-24 rounded-full bg-gradient-to-br from-primary/20 to-secondary/40" />
-                <h3 className="mb-1 text-lg font-semibold">Team Member {member}</h3>
-                <p className="mb-2 text-sm text-primary">Senior Developer</p>
-                <p className="text-sm text-muted-foreground">
-                  Passionate about creating beautiful, functional, and
-                  user-friendly applications.
-                </p>
-              </motion.div>
-            ))}
+          <div className="grid grid-cols-1 gap-16 lg:grid-cols-2">
+        <motion.div
+          initial={{ opacity: 0, x: -20 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.5 }}
+          viewport={{ once: true }}
+          className="rounded-lg border bg-card p-8 shadow-sm"
+        >
+          <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-primary/10">
+            <Target className="h-8 w-8 text-primary" />
           </div>
+          <h3 className="mb-4 text-2xl font-bold text-accent-foreground">Our Mission</h3>
+          <p className="text-accent-foreground leading-relaxed">
+            To provide accessible, professional, and comprehensive legal services 
+            that empower individuals and businesses to navigate complex legal and 
+            administrative processes with confidence. We are committed to delivering 
+            personalized solutions that protect our clients' interests and achieve 
+            their goals.
+          </p>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, x: 20 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.5, delay: 0.1 }}
+          viewport={{ once: true }}
+          className="rounded-lg border bg-card p-8 shadow-sm"
+        >
+          <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-primary/10">
+            <Lightbulb className="h-8 w-8 text-primary" />
+          </div>
+          <h3 className="mb-4 text-2xl font-bold text-accent-foreground">Our Vision</h3>
+          <p className="text-accent-foreground leading-relaxed">
+            To be the leading legal services provider in our region, recognized 
+            for our expertise in CAF and Patronato services, labor law, and 
+            administrative procedures. We envision a future where legal assistance 
+            is transparent, efficient, and accessible to everyone who needs it.
+          </p>
+        </motion.div>
+          </div>
+
+          {/* Why Choose Us */}
+          <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 0.2 }}
+        viewport={{ once: true }}
+        className="mt-16 text-center"
+          >
+        <h3 className="mb-8 text-2xl font-bold text-foreground">
+          Why Choose CafPotranto?
+        </h3>
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
+          <div className="rounded-lg bg-card/50 p-6 border">
+            <h4 className="mb-2 font-semibold text-foreground">Specialized Expertise</h4>
+            <p className="text-sm text-muted-foreground">
+          Deep knowledge in CAF, Patronato, and Italian administrative law
+            </p>
+          </div>
+          <div className="rounded-lg bg-card/50 p-6 border">
+            <h4 className="mb-2 font-semibold text-foreground">Personal Approach</h4>
+            <p className="text-sm text-muted-foreground">
+          Tailored solutions that address your specific legal needs
+            </p>
+          </div>
+          <div className="rounded-lg bg-card/50 p-6 border">
+            <h4 className="mb-2 font-semibold text-foreground">Proven Results</h4>
+            <p className="text-sm text-muted-foreground">
+          15+ years of successful case resolution and client satisfaction
+            </p>
+          </div>
+        </div>
+          </motion.div>
         </div>
       </section>
     </>

@@ -16,7 +16,7 @@ export function CategoriesGrid({ className = '' }: CategoriesGridProps) {
     return (
       <div className={`flex flex-col items-center justify-center py-12 ${className}`}>
         <Loader2 className="h-8 w-8 animate-spin text-blue-600 mb-4" />
-        <p className="text-gray-600">Loading categories...</p>
+        <p className="text-muted-foreground">Loading categories...</p>
       </div>
     );
   }
@@ -25,8 +25,8 @@ export function CategoriesGrid({ className = '' }: CategoriesGridProps) {
     return (
       <div className={`flex flex-col items-center justify-center py-12 ${className}`}>
         <AlertCircle className="h-8 w-8 text-red-500 mb-4" />
-        <p className="text-gray-900 font-medium mb-2">Failed to load categories</p>
-        <p className="text-gray-600 text-sm mb-4">{error}</p>
+        <p className="text-foreground font-medium mb-2">Failed to load categories</p>
+        <p className="text-muted-foreground text-sm mb-4">{error}</p>
         <button
           onClick={refetch}
           className="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
@@ -41,8 +41,8 @@ export function CategoriesGrid({ className = '' }: CategoriesGridProps) {
   if (categories.length === 0) {
     return (
       <div className={`flex flex-col items-center justify-center py-12 ${className}`}>
-        <p className="text-gray-900 font-medium mb-2">No categories available</p>
-        <p className="text-gray-600 text-sm">Categories will appear here once they are added.</p>
+        <p className="text-foreground font-medium mb-2">No categories available</p>
+        <p className="text-muted-foreground text-sm">Categories will appear here once they are added.</p>
       </div>
     );
   }
@@ -81,7 +81,7 @@ export function CategoriesGrid({ className = '' }: CategoriesGridProps) {
         animate={{ opacity: 1 }}
         transition={{ duration: 0.5, delay: 0.3 }}
       >
-        <p className="text-gray-600">
+        <p className="text-muted-foreground">
           Showing {categories.length} service {categories.length === 1 ? 'category' : 'categories'}
         </p>
       </motion.div>

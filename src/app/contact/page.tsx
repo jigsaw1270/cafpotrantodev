@@ -170,10 +170,10 @@ export default function Contact() {
                 viewport={{ once: true }}
                 className="mt-8 rounded-lg border bg-card p-6"
               >
-                <h3 className="mb-2 font-semibold text-foreground">
+                <h3 className="mb-2 font-semibold text-white">
                   Response Time
                 </h3>
-                <p className="text-muted-foreground">
+                <p className="text-white">
                   We typically respond within 24 hours during business days.
                   For urgent inquiries, please call us directly.
                 </p>

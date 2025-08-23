@@ -77,7 +77,7 @@ export default function Consulting() {
               transition={{ duration: 0.5, delay: 0.2 }}
               className="rounded-lg border bg-card p-6 shadow-sm"
             >
-              <p className="text-lg text-foreground">
+              <p className="text-lg text-accent-foreground">
                 An expert in CAF and Patronato services and procedures will be at your disposal! 
                 We offer consultations for the following products:
               </p>
@@ -117,8 +117,8 @@ export default function Consulting() {
                 <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-primary/10">
                   <service.icon className="h-8 w-8 text-primary" />
                 </div>
-                <h3 className="mb-2 text-xl font-semibold">{service.title}</h3>
-                <p className="text-muted-foreground">{service.description}</p>
+                <h3 className="mb-2 text-xl font-semibold text-accent-foreground">{service.title}</h3>
+                <p className="text-accent-foreground">{service.description}</p>
               </motion.div>
             ))}
           </div>
@@ -177,8 +177,8 @@ export default function Consulting() {
                     <Phone className="h-6 w-6 text-primary" />
                   </div>
                   <div>
-                    <h4 className="font-semibold text-foreground">Phone Consultation</h4>
-                    <p className="text-muted-foreground">+39 123 456 7890</p>
+                    <h4 className="font-semibold text-accent-foreground">Phone Consultation</h4>
+                    <p className="text-accent-foreground">+39 123 456 7890</p>
                   </div>
                 </div>
 
@@ -187,8 +187,8 @@ export default function Consulting() {
                     <Mail className="h-6 w-6 text-primary" />
                   </div>
                   <div>
-                    <h4 className="font-semibold text-foreground">Email Support</h4>
-                    <p className="text-muted-foreground">consulenza@cafpotranto.it</p>
+                    <h4 className="font-semibold text-accent-foreground ">Email Support</h4>
+                    <p className="text-accent-foreground">consulenza@cafpotranto.it</p>
                   </div>
                 </div>
 
@@ -197,8 +197,8 @@ export default function Consulting() {
                     <MapPin className="h-6 w-6 text-primary" />
                   </div>
                   <div>
-                    <h4 className="font-semibold text-foreground">Office Location</h4>
-                    <p className="text-muted-foreground">Via Roma 123, Milano, Italy</p>
+                    <h4 className="font-semibold text-accent-foreground">Office Location</h4>
+                    <p className="text-accent-foreground">Via Roma 123, Milano, Italy</p>
                   </div>
                 </div>
               </div>

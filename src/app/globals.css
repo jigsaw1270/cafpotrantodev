@@ -1,25 +1,25 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-  --card: #ffffff;
-  --card-foreground: #171717;
-  --popover: #ffffff;
-  --popover-foreground: #171717;
-  --primary: #171717;
-  --primary-foreground: #fafafa;
-  --secondary: #f4f4f5;
-  --secondary-foreground: #171717;
-  --muted: #f4f4f5;
-  --muted-foreground: #71717a;
-  --accent: #f4f4f5;
-  --accent-foreground: #171717;
+  --background: #F9F3EF;
+  --foreground: #1B3C53;
+  --card: #F9F3EF;
+  --card-foreground: #1B3C53;
+  --popover: #F9F3EF;
+  --popover-foreground: #1B3C53;
+  --primary: #456882;
+  --primary-foreground: #F9F3EF;
+  --secondary: #D2C1B6;
+  --secondary-foreground: #1B3C53;
+  --muted: #D2C1B6;
+  --muted-foreground: #456882;
+  --accent: #456882;
+  --accent-foreground: #F9F3EF;
   --destructive: #ef4444;
-  --destructive-foreground: #fafafa;
-  --border: #e4e4e7;
-  --input: #e4e4e7;
-  --ring: #171717;
+  --destructive-foreground: #F9F3EF;
+  --border: #D2C1B6;
+  --input: #D2C1B6;
+  --ring: #456882;
   --radius: 0.5rem;
 }
 
@@ -50,25 +50,25 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-    --card: #0a0a0a;
-    --card-foreground: #ededed;
-    --popover: #0a0a0a;
-    --popover-foreground: #ededed;
-    --primary: #ededed;
-    --primary-foreground: #0a0a0a;
-    --secondary: #27272a;
-    --secondary-foreground: #ededed;
-    --muted: #27272a;
-    --muted-foreground: #a1a1aa;
-    --accent: #27272a;
-    --accent-foreground: #ededed;
-    --destructive: #7f1d1d;
-    --destructive-foreground: #ededed;
-    --border: #27272a;
-    --input: #27272a;
-    --ring: #d1d5db;
+    --background: #F9F3EF;
+    --foreground: #1B3C53;
+    --card: #1B3C53;
+    --card-foreground: #F9F3EF;
+    --popover: #1B3C53;
+    --popover-foreground: #F9F3EF;
+    --primary: #456882;
+    --primary-foreground: #F9F3EF;
+    --secondary: #456882;
+    --secondary-foreground: #F9F3EF;
+    --muted: #456882;
+    --muted-foreground: #1B3C53;
+    --accent: #D2C1B6;
+    --accent-foreground: #D2C1B6;
+    --destructive: #ef4444;
+    --destructive-foreground: #F9F3EF;
+    --border: #456882;
+    --input: #456882;
+    --ring: #D2C1B6;
   }
 }
 
@@ -245,7 +245,7 @@ html {
 }
 
 .prose a:hover {
-  color: var(--primary);
+  color: var(--accent);
   text-decoration: none;
 }
 

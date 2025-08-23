@@ -134,8 +134,8 @@ export default function Services() {
                 <div className="mb-4 text-2xl font-bold text-primary">
                   {step.step}
                 </div>
-                <h3 className="mb-2 text-xl font-semibold">{step.title}</h3>
-                <p className="text-muted-foreground">{step.description}</p>
+                <h3 className="mb-2 text-xl font-semibold text-accent-foreground">{step.title}</h3>
+                <p className="text-accent-foreground">{step.description}</p>
               </motion.div>
             ))}
           </div>
