@@ -8,11 +8,11 @@ import { Button } from '@/components/ui/button';
 
 const navigation = [
   { href: '/', label: 'Home' },
-  { href: '/about', label: 'About' },
-  { href: '/services', label: 'Services' },
-  { href: '/consulting', label: 'Consulting' },
+  { href: '/about', label: 'Chi Siamo' },
+  { href: '/services', label: 'Servizi' },
+  { href: '/consulting', label: 'Consulenze' },
   { href: '/faq', label: 'FAQ' },
-  { href: '/contact', label: 'Contact' },
+  { href: '/contact', label: 'Contatti' },
 ];
 
 export function Header() {
@@ -30,7 +30,7 @@ export function Header() {
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ type: 'spring', stiffness: 400, damping: 40 }}
-      className="sticky top-0 z-50 border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60"
+      className="bg-background/95 supports-[backdrop-filter]:bg-background/60 sticky top-0 z-50 border-b backdrop-blur"
     >
       <div className="container mx-auto flex h-16 items-center justify-between px-4">
         {/* Logo */}
@@ -38,7 +38,7 @@ export function Header() {
           <motion.div
             whileHover={{ rotate: 360 }}
             transition={{ duration: 0.3 }}
-            className="h-8 w-8 rounded-full bg-primary"
+            className="bg-primary h-8 w-8 rounded-full"
           />
           <span className="text-lg font-bold">CafPotranto</span>
         </Link>
@@ -51,7 +51,7 @@ export function Header() {
               <Link
                 key={link.href}
                 href={link.href}
-                className={`px-4 py-2 rounded-lg font-medium transition-all duration-200 ${
+                className={`rounded-lg px-4 py-2 font-medium transition-all duration-200 ${
                   isActive
                     ? 'bg-slate-800 text-white shadow-sm'
                     : 'text-foreground hover:text-primary hover:bg-primary/5'
@@ -66,10 +66,10 @@ export function Header() {
         {/* Desktop CTA */}
         <div className="hidden md:flex md:items-center md:space-x-4">
           <Button variant="outline" asChild>
-            <Link href="/auth/login">Login</Link>
+            <Link href="/auth/login">Accedi</Link>
           </Button>
           <Button asChild>
-            <Link href="/auth/register">Get Started</Link>
+            <Link href="/auth/register">Inizia</Link>
           </Button>
         </div>
 

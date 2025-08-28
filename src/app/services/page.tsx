@@ -8,39 +8,39 @@ import CategoriesGrid from '@/components/services/CategoriesGrid';
 const process = [
   {
     step: '01',
-    title: 'Initial Consultation',
+    title: 'Consulenza Iniziale',
     description:
-      'We start by understanding your legal needs and providing expert guidance on your situation.',
+      'Iniziamo comprendendo le tue esigenze legali e fornendo orientamento esperto sulla tua situazione.',
   },
   {
     step: '02',
-    title: 'Document Review',
+    title: 'Revisione Documenti',
     description:
-      'We carefully review all relevant documents and assess your case requirements.',
+      'Esaminiamo attentamente tutti i documenti pertinenti e valutiamo i requisiti del tuo caso.',
   },
   {
     step: '03',
-    title: 'Strategy Development',
+    title: 'Sviluppo Strategia',
     description:
-      'We develop a tailored approach to address your specific legal and administrative needs.',
+      'Sviluppiamo un approccio su misura per affrontare le tue specifiche esigenze legali e amministrative.',
   },
   {
     step: '04',
-    title: 'Process Execution',
+    title: 'Esecuzione Processo',
     description:
-      'We handle all procedures, applications, and legal processes on your behalf.',
+      'Gestiamo tutte le procedure, applicazioni e processi legali per tuo conto.',
   },
   {
     step: '05',
-    title: 'Follow-up Support',
+    title: 'Supporto Continuativo',
     description:
-      'We provide ongoing support and ensure all procedures are completed successfully.',
+      'Forniamo supporto continuo e garantiamo che tutte le procedure siano completate con successo.',
   },
   {
     step: '06',
-    title: 'Final Resolution',
+    title: 'Risoluzione Finale',
     description:
-      'We deliver final results and provide you with all necessary documentation.',
+      'Consegniamo i risultati finali e ti forniamo tutta la documentazione necessaria.',
   },
 ];
 
@@ -48,32 +48,33 @@ export default function Services() {
   return (
     <>
       <SEO
-        title="Our Services - CafPotranto Legal Services"
-        description="Comprehensive legal services including CAF assistance, Patronato services, administrative procedures, and legal consultation. Expert help for all your legal needs."
+        title="I Nostri Servizi - CafPotranto Servizi Legali"
+        description="Servizi legali completi inclusi assistenza CAF, servizi Patronato, procedure amministrative e consulenza legale. Aiuto esperto per tutte le tue esigenze legali."
         url="/services"
       />
 
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-background to-secondary/20 py-24">
+      <section className="from-background to-secondary/20 relative overflow-hidden bg-gradient-to-br py-24">
         <div className="container mx-auto px-8 lg:px-12">
           <div className="mx-auto max-w-4xl text-center">
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
-              className="mb-6 text-4xl font-bold tracking-tight text-foreground sm:text-6xl"
+              className="text-foreground mb-6 text-4xl font-bold tracking-tight sm:text-6xl"
             >
-              Our <span className="text-primary">Services</span>
+              I Nostri <span className="text-primary">Servizi</span>
             </motion.h1>
 
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.1 }}
-              className="mb-8 text-xl text-muted-foreground"
+              className="text-muted-foreground mb-8 text-xl"
             >
-              Professional legal services and administrative assistance tailored to your
-              needs. From CAF services to legal consultation, we're here to help.
+              Servizi legali professionali e assistenza amministrativa su misura
+              per le tue esigenze. Dai servizi CAF alla consulenza legale, siamo
+              qui per aiutarti.
             </motion.p>
           </div>
         </div>
@@ -89,12 +90,13 @@ export default function Services() {
             viewport={{ once: true }}
             className="mx-auto max-w-2xl text-center"
           >
-            <h2 className="mb-4 text-3xl font-bold tracking-tight text-foreground sm:text-4xl hidden lg:block">
-              Our Service Categories
+            <h2 className="text-foreground mb-4 hidden text-3xl font-bold tracking-tight sm:text-4xl lg:block">
+              Le Nostre Categorie di Servizi
             </h2>
-            <p className="mb-16 text-lg text-muted-foreground hidden lg:block">
-              Explore our comprehensive range of legal services and administrative assistance. 
-              Each category offers specialized support tailored to your specific needs.
+            <p className="text-muted-foreground mb-16 hidden text-lg lg:block">
+              Esplora la nostra gamma completa di servizi legali e assistenza
+              amministrativa. Ogni categoria offre supporto specializzato su
+              misura per le tue esigenze specifiche.
             </p>
           </motion.div>
 
@@ -112,12 +114,12 @@ export default function Services() {
             viewport={{ once: true }}
             className="mx-auto max-w-2xl text-center"
           >
-            <h2 className="mb-4 text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-              Our Process
+            <h2 className="text-foreground mb-4 text-3xl font-bold tracking-tight sm:text-4xl">
+              Il Nostro Processo
             </h2>
-            <p className="mb-16 text-lg text-muted-foreground">
-              A proven methodology that ensures your project is delivered on
-              time, within budget, and exceeds your expectations.
+            <p className="text-muted-foreground mb-16 text-lg">
+              Una metodologia collaudata che garantisce che il tuo progetto
+              venga consegnato in tempo, nel budget e superi le tue aspettative.
             </p>
           </motion.div>
 
@@ -129,12 +131,14 @@ export default function Services() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 viewport={{ once: true }}
-                className="relative rounded-lg border bg-card p-6 shadow-sm"
+                className="bg-card relative rounded-lg border p-6 shadow-sm"
               >
-                <div className="mb-4 text-2xl font-bold text-primary">
+                <div className="text-primary mb-4 text-2xl font-bold">
                   {step.step}
                 </div>
-                <h3 className="mb-2 text-xl font-semibold text-accent-foreground">{step.title}</h3>
+                <h3 className="text-accent-foreground mb-2 text-xl font-semibold">
+                  {step.title}
+                </h3>
                 <p className="text-accent-foreground">{step.description}</p>
               </motion.div>
             ))}
@@ -152,15 +156,15 @@ export default function Services() {
             viewport={{ once: true }}
             className="mx-auto max-w-2xl text-center"
           >
-            <h2 className="mb-4 text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-              Ready to Start Your Project?
+            <h2 className="text-foreground mb-4 text-3xl font-bold tracking-tight sm:text-4xl">
+              Pronto per Iniziare il Tuo Progetto?
             </h2>
-            <p className="mb-8 text-lg text-muted-foreground">
-              Let's discuss your requirements and create something amazing
-              together. Get in touch for a free consultation.
+            <p className="text-muted-foreground mb-8 text-lg">
+              Parliamo dei tuoi requisiti e creiamo qualcosa di straordinario
+              insieme. Contattaci per una consulenza gratuita.
             </p>
             <CTAButton size="lg" className="text-lg">
-              Get a Quote
+              Richiedi un Preventivo
             </CTAButton>
           </motion.div>
         </div>

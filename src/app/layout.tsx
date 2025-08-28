@@ -16,14 +16,24 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: 'CafPotranto - Legal Services & Administrative Assistance',
+    default: 'CafPotranto - Servizi Legali e Assistenza Amministrativa',
     template: '%s | CafPotranto',
   },
   description:
-    'Professional legal services for businesses and citizens to manage online procedures. Expert assistance with CAF and Patronato services, work benefits, pensions, and administrative procedures.',
-  keywords: ['legal services', 'CAF services', 'Patronato', 'online procedures', 'work benefits', 'pensions', 'ISEE', 'NASpI', 'SPID'],
-  authors: [{ name: 'CafPotranto Legal Services' }],
-  creator: 'CafPotranto Legal Services',
+    'Servizi legali professionali per aziende e cittadini per gestire le procedure online. Assistenza specializzata con servizi CAF e Patronato, benefit lavorativi, pensioni e procedure amministrative.',
+  keywords: [
+    'servizi legali',
+    'servizi CAF',
+    'Patronato',
+    'procedure online',
+    'benefit lavorativi',
+    'pensioni',
+    'ISEE',
+    'NASpI',
+    'SPID',
+  ],
+  authors: [{ name: 'CafPotranto Servizi Legali' }],
+  creator: 'CafPotranto Servizi Legali',
   metadataBase: new URL(
     process.env.NEXT_PUBLIC_SITE_URL || 'https://cafpotranto.it'
   ),
@@ -31,16 +41,16 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'it_IT',
     url: process.env.NEXT_PUBLIC_SITE_URL || 'https://cafpotranto.it',
-    siteName: 'CafPotranto Legal Services',
-    title: 'CafPotranto - Legal Services & Administrative Assistance',
+    siteName: 'CafPotranto Servizi Legali',
+    title: 'CafPotranto - Servizi Legali e Assistenza Amministrativa',
     description:
-      'Professional legal services for businesses and citizens to manage online procedures.',
+      'Servizi legali professionali per aziende e cittadini per gestire le procedure online.',
     images: [
       {
         url: '/og-image.jpg',
         width: 1200,
         height: 630,
-        alt: 'CafPotranto Legal Services',
+        alt: 'CafPotranto Servizi Legali',
       },
     ],
   },
@@ -48,9 +58,9 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     site: '@cafpotranto',
     creator: '@cafpotranto',
-    title: 'CafPotranto - Legal Services & Administrative Assistance',
+    title: 'CafPotranto - Servizi Legali e Assistenza Amministrativa',
     description:
-      'Professional legal services for businesses and citizens to manage online procedures.',
+      'Servizi legali professionali per aziende e cittadini per gestire le procedure online.',
     images: ['/og-image.jpg'],
   },
   robots: {
@@ -78,9 +88,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="scroll-smooth">
+    <html lang="it" className="scroll-smooth">
+      <head>
+        {/* Language detection for Google Translate */}
+        <meta httpEquiv="Content-Language" content="it" />
+        {/* Google Translate Widget */}
+        <script async src="/google-translate.js"></script>
+      </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} min-h-screen bg-background font-sans antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} bg-background min-h-screen font-sans antialiased`}
       >
         <div className="relative flex min-h-screen flex-col">
           <Header />

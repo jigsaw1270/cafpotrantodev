@@ -7,67 +7,68 @@ import { SEO } from '@/components/seo';
 const values = [
   {
     icon: Target,
-    title: 'Client-Focused',
+    title: 'Orientati al Cliente',
     description:
-      'We are committed to providing personalized legal services that address each client\'s unique needs and circumstances.',
+      'Siamo impegnati a fornire servizi legali personalizzati che affrontano le esigenze e circostanze uniche di ogni cliente.',
   },
   {
     icon: Users,
-    title: 'Professional',
+    title: 'Professionalità',
     description:
-      'Our experienced team provides reliable legal assistance with the highest standards of professionalism and confidentiality.',
+      'Il nostro team esperto fornisce assistenza legale affidabile con i più alti standard di professionalità e riservatezza.',
   },
   {
     icon: Lightbulb,
-    title: 'Expert Knowledge',
+    title: 'Conoscenza Esperta',
     description:
-      'We stay current with evolving laws and regulations to provide accurate, up-to-date legal guidance.',
+      'Rimaniamo aggiornati sulle leggi e regolamenti in evoluzione per fornire consulenza legale accurata e aggiornata.',
   },
   {
     icon: Award,
-    title: 'Trusted Service',
+    title: 'Servizio di Fiducia',
     description:
-      'We maintain the highest ethical standards and build lasting relationships based on trust and results.',
+      'Manteniamo i più alti standard etici e costruiamo relazioni durature basate sulla fiducia e sui risultati.',
   },
 ];
 
 const stats = [
-  { label: 'Cases Handled', value: '500+' },
-  { label: 'Satisfied Clients', value: '200+' },
-  { label: 'Years Experience', value: '15+' },
-  { label: 'Legal Specializations', value: '10+' },
+  { label: 'Casi Gestiti', value: '500+' },
+  { label: 'Clienti Soddisfatti', value: '200+' },
+  { label: 'Anni di Esperienza', value: '15+' },
+  { label: 'Specializzazioni Legali', value: '10+' },
 ];
 
 export default function About() {
   return (
     <>
       <SEO
-        title="About Us - CafPotranto Legal Services"
-        description="Learn about our mission, values, and the experienced legal team at CafPotranto. We're dedicated to providing exceptional legal services and administrative assistance."
+        title="Chi Siamo - CafPotranto Servizi Legali"
+        description="Scopri la nostra missione, valori e il team legale esperto di CafPotranto. Siamo dedicati a fornire servizi legali eccezionali e assistenza amministrativa."
         url="/about"
       />
 
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-background to-secondary/20 py-24">
+      <section className="from-background to-secondary/20 relative overflow-hidden bg-gradient-to-br py-24">
         <div className="container mx-auto px-8 lg:px-12">
           <div className="mx-auto max-w-4xl text-center">
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
-              className="mb-6 text-4xl font-bold tracking-tight text-foreground sm:text-6xl"
+              className="text-foreground mb-6 text-4xl font-bold tracking-tight sm:text-6xl"
             >
-              About <span className="text-primary">Our Firm</span>
+              Chi Siamo <span className="text-primary">Il Nostro Studio</span>
             </motion.h1>
 
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.1 }}
-              className="mb-8 text-xl text-muted-foreground"
+              className="text-muted-foreground mb-8 text-xl"
             >
-              We're a dedicated team of legal professionals committed to
-              providing exceptional legal services and administrative assistance to our clients.
+              Siamo un team dedicato di professionisti legali impegnati a
+              fornire servizi legali eccezionali e assistenza amministrativa ai
+              nostri clienti.
             </motion.p>
           </div>
         </div>
@@ -83,24 +84,26 @@ export default function About() {
               transition={{ duration: 0.5 }}
               viewport={{ once: true }}
             >
-              <h2 className="mb-6 text-3xl font-bold tracking-tight text-foreground">
-                Our Heritage
+              <h2 className="text-foreground mb-6 text-3xl font-bold tracking-tight">
+                La Nostra Storia
               </h2>
-              <div className="space-y-4 text-muted-foreground">
+              <div className="text-muted-foreground space-y-4">
                 <p>
-                  Established with a commitment to providing accessible and professional
-                  legal services, CafPotranto has grown from a local practice into a
-                  trusted legal partner for individuals and businesses across the region.
+                  Fondato con l'impegno di fornire servizi legali accessibili e
+                  professionali, CafPotranto è cresciuto da uno studio locale a
+                  un partner legale di fiducia per individui e aziende in tutta
+                  la regione.
                 </p>
                 <p>
-                  Our expertise encompasses CAF and Patronato services, labor law,
-                  pension planning, and administrative procedures. We believe in
-                  making complex legal processes simple and accessible for everyone.
+                  La nostra competenza abbraccia servizi CAF e Patronato,
+                  diritto del lavoro, pianificazione pensionistica e procedure
+                  amministrative. Crediamo nel rendere i processi legali
+                  complessi semplici e accessibili per tutti.
                 </p>
                 <p>
-                  Every client we serve receives personalized attention and expert
-                  guidance, ensuring their legal needs are met with professionalism,
-                  efficiency, and care.
+                  Ogni cliente che serviamo riceve attenzione personalizzata e
+                  orientamento esperto, garantendo che le loro esigenze legali
+                  siano soddisfatte con professionalità, efficienza e cura.
                 </p>
               </div>
             </motion.div>
@@ -112,8 +115,8 @@ export default function About() {
               viewport={{ once: true }}
               className="relative"
             >
-              <div className="aspect-square rounded-lg bg-gradient-to-br from-primary/20 to-secondary/40" />
-              <div className="absolute inset-4 rounded-lg bg-card shadow-xl" />
+              <div className="from-primary/20 to-secondary/40 aspect-square rounded-lg bg-gradient-to-br" />
+              <div className="bg-card absolute inset-4 rounded-lg shadow-xl" />
             </motion.div>
           </div>
         </div>
@@ -129,12 +132,12 @@ export default function About() {
             viewport={{ once: true }}
             className="mx-auto max-w-2xl text-center"
           >
-            <h2 className="mb-4 text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
+            <h2 className="text-foreground mb-4 text-3xl font-bold tracking-tight sm:text-4xl">
               Our Values
             </h2>
-            <p className="mb-16 text-lg text-muted-foreground">
-              The principles that guide everything we do and shape how we work
-              with our clients and each other.
+            <p className="text-muted-foreground mb-16 text-lg">
+              I principi che guidano tutto ciò che facciamo e modellano come
+              lavoriamo con i nostri clienti e tra di noi.
             </p>
           </motion.div>
 
@@ -146,13 +149,13 @@ export default function About() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 viewport={{ once: true }}
-                className="rounded-lg border bg-card p-6 text-center shadow-sm text-accent-foreground"
+                className="bg-card text-accent-foreground rounded-lg border p-6 text-center shadow-sm"
               >
-                <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-primary/10">
-                  <value.icon className="h-8 w-8 text-primary" />
+                <div className="bg-primary/10 mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full">
+                  <value.icon className="text-primary h-8 w-8" />
                 </div>
                 <h3 className="mb-2 text-lg font-semibold">{value.title}</h3>
-                <p className="text-sm text-accent-foreground">
+                <p className="text-accent-foreground text-sm">
                   {value.description}
                 </p>
               </motion.div>
@@ -171,12 +174,12 @@ export default function About() {
             viewport={{ once: true }}
             className="mx-auto max-w-2xl text-center"
           >
-            <h2 className="mb-4 text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-              By the Numbers
+            <h2 className="text-foreground mb-4 text-3xl font-bold tracking-tight sm:text-4xl">
+              I Numeri Parlano
             </h2>
-            <p className="mb-16 text-lg text-muted-foreground">
-              Our track record speaks for itself. Here's what we've accomplished
-              together with our amazing clients.
+            <p className="text-muted-foreground mb-16 text-lg">
+              I nostri risultati parlano da soli. Ecco cosa abbiamo realizzato
+              insieme ai nostri straordinari clienti.
             </p>
           </motion.div>
 
@@ -190,10 +193,10 @@ export default function About() {
                 viewport={{ once: true }}
                 className="text-center"
               >
-                <div className="mb-2 text-4xl font-bold text-primary sm:text-5xl">
+                <div className="text-primary mb-2 text-4xl font-bold sm:text-5xl">
                   {stat.value}
                 </div>
-                <div className="text-sm text-muted-foreground sm:text-base">
+                <div className="text-muted-foreground text-sm sm:text-base">
                   {stat.label}
                 </div>
               </motion.div>
@@ -206,77 +209,91 @@ export default function About() {
       <section className="bg-secondary/30 py-24">
         <div className="container mx-auto px-8 lg:px-12">
           <div className="grid grid-cols-1 gap-16 lg:grid-cols-2">
-        <motion.div
-          initial={{ opacity: 0, x: -20 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.5 }}
-          viewport={{ once: true }}
-          className="rounded-lg border bg-card p-8 shadow-sm"
-        >
-          <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-primary/10">
-            <Target className="h-8 w-8 text-primary" />
-          </div>
-          <h3 className="mb-4 text-2xl font-bold text-accent-foreground">Our Mission</h3>
-          <p className="text-accent-foreground leading-relaxed">
-            To provide accessible, professional, and comprehensive legal services 
-            that empower individuals and businesses to navigate complex legal and 
-            administrative processes with confidence. We are committed to delivering 
-            personalized solutions that protect our clients' interests and achieve 
-            their goals.
-          </p>
-        </motion.div>
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.5 }}
+              viewport={{ once: true }}
+              className="bg-card rounded-lg border p-8 shadow-sm"
+            >
+              <div className="bg-primary/10 mb-6 flex h-16 w-16 items-center justify-center rounded-full">
+                <Target className="text-primary h-8 w-8" />
+              </div>
+              <h3 className="text-accent-foreground mb-4 text-2xl font-bold">
+                Our Mission
+              </h3>
+              <p className="text-accent-foreground leading-relaxed">
+                Fornire servizi legali accessibili, professionali e completi che
+                permettano a individui e aziende di navigare processi legali e
+                amministrativi complessi con fiducia. Siamo impegnati a fornire
+                soluzioni personalizzate che proteggano gli interessi dei nostri
+                clienti e raggiungano i loro obiettivi.
+              </p>
+            </motion.div>
 
-        <motion.div
-          initial={{ opacity: 0, x: 20 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.5, delay: 0.1 }}
-          viewport={{ once: true }}
-          className="rounded-lg border bg-card p-8 shadow-sm"
-        >
-          <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-primary/10">
-            <Lightbulb className="h-8 w-8 text-primary" />
-          </div>
-          <h3 className="mb-4 text-2xl font-bold text-accent-foreground">Our Vision</h3>
-          <p className="text-accent-foreground leading-relaxed">
-            To be the leading legal services provider in our region, recognized 
-            for our expertise in CAF and Patronato services, labor law, and 
-            administrative procedures. We envision a future where legal assistance 
-            is transparent, efficient, and accessible to everyone who needs it.
-          </p>
-        </motion.div>
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+              viewport={{ once: true }}
+              className="bg-card rounded-lg border p-8 shadow-sm"
+            >
+              <div className="bg-primary/10 mb-6 flex h-16 w-16 items-center justify-center rounded-full">
+                <Lightbulb className="text-primary h-8 w-8" />
+              </div>
+              <h3 className="text-accent-foreground mb-4 text-2xl font-bold">
+                La Nostra Visione
+              </h3>
+              <p className="text-accent-foreground leading-relaxed">
+                Essere il principale fornitore di servizi legali nella nostra
+                regione, riconosciuto per la nostra competenza nei servizi CAF e
+                Patronato, diritto del lavoro e procedure amministrative.
+                Immaginiamo un futuro in cui l'assistenza legale è trasparente,
+                efficiente e accessibile a tutti coloro che ne hanno bisogno.
+              </p>
+            </motion.div>
           </div>
 
           {/* Why Choose Us */}
           <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, delay: 0.2 }}
-        viewport={{ once: true }}
-        className="mt-16 text-center"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            viewport={{ once: true }}
+            className="mt-16 text-center"
           >
-        <h3 className="mb-8 text-2xl font-bold text-foreground">
-          Why Choose CafPotranto?
-        </h3>
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
-          <div className="rounded-lg bg-card/50 p-6 border">
-            <h4 className="mb-2 font-semibold text-foreground">Specialized Expertise</h4>
-            <p className="text-sm text-muted-foreground">
-          Deep knowledge in CAF, Patronato, and Italian administrative law
-            </p>
-          </div>
-          <div className="rounded-lg bg-card/50 p-6 border">
-            <h4 className="mb-2 font-semibold text-foreground">Personal Approach</h4>
-            <p className="text-sm text-muted-foreground">
-          Tailored solutions that address your specific legal needs
-            </p>
-          </div>
-          <div className="rounded-lg bg-card/50 p-6 border">
-            <h4 className="mb-2 font-semibold text-foreground">Proven Results</h4>
-            <p className="text-sm text-muted-foreground">
-          15+ years of successful case resolution and client satisfaction
-            </p>
-          </div>
-        </div>
+            <h3 className="text-foreground mb-8 text-2xl font-bold">
+              Why Choose CafPotranto?
+            </h3>
+            <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
+              <div className="bg-card/50 rounded-lg border p-6">
+                <h4 className="text-foreground mb-2 font-semibold">
+                  Specialized Expertise
+                </h4>
+                <p className="text-muted-foreground text-sm">
+                  Conoscenza approfondita in CAF, Patronato e diritto
+                  amministrativo italiano
+                </p>
+              </div>
+              <div className="bg-card/50 rounded-lg border p-6">
+                <h4 className="text-foreground mb-2 font-semibold">
+                  Personal Approach
+                </h4>
+                <p className="text-muted-foreground text-sm">
+                  Soluzioni su misura che affrontano le tue esigenze legali
+                  specifiche
+                </p>
+              </div>
+              <div className="bg-card/50 rounded-lg border p-6">
+                <h4 className="text-foreground mb-2 font-semibold">
+                  Proven Results
+                </h4>
+                <p className="text-muted-foreground text-sm">
+                  15+ anni di risoluzione di casi di successo e soddisfazione
+                  del cliente
+                </p>
+              </div>
+            </div>
           </motion.div>
         </div>
       </section>

@@ -18,8 +18,8 @@ export default function Error({
   }, [error]);
 
   return (
-    <div className="min-h-screen flex items-center justify-center px-4">
-      <div className="max-w-md w-full text-center">
+    <div className="flex min-h-screen items-center justify-center px-4">
+      <div className="w-full max-w-md text-center">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -37,14 +37,14 @@ export default function Error({
             }}
             className="mb-8"
           >
-            <div className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-destructive/10">
-              <AlertTriangle className="h-10 w-10 text-destructive" />
+            <div className="bg-destructive/10 mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-full">
+              <AlertTriangle className="text-destructive h-10 w-10" />
             </div>
-            <div className="text-2xl font-semibold text-foreground mb-2">
-              Something went wrong!
+            <div className="text-foreground mb-2 text-2xl font-semibold">
+              Qualcosa è andato storto!
             </div>
             <p className="text-muted-foreground">
-              We encountered an unexpected error. This has been reported to our
+              Si è verificato un errore imprevisto. È stato segnalato al nostro
               team.
             </p>
           </motion.div>
@@ -55,16 +55,16 @@ export default function Error({
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.2 }}
-              className="mb-8 p-4 bg-destructive/5 border border-destructive/20 rounded-lg text-left"
+              className="bg-destructive/5 border-destructive/20 mb-8 rounded-lg border p-4 text-left"
             >
-              <h3 className="text-sm font-semibold text-destructive mb-2">
-                Error Details (Development)
+              <h3 className="text-destructive mb-2 text-sm font-semibold">
+                Dettagli Errore (Sviluppo)
               </h3>
-              <p className="text-xs text-muted-foreground font-mono">
+              <p className="text-muted-foreground font-mono text-xs">
                 {error.message}
               </p>
               {error.digest && (
-                <p className="text-xs text-muted-foreground font-mono mt-1">
+                <p className="text-muted-foreground mt-1 font-mono text-xs">
                   Digest: {error.digest}
                 </p>
               )}
@@ -80,13 +80,13 @@ export default function Error({
           >
             <Button onClick={reset} size="lg" className="w-full">
               <RefreshCw className="mr-2 h-4 w-4" />
-              Try Again
+              Riprova
             </Button>
-            
+
             <Button variant="outline" asChild>
               <a href="/">
                 <Home className="mr-2 h-4 w-4" />
-                Go Home
+                Vai alla Home
               </a>
             </Button>
           </motion.div>
@@ -96,15 +96,15 @@ export default function Error({
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.4 }}
-            className="mt-8 pt-8 border-t border-border"
+            className="border-border mt-8 border-t pt-8"
           >
-            <p className="text-sm text-muted-foreground">
-              If this problem persists, please{' '}
+            <p className="text-muted-foreground text-sm">
+              Se questo problema persiste, per favore{' '}
               <a
                 href="/contact"
                 className="text-primary hover:text-primary/80 underline"
               >
-                contact our support team
+                contatta il nostro team di supporto
               </a>
               .
             </p>

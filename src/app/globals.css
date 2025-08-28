@@ -1,24 +1,24 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
 :root {
-  --background: #F9F3EF;
-  --foreground: #1B3C53;
-  --card: #F9F3EF;
-  --card-foreground: #1B3C53;
-  --popover: #F9F3EF;
-  --popover-foreground: #1B3C53;
+  --background: #f9f3ef;
+  --foreground: #1b3c53;
+  --card: #f9f3ef;
+  --card-foreground: #1b3c53;
+  --popover: #f9f3ef;
+  --popover-foreground: #1b3c53;
   --primary: #456882;
-  --primary-foreground: #F9F3EF;
-  --secondary: #D2C1B6;
-  --secondary-foreground: #1B3C53;
-  --muted: #D2C1B6;
+  --primary-foreground: #f9f3ef;
+  --secondary: #d2c1b6;
+  --secondary-foreground: #1b3c53;
+  --muted: #d2c1b6;
   --muted-foreground: #456882;
   --accent: #456882;
-  --accent-foreground: #F9F3EF;
+  --accent-foreground: #f9f3ef;
   --destructive: #ef4444;
-  --destructive-foreground: #F9F3EF;
-  --border: #D2C1B6;
-  --input: #D2C1B6;
+  --destructive-foreground: #f9f3ef;
+  --border: #d2c1b6;
+  --input: #d2c1b6;
   --ring: #456882;
   --radius: 0.5rem;
 }
@@ -50,25 +50,25 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #F9F3EF;
-    --foreground: #1B3C53;
-    --card: #1B3C53;
-    --card-foreground: #F9F3EF;
-    --popover: #1B3C53;
-    --popover-foreground: #F9F3EF;
+    --background: #f9f3ef;
+    --foreground: #1b3c53;
+    --card: #1b3c53;
+    --card-foreground: #f9f3ef;
+    --popover: #1b3c53;
+    --popover-foreground: #f9f3ef;
     --primary: #456882;
-    --primary-foreground: #F9F3EF;
+    --primary-foreground: #f9f3ef;
     --secondary: #456882;
-    --secondary-foreground: #F9F3EF;
+    --secondary-foreground: #f9f3ef;
     --muted: #456882;
-    --muted-foreground: #1B3C53;
-    --accent: #D2C1B6;
-    --accent-foreground: #D2C1B6;
+    --muted-foreground: #1b3c53;
+    --accent: #d2c1b6;
+    --accent-foreground: #d2c1b6;
     --destructive: #ef4444;
-    --destructive-foreground: #F9F3EF;
+    --destructive-foreground: #f9f3ef;
     --border: #456882;
     --input: #456882;
-    --ring: #D2C1B6;
+    --ring: #d2c1b6;
   }
 }
 
@@ -130,6 +130,10 @@ html {
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 3;
   line-clamp: 3;
+}
+
+#google_translate_element {
+  display: none !important;
 }
 
 /* Custom prose styles for markdown content */
@@ -206,7 +210,7 @@ html {
   font-weight: 500;
   font-style: italic;
   border-left: 0.25rem solid var(--border);
-  quotes: "\201C""\201D""\2018""\2019";
+  quotes: '\201C' '\201D' '\2018' '\2019';
   margin-top: 1.6rem;
   margin-bottom: 1.6rem;
   padding-left: 1rem;
