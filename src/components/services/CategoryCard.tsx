@@ -28,7 +28,7 @@ export default function CategoryCard({ category, subservicesCount, className = '
         <div className="relative h-64 w-full bg-foreground flex items-center justify-center transition-all duration-500">
           
           {/* Background Image (Visible on mobile, hidden on desktop until hover) */}
-          <div className="absolute inset-0 opacity-100 md:opacity-0 transition-opacity duration-500 md:group-hover:opacity-100">
+          <div className="absolute inset-0 opacity-100 md:opacity-0 transition-opacity duration-500 md:group-hover:opacity-100 blur-[4px]">
             {category.image?.url ? (
               <Image
                 src={category.image.url}
@@ -41,7 +41,7 @@ export default function CategoryCard({ category, subservicesCount, className = '
             )}
             
             {/* Dark overlay for better text readability */}
-            <div className="absolute inset-0 bg-black/60" />
+            <div className="absolute inset-0 bg-black/50"/>
           </div>
 
           {/* Default State - Title Only (Hidden on mobile, visible on desktop until hover) */}
@@ -57,11 +57,11 @@ export default function CategoryCard({ category, subservicesCount, className = '
               initial={{ y: 20 }}
               className="text-center text-white"
             >
-              <h3 className="text-2xl font-bold mb-3 leading-tight">
+              <h3 className="text-2xl lg:text-4xl font-bold mb-3 leading-tight shadow-accent">
                 {category.name}
               </h3>
               
-              <p className="text-gray-200 mb-4 text-sm leading-relaxed line-clamp-4">
+              <p className="text-white mb-4 text-md leading-relaxed line-clamp-4">
                 {category.description}
               </p>
 
