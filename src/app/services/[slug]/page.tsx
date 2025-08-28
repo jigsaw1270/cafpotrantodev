@@ -178,14 +178,14 @@ export default function CategoryPage() {
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5, delay: 0.2 }}
-              className="relative h-80 lg:h-96 rounded-2xl overflow-hidden shadow-xl"
+              className="relative h-80 lg:h-[3/4dvh] w-full rounded-2xl overflow-hidden shadow-xl"
             >
               {category.image?.url ? (
                 <Image
                   src={category.image.url}
                   alt={category.name}
                   fill
-                  className="object-cover"
+                  className="object-none"
                   priority
                 />
               ) : (

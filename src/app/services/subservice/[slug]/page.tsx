@@ -407,7 +407,7 @@ export default function SubservicePage() {
       {/* Tags */}
       {subservice.tags && subservice.tags.length > 0 && (
         <section className="py-8 bg-secondary/20">
-          <div className="container mx-auto px-8 lg:px-12">
+          <div className="container mx-auto px-4">
             <h3 className="text-lg font-bold text-foreground mb-4">Tag correlati</h3>
             <div className="flex flex-wrap gap-2">
               {subservice.tags.map((tag, index) => (

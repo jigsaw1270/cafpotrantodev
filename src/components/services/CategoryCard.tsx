@@ -57,7 +57,7 @@ export default function CategoryCard({ category, subservicesCount, className = '
               initial={{ y: 20 }}
               className="text-center text-white"
             >
-              <h3 className="text-2xl lg:text-4xl font-bold mb-3 leading-tight shadow-accent">
+              <h3 className="text-2xl lg:text-3xl font-bold mb-3 leading-tight shadow-accent">
                 {category.name}
               </h3>
               
