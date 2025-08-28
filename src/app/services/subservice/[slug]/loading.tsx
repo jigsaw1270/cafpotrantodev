@@ -2,12 +2,12 @@ export default function Loading() {
   return (
     <div className="min-h-screen animate-pulse">
       {/* Back Navigation Skeleton */}
-      <div className="container mx-auto px-4 pt-6">
+      <div className="container mx-auto px-8 lg:px-12 pt-6">
         <div className="h-4 w-64 bg-gray-200 rounded mb-2"></div>
       </div>
 
       <section className="py-12">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-8 lg:px-12">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
             
             {/* Main Content Skeleton */}

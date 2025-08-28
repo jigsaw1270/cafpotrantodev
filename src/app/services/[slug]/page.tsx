@@ -136,7 +136,7 @@ export default function CategoryPage() {
       />
 
       {/* Back Navigation */}
-      <div className="container mx-auto px-4 pt-6">
+      <div className="container mx-auto px-8 lg:px-12 pt-6">
         <Link
           href="/services"
           className="inline-flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors"
@@ -148,7 +148,7 @@ export default function CategoryPage() {
 
       {/* Category Banner */}
       <section className="relative overflow-hidden bg-gradient-to-br from-background to-secondary/20 py-16">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-8 lg:px-12">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             
             {/* Category Content */}
@@ -203,7 +203,7 @@ export default function CategoryPage() {
 
       {/* Subservices Grid */}
       <section className="py-16">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-8 lg:px-12">
           
           {/* Section Header */}
           <motion.div

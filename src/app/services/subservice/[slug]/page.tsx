@@ -107,7 +107,7 @@ export default function SubservicePage() {
       />
 
       {/* Back Navigation */}
-      <div className="container mx-auto px-4 pt-6">
+      <div className="container mx-auto px-8 lg:px-12 pt-6">
         <div className="flex items-center gap-2 text-sm text-muted-foreground">
           <Link
             href="/services"
@@ -133,7 +133,7 @@ export default function SubservicePage() {
 
       {/* Service Header */}
       <section className="py-12">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-8 lg:px-12">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
             
             {/* Main Content */}
@@ -407,7 +407,7 @@ export default function SubservicePage() {
       {/* Tags */}
       {subservice.tags && subservice.tags.length > 0 && (
         <section className="py-8 bg-secondary/20">
-          <div className="container mx-auto px-4">
+          <div className="container mx-auto px-8 lg:px-12">
             <h3 className="text-lg font-bold text-foreground mb-4">Tag correlati</h3>
             <div className="flex flex-wrap gap-2">
               {subservice.tags.map((tag, index) => (

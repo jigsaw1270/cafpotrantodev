@@ -47,7 +47,7 @@ export default function Home() {
 
       {/* Search/Filter Section */}
       <section className="border-b bg-foreground py-6 z-30">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-8 lg:px-12">
           <div className="mx-auto max-w-2xl">
             <div className="text-center mb-4">
               <h2 className="text-2xl lg:text-lg font-semibold text-accent-foreground mb-2">
@@ -76,7 +76,7 @@ export default function Home() {
 
       {/* Hero Section */}
       <section className="relative overflow-hidden bg-gradient-to-br from-background to-secondary/20 py-24 hidden lg:block">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-8 lg:px-12">
           <div className="mx-auto max-w-4xl text-center">
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
@@ -124,7 +124,7 @@ export default function Home() {
 
       {/* Service Categories Section */}
       <section className="py-12 lg:py-24">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-8 lg:px-12">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -147,7 +147,7 @@ export default function Home() {
 
       {/* Features Section */}
       <section className="py-24">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-8 lg:px-12">
           <div className="mx-auto max-w-2xl text-center">
             <motion.h2
               initial={{ opacity: 0, y: 20 }}
@@ -193,7 +193,7 @@ export default function Home() {
 
       {/* Benefits Section */}
       <section className="bg-secondary/30 py-24">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-8 lg:px-12">
           <div className="grid grid-cols-1 gap-12 lg:grid-cols-2">
             <motion.div
               initial={{ opacity: 0, x: -20 }}
@@ -243,7 +243,7 @@ export default function Home() {
 
       {/* CTA Section */}
       <section className="py-24">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-8 lg:px-12">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}

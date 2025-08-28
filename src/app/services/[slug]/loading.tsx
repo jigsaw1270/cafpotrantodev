@@ -2,13 +2,13 @@ export default function Loading() {
   return (
     <div className="min-h-screen animate-pulse">
       {/* Back Navigation Skeleton */}
-      <div className="container mx-auto px-4 pt-6">
+      <div className="container mx-auto px-8 lg:px-12 pt-6">
         <div className="h-6 w-32 bg-muted rounded"></div>
       </div>
 
       {/* Banner Skeleton */}
       <section className="py-16">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-8 lg:px-12">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             
             {/* Content Skeleton */}
@@ -30,7 +30,7 @@ export default function Loading() {
 
       {/* Grid Skeleton */}
       <section className="py-16">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-8 lg:px-12">
           
           {/* Header Skeleton */}
           <div className="text-center mb-12">

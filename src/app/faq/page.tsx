@@ -185,7 +185,7 @@ export default function FAQPage() {
 
       {/* Hero Section */}
       <section className="relative overflow-hidden bg-gradient-to-br from-background to-secondary/20 py-12">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-8 lg:px-12">
           <div className="mx-auto max-w-4xl text-center">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -214,7 +214,7 @@ export default function FAQPage() {
 
       {/* FAQ Content */}
       <section className="lg:py-24 py-12">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-8 lg:px-12">
           <div className="max-w-4xl mx-auto">
             {faqData.map((category, categoryIndex) => (
               <motion.div
@@ -242,7 +242,7 @@ export default function FAQPage() {
 
       {/* Contact CTA */}
       <section className="bg-secondary/30 py-24">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-8 lg:px-12">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
