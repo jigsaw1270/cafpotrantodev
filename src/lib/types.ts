@@ -35,6 +35,8 @@ export interface Subservice {
   description: string;
   shortDescription?: string;
   price_start: number;
+  secretarialFees?: number;
+  vatPercentage?: number;
   priceType: 'fixed' | 'starting_from' | 'hourly' | 'consultation';
   rating: number;
   reviews_count: number;
@@ -63,6 +65,18 @@ export interface Subservice {
   };
   formattedPrice?: string;
   ratingDisplay?: string;
+  // Pricing calculation virtuals
+  subtotal?: number;
+  vatAmount?: number;
+  totalPrice?: number;
+  pricingBreakdown?: {
+    serviceFee: string;
+    secretarialFees: string;
+    subtotal: string;
+    vatPercentage: number;
+    vatAmount: string;
+    totalPrice: string;
+  };
   createdAt: Date;
   updatedAt: Date;
 }

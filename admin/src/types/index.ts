@@ -36,6 +36,8 @@ export interface Subservice {
   description: string;
   shortDescription?: string;
   price_start: number;
+  secretarialFees?: number;
+  vatPercentage?: number;
   price?: {
     amount: number;
     type: string;
@@ -148,6 +150,8 @@ export interface SubserviceFormData {
   description: string;
   shortDescription?: string;
   price_start: number;
+  secretarialFees?: number;
+  vatPercentage?: number;
   priceType: 'fixed' | 'starting_from' | 'hourly' | 'consultation';
   rating: number;
   reviews_count: number;

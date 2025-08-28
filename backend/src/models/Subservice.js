@@ -28,6 +28,17 @@ const subserviceSchema = new mongoose.Schema({
     required: [true, 'Starting price is required'],
     min: [0, 'Price cannot be negative'],
   },
+  secretarialFees: {
+    type: Number,
+    min: [0, 'Secretarial fees cannot be negative'],
+    default: 6,
+  },
+  vatPercentage: {
+    type: Number,
+    min: [0, 'VAT percentage cannot be negative'],
+    max: [100, 'VAT percentage cannot exceed 100'],
+    default: 6, // Default 6% VAT rate
+  },
   priceType: {
     type: String,
     enum: ['fixed', 'starting_from', 'hourly', 'consultation'],
@@ -178,6 +189,42 @@ subserviceSchema.virtual('formattedPrice').get(function() {
     default:
       return formatter.format(price);
   }
+});
+
+// Virtual for subtotal (service fee + secretarial fees)
+subserviceSchema.virtual('subtotal').get(function() {
+  return this.price_start + (this.secretarialFees || 0);
+});
+
+// Virtual for VAT amount
+subserviceSchema.virtual('vatAmount').get(function() {
+  const subtotal = this.subtotal;
+  const vatRate = (this.vatPercentage || 22) / 100;
+  return subtotal * vatRate;
+});
+
+// Virtual for total price (subtotal + VAT)
+subserviceSchema.virtual('totalPrice').get(function() {
+  return this.subtotal + this.vatAmount;
+});
+
+// Virtual for formatted pricing breakdown
+subserviceSchema.virtual('pricingBreakdown').get(function() {
+  const formatter = new Intl.NumberFormat('it-IT', {
+    style: 'currency',
+    currency: 'EUR',
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  });
+  
+  return {
+    serviceFee: formatter.format(this.price_start),
+    secretarialFees: formatter.format(this.secretarialFees || 0),
+    subtotal: formatter.format(this.subtotal),
+    vatPercentage: this.vatPercentage || 22,
+    vatAmount: formatter.format(this.vatAmount),
+    totalPrice: formatter.format(this.totalPrice),
+  };
 });
 
 // Virtual for average rating display

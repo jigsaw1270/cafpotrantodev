@@ -230,6 +230,14 @@ router.post('/', [
   body('price_start')
     .isFloat({ min: 0 })
     .withMessage('Starting price must be a positive number'),
+  body('secretarialFees')
+    .optional()
+    .isFloat({ min: 0 })
+    .withMessage('Secretarial fees must be a positive number'),
+  body('vatPercentage')
+    .optional()
+    .isFloat({ min: 0, max: 100 })
+    .withMessage('VAT percentage must be between 0 and 100'),
   body('priceType')
     .optional()
     .isIn(['fixed', 'starting_from', 'hourly', 'consultation'])
@@ -324,6 +332,8 @@ router.post('/', [
     const subserviceData = {
       ...req.body,
       price_start: parseFloat(req.body.price_start),
+      secretarialFees: req.body.secretarialFees ? parseFloat(req.body.secretarialFees) : 0,
+      vatPercentage: req.body.vatPercentage ? parseFloat(req.body.vatPercentage) : 22,
       rating: parseFloat(req.body.rating || 0),
       reviews_count: parseInt(req.body.reviews_count || 0),
       displayOrder: parseInt(req.body.displayOrder || 1),
@@ -436,6 +446,14 @@ router.put('/:id', [
     .optional()
     .isFloat({ min: 0 })
     .withMessage('Starting price must be a positive number'),
+  body('secretarialFees')
+    .optional()
+    .isFloat({ min: 0 })
+    .withMessage('Secretarial fees must be a positive number'),
+  body('vatPercentage')
+    .optional()
+    .isFloat({ min: 0, max: 100 })
+    .withMessage('VAT percentage must be between 0 and 100'),
   body('priceType')
     .optional()
     .isIn(['fixed', 'starting_from', 'hourly', 'consultation'])
@@ -509,14 +527,14 @@ router.put('/:id', [
 
     // Update fields
     const updateFields = [
-      'categoryId', 'name', 'description', 'shortDescription', 'price_start',
+      'categoryId', 'name', 'description', 'shortDescription', 'price_start', 'secretarialFees', 'vatPercentage',
       'priceType', 'rating', 'reviews_count', 'notes', 'isActive', 'isFeatured',
       'displayOrder', 'tags', 'features', 'requirements'
     ];
 
     updateFields.forEach(field => {
       if (req.body[field] !== undefined) {
-        if (field === 'price_start') {
+        if (['price_start', 'secretarialFees', 'vatPercentage'].includes(field)) {
           subservice[field] = parseFloat(req.body[field]);
         } else if (field === 'tags' && typeof req.body[field] === 'string') {
           try {

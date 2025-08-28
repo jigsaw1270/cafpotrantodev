@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'next/navigation';
 import { motion } from 'framer-motion';
-import { ArrowLeft, Euro, Clock, Star, Users, Phone, MessageCircle, CreditCard, Banknote, Building } from 'lucide-react';
+import { ArrowLeft, Clock, Star, Users, Phone, MessageCircle, CreditCard, Banknote, Building } from 'lucide-react';
 import Link from 'next/link';
 import { SEO } from '@/components/seo';
 import { Subservice, Category } from '@/lib/types';
@@ -55,26 +55,6 @@ export default function SubservicePage() {
       fetchSubserviceData();
     }
   }, [slug]);
-
-  const formatPrice = (price: number, priceType: string) => {
-    const formatted = new Intl.NumberFormat('it-IT', {
-      style: 'currency',
-      currency: 'EUR',
-      minimumFractionDigits: 0,
-      maximumFractionDigits: 2,
-    }).format(price);
-
-    switch (priceType) {
-      case 'starting_from':
-        return `A partire da ${formatted}`;
-      case 'hourly':
-        return `${formatted}/ora`;
-      case 'consultation':
-        return `${formatted} (consulenza)`;
-      default:
-        return formatted;
-    }
-  };
 
   const formatDuration = (duration?: { value: number; unit: string }) => {
     if (!duration) return null;
@@ -192,21 +172,6 @@ export default function SubservicePage() {
                     <span>Categoria: {category?.name || 'N/A'}</span>
                   </div>
                 </div>
-
-                {/* Price */}
-                <div className="bg-secondary/30 rounded-lg p-6 mb-8">
-                  <div className="flex items-center gap-3">
-                    <Euro className="h-6 w-6 text-primary" />
-                    <div>
-                      <p className="text-2xl font-bold text-primary">
-                        {formatPrice(subservice.price_start, subservice.priceType)}
-                      </p>
-                      <p className="text-sm text-muted-foreground">
-                        Prezzo {subservice.priceType === 'starting_from' ? 'di partenza' : 'fisso'}
-                      </p>
-                    </div>
-                  </div>
-                </div>
               </motion.div>
 
               {/* Service Description */}
@@ -310,32 +275,57 @@ export default function SubservicePage() {
                 >
                   <h3 className="text-lg font-bold mb-4">Dettagli di Pagamento</h3>
                   
-                  <div className="space-y-4">
-                    <div className="flex justify-between items-center pb-2 border-b">
-                      <span>Prezzo:</span>
-                      <span className="font-bold">
-                        {formatPrice(subservice.price_start, subservice.priceType)}
+                  <div className="space-y-3">
+                    {/* Service Price */}
+                    <div className="flex justify-between items-center">
+                      <span className="text-sm">Prezzo servizio:</span>
+                      <span className="font-medium">
+                        €{subservice.price_start.toFixed(2)}
                       </span>
                     </div>
                     
-                    {subservice.estimatedDuration && (
-                      <div className="flex justify-between items-center pb-2 border-b">
-                        <span className="text-muted-foreground">Durata stimata:</span>
+                    {/* Secretarial Fees */}
+                    {subservice.secretarialFees && subservice.secretarialFees > 0 && (
+                      <div className="flex justify-between items-center">
+                        <span className="text-sm">Oneri di segreteria:</span>
                         <span className="font-medium">
-                          {formatDuration(subservice.estimatedDuration)}
+                          €{subservice.secretarialFees.toFixed(2)}
                         </span>
                       </div>
                     )}
                     
-                    <div className="flex justify-between items-center">
-                      <span className="text-muted-foreground">Tipo di prezzo:</span>
-                      <span className="font-medium capitalize">
-                        {subservice.priceType === 'starting_from' && 'A partire da'}
-                        {subservice.priceType === 'fixed' && 'Prezzo fisso'}
-                        {subservice.priceType === 'hourly' && 'Tariffa oraria'}
-                        {subservice.priceType === 'consultation' && 'Consulenza'}
+                    {/* Subtotal */}
+                    <div className="flex justify-between items-center py-2 border-t border-b">
+                      <span className="font-medium">Subtotale:</span>
+                      <span className="font-medium">
+                        €{((subservice.secretarialFees || 0) + subservice.price_start).toFixed(2)}
                       </span>
                     </div>
+                    
+                    {/* VAT */}
+                    <div className="flex justify-between items-center">
+                      <span className="text-md text-accent">VAT {subservice.vatPercentage || 22}%:</span>
+                      <span className="font-medium">
+                        €{(((subservice.secretarialFees || 0) + subservice.price_start) * ((subservice.vatPercentage || 22) / 100)).toFixed(2)}
+                      </span>
+                    </div>
+                    
+                    {/* Total */}
+                    <div className="flex justify-between items-center pt-2 border-t border-primary/20">
+                      <span className="font-bold text-accent">Totale Ordine:</span>
+                      <span className="font-bold text-accent text-lg">
+                        €{(((subservice.secretarialFees || 0) + subservice.price_start) * (1 + ((subservice.vatPercentage || 22) / 100))).toFixed(2)}
+                      </span>
+                    </div>
+                    
+                    {subservice.estimatedDuration && (
+                      <div className="flex justify-between items-center pt-3 mt-3 border-t">
+                        <span className="text-muted-foreground text-sm">Durata stimata:</span>
+                        <span className="font-medium text-sm">
+                          {formatDuration(subservice.estimatedDuration)}
+                        </span>
+                      </div>
+                    )}
                   </div>
                 </motion.div>
 

@@ -42,6 +42,8 @@ export default function EditSubservicePage() {
       description: '',
       shortDescription: '',
       price_start: 0,
+      secretarialFees: 6,
+      vatPercentage: 6,
       priceType: 'starting_from',
       rating: 0,
       reviews_count: 0,
@@ -84,6 +86,8 @@ export default function EditSubservicePage() {
           description: subserviceData.description,
           shortDescription: subserviceData.shortDescription || '',
           price_start: subserviceData.price_start,
+          secretarialFees: subserviceData.secretarialFees || 6,
+          vatPercentage: subserviceData.vatPercentage || 6,
           priceType: subserviceData.priceType,
           rating: subserviceData.rating,
           reviews_count: subserviceData.reviews_count,
@@ -178,6 +182,8 @@ export default function EditSubservicePage() {
       const formData = {
         ...data,
         price_start: parseFloat(data.price_start.toString()),
+        secretarialFees: data.secretarialFees ? parseFloat(data.secretarialFees.toString()) : 6,
+        vatPercentage: data.vatPercentage ? parseFloat(data.vatPercentage.toString()) : 6,
         rating: parseFloat(data.rating.toString()),
         reviews_count: parseInt(data.reviews_count.toString()),
         displayOrder: parseInt(data.displayOrder.toString()),
@@ -498,6 +504,48 @@ export default function EditSubservicePage() {
                       />
                       {errors.reviews_count && (
                         <p className="mt-1 text-sm text-red-600">{errors.reviews_count.message}</p>
+                      )}
+                    </div>
+
+                    <div className="col-span-3">
+                      <label htmlFor="secretarialFees" className="block text-sm font-medium text-gray-700">
+                        Secretarial Fees (EUR)
+                      </label>
+                      <input
+                        {...register('secretarialFees', { 
+                          min: { value: 0, message: 'Secretarial fees cannot be negative' },
+                          valueAsNumber: true
+                        })}
+                        type="number"
+                        step="0.01"
+                        min="0"
+                        className="mt-1 focus:ring-blue-500 focus:border-blue-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                        placeholder="6.00"
+                      />
+                      {errors.secretarialFees && (
+                        <p className="mt-1 text-sm text-red-600">{errors.secretarialFees.message}</p>
+                      )}
+                    </div>
+
+                    <div className="col-span-3">
+                      <label htmlFor="vatPercentage" className="block text-sm font-medium text-gray-700">
+                        VAT Percentage (%)
+                      </label>
+                      <input
+                        {...register('vatPercentage', { 
+                          min: { value: 0, message: 'VAT percentage cannot be negative' },
+                          max: { value: 100, message: 'VAT percentage cannot exceed 100%' },
+                          valueAsNumber: true
+                        })}
+                        type="number"
+                        step="0.01"
+                        min="0"
+                        max="100"
+                        className="mt-1 focus:ring-blue-500 focus:border-blue-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                        placeholder="6.00"
+                      />
+                      {errors.vatPercentage && (
+                        <p className="mt-1 text-sm text-red-600">{errors.vatPercentage.message}</p>
                       )}
                     </div>
                   </div>
