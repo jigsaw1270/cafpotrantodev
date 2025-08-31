@@ -314,7 +314,7 @@ export default function SubservicePage() {
                   initial={{ opacity: 0, x: 20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.5, delay: 0.3 }}
-                  className="bg-background rounded-xl border p-6 shadow-sm"
+                  className="bg-card rounded-xl border p-6 shadow-sm"
                 >
                   <h3 className="mb-4 text-lg font-bold">
                     Dettagli di Pagamento
@@ -384,7 +384,7 @@ export default function SubservicePage() {
 
                     {subservice.estimatedDuration && (
                       <div className="mt-3 flex items-center justify-between border-t pt-3">
-                        <span className="text-muted-foreground text-sm">
+                        <span className="text-accent text-sm">
                           Durata stimata:
                         </span>
                         <span className="text-sm font-medium">
@@ -454,15 +454,10 @@ export default function SubservicePage() {
                     Chiama ora
                   </button>
 
-                  {/* Request Quote Button */}
-                  <button className="bg-primary hover:bg-primary/90 text-primary-foreground w-full rounded-lg px-4 py-3 font-medium transition-colors">
-                    Richiedi Preventivo
-                  </button>
-
                   {/* Request Now Button */}
                   <Link
                     href={`/services/subservice/${slug}/checkout`}
-                    className="bg-accent hover:bg-accent/90 text-accent-foreground flex w-full items-center justify-center gap-2 rounded-lg px-4 py-3 font-medium transition-colors"
+                    className="bg-primary hover:bg-accent/90 text-background hover:text-primary flex w-full items-center justify-center gap-2 rounded-lg px-4 py-3 font-medium transition-colors"
                   >
                     Richiedi ora
                   </Link>

@@ -108,7 +108,7 @@ export default function CreditCardPaymentPage() {
           <h1 className="text-foreground mb-2 text-2xl font-bold">
             Pagamento Completato!
           </h1>
-          <p className="text-muted-foreground">Reindirizzamento in corso...</p>
+          <p className="text-accent">Reindirizzamento in corso...</p>
         </motion.div>
       </div>
     );
