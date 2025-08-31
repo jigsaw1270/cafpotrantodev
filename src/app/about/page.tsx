@@ -133,7 +133,7 @@ export default function About() {
             className="mx-auto max-w-2xl text-center"
           >
             <h2 className="text-foreground mb-4 text-3xl font-bold tracking-tight sm:text-4xl">
-              Our Values
+              I nostri valori
             </h2>
             <p className="text-muted-foreground mb-16 text-lg">
               I principi che guidano tutto ciò che facciamo e modellano come
@@ -220,7 +220,7 @@ export default function About() {
                 <Target className="text-primary h-8 w-8" />
               </div>
               <h3 className="text-accent-foreground mb-4 text-2xl font-bold">
-                Our Mission
+                La nostra missione
               </h3>
               <p className="text-accent-foreground leading-relaxed">
                 Fornire servizi legali accessibili, professionali e completi che
@@ -255,7 +255,7 @@ export default function About() {
           </div>
 
           {/* Why Choose Us */}
-          <motion.div
+          {/* <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
@@ -294,7 +294,7 @@ export default function About() {
                 </p>
               </div>
             </div>
-          </motion.div>
+          </motion.div> */}
         </div>
       </section>
     </>

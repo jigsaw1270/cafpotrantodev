@@ -158,7 +158,7 @@ export default function Home() {
               viewport={{ once: true }}
               className="text-foreground mb-4 text-3xl font-bold tracking-tight sm:text-4xl"
             >
-              Why Choose Us
+              Perché scegliere noi
             </motion.h2>
             <motion.p
               initial={{ opacity: 0, y: 20 }}

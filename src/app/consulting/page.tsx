@@ -71,7 +71,7 @@ export default function Consulting() {
               transition={{ duration: 0.5 }}
               className="text-foreground mb-6 text-4xl font-bold tracking-tight sm:text-6xl"
             >
-              Online <span className="text-primary">Consulting</span>
+              Consulenza <span className="text-primary">in linea</span>
             </motion.h1>
 
             <motion.p
@@ -80,8 +80,8 @@ export default function Consulting() {
               transition={{ duration: 0.5, delay: 0.1 }}
               className="text-muted-foreground mb-8 text-xl"
             >
-              Do you need advice on matters relating to work, family, pensions,
-              or income support?
+              Hai bisogno di consigli su questioni relative al lavoro, alla
+              famiglia, alle pensioni o al sostegno al reddito?
             </motion.p>
 
             <motion.div
@@ -91,9 +91,8 @@ export default function Consulting() {
               className="bg-card rounded-lg border p-6 shadow-sm"
             >
               <p className="text-accent-foreground text-lg">
-                An expert in CAF and Patronato services and procedures will be
-                at your disposal! We offer consultations for the following
-                products:
+                Un esperto in servizi e procedure CAF e Patronato sarà a vostra
+                disposizione! Offriamo consulenze per i seguenti prodotti:
               </p>
             </motion.div>
           </div>
@@ -111,11 +110,11 @@ export default function Consulting() {
             className="mx-auto max-w-2xl text-center"
           >
             <h2 className="text-foreground mb-4 text-3xl font-bold tracking-tight sm:text-4xl">
-              Our Consulting Services
+              I nostri servizi di consulenza
             </h2>
             <p className="text-muted-foreground mb-16 text-lg">
-              Professional guidance and support for all your legal and
-              administrative needs.
+              Consulenza e supporto professionale per tutte le vostre esigenze
+              legali e amministrative.
             </p>
           </motion.div>
 

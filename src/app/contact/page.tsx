@@ -95,7 +95,7 @@ export default function Contact() {
               transition={{ duration: 0.5 }}
               className="text-foreground mb-6 text-4xl font-bold tracking-tight sm:text-6xl"
             >
-              Get in <span className="text-primary">Touch</span>
+              Mettiti <span className="text-primary">in contatto</span>
             </motion.h1>
 
             <motion.p
@@ -124,12 +124,12 @@ export default function Contact() {
               viewport={{ once: true }}
             >
               <h2 className="text-foreground mb-6 text-3xl font-bold tracking-tight">
-                Let's Start a Conversation
+                Iniziamo una conversazione
               </h2>
               <p className="text-muted-foreground mb-8 text-lg">
-                Whether you have a specific project in mind or just want to
-                explore possibilities, we're here to help. Reach out through any
-                of the channels below.
+                Che tu abbia un progetto specifico in mente o voglia
+                semplicemente esplorare diverse possibilità, siamo qui per
+                aiutarti. Contattaci tramite uno dei canali indicati di seguito.
               </p>
 
               <div className="space-y-6">
