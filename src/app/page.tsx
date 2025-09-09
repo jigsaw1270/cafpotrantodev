@@ -58,16 +58,7 @@ export default function Home() {
               </p>
             </div>
             <Combobox
-              placeholder="Search services (e.g., CAF, Patronato, ISEE)..."
-              options={[
-                { value: 'caf', label: 'Servizi CAF' },
-                { value: 'patronato', label: 'Servizi Patronato' },
-                { value: 'isee', label: 'Assistenza ISEE' },
-                { value: 'naspi', label: 'Supporto NASpI' },
-                { value: 'spid', label: 'Servizi SPID' },
-                { value: 'pension', label: 'Pianificazione Pensione' },
-                { value: 'benefits', label: 'Benefici Familiari' },
-              ]}
+              placeholder="Cerca servizi (es. CAF, Patronato, ISEE, SPID)..."
               className="mx-auto max-w-md"
             />
           </div>
