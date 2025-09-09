@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import { useParams } from 'next/navigation';
 import { motion } from 'framer-motion';
 import {
@@ -24,6 +24,7 @@ import {
   createServiceInquiry,
   getBusinessHoursMessage,
 } from '@/lib/whatsapp';
+import { safeLocalStorage } from '@/lib/safe-storage';
 
 export default function SubservicePage() {
   const params = useParams();
@@ -33,6 +34,10 @@ export default function SubservicePage() {
   const [category, setCategory] = useState<Category | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [whatsappClicked, setWhatsappClicked] = useState(false);
+  const [requestButtonEnabled, setRequestButtonEnabled] = useState(false);
+  const [timeoutId, setTimeoutId] = useState<NodeJS.Timeout | null>(null);
+  const [countdown, setCountdown] = useState(0);
 
   useEffect(() => {
     const fetchSubserviceData = async () => {
@@ -49,6 +54,22 @@ export default function SubservicePage() {
 
         const foundSubservice = subserviceResponse.data.subservice;
         setSubservice(foundSubservice);
+
+        // Check localStorage for WhatsApp and request button state
+        const whatsappClickedState = safeLocalStorage.getItem(
+          `whatsapp-clicked-${foundSubservice.slug}`
+        );
+        const requestEnabledState = safeLocalStorage.getItem(
+          `request-enabled-${foundSubservice.slug}`
+        );
+
+        if (whatsappClickedState === 'true') {
+          setWhatsappClicked(true);
+        }
+
+        if (requestEnabledState === 'true') {
+          setRequestButtonEnabled(true);
+        }
 
         // Get the category details
         if (foundSubservice.categoryId) {
@@ -74,6 +95,25 @@ export default function SubservicePage() {
     }
   }, [slug]);
 
+  // Cleanup timeout on unmount
+  useEffect(() => {
+    return () => {
+      if (timeoutId) {
+        clearTimeout(timeoutId);
+      }
+
+      // Cleanup any remaining event listeners
+      if (typeof document !== 'undefined') {
+        // Remove any potential visibility change listeners
+        const handleVisibilityChange = () => {};
+        document.removeEventListener(
+          'visibilitychange',
+          handleVisibilityChange
+        );
+      }
+    };
+  }, [timeoutId]);
+
   const formatDuration = (duration?: { value: number; unit: string }) => {
     if (!duration) return null;
 
@@ -87,7 +127,7 @@ export default function SubservicePage() {
     return `${duration.value} ${unitLabels[duration.unit as keyof typeof unitLabels] || duration.unit}`;
   };
 
-  const handleWhatsAppClick = () => {
+  const handleWhatsAppClick = useCallback(() => {
     if (!subservice) return;
 
     const totalPrice =
@@ -101,8 +141,74 @@ export default function SubservicePage() {
       price: totalPrice,
     });
 
+    // Mark WhatsApp as clicked
+    setWhatsappClicked(true);
+
+    // Store in localStorage for persistence
+    safeLocalStorage.setItem(`whatsapp-clicked-${subservice.slug}`, 'true');
+
+    // Try to detect if user goes to WhatsApp
+    const handleVisibilityChange = () => {
+      if (typeof document === 'undefined') return;
+
+      if (document.hidden) {
+        // User likely switched to WhatsApp
+        const checkReturn = setTimeout(() => {
+          if (!document.hidden && subservice) {
+            // User came back, enable request button
+            setRequestButtonEnabled(true);
+            safeLocalStorage.setItem(
+              `request-enabled-${subservice.slug}`,
+              'true'
+            );
+          }
+        }, 1000);
+
+        // Cleanup timeout if component unmounts
+        return () => clearTimeout(checkReturn);
+      }
+    };
+
+    // Listen for page visibility changes with safety checks
+    if (typeof document !== 'undefined' && typeof window !== 'undefined') {
+      document.addEventListener('visibilitychange', handleVisibilityChange);
+    }
+
+    // Start countdown timer
+    setCountdown(4);
+    const countdownInterval = setInterval(() => {
+      setCountdown(prev => {
+        if (prev <= 1) {
+          clearInterval(countdownInterval);
+          return 0;
+        }
+        return prev - 1;
+      });
+    }, 1000);
+
+    // Fallback: Enable request button after 4 seconds
+    const fallbackTimeout = setTimeout(() => {
+      if (subservice) {
+        setRequestButtonEnabled(true);
+        safeLocalStorage.setItem(`request-enabled-${subservice.slug}`, 'true');
+      }
+
+      // Safe cleanup
+      if (typeof document !== 'undefined') {
+        document.removeEventListener(
+          'visibilitychange',
+          handleVisibilityChange
+        );
+      }
+      clearInterval(countdownInterval);
+      setCountdown(0);
+    }, 4000);
+
+    setTimeoutId(fallbackTimeout);
+
+    // Open WhatsApp
     openWhatsApp(inquiry);
-  };
+  }, [subservice, category]);
 
   if (loading) {
     return (
@@ -481,12 +587,68 @@ export default function SubservicePage() {
                   </button>
 
                   {/* Request Now Button */}
-                  <Link
-                    href={`/services/subservice/${slug}/checkout`}
-                    className="bg-primary hover:bg-accent/90 text-background hover:text-primary flex w-full items-center justify-center gap-2 rounded-lg px-4 py-3 font-medium transition-colors"
-                  >
-                    Richiedi ora
-                  </Link>
+                  {requestButtonEnabled ? (
+                    <Link
+                      href={`/services/subservice/${slug}/checkout`}
+                      className="bg-primary hover:bg-accent/90 text-background hover:text-primary flex w-full items-center justify-center gap-2 rounded-lg px-4 py-3 font-medium transition-colors"
+                    >
+                      Richiedi ora
+                    </Link>
+                  ) : (
+                    <div className="group relative">
+                      <button
+                        disabled
+                        className="relative flex w-full cursor-not-allowed items-center justify-center gap-2 overflow-hidden rounded-lg bg-gray-300 px-4 py-3 font-medium text-gray-500 opacity-60"
+                      >
+                        {whatsappClicked && countdown > 0 && (
+                          <div
+                            className="absolute bottom-0 left-0 h-1 bg-green-500 transition-all duration-1000 ease-linear"
+                            style={{ width: `${((4 - countdown) / 4) * 100}%` }}
+                          />
+                        )}
+                        {whatsappClicked && countdown > 0 ? (
+                          <>Disponibile tra {countdown}s</>
+                        ) : whatsappClicked ? (
+                          <>Richiedi ora</>
+                        ) : (
+                          <>Richiedi ora</>
+                        )}
+                      </button>
+                      <div className="pointer-events-none absolute -top-14 left-1/2 z-10 -translate-x-1/2 transform rounded-lg bg-gray-800 px-3 py-2 text-xs whitespace-nowrap text-white opacity-0 shadow-lg transition-opacity duration-300 group-hover:opacity-100">
+                        <div className="text-center">
+                          {!whatsappClicked ? (
+                            <>
+                              <div className="font-medium">
+                                Contatta prima via WhatsApp
+                              </div>
+                              <div className="mt-1 text-gray-300">
+                                per abilitare la richiesta
+                              </div>
+                            </>
+                          ) : countdown > 0 ? (
+                            <>
+                              <div className="font-medium">
+                                Attendere {countdown} secondi
+                              </div>
+                              <div className="mt-1 text-gray-300">
+                                o tornare da WhatsApp
+                              </div>
+                            </>
+                          ) : (
+                            <>
+                              <div className="font-medium">
+                                Clicca per procedere
+                              </div>
+                              <div className="mt-1 text-gray-300">
+                                con la richiesta
+                              </div>
+                            </>
+                          )}
+                        </div>
+                        <div className="absolute top-full left-1/2 -translate-x-1/2 transform border-4 border-transparent border-t-gray-800"></div>
+                      </div>
+                    </div>
+                  )}
                 </motion.div>
 
                 {/* Additional Info */}

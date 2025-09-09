@@ -126,38 +126,42 @@ export function openWhatsApp(data: WhatsAppMessage): void {
         description: "Tentativo di apertura dell'app WhatsApp",
       });
 
-      // Create a hidden iframe to test if app opens
-      const iframe = document.createElement('iframe');
-      iframe.style.display = 'none';
-      iframe.src = appUrl;
-      document.body.appendChild(iframe);
+      // Use a safer approach without iframe manipulation
+      let appOpened = false;
+
+      // Try to open app URL directly
+      try {
+        window.location.href = appUrl;
+        appOpened = true;
+      } catch (e) {
+        console.warn('Direct app opening failed:', e);
+      }
 
       // Fallback to web after a short delay
       const timeoutId = setTimeout(() => {
-        if (document.body.contains(iframe)) {
-          document.body.removeChild(iframe);
+        if (!appOpened) {
+          showToast({
+            type: 'info',
+            title: 'Apertura WhatsApp Web',
+            description: 'Redirigengo a WhatsApp Web',
+          });
+          window.open(webUrl, '_blank');
         }
-        showToast({
-          type: 'info',
-          title: 'Apertura WhatsApp Web',
-          description: 'Redirigengo a WhatsApp Web',
-        });
-        window.open(webUrl, '_blank');
-      }, 1000);
+      }, 1500);
 
       // If app opens successfully, it will interrupt the timeout
-      window.addEventListener(
-        'blur',
-        () => {
-          clearTimeout(timeoutId);
-          showToast({
-            type: 'success',
-            title: 'WhatsApp aperto!',
-            description: 'App WhatsApp aperta con successo',
-          });
-        },
-        { once: true }
-      );
+      const handleBlur = () => {
+        clearTimeout(timeoutId);
+        appOpened = true;
+        showToast({
+          type: 'success',
+          title: 'WhatsApp aperto!',
+          description: 'App WhatsApp aperta con successo',
+        });
+        window.removeEventListener('blur', handleBlur);
+      };
+
+      window.addEventListener('blur', handleBlur, { once: true });
     } else {
       // Direct to WhatsApp Web
       showToast({

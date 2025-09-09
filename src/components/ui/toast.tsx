@@ -148,6 +148,15 @@ export function showToast(toast: Omit<ToastMessage, 'id'>) {
   // This is a simple implementation that works without context
   // For more complex usage, use the ToastProvider and useToast hook
 
-  const event = new CustomEvent('show-toast', { detail: toast });
-  window.dispatchEvent(event);
+  // Use setTimeout to avoid DOM manipulation conflicts
+  setTimeout(() => {
+    try {
+      if (typeof window !== 'undefined') {
+        const event = new CustomEvent('show-toast', { detail: toast });
+        window.dispatchEvent(event);
+      }
+    } catch (error) {
+      console.warn('Toast display error:', error);
+    }
+  }, 10);
 }
