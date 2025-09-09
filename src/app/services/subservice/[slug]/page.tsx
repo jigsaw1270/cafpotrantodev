@@ -23,8 +23,8 @@ import {
   openWhatsApp,
   createServiceInquiry,
   getBusinessHoursMessage,
+  WhatsAppState,
 } from '@/lib/whatsapp';
-import { safeLocalStorage } from '@/lib/safe-storage';
 
 export default function SubservicePage() {
   const params = useParams();
@@ -55,19 +55,12 @@ export default function SubservicePage() {
         const foundSubservice = subserviceResponse.data.subservice;
         setSubservice(foundSubservice);
 
-        // Check localStorage for WhatsApp and request button state
-        const whatsappClickedState = safeLocalStorage.getItem(
-          `whatsapp-clicked-${foundSubservice.slug}`
-        );
-        const requestEnabledState = safeLocalStorage.getItem(
-          `request-enabled-${foundSubservice.slug}`
-        );
-
-        if (whatsappClickedState === 'true') {
+        // Check WhatsApp state with 24h expiration
+        if (WhatsAppState.isWhatsAppClicked(foundSubservice.slug)) {
           setWhatsappClicked(true);
         }
 
-        if (requestEnabledState === 'true') {
+        if (WhatsAppState.isRequestEnabled(foundSubservice.slug)) {
           setRequestButtonEnabled(true);
         }
 
@@ -144,8 +137,8 @@ export default function SubservicePage() {
     // Mark WhatsApp as clicked
     setWhatsappClicked(true);
 
-    // Store in localStorage for persistence
-    safeLocalStorage.setItem(`whatsapp-clicked-${subservice.slug}`, 'true');
+    // Store with 24h expiration
+    WhatsAppState.setWhatsAppClicked(subservice.slug);
 
     // Try to detect if user goes to WhatsApp
     const handleVisibilityChange = () => {
@@ -157,10 +150,7 @@ export default function SubservicePage() {
           if (!document.hidden && subservice) {
             // User came back, enable request button
             setRequestButtonEnabled(true);
-            safeLocalStorage.setItem(
-              `request-enabled-${subservice.slug}`,
-              'true'
-            );
+            WhatsAppState.setRequestEnabled(subservice.slug);
           }
         }, 1000);
 
@@ -190,7 +180,7 @@ export default function SubservicePage() {
     const fallbackTimeout = setTimeout(() => {
       if (subservice) {
         setRequestButtonEnabled(true);
-        safeLocalStorage.setItem(`request-enabled-${subservice.slug}`, 'true');
+        WhatsAppState.setRequestEnabled(subservice.slug);
       }
 
       // Safe cleanup
@@ -705,6 +695,56 @@ export default function SubservicePage() {
           <MessageCircle className="h-6 w-6" />
         </button>
       </div>
+
+      {/* Development Debug Panel - 24h Expiration Info */}
+      {process.env.NODE_ENV === 'development' && subservice && (
+        <div className="fixed bottom-4 left-4 z-50 hidden max-w-sm rounded-lg bg-gray-900 p-4 text-white shadow-lg">
+          <h4 className="mb-2 text-sm font-bold text-yellow-400">
+            🕒 24h Expiration Debug
+          </h4>
+          <div className="space-y-1 text-xs">
+            <div className="flex justify-between">
+              <span>WhatsApp Clicked:</span>
+              <span
+                className={whatsappClicked ? 'text-green-400' : 'text-red-400'}
+              >
+                {whatsappClicked ? 'Yes' : 'No'}
+              </span>
+            </div>
+            <div className="flex justify-between">
+              <span>Request Enabled:</span>
+              <span
+                className={
+                  requestButtonEnabled ? 'text-green-400' : 'text-red-400'
+                }
+              >
+                {requestButtonEnabled ? 'Yes' : 'No'}
+              </span>
+            </div>
+            <div className="mt-2 space-x-1">
+              <button
+                onClick={() => {
+                  const debug = WhatsAppState.getDebugInfo(subservice.slug);
+                  console.log('🔍 WhatsApp Debug Info:', debug);
+                  alert(JSON.stringify(debug, null, 2));
+                }}
+                className="rounded bg-blue-600 px-2 py-1 text-xs hover:bg-blue-700"
+              >
+                Show Debug
+              </button>
+              <button
+                onClick={() => {
+                  WhatsAppState.resetService(subservice.slug);
+                  window.location.reload();
+                }}
+                className="rounded bg-red-600 px-2 py-1 text-xs hover:bg-red-700"
+              >
+                Reset 24h
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </>
   );
 }

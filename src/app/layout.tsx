@@ -4,6 +4,7 @@ import { Header } from '@/components/layout/header';
 import { Footer } from '@/components/layout/footer';
 import { ToastProvider } from '@/components/ui/toast';
 import { GlobalToastListener } from '@/components/ui/global-toast-listener';
+import { WhatsAppInitializer } from '@/components/whatsapp-initializer';
 import './globals.css';
 
 const geistSans = Geist({
@@ -102,6 +103,7 @@ export default function RootLayout({
       >
         <ToastProvider>
           <GlobalToastListener />
+          <WhatsAppInitializer />
           <div className="relative flex min-h-screen flex-col">
             <Header />
             <main className="flex-1">{children}</main>

@@ -32,6 +32,184 @@ export interface ServiceWhatsAppData {
   userMessage?: string;
 }
 
+interface WhatsAppStorageData {
+  value: string;
+  timestamp: number;
+  expiresAt: number;
+}
+
+/**
+ * WhatsApp Storage with 24-hour expiration
+ */
+export class WhatsAppStorage {
+  private static readonly EXPIRY_HOURS = 24;
+  private static readonly EXPIRY_MS =
+    WhatsAppStorage.EXPIRY_HOURS * 60 * 60 * 1000; // 24 hours in milliseconds
+
+  /**
+   * Set item with 24-hour expiration
+   */
+  static setItem(key: string, value: string): void {
+    if (typeof window === 'undefined') return;
+
+    try {
+      const now = Date.now();
+      const data: WhatsAppStorageData = {
+        value,
+        timestamp: now,
+        expiresAt: now + this.EXPIRY_MS,
+      };
+
+      localStorage.setItem(key, JSON.stringify(data));
+      console.log(`🕒 WhatsApp data set with 24h expiry: ${key}`);
+    } catch (error) {
+      console.warn('WhatsApp storage setItem failed:', error);
+    }
+  }
+
+  /**
+   * Get item if not expired, auto-clean if expired
+   */
+  static getItem(key: string): string | null {
+    if (typeof window === 'undefined') return null;
+
+    try {
+      const stored = localStorage.getItem(key);
+      if (!stored) return null;
+
+      const data: WhatsAppStorageData = JSON.parse(stored);
+      const now = Date.now();
+
+      // Check if expired
+      if (now > data.expiresAt) {
+        console.log(`⏰ WhatsApp data expired, removing: ${key}`);
+        localStorage.removeItem(key);
+        return null;
+      }
+
+      // Return valid data
+      const hoursLeft = Math.ceil((data.expiresAt - now) / (60 * 60 * 1000));
+      console.log(`✅ WhatsApp data valid, ${hoursLeft}h remaining: ${key}`);
+      return data.value;
+    } catch (error) {
+      console.warn('WhatsApp storage getItem failed:', error);
+      // Clean up corrupted data
+      localStorage.removeItem(key);
+      return null;
+    }
+  }
+
+  /**
+   * Remove item manually
+   */
+  static removeItem(key: string): void {
+    if (typeof window === 'undefined') return;
+
+    try {
+      localStorage.removeItem(key);
+      console.log(`🗑️ WhatsApp data manually removed: ${key}`);
+    } catch (error) {
+      console.warn('WhatsApp storage removeItem failed:', error);
+    }
+  }
+
+  /**
+   * Clean all expired WhatsApp data
+   */
+  static cleanExpiredData(): void {
+    if (typeof window === 'undefined') return;
+
+    try {
+      const now = Date.now();
+      const keysToRemove: string[] = [];
+
+      // Find all WhatsApp-related keys
+      for (let i = 0; i < localStorage.length; i++) {
+        const key = localStorage.key(i);
+        if (
+          !key ||
+          (!key.startsWith('whatsapp-') && !key.startsWith('request-'))
+        ) {
+          continue;
+        }
+
+        try {
+          const stored = localStorage.getItem(key);
+          if (stored) {
+            const data: WhatsAppStorageData = JSON.parse(stored);
+            if (now > data.expiresAt) {
+              keysToRemove.push(key);
+            }
+          }
+        } catch {
+          // If we can't parse it, it's probably old format - remove it
+          keysToRemove.push(key);
+        }
+      }
+
+      // Remove expired keys
+      keysToRemove.forEach(key => {
+        localStorage.removeItem(key);
+        console.log(`🧹 Cleaned expired WhatsApp data: ${key}`);
+      });
+
+      if (keysToRemove.length > 0) {
+        console.log(
+          `✨ Cleaned ${keysToRemove.length} expired WhatsApp entries`
+        );
+      }
+    } catch (error) {
+      console.warn('WhatsApp storage cleanup failed:', error);
+    }
+  }
+
+  /**
+   * Get expiration info for debugging
+   */
+  static getExpirationInfo(
+    key: string
+  ): { isValid: boolean; hoursLeft: number; expiresAt: Date } | null {
+    if (typeof window === 'undefined') return null;
+
+    try {
+      const stored = localStorage.getItem(key);
+      if (!stored) return null;
+
+      const data: WhatsAppStorageData = JSON.parse(stored);
+      const now = Date.now();
+      const hoursLeft = Math.max(
+        0,
+        Math.ceil((data.expiresAt - now) / (60 * 60 * 1000))
+      );
+
+      return {
+        isValid: now <= data.expiresAt,
+        hoursLeft,
+        expiresAt: new Date(data.expiresAt),
+      };
+    } catch {
+      return null;
+    }
+  }
+
+  /**
+   * Initialize cleanup - call this on app start
+   */
+  static initialize(): void {
+    this.cleanExpiredData();
+
+    // Set up periodic cleanup every hour
+    if (typeof window !== 'undefined') {
+      setInterval(
+        () => {
+          this.cleanExpiredData();
+        },
+        60 * 60 * 1000
+      ); // Every hour
+    }
+  }
+}
+
 /**
  * Format a WhatsApp message for a service inquiry
  */
@@ -220,4 +398,165 @@ export function createServiceInquiry(
     phone: DEFAULT_WHATSAPP_CONFIG.phone,
     message: message,
   };
+}
+
+/**
+ * Convenience functions for WhatsApp state management with 24h expiration
+ */
+export const WhatsAppState = {
+  /**
+   * Mark WhatsApp as clicked for a service (expires in 24h)
+   */
+  setWhatsAppClicked(serviceSlug: string): void {
+    WhatsAppStorage.setItem(`whatsapp-clicked-${serviceSlug}`, 'true');
+  },
+
+  /**
+   * Check if WhatsApp was clicked for a service (auto-expires in 24h)
+   */
+  isWhatsAppClicked(serviceSlug: string): boolean {
+    return (
+      WhatsAppStorage.getItem(`whatsapp-clicked-${serviceSlug}`) === 'true'
+    );
+  },
+
+  /**
+   * Enable request button for a service (expires in 24h)
+   */
+  setRequestEnabled(serviceSlug: string): void {
+    WhatsAppStorage.setItem(`request-enabled-${serviceSlug}`, 'true');
+  },
+
+  /**
+   * Check if request button is enabled for a service (auto-expires in 24h)
+   */
+  isRequestEnabled(serviceSlug: string): boolean {
+    return WhatsAppStorage.getItem(`request-enabled-${serviceSlug}`) === 'true';
+  },
+
+  /**
+   * Reset all state for a service
+   */
+  resetService(serviceSlug: string): void {
+    WhatsAppStorage.removeItem(`whatsapp-clicked-${serviceSlug}`);
+    WhatsAppStorage.removeItem(`request-enabled-${serviceSlug}`);
+  },
+
+  /**
+   * Get debug information for a service
+   */
+  getDebugInfo(serviceSlug: string) {
+    const whatsappInfo = WhatsAppStorage.getExpirationInfo(
+      `whatsapp-clicked-${serviceSlug}`
+    );
+    const requestInfo = WhatsAppStorage.getExpirationInfo(
+      `request-enabled-${serviceSlug}`
+    );
+
+    return {
+      serviceSlug,
+      whatsappClicked: {
+        isSet: this.isWhatsAppClicked(serviceSlug),
+        ...whatsappInfo,
+      },
+      requestEnabled: {
+        isSet: this.isRequestEnabled(serviceSlug),
+        ...requestInfo,
+      },
+    };
+  },
+
+  /**
+   * Initialize the WhatsApp state system (call on app start)
+   */
+  initialize(): void {
+    WhatsAppStorage.initialize();
+  },
+};
+
+/**
+ * Testing utilities for development
+ * Add these to window object in development mode
+ */
+export const WhatsAppTestUtils = {
+  /**
+   * Clear all WhatsApp data (for testing)
+   */
+  clearAll(): void {
+    if (typeof window === 'undefined') return;
+
+    const keys = Object.keys(localStorage);
+    const whatsappKeys = keys.filter(
+      key => key.startsWith('whatsapp-') || key.startsWith('request-')
+    );
+
+    whatsappKeys.forEach(key => localStorage.removeItem(key));
+    console.log(`🧹 Cleared ${whatsappKeys.length} WhatsApp entries`);
+  },
+
+  /**
+   * Simulate expired data by setting timestamp to past
+   */
+  expireService(serviceSlug: string): void {
+    if (typeof window === 'undefined') return;
+
+    const expiredData = {
+      value: 'true',
+      timestamp: Date.now() - 25 * 60 * 60 * 1000, // 25 hours ago
+      expiresAt: Date.now() - 60 * 60 * 1000, // 1 hour ago
+    };
+
+    localStorage.setItem(
+      `whatsapp-clicked-${serviceSlug}`,
+      JSON.stringify(expiredData)
+    );
+    localStorage.setItem(
+      `request-enabled-${serviceSlug}`,
+      JSON.stringify(expiredData)
+    );
+    console.log(`⏰ Set expired data for ${serviceSlug}`);
+  },
+
+  /**
+   * List all WhatsApp data with expiration info
+   */
+  listAll(): void {
+    if (typeof window === 'undefined') return;
+
+    const keys = Object.keys(localStorage);
+    const whatsappKeys = keys.filter(
+      key => key.startsWith('whatsapp-') || key.startsWith('request-')
+    );
+
+    const data = whatsappKeys
+      .map(key => {
+        try {
+          const stored = localStorage.getItem(key);
+          if (stored) {
+            const parsed = JSON.parse(stored);
+            const hoursLeft = Math.ceil(
+              (parsed.expiresAt - Date.now()) / (60 * 60 * 1000)
+            );
+            return {
+              key,
+              hoursLeft,
+              expiresAt: new Date(parsed.expiresAt).toLocaleString(),
+              isExpired: Date.now() > parsed.expiresAt,
+            };
+          }
+        } catch {
+          return { key, error: 'Invalid format' };
+        }
+        return null;
+      })
+      .filter(Boolean);
+
+    console.table(data);
+  },
+};
+
+// Make testing utilities available globally in development
+if (typeof window !== 'undefined' && process.env.NODE_ENV === 'development') {
+  (window as any).WhatsAppTestUtils = WhatsAppTestUtils;
+  (window as any).WhatsAppState = WhatsAppState;
 }
