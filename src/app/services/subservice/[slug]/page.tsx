@@ -19,6 +19,11 @@ import { SEO } from '@/components/seo';
 import { Subservice, Category } from '@/lib/types';
 import { markdownToHtml } from '@/lib/markdown';
 import apiClient from '@/lib/api';
+import {
+  openWhatsApp,
+  createServiceInquiry,
+  getBusinessHoursMessage,
+} from '@/lib/whatsapp';
 
 export default function SubservicePage() {
   const params = useParams();
@@ -80,6 +85,23 @@ export default function SubservicePage() {
     };
 
     return `${duration.value} ${unitLabels[duration.unit as keyof typeof unitLabels] || duration.unit}`;
+  };
+
+  const handleWhatsAppClick = () => {
+    if (!subservice) return;
+
+    const totalPrice =
+      ((subservice.secretarialFees || 0) + subservice.price_start) *
+      (1 + (subservice.vatPercentage || 22) / 100);
+
+    const inquiry = createServiceInquiry({
+      serviceName: subservice.name,
+      serviceSlug: subservice.slug,
+      categoryName: category?.name,
+      price: totalPrice,
+    });
+
+    openWhatsApp(inquiry);
   };
 
   if (loading) {
@@ -443,7 +465,11 @@ export default function SubservicePage() {
                   className="space-y-3"
                 >
                   {/* WhatsApp Button - Hidden on mobile (shown as floating) */}
-                  <button className="hidden w-full items-center justify-center gap-2 rounded-lg bg-green-500 px-4 py-3 font-medium text-white transition-colors hover:bg-green-600 md:flex">
+                  <button
+                    onClick={handleWhatsAppClick}
+                    className="hidden w-full items-center justify-center gap-2 rounded-lg bg-green-500 px-4 py-3 font-medium text-white transition-colors hover:bg-green-600 md:flex"
+                    title={getBusinessHoursMessage()}
+                  >
                     <MessageCircle className="h-5 w-5" />
                     Contatta via WhatsApp
                   </button>
@@ -509,8 +535,10 @@ export default function SubservicePage() {
       {/* Mobile Floating WhatsApp Button */}
       <div className="md:hidden">
         <button
+          onClick={handleWhatsAppClick}
           className="fixed right-6 bottom-6 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-green-500 text-white shadow-lg transition-all duration-300 hover:scale-110 hover:bg-green-600"
           aria-label="Contatta via WhatsApp"
+          title={getBusinessHoursMessage()}
         >
           <MessageCircle className="h-6 w-6" />
         </button>
