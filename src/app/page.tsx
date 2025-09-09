@@ -58,7 +58,7 @@ export default function Home() {
               </p>
             </div>
             <Combobox
-              placeholder="Cerca servizi (es. CAF, Patronato, ISEE, SPID)..."
+              placeholder="Cerca servizi (es. CAF, Famiglie, Certificati, Lavoro)..."
               className="mx-auto max-w-md"
             />
           </div>

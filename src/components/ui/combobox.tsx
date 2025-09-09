@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
 import { Search, X } from 'lucide-react';
 import { cn } from '@/lib/utils';
@@ -20,16 +20,81 @@ interface ComboboxProps {
   className?: string;
 }
 
-export function Combobox({ 
-  placeholder = "Search services...", 
-  className 
+export function Combobox({
+  placeholder = 'Search services...',
+  className,
 }: ComboboxProps) {
   const [open, setOpen] = useState(false);
-  const [searchTerm, setSearchTerm] = useState("");
+  const [searchTerm, setSearchTerm] = useState('');
   const [results, setResults] = useState<SearchResult[]>([]);
   const [loading, setLoading] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
   const router = useRouter();
+
+  const performSearch = useCallback(
+    async (query: string) => {
+      try {
+        setLoading(true);
+
+        // Search both categories and subservices
+        const [categoriesResponse, subservicesResponse] = await Promise.all([
+          apiClient.getCategories({ search: query, active: true, limit: 10 }),
+          apiClient.getSubservices({ search: query, active: true, limit: 15 }),
+        ]);
+
+        // Check if component is still mounted and search term hasn't changed
+        if (searchTerm !== query) {
+          return; // Abort if search term has changed
+        }
+
+        const searchResults: SearchResult[] = [];
+
+        // Add categories to results
+        if (categoriesResponse.success && categoriesResponse.data?.categories) {
+          categoriesResponse.data.categories.forEach(category => {
+            searchResults.push({
+              type: 'category',
+              id: category._id,
+              name: category.name,
+              slug: category.slug,
+              description: category.description,
+            });
+          });
+        }
+
+        // Add subservices to results
+        if (
+          subservicesResponse.success &&
+          subservicesResponse.data?.subservices
+        ) {
+          subservicesResponse.data.subservices.forEach(subservice => {
+            searchResults.push({
+              type: 'subservice',
+              id: subservice._id,
+              name: subservice.name,
+              slug: subservice.slug,
+              description:
+                subservice.shortDescription || subservice.description,
+              categoryName:
+                (subservice.categoryId as any)?.name || 'Unknown Category',
+            });
+          });
+        }
+
+        setResults(searchResults);
+      } catch (error) {
+        console.error('Search error:', error);
+        if (searchTerm === query) {
+          setResults([]);
+        }
+      } finally {
+        if (searchTerm === query) {
+          setLoading(false);
+        }
+      }
+    },
+    [searchTerm]
+  );
 
   // Debounced search
   useEffect(() => {
@@ -38,59 +103,14 @@ export function Combobox({
         performSearch(searchTerm);
       } else {
         setResults([]);
+        setLoading(false);
       }
     }, 300);
 
-    return () => clearTimeout(delayedSearch);
-  }, [searchTerm]);
-
-  const performSearch = async (query: string) => {
-    try {
-      setLoading(true);
-      
-      // Search both categories and subservices
-      const [categoriesResponse, subservicesResponse] = await Promise.all([
-        apiClient.getCategories({ search: query, active: true, limit: 10 }),
-        apiClient.getSubservices({ search: query, active: true, limit: 15 })
-      ]);
-
-      const searchResults: SearchResult[] = [];
-
-      // Add categories to results
-      if (categoriesResponse.success && categoriesResponse.data?.categories) {
-        categoriesResponse.data.categories.forEach(category => {
-          searchResults.push({
-            type: 'category',
-            id: category._id,
-            name: category.name,
-            slug: category.slug,
-            description: category.description
-          });
-        });
-      }
-
-      // Add subservices to results
-      if (subservicesResponse.success && subservicesResponse.data?.subservices) {
-        subservicesResponse.data.subservices.forEach(subservice => {
-          searchResults.push({
-            type: 'subservice',
-            id: subservice._id,
-            name: subservice.name,
-            slug: subservice.slug,
-            description: subservice.shortDescription || subservice.description,
-            categoryName: (subservice.categoryId as any)?.name || 'Unknown Category'
-          });
-        });
-      }
-
-      setResults(searchResults);
-    } catch (error) {
-      console.error('Search error:', error);
-      setResults([]);
-    } finally {
-      setLoading(false);
-    }
-  };
+    return () => {
+      clearTimeout(delayedSearch);
+    };
+  }, [searchTerm, performSearch]);
 
   const handleResultClick = (result: SearchResult) => {
     if (result.type === 'category') {
@@ -98,7 +118,7 @@ export function Combobox({
     } else {
       router.push(`/services/subservice/${result.slug}`);
     }
-    
+
     setOpen(false);
     setSearchTerm('');
     setResults([]);
@@ -113,77 +133,96 @@ export function Combobox({
   // Close dropdown when clicking outside
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (inputRef.current && !inputRef.current.closest('.search-container')?.contains(event.target as Node)) {
+      const container = document.querySelector('.search-container');
+      if (container && !container.contains(event.target as Node)) {
         setOpen(false);
       }
     };
 
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
-  }, []);
+    if (open) {
+      document.addEventListener('mousedown', handleClickOutside);
+      return () => {
+        document.removeEventListener('mousedown', handleClickOutside);
+      };
+    }
+  }, [open]);
 
   return (
-    <div className={cn("relative w-full search-container", className)}>
+    <div className={cn('search-container relative w-full', className)}>
       <div className="relative">
-        <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+        <Search className="text-muted-foreground absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2" />
         <input
           ref={inputRef}
           type="text"
           placeholder={placeholder}
           value={searchTerm}
-          onChange={(e) => {
+          onChange={e => {
             setSearchTerm(e.target.value);
-            setOpen(true);
+            if (!open) setOpen(true);
           }}
-          onFocus={() => setOpen(true)}
-          className="w-full rounded-lg border border-input bg-background px-10 py-3 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+          onFocus={() => {
+            if (!open) setOpen(true);
+          }}
+          className="border-input bg-background ring-offset-background placeholder:text-muted-foreground focus-visible:ring-ring w-full rounded-lg border px-10 py-3 text-sm file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50"
         />
         {searchTerm && (
           <button
             onClick={clearSearch}
-            className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground"
+            className="text-muted-foreground hover:text-foreground absolute top-1/2 right-3 -translate-y-1/2"
           >
             <X className="h-4 w-4" />
           </button>
         )}
       </div>
-      
+
       {/* Search Results Dropdown */}
-      {open && (searchTerm.trim() || results.length > 0) && (
-        <div className="absolute top-full z-50 mt-1 w-full rounded-md border bg-accent text-popover-foreground shadow-md animate-in fade-in-0 zoom-in-95">
+      {open && (
+        <div
+          key="search-dropdown"
+          className="bg-accent text-popover-foreground absolute top-full z-50 mt-1 w-full rounded-md border shadow-md transition-opacity duration-150"
+        >
           <div className="p-2">
             {loading ? (
-              <div className="flex items-center justify-center py-4">
-                <div className="h-4 w-4 animate-spin rounded-full border-2 border-primary border-t-transparent"></div>
-                <span className="ml-2 text-sm text-muted-foreground">Searching...</span>
+              <div
+                key="loading"
+                className="flex items-center justify-center py-4"
+              >
+                <div className="border-primary h-4 w-4 animate-spin rounded-full border-2 border-t-transparent"></div>
+                <span className="text-muted-foreground ml-2 text-sm">
+                  Searching...
+                </span>
               </div>
             ) : results.length > 0 ? (
-              <div className="space-y-1">
-                {results.map((result) => (
+              <div key="results" className="space-y-1">
+                {results.map(result => (
                   <div
-                    key={`${result.type}-${result.id}`}
-                    className="relative flex cursor-pointer select-none items-start rounded-sm px-2 py-2 text-sm outline-none hover:bg-background "
+                    key={`${result.type}-${result.id}-${result.slug}`}
+                    className="hover:bg-background relative flex cursor-pointer items-start rounded-sm px-2 py-2 text-sm outline-none select-none"
                     onClick={() => handleResultClick(result)}
                   >
-                    <div className="flex-1 ">
+                    <div className="flex-1">
                       <div className="flex items-center gap-2">
-                        <span className={cn(
-                          "inline-flex items-center rounded-full px-2 py-1 text-xs font-medium",
-                          result.type === 'category' 
-                            ? "bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200"
-                            : "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200"
-                        )}>
+                        <span
+                          className={cn(
+                            'inline-flex items-center rounded-full px-2 py-1 text-xs font-medium',
+                            result.type === 'category'
+                              ? 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200'
+                              : 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200'
+                          )}
+                        >
                           {result.type === 'category' ? 'Category' : 'Service'}
                         </span>
-                        <span className="font-medium text-foreground">{result.name}</span>
+                        <span className="text-foreground font-medium">
+                          {result.name}
+                        </span>
                       </div>
                       {result.description && (
-                        <p className="mt-1 text-xs text-muted-foreground line-clamp-2">
+                        <p className="text-muted-foreground mt-1 line-clamp-2 text-xs">
                           {result.description}
                         </p>
                       )}
                       {result.categoryName && (
-                        <p className="mt-1 text-xs text-muted-foreground">
+                        <p className="text-muted-foreground mt-1 text-xs">
                           in {result.categoryName}
                         </p>
                       )}
@@ -192,11 +231,17 @@ export function Combobox({
                 ))}
               </div>
             ) : searchTerm.trim() ? (
-              <div className="px-2 py-4 text-center text-sm text-muted-foreground">
+              <div
+                key="no-results"
+                className="text-muted-foreground px-2 py-4 text-center text-sm"
+              >
                 No results found for "{searchTerm}"
               </div>
             ) : (
-              <div className="px-2 py-4 text-center text-sm text-muted-foreground">
+              <div
+                key="empty-state"
+                className="text-muted-foreground px-2 py-4 text-center text-sm"
+              >
                 Start typing to search services...
               </div>
             )}
