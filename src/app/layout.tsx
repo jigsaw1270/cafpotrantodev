@@ -79,8 +79,11 @@ export const metadata: Metadata = {
   },
   manifest: '/site.webmanifest',
   icons: {
-    icon: '/favicon.ico',
-    shortcut: '/favicon-16x16.png',
+    icon: [
+      { url: '/cafpotranto.svg', type: 'image/svg+xml' },
+      { url: '/favicon.ico', sizes: '32x32' },
+    ],
+    shortcut: '/cafpotranto.svg',
     apple: '/apple-touch-icon.png',
   },
 };

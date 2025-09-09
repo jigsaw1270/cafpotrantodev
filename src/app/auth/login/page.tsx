@@ -59,7 +59,11 @@ export default function Login() {
           {/* Header */}
           <div className="text-center">
             <Link href="/" className="mb-8 inline-flex items-center space-x-2">
-              <div className="bg-primary h-8 w-8 rounded-full" />
+              <img 
+              src="/cafpotranto.svg" 
+              alt="CafPotranto Logo" 
+              className="h-8 w-8"
+              />
               <span className="text-lg font-bold">CafPotranto</span>
             </Link>
             <h2 className="text-foreground text-3xl font-bold">Bentornato</h2>

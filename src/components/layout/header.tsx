@@ -38,8 +38,14 @@ export function Header() {
           <motion.div
             whileHover={{ rotate: 360 }}
             transition={{ duration: 0.3 }}
-            className="bg-primary h-8 w-8 rounded-full"
-          />
+            className="h-8 w-8"
+          >
+            <img 
+              src="/cafpotranto.svg" 
+              alt="CafPotranto Logo" 
+              className="h-full w-full"
+            />
+          </motion.div>
           <span className="text-lg font-bold">CafPotranto</span>
         </Link>
 
