@@ -42,25 +42,6 @@ export default function CategoryFormPage() {
 
   const watchedImage = watch('image');
 
-  useEffect(() => {
-    if (isEdit && categoryId) {
-      fetchCategory();
-    }
-  }, [isEdit, categoryId, fetchCategory]);
-
-  useEffect(() => {
-    if (watchedImage && watchedImage.length > 0) {
-      const file = watchedImage[0];
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setPreviewImage(reader.result as string);
-      };
-      reader.readAsDataURL(file);
-    } else {
-      setPreviewImage(null);
-    }
-  }, [watchedImage]);
-
   const fetchCategory = useCallback(async () => {
     if (!categoryId) return;
     
@@ -89,13 +70,31 @@ export default function CategoryFormPage() {
         }
       }
     } catch (error) {
-      console.error('Failed to fetch category:', error);
-      toast.error('Failed to load category');
-      router.push('/categories');
+      console.error('Error fetching category:', error);
+      toast.error('Failed to fetch category');
     } finally {
       setPageLoading(false);
     }
-  }, [categoryId, reset, router]);
+  }, [categoryId, reset]);
+
+  useEffect(() => {
+    if (isEdit && categoryId) {
+      fetchCategory();
+    }
+  }, [isEdit, categoryId, fetchCategory]);
+
+  useEffect(() => {
+    if (watchedImage && watchedImage.length > 0) {
+      const file = watchedImage[0];
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setPreviewImage(reader.result as string);
+      };
+      reader.readAsDataURL(file);
+    } else {
+      setPreviewImage(null);
+    }
+  }, [watchedImage]);
 
   const onSubmit = async (data: CategoryFormData) => {
     try {
