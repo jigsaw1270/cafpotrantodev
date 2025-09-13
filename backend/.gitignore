@@ -95,3 +95,4 @@ Thumbs.db
 # Test files
 test-results/
 .jest/
+.vercel
