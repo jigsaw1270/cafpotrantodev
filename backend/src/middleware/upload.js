@@ -111,7 +111,16 @@ const deleteFile = (filePath) => {
 const getFileUrl = (req, file) => {
   if (!file) return null;
   
-  const baseUrl = `${req.protocol}://${req.get('host')}`;
+  // Use production URL in production, or local URL in development
+  let baseUrl;
+  if (process.env.VERCEL === '1' || process.env.NODE_ENV === 'production') {
+    // In production, use the current deployment URL
+    baseUrl = `https://${req.get('host')}`;
+  } else {
+    // In development, use localhost
+    baseUrl = `${req.protocol}://${req.get('host')}`;
+  }
+  
   // Get the relative path from uploads directory
   let relativePath = file.path.replace(/\\/g, '/'); // Convert Windows backslashes to forward slashes
   

@@ -13,6 +13,11 @@ const nextConfig = {
         hostname: 'api.cafpotranto.dev',
         pathname: '/uploads/**',
       },
+      {
+        protocol: 'https',
+        hostname: '**.vercel.app',
+        pathname: '/uploads/**',
+      },
     ],
   },
   experimental: {
