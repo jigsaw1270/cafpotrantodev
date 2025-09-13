@@ -18,6 +18,16 @@ const nextConfig = {
   experimental: {
     optimizePackageImports: ['framer-motion'],
   },
+  // Exclude admin and backend folders from build
+  pageExtensions: ['js', 'jsx', 'ts', 'tsx'],
+  webpack: (config) => {
+    // Exclude admin and backend folders
+    config.watchOptions = {
+      ...config.watchOptions,
+      ignored: ['**/admin/**', '**/backend/**', '**/node_modules/**']
+    };
+    return config;
+  },
 }
 
 module.exports = nextConfig

@@ -74,7 +74,12 @@ export function useCategoriesWithCounts(): UseCategoriesWithCountsResult {
       const response = await apiClient.getCategoriesWithCounts();
 
       if (response.success && response.data) {
-        setCategories(response.data.categories || []);
+        // Ensure subservicesCount is defined
+        const categoriesWithCounts = response.data.categories?.map(cat => ({
+          ...cat,
+          subservicesCount: cat.subservicesCount ?? 0
+        })) || [];
+        setCategories(categoriesWithCounts);
       } else {
         setError(response.message || 'Failed to fetch categories');
       }

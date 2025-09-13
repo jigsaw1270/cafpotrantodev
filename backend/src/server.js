@@ -31,20 +31,23 @@ const limiter = rateLimit({
 });
 app.use('/api/', limiter);
 
-// CORS configuration
-const allowedOrigins = [
-  'http://localhost:3000',
-  'http://localhost:3001',
-  'http://127.0.0.1:3000',
-  'http://127.0.0.1:3001'
-];
-
 app.use(cors({
   origin: function (origin, callback) {
     // Allow requests with no origin (like mobile apps or curl requests)
     if (!origin) return callback(null, true);
     
-    if (allowedOrigins.includes(origin) || process.env.NODE_ENV === 'development') {
+    // Allow localhost for development
+    if (origin.includes('localhost') || origin.includes('127.0.0.1')) {
+      return callback(null, true);
+    }
+    
+    // Allow Vercel preview deployments for cafpotrantoclient
+    if (origin.includes('cafpotrantoclient') && origin.includes('vercel.app')) {
+      return callback(null, true);
+    }
+    
+    // Allow development environment
+    if (process.env.NODE_ENV === 'development') {
       return callback(null, true);
     }
     
@@ -123,22 +126,29 @@ const connectDB = async () => {
   }
 };
 
-// Start server
-const PORT = process.env.PORT || 5000;
+// Start server only if not in serverless environment
+if (process.env.VERCEL !== '1') {
+  const PORT = process.env.PORT || 5000;
 
-const startServer = async () => {
-  await connectDB();
-  
-  app.listen(PORT, () => {
-    console.log(`
+  const startServer = async () => {
+    await connectDB();
+    
+    app.listen(PORT, () => {
+      console.log(`
 🚀 CafPotranto Backend Server running!
 📍 Environment: ${process.env.NODE_ENV}
 🌐 Port: ${PORT}
 📊 Health Check: http://localhost:${PORT}/api/health
 📚 API Docs: http://localhost:${PORT}/api/docs (coming soon)
-    `);
-  });
-};
+      `);
+    });
+  };
+
+  startServer();
+} else {
+  // For Vercel serverless, just connect to DB
+  connectDB();
+}
 
 // Handle unhandled promise rejections
 process.on('unhandledRejection', (err, promise) => {
@@ -151,7 +161,5 @@ process.on('uncaughtException', (err) => {
   console.log('Uncaught Exception:', err);
   process.exit(1);
 });
-
-startServer();
 
 module.exports = app;
