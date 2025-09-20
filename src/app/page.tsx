@@ -46,44 +46,49 @@ export default function Home() {
       />
 
       {/* Search/Filter Section */}
-      <section className="bg-foreground z-30 border-b py-6">
+      <section className="bg-gradient-navy border-navy-gradient-1/30 z-30 border-b py-8">
         <div className="container mx-auto px-8 lg:px-12">
           <div className="mx-auto max-w-2xl">
-            <div className="mb-4 text-center">
-              <h2 className="text-accent-foreground mb-2 text-2xl font-semibold lg:text-lg">
+            <div className="mb-6 text-center">
+              <h2 className="mb-3 text-2xl font-semibold text-white lg:text-3xl">
                 Trova Servizi Legali
               </h2>
-              <p className="text-accent-foreground text-sm">
+              <p className="text-cyan text-lg">
                 Cerca servizi legali specifici o assistenza amministrativa
               </p>
             </div>
             <Combobox
               placeholder="Cerca servizi (es. CAF, Famiglie, Certificati, Lavoro)..."
-              className="mx-auto max-w-md"
+              className="shadow-elegant-lg mx-auto max-w-md"
             />
           </div>
         </div>
       </section>
 
       {/* Hero Section */}
-      <section className="from-background to-secondary/20 relative hidden overflow-hidden bg-gradient-to-br py-24 lg:block">
-        <div className="container mx-auto px-8 lg:px-12">
+      <section className="to-cyan/5 relative hidden overflow-hidden bg-gradient-to-br from-white via-white py-24 lg:block">
+        <div className="from-cyan via-accent/90 absolute inset-0 bg-gradient-to-r to-transparent"></div>
+        <div className="relative container mx-auto px-8 lg:px-12">
           <div className="mx-auto max-w-4xl text-center">
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
-              className="text-foreground mb-6 text-4xl font-bold tracking-tight sm:text-6xl"
+              className="text-navy-dark mb-6 text-4xl font-bold tracking-tight sm:text-6xl"
             >
               Servizi Legali &
-              <span className="text-primary"> Assistenza Amministrativa</span>
+              <span className="text-destructive"> Assistenza </span>
+              <span className="text-gradient-primary from-destructive to-cyan bg-gradient-to-r bg-clip-text text-transparent">
+                {' '}
+                Amministrativa
+              </span>
             </motion.h1>
 
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.1 }}
-              className="text-muted-foreground mb-8 text-xl"
+              className="text-navy-very-dark mb-8 text-xl leading-relaxed"
             >
               Servizi legali professionali per aziende e cittadini per gestire
               procedure online. Assistenza specializzata con servizi CAF e
@@ -97,10 +102,27 @@ export default function Home() {
               transition={{ duration: 0.5, delay: 0.2 }}
               className="flex flex-col gap-4 sm:flex-row sm:justify-center"
             >
-              <CTAButton size="lg" className="text-lg">
+              <CTAButton
+                size="lg"
+                className="shadow-elegant-lg hover-lift text-lg"
+                style={{
+                  background: 'linear-gradient(135deg, #00A8CC, #142850)',
+                  border: 'none',
+                  color: '#ffffff',
+                }}
+              >
                 Our Services
               </CTAButton>
-              <Button variant="outline" size="lg" className="text-lg">
+              <Button
+                variant="outline"
+                size="lg"
+                className="border-navy-gradient-1 text-navy-gradient-1 hover:bg-navy-gradient-1 shadow-elegant text-lg hover:text-white"
+                style={{
+                  background: 'linear-gradient(135deg, #00A8CC, #142850)',
+                  border: 'none',
+                  color: '#ffffff',
+                }}
+              >
                 Free Consultation
               </Button>
             </motion.div>
@@ -109,13 +131,13 @@ export default function Home() {
 
         {/* Background Pattern */}
         <div className="absolute inset-0 -z-10 overflow-hidden">
-          <div className="bg-primary/5 absolute -top-40 -right-32 h-80 w-80 rounded-full blur-3xl" />
-          <div className="bg-secondary/30 absolute -bottom-40 -left-32 h-80 w-80 rounded-full blur-3xl" />
+          <div className="from-cyan/10 to-navy-gradient-2/5 absolute -top-40 -right-32 h-80 w-80 rounded-full bg-gradient-to-br blur-3xl" />
+          <div className="from-yellow/10 to-orange/5 absolute -bottom-40 -left-32 h-80 w-80 rounded-full bg-gradient-to-br blur-3xl" />
         </div>
       </section>
 
       {/* Service Categories Section */}
-      <section className="py-12 lg:py-24">
+      <section className="from-cyan/90 to-cyan/5 bg-gradient-to-b py-12 lg:py-24">
         <div className="container mx-auto px-8 lg:px-12">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -124,10 +146,10 @@ export default function Home() {
             viewport={{ once: true }}
             className="mx-auto max-w-2xl text-center"
           >
-            <h2 className="text-foreground mb-4 text-3xl font-bold tracking-tight sm:text-4xl">
+            <h2 className="text-navy-dark mb-4 text-3xl font-bold tracking-tight sm:text-4xl">
               Le Nostre Categorie di Servizi
             </h2>
-            <p className="text-muted-foreground mb-16 text-lg">
+            <p className="text-navy-very-dark mb-16 text-lg leading-relaxed">
               Esplora la nostra gamma completa di servizi legali e assistenza
               amministrativa. Ogni categoria offre supporto specializzato su
               misura per le tue esigenze specifiche.
@@ -139,7 +161,7 @@ export default function Home() {
       </section>
 
       {/* Features Section */}
-      <section className="py-24">
+      <section className="bg-gradient-navy py-24">
         <div className="container mx-auto px-8 lg:px-12">
           <div className="mx-auto max-w-2xl text-center">
             <motion.h2
@@ -147,7 +169,7 @@ export default function Home() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
               viewport={{ once: true }}
-              className="text-foreground mb-4 text-3xl font-bold tracking-tight sm:text-4xl"
+              className="mb-4 text-3xl font-bold tracking-tight text-white sm:text-4xl"
             >
               Perché scegliere noi
             </motion.h2>
@@ -156,7 +178,7 @@ export default function Home() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.1 }}
               viewport={{ once: true }}
-              className="text-muted-foreground mb-16 text-lg"
+              className="text-cyan mb-16 text-lg leading-relaxed"
             >
               Forniamo assistenza legale completa e supporto amministrativo per
               semplificare i tuoi processi burocratici.
@@ -171,13 +193,20 @@ export default function Home() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 viewport={{ once: true }}
-                className="bg-card text-accent-foreground rounded-lg border p-6 text-center shadow-sm"
+                className="border-navy-gradient-1/20 shadow-elegant hover-lift rounded-lg border p-6 text-center"
+                style={{
+                  background: 'linear-gradient(135deg, #FFD460, #F07B3F)',
+                  border: 'none',
+                  color: '#142850',
+                }}
               >
-                <div className="bg-primary/10 mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full">
-                  <feature.icon className="text-primary h-8 w-8" />
+                <div className="from-cyan/20 to-navy-gradient-2/20 mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br">
+                  <feature.icon className="text-navy-gradient-2 h-8 w-8" />
                 </div>
-                <h3 className="mb-2 text-xl font-semibold">{feature.title}</h3>
-                <p className="text-accent-foreground">{feature.description}</p>
+                <h3 className="text-navy-dark mb-2 text-xl font-semibold">
+                  {feature.title}
+                </h3>
+                <p className="text-navy-very-dark">{feature.description}</p>
               </motion.div>
             ))}
           </div>
@@ -185,7 +214,7 @@ export default function Home() {
       </section>
 
       {/* Benefits Section */}
-      <section className="bg-secondary/30 py-24">
+      <section className="via-cyan/5 bg-gradient-to-br from-white to-white py-24">
         <div className="container mx-auto px-8 lg:px-12">
           <div className="grid grid-cols-1 gap-12 lg:grid-cols-2">
             <motion.div
@@ -194,10 +223,10 @@ export default function Home() {
               transition={{ duration: 0.5 }}
               viewport={{ once: true }}
             >
-              <h2 className="text-foreground mb-6 text-3xl font-bold tracking-tight sm:text-4xl">
+              <h2 className="text-navy-dark mb-6 text-3xl font-bold tracking-tight sm:text-4xl">
                 Progettati per il Successo
               </h2>
-              <p className="text-muted-foreground mb-8 text-lg">
+              <p className="text-navy-very-dark mb-8 text-lg leading-relaxed">
                 Il nostro approccio di sviluppo garantisce che il tuo progetto
                 venga consegnato in tempo, nel budget e superi le aspettative.
                 Ci concentriamo su qualità, performance e scalabilità.
@@ -213,8 +242,10 @@ export default function Home() {
                     viewport={{ once: true }}
                     className="flex items-center gap-3"
                   >
-                    <CheckCircle className="text-primary h-5 w-5" />
-                    <span className="text-foreground">{benefit}</span>
+                    <CheckCircle className="text-cyan h-5 w-5" />
+                    <span className="text-navy-dark font-medium">
+                      {benefit}
+                    </span>
                   </motion.li>
                 ))}
               </ul>
@@ -227,15 +258,15 @@ export default function Home() {
               viewport={{ once: true }}
               className="relative"
             >
-              <div className="from-primary/20 to-secondary/40 aspect-square rounded-lg bg-gradient-to-br" />
-              <div className="bg-card absolute inset-4 rounded-lg shadow-xl" />
+              <div className="from-cyan/20 via-navy-gradient-2/20 to-navy-gradient-1/20 aspect-square rounded-lg bg-gradient-to-br" />
+              <div className="shadow-elegant-xl border-cyan/20 absolute inset-4 rounded-lg border bg-white" />
             </motion.div>
           </div>
         </div>
       </section>
 
       {/* CTA Section */}
-      <section className="py-24">
+      <section className="bg-gradient-navy py-24">
         <div className="container mx-auto px-8 lg:px-12">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -244,15 +275,23 @@ export default function Home() {
             viewport={{ once: true }}
             className="mx-auto max-w-2xl text-center"
           >
-            <h2 className="text-foreground mb-4 text-3xl font-bold tracking-tight sm:text-4xl">
+            <h2 className="mb-4 text-3xl font-bold tracking-tight text-white sm:text-4xl">
               Hai bisogno di assistenza legale?
             </h2>
-            <p className="text-muted-foreground mb-8 text-lg">
+            <p className="text-cyan mb-8 text-lg leading-relaxed">
               Contattaci oggi per servizi legali professionali e supporto
               amministrativo. Il nostro team di esperti è pronto ad aiutarti a
               navigare le procedure complesse.
             </p>
-            <CTAButton size="lg" className="text-lg">
+            <CTAButton
+              size="lg"
+              className="shadow-elegant-lg hover-lift text-lg"
+              style={{
+                background: 'linear-gradient(135deg, #FFD460, #F07B3F)',
+                border: 'none',
+                color: '#142850',
+              }}
+            >
               Prenota Consulenza
             </CTAButton>
           </motion.div>

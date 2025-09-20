@@ -54,7 +54,7 @@ export default function Services() {
       />
 
       {/* Hero Section */}
-      <section className="from-background to-secondary/20 relative overflow-hidden bg-gradient-to-br py-24">
+      <section className="from-accent/80 to-destructive/80 relative overflow-hidden bg-linear-to-bl bg-gradient-to-br py-24">
         <div className="container mx-auto px-8 lg:px-12">
           <div className="mx-auto max-w-4xl text-center">
             <motion.h1
@@ -131,7 +131,12 @@ export default function Services() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 viewport={{ once: true }}
-                className="bg-card relative rounded-lg border p-6 shadow-sm"
+                className="relative rounded-lg border p-6 shadow-sm"
+                style={{
+                  background: 'linear-gradient(135deg, #FFD460, #F07B3F)',
+                  border: 'none',
+                  color: '#142850',
+                }}
               >
                 <div className="text-primary mb-4 text-2xl font-bold">
                   {step.step}

@@ -48,7 +48,7 @@ export default function About() {
       />
 
       {/* Hero Section */}
-      <section className="from-background to-secondary/20 relative overflow-hidden bg-gradient-to-br py-24">
+      <section className="from-accent/80 to-destructive/80 relative overflow-hidden bg-linear-to-bl bg-gradient-to-br py-24">
         <div className="container mx-auto px-8 lg:px-12">
           <div className="mx-auto max-w-4xl text-center">
             <motion.h1
@@ -149,7 +149,12 @@ export default function About() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 viewport={{ once: true }}
-                className="bg-card text-accent-foreground rounded-lg border p-6 text-center shadow-sm"
+                className="text-accent-foreground rounded-lg border p-6 text-center shadow-sm"
+                style={{
+                  background: 'linear-gradient(135deg, #FFD460, #F07B3F)',
+                  border: 'none',
+                  color: '#142850',
+                }}
               >
                 <div className="bg-primary/10 mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full">
                   <value.icon className="text-primary h-8 w-8" />
@@ -214,7 +219,12 @@ export default function About() {
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5 }}
               viewport={{ once: true }}
-              className="bg-card rounded-lg border p-8 shadow-sm"
+              className="rounded-lg border p-8 shadow-sm"
+              style={{
+                background: 'linear-gradient(135deg, #FFD460, #F07B3F)',
+                border: 'none',
+                color: '#142850',
+              }}
             >
               <div className="bg-primary/10 mb-6 flex h-16 w-16 items-center justify-center rounded-full">
                 <Target className="text-primary h-8 w-8" />
@@ -236,7 +246,12 @@ export default function About() {
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5, delay: 0.1 }}
               viewport={{ once: true }}
-              className="bg-card rounded-lg border p-8 shadow-sm"
+              className="rounded-lg border p-8 shadow-sm"
+              style={{
+                background: 'linear-gradient(135deg, #FFD460, #F07B3F)',
+                border: 'none',
+                color: '#142850',
+              }}
             >
               <div className="bg-primary/10 mb-6 flex h-16 w-16 items-center justify-center rounded-full">
                 <Lightbulb className="text-primary h-8 w-8" />

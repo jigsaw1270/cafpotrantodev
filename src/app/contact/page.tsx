@@ -86,7 +86,7 @@ export default function Contact() {
       />
 
       {/* Hero Section */}
-      <section className="from-background to-secondary/20 relative overflow-hidden bg-gradient-to-br py-24">
+      <section className="from-accent/80 to-destructive/80 relative overflow-hidden bg-linear-to-bl bg-gradient-to-br py-24">
         <div className="container mx-auto px-8 lg:px-12">
           <div className="mx-auto max-w-4xl text-center">
             <motion.h1
@@ -187,7 +187,14 @@ export default function Contact() {
               transition={{ duration: 0.5 }}
               viewport={{ once: true }}
             >
-              <div className="bg-card rounded-lg border p-8 shadow-sm">
+              <div
+                className="rounded-lg border p-8 shadow-sm"
+                style={{
+                  background: 'linear-gradient(135deg, #FFD460, #F07B3F)',
+                  border: 'none',
+                  color: '#142850',
+                }}
+              >
                 <h3 className="text-foreground mb-6 text-2xl font-bold">
                   Inviaci un Messaggio
                 </h3>

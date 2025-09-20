@@ -179,7 +179,7 @@ export function Combobox({
       {open && (
         <div
           key="search-dropdown"
-          className="bg-accent text-popover-foreground absolute top-full z-50 mt-1 w-full rounded-md border shadow-md transition-opacity duration-150"
+          className="bg-destructive text-popover-foreground absolute top-full z-50 mt-1 w-full rounded-md border shadow-md transition-opacity duration-150"
         >
           <div className="p-2">
             {loading ? (
