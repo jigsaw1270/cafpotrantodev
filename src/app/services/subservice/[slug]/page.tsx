@@ -242,12 +242,9 @@ export default function SubservicePage() {
       />
 
       {/* Back Navigation */}
-      <div className="container mx-auto px-8 pt-6 lg:px-12">
-        <div className="text-background flex items-center gap-2 text-sm">
-          <Link
-            href="/services"
-            className="hover:text-primary transition-colors"
-          >
+      <div className="container mx-auto px-8 pt-6 text-white lg:px-12">
+        <div className="flex items-center gap-2 text-sm">
+          <Link href="/services" className="hover:text-cyan transition-colors">
             Servizi
           </Link>
           {category && (
@@ -255,14 +252,14 @@ export default function SubservicePage() {
               <span>/</span>
               <Link
                 href={`/services/${category.slug}`}
-                className="hover:text-primary transition-colors"
+                className="hover:text-cyan transition-colors"
               >
                 {category.name}
               </Link>
             </>
           )}
           <span>/</span>
-          <span className="text-background">{subservice.name}</span>
+          <span className="text-white">{subservice.name}</span>
         </div>
       </div>
 
@@ -279,7 +276,7 @@ export default function SubservicePage() {
                 transition={{ duration: 0.5 }}
                 className="mb-8"
               >
-                <h1 className="text-background mb-4 text-3xl font-bold lg:text-4xl">
+                <h1 className="text-navy-dark mb-4 text-3xl font-bold lg:text-4xl">
                   {subservice.name}
                 </h1>
 
@@ -291,14 +288,14 @@ export default function SubservicePage() {
                       <span className="font-medium">
                         {subservice.rating.toFixed(1)}
                       </span>
-                      <span className="text-background">
+                      <span className="text-navy-dark">
                         ({subservice.reviews_count} recensioni)
                       </span>
                     </div>
                   )}
 
                   {subservice.estimatedDuration && (
-                    <div className="text-background flex items-center gap-2">
+                    <div className="text-navy-dark flex items-center gap-2">
                       <Clock className="h-5 w-5" />
                       <span>
                         Durata: {formatDuration(subservice.estimatedDuration)}
@@ -306,7 +303,7 @@ export default function SubservicePage() {
                     </div>
                   )}
 
-                  <div className="text-background flex items-center gap-2">
+                  <div className="text-navy-dark flex items-center gap-2">
                     <Users className="h-5 w-5" />
                     <span>Categoria: {category?.name || 'N/A'}</span>
                   </div>
@@ -320,13 +317,13 @@ export default function SubservicePage() {
                 transition={{ duration: 0.5, delay: 0.2 }}
                 className="mb-8"
               >
-                <h2 className="mb-4 text-2xl font-bold text-black">
+                <h2 className="text-navy-dark mb-4 text-2xl font-bold">
                   Descrizione del Servizio
                 </h2>
-                <div className="prose prose-lg max-w-none text-black">
+                <div className="prose prose-lg text-navy-dark service-content max-w-none">
                   {/* Rich text description */}
                   <div
-                    className="prose leading-relaxed text-black"
+                    className="prose text-navy-dark service-content leading-relaxed"
                     dangerouslySetInnerHTML={{
                       __html: markdownToHtml(subservice.description),
                     }}
@@ -342,7 +339,7 @@ export default function SubservicePage() {
                   transition={{ duration: 0.5, delay: 0.3 }}
                   className="mb-8"
                 >
-                  <h3 className="text-background mb-4 text-xl font-bold">
+                  <h3 className="text-navy-dark mb-4 text-xl font-bold">
                     Cosa include
                   </h3>
                   <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
@@ -365,10 +362,10 @@ export default function SubservicePage() {
                           </span>
                         </div>
                         <div>
-                          <h4 className="text-background font-medium">
+                          <h4 className="text-navy-dark font-medium">
                             {feature.name}
                           </h4>
-                          <p className="text-background text-sm">
+                          <p className="text-navy-very-dark text-sm">
                             {feature.description}
                           </p>
                         </div>
@@ -387,7 +384,7 @@ export default function SubservicePage() {
                     transition={{ duration: 0.5, delay: 0.4 }}
                     className="mb-8"
                   >
-                    <h3 className="text-background mb-4 text-xl font-bold">
+                    <h3 className="text-navy-dark mb-4 text-xl font-bold">
                       Requisiti
                     </h3>
                     <div className="space-y-3">
@@ -410,10 +407,10 @@ export default function SubservicePage() {
                             {requirement.isRequired ? 'Richiesto' : 'Opzionale'}
                           </div>
                           <div>
-                            <h4 className="text-background font-medium">
+                            <h4 className="text-navy-dark font-medium">
                               {requirement.name}
                             </h4>
-                            <p className="text-background text-sm">
+                            <p className="text-navy-very-dark text-sm">
                               {requirement.description}
                             </p>
                           </div>
@@ -426,13 +423,18 @@ export default function SubservicePage() {
 
             {/* Sidebar - Payment & Contact */}
             <div className="lg:col-span-1">
-              <div className="text-accent-foreground sticky top-6 space-y-6">
+              <div className="text-navy-dark sticky top-6 space-y-6">
                 {/* Payment Details Card */}
                 <motion.div
                   initial={{ opacity: 0, x: 20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.5, delay: 0.3 }}
-                  className="bg-card rounded-xl border p-6 shadow-sm"
+                  className="rounded-xl border p-6 shadow-sm"
+                  style={{
+                    background: 'linear-gradient(135deg, #FFD460, #F07B3F)',
+                    border: 'none',
+                    color: '#142850',
+                  }}
                 >
                   <h3 className="mb-4 text-lg font-bold">
                     Dettagli di Pagamento
@@ -472,7 +474,7 @@ export default function SubservicePage() {
 
                     {/* VAT */}
                     <div className="flex items-center justify-between">
-                      <span className="text-md text-accent">
+                      <span className="text-md text-cyan-100">
                         VAT {subservice.vatPercentage || 22}%:
                       </span>
                       <span className="font-medium">
@@ -487,10 +489,10 @@ export default function SubservicePage() {
 
                     {/* Total */}
                     <div className="border-primary/20 flex items-center justify-between border-t pt-2">
-                      <span className="text-accent font-bold">
+                      <span className="font-bold text-cyan-200">
                         Totale Ordine:
                       </span>
-                      <span className="text-accent text-lg font-bold">
+                      <span className="text-lg font-bold text-cyan-200">
                         €
                         {(
                           ((subservice.secretarialFees || 0) +
@@ -502,7 +504,7 @@ export default function SubservicePage() {
 
                     {subservice.estimatedDuration && (
                       <div className="mt-3 flex items-center justify-between border-t pt-3">
-                        <span className="text-accent text-sm">
+                        <span className="text-accent text-cyan-200">
                           Durata stimata:
                         </span>
                         <span className="text-sm font-medium">
@@ -518,9 +520,14 @@ export default function SubservicePage() {
                   initial={{ opacity: 0, x: 20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.5, delay: 0.4 }}
-                  className="bg-card rounded-xl border p-6 shadow-sm"
+                  className="rounded-xl border p-6 shadow-sm"
+                  style={{
+                    background: 'linear-gradient(135deg, #FFD460, #F07B3F)',
+                    border: 'none',
+                    color: '#142850',
+                  }}
                 >
-                  <h3 className="text-background mb-4 text-lg font-bold">
+                  <h3 className="text-navy-dark mb-4 text-lg font-bold">
                     Opzioni di Pagamento
                   </h3>
 
@@ -547,7 +554,7 @@ export default function SubservicePage() {
                     </div>
                   </div>
 
-                  <p className="text-background mt-4 text-xs">
+                  <p className="text-navy-very-dark mt-4 text-xs">
                     * Le opzioni di pagamento disponibili verranno confermate
                     durante la consultazione
                   </p>
@@ -580,7 +587,7 @@ export default function SubservicePage() {
                   {requestButtonEnabled ? (
                     <Link
                       href={`/services/subservice/${slug}/checkout`}
-                      className="bg-primary hover:bg-accent/90 text-background hover:text-primary flex w-full items-center justify-center gap-2 rounded-lg px-4 py-3 font-medium transition-colors"
+                      className="from-cyan to-navy-gradient-2 hover:from-navy-gradient-2 hover:to-cyan shadow-elegant flex w-full items-center justify-center gap-2 rounded-lg bg-gradient-to-r px-4 py-3 font-medium text-white transition-colors"
                     >
                       Richiedi ora
                     </Link>
@@ -667,7 +674,7 @@ export default function SubservicePage() {
       {subservice.tags && subservice.tags.length > 0 && (
         <section className="bg-secondary/20 py-8">
           <div className="container mx-auto px-4">
-            <h3 className="text-background mb-4 text-lg font-bold">
+            <h3 className="text-navy-dark mb-4 text-lg font-bold">
               Tag correlati
             </h3>
             <div className="flex flex-wrap gap-2">

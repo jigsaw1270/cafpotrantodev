@@ -295,8 +295,35 @@ html {
 /* Custom prose styles for markdown content */
 .prose {
   max-width: none;
-  /* color: var(--foreground); */
-  color: black;
+  color: var(
+    --navy-dark
+  ); /* Changed from black to navy-dark for better readability */
+}
+
+/* Service content specific styles - ensuring navy text on white backgrounds */
+.service-content {
+  color: var(--navy-dark) !important;
+}
+
+.service-content * {
+  color: var(--navy-dark) !important;
+}
+
+.service-content h1,
+.service-content h2,
+.service-content h3,
+.service-content h4,
+.service-content h5,
+.service-content h6 {
+  color: var(--navy-gradient-1) !important;
+}
+
+.service-content a {
+  color: var(--cyan) !important;
+}
+
+.service-content strong {
+  color: var(--navy-very-dark) !important;
 }
 
 .prose h1 {
@@ -342,7 +369,7 @@ html {
   margin-top: 1.25rem;
   margin-bottom: 1.25rem;
   line-height: 1.75;
-  color: var(--foreground);
+  color: var(--navy-dark); /* Changed from var(--foreground) to navy-dark */
 }
 
 .prose strong {
@@ -372,7 +399,7 @@ html {
 .prose li {
   margin-top: 0.5rem;
   margin-bottom: 0.5rem;
-  color: var(--foreground);
+  color: var(--navy-dark); /* Changed from var(--foreground) to navy-dark */
 }
 
 .prose li::marker {
@@ -489,7 +516,7 @@ html {
 .prose tbody td {
   vertical-align: baseline;
   padding: 0.75rem 0.571rem;
-  color: var(--foreground);
+  color: var(--navy-dark); /* Changed from var(--foreground) to navy-dark */
 }
 
 /* Toast animations */

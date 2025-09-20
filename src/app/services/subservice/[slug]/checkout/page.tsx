@@ -41,7 +41,8 @@ export default function CheckoutPage() {
     code: string;
     discount: number;
   } | null>(null);
-  const [selectedPaymentMethod, setSelectedPaymentMethod] = useState<string>('credit-card');
+  const [selectedPaymentMethod, setSelectedPaymentMethod] =
+    useState<string>('credit-card');
 
   // Mock service data
   const serviceData = {
@@ -116,7 +117,7 @@ export default function CheckoutPage() {
   };
 
   return (
-    <div className="bg-background min-h-screen">
+    <div className="min-h-screen bg-cyan-500">
       {/* Header */}
       <div className="border-b">
         <div className="container mx-auto px-4 py-4">
@@ -281,14 +282,16 @@ export default function CheckoutPage() {
                         name="paymentMethod"
                         value="credit-card"
                         checked={selectedPaymentMethod === 'credit-card'}
-                        onChange={(e) => setSelectedPaymentMethod(e.target.value)}
+                        onChange={e => setSelectedPaymentMethod(e.target.value)}
                         className="sr-only"
                       />
-                      <div className={`h-5 w-5 rounded-full border-2 transition-colors ${
-                        selectedPaymentMethod === 'credit-card'
-                          ? 'border-primary bg-primary'
-                          : 'border-input bg-transparent'
-                      }`}>
+                      <div
+                        className={`h-5 w-5 rounded-full border-2 transition-colors ${
+                          selectedPaymentMethod === 'credit-card'
+                            ? 'border-primary bg-primary'
+                            : 'border-input bg-transparent'
+                        }`}
+                      >
                         {selectedPaymentMethod === 'credit-card' && (
                           <div className="absolute inset-0 flex items-center justify-center">
                             <div className="h-2 w-2 rounded-full bg-white"></div>
@@ -298,11 +301,13 @@ export default function CheckoutPage() {
                     </div>
                     <CreditCard className="text-primary h-6 w-6" />
                     <div>
-                      <h3 className={`font-semibold transition-colors ${
-                        selectedPaymentMethod === 'credit-card'
-                          ? 'text-primary'
-                          : 'text-foreground'
-                      }`}>
+                      <h3
+                        className={`font-semibold transition-colors ${
+                          selectedPaymentMethod === 'credit-card'
+                            ? 'text-primary'
+                            : 'text-foreground'
+                        }`}
+                      >
                         Carta di Credito
                       </h3>
                       <p className="text-muted-foreground text-sm">
@@ -327,14 +332,16 @@ export default function CheckoutPage() {
                         name="paymentMethod"
                         value="paypal"
                         checked={selectedPaymentMethod === 'paypal'}
-                        onChange={(e) => setSelectedPaymentMethod(e.target.value)}
+                        onChange={e => setSelectedPaymentMethod(e.target.value)}
                         className="sr-only"
                       />
-                      <div className={`h-5 w-5 rounded-full border-2 transition-colors ${
-                        selectedPaymentMethod === 'paypal'
-                          ? 'border-primary bg-primary'
-                          : 'border-input bg-transparent'
-                      }`}>
+                      <div
+                        className={`h-5 w-5 rounded-full border-2 transition-colors ${
+                          selectedPaymentMethod === 'paypal'
+                            ? 'border-primary bg-primary'
+                            : 'border-input bg-transparent'
+                        }`}
+                      >
                         {selectedPaymentMethod === 'paypal' && (
                           <div className="absolute inset-0 flex items-center justify-center">
                             <div className="h-2 w-2 rounded-full bg-white"></div>
@@ -346,11 +353,13 @@ export default function CheckoutPage() {
                       P
                     </div>
                     <div>
-                      <h3 className={`font-semibold transition-colors ${
-                        selectedPaymentMethod === 'paypal'
-                          ? 'text-primary'
-                          : 'text-foreground'
-                      }`}>
+                      <h3
+                        className={`font-semibold transition-colors ${
+                          selectedPaymentMethod === 'paypal'
+                            ? 'text-primary'
+                            : 'text-foreground'
+                        }`}
+                      >
                         PayPal
                       </h3>
                       <p className="text-muted-foreground text-sm">
@@ -375,14 +384,16 @@ export default function CheckoutPage() {
                         name="paymentMethod"
                         value="bank-transfer"
                         checked={selectedPaymentMethod === 'bank-transfer'}
-                        onChange={(e) => setSelectedPaymentMethod(e.target.value)}
+                        onChange={e => setSelectedPaymentMethod(e.target.value)}
                         className="sr-only"
                       />
-                      <div className={`h-5 w-5 rounded-full border-2 transition-colors ${
-                        selectedPaymentMethod === 'bank-transfer'
-                          ? 'border-primary bg-primary'
-                          : 'border-input bg-transparent'
-                      }`}>
+                      <div
+                        className={`h-5 w-5 rounded-full border-2 transition-colors ${
+                          selectedPaymentMethod === 'bank-transfer'
+                            ? 'border-primary bg-primary'
+                            : 'border-input bg-transparent'
+                        }`}
+                      >
                         {selectedPaymentMethod === 'bank-transfer' && (
                           <div className="absolute inset-0 flex items-center justify-center">
                             <div className="h-2 w-2 rounded-full bg-white"></div>
@@ -392,11 +403,13 @@ export default function CheckoutPage() {
                     </div>
                     <Building className="text-primary h-6 w-6" />
                     <div>
-                      <h3 className={`font-semibold transition-colors ${
-                        selectedPaymentMethod === 'bank-transfer'
-                          ? 'text-primary'
-                          : 'text-foreground'
-                      }`}>
+                      <h3
+                        className={`font-semibold transition-colors ${
+                          selectedPaymentMethod === 'bank-transfer'
+                            ? 'text-primary'
+                            : 'text-foreground'
+                        }`}
+                      >
                         Bonifico Bancario
                       </h3>
                       <p className="text-muted-foreground text-sm">
@@ -411,7 +424,7 @@ export default function CheckoutPage() {
               <div className="mt-6">
                 <button
                   onClick={() => handlePaymentMethod(selectedPaymentMethod)}
-                  className="bg-primary text-primary-foreground hover:bg-primary/90 w-full rounded-lg py-3 px-4 font-semibold transition-colors"
+                  className="bg-primary text-primary-foreground hover:bg-primary/90 w-full rounded-lg px-4 py-3 font-semibold transition-colors"
                 >
                   Continua con il Pagamento
                 </button>
