@@ -50,13 +50,26 @@ export default function NewCategoryPage() {
     setLoading(true);
 
     try {
-      // Create the category with image if provided
-      const categoryResponse = await apiClient.createCategory({
+      // Prepare category data
+      const categoryData = {
         name: formData.name.trim(),
         description: formData.description.trim(),
         displayOrder: Number(formData.displayOrder),
         isActive: formData.isActive,
-      }, imageFile || undefined);
+      };
+
+      // Debug logging
+      console.log('=== CATEGORY CREATION DEBUG ===');
+      console.log('Category data being sent:', JSON.stringify(categoryData, null, 2));
+      console.log('Image file:', imageFile);
+      console.log('===============================');
+
+      // Create the category with image if provided
+      const categoryResponse = await apiClient.createCategory(categoryData, imageFile || undefined);
+
+      console.log('=== CATEGORY RESPONSE DEBUG ===');
+      console.log('Response:', categoryResponse);
+      console.log('===============================');
 
       if (!categoryResponse.success) {
         throw new Error(categoryResponse.message || 'Failed to create category');
@@ -66,6 +79,7 @@ export default function NewCategoryPage() {
       router.push('/categories');
     } catch (error: unknown) {
       console.error('Create category error:', error);
+      console.error('Full error object:', JSON.stringify(error, null, 2));
       const errorMessage = error instanceof Error ? error.message : 'Failed to create category';
       toast.error(errorMessage);
     } finally {

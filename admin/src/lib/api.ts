@@ -215,10 +215,26 @@ class ApiClient {
   }
 
   async createCategory(data: any, file?: File) {
-    if (file) {
-      return this.uploadFile('/categories', file, data);
+    console.log('=== API CLIENT DEBUG ===');
+    console.log('createCategory called with:', { data, file: file ? file.name : 'no file' });
+    console.log('Token present:', !!this.getToken());
+    console.log('========================');
+    
+    try {
+      if (file) {
+        console.log('Using uploadFile method');
+        const result = await this.uploadFile('/categories', file, data);
+        console.log('uploadFile result:', result);
+        return result;
+      }
+      console.log('Using post method');
+      const result = await this.post('/categories', data);
+      console.log('post result:', result);
+      return result;
+    } catch (error) {
+      console.error('createCategory error:', error);
+      throw error;
     }
-    return this.post('/categories', data);
   }
 
   async updateCategory(id: string, data: any, file?: File) {
