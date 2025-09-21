@@ -61,6 +61,9 @@ export default function Consulting() {
         url="/consulting"
       />
 
+      {/* Empty div like homepage */}
+      <div className="bg-cyan max-auto text-cyan hidden px-4 md:block">.</div>
+
       {/* Hero Section */}
       <section
         className="relative overflow-hidden bg-linear-to-bl bg-gradient-to-br py-24"
@@ -96,7 +99,7 @@ export default function Consulting() {
               transition={{ duration: 0.5, delay: 0.2 }}
               className="bg-card rounded-lg border p-6 shadow-sm"
             >
-              <p className="text-accent-foreground text-lg">
+              <p className="text-foreground text-lg">
                 Un esperto in servizi e procedure CAF e Patronato sarà a vostra
                 disposizione! Offriamo consulenze per i seguenti prodotti:
               </p>

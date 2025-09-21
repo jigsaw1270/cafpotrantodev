@@ -47,6 +47,9 @@ export default function About() {
         url="/about"
       />
 
+      {/* Empty div like homepage */}
+      <div className="bg-cyan max-auto text-cyan hidden px-4 md:block">.</div>
+
       {/* Hero Section */}
       <section
         className="relative overflow-hidden bg-linear-to-bl bg-gradient-to-br py-24"

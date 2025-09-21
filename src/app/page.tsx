@@ -46,7 +46,7 @@ export default function Home() {
       />
 
       {/* Search/Filter Section */}
-      <div className="bg-cyan max-auto text-cyan px-4 py-[2px]">.</div>
+      <div className="bg-cyan max-auto text-cyan hidden px-4 md:block">.</div>
       <section className="bg-gradient-navy border-navy-gradient-1/30 z-30 border-b py-8">
         <div className="container mx-auto px-8 lg:px-12">
           <div className="mx-auto max-w-2xl">
@@ -75,8 +75,12 @@ export default function Home() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
-              className="text-navy-dark mb-6 text-4xl font-bold tracking-tight sm:text-6xl"
+              className="text-navy-dark mb-6 text-4xl font-bold tracking-tight sm:text-5xl"
             >
+              <span className="text-background text-4xl font-extrabold sm:text-6xl">
+                {' '}
+                CAF - PATRONATO SINDACATO <br />
+              </span>
               Servizi Legali &
               <span className="text-destructive"> Assistenza </span>
               <span className="text-gradient-primary from-destructive to-cyan bg-gradient-to-r bg-clip-text text-transparent">
@@ -91,6 +95,11 @@ export default function Home() {
               transition={{ duration: 0.5, delay: 0.1 }}
               className="text-navy-very-dark mb-8 text-xl leading-relaxed"
             >
+              {' '}
+              <span className="text-destructive font-bold">
+                ASSISTENZA FISCALE-SPORTELLO IMMIGRAZIONE-AGENZIA MULTISERVIZI
+              </span>{' '}
+              <br />
               Servizi legali professionali per aziende e cittadini per gestire
               procedure online. Assistenza specializzata con servizi CAF e
               Patronato, benefici lavorativi, pensioni e procedure
@@ -112,7 +121,7 @@ export default function Home() {
                   color: '#ffffff',
                 }}
               >
-                Our Services
+                I nostri servizi
               </CTAButton>
               <Button
                 variant="outline"
@@ -124,7 +133,7 @@ export default function Home() {
                   color: '#ffffff',
                 }}
               >
-                Free Consultation
+                Consulenza gratuita
               </Button>
             </motion.div>
           </div>
