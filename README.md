@@ -2,6 +2,8 @@
 
 A production-grade Next.js frontend boilerplate built with modern technologies and best practices. This project serves as a foundation for building scalable, performant, and SEO-optimized web applications.
 
+<!-- Deployment trigger: 2025-09-21 -->
+
 ## 🚀 Features
 
 - **Framework**: Next.js 15 with App Router (SSR + ISR + SSG)
