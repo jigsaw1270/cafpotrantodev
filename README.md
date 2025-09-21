@@ -44,18 +44,20 @@ src/
 
 ### Prerequisites
 
-- Node.js 18+ 
+- Node.js 18+
 - npm, yarn, pnpm, or bun
 
 ### Installation
 
 1. **Clone the repository**
+
    ```bash
    git clone <repository-url>
    cd cafpotrantodev
    ```
 
 2. **Install dependencies**
+
    ```bash
    npm install
    # or
@@ -65,12 +67,14 @@ src/
    ```
 
 3. **Set up environment variables**
+
    ```bash
    cp .env.example .env.local
    # Edit .env.local with your configuration
    ```
 
 4. **Start the development server**
+
    ```bash
    npm run dev
    # or
@@ -128,6 +132,7 @@ SEO is handled by the `SEO` component using `next-seo`. Update the default confi
 ### Pre-commit Hooks
 
 The project automatically runs the following on commit:
+
 - ESLint with auto-fix
 - Prettier formatting
 - Type checking
@@ -135,8 +140,9 @@ The project automatically runs the following on commit:
 ## 📱 Responsive Design
 
 Built with a mobile-first approach using Tailwind CSS breakpoints:
+
 - `sm:` 640px
-- `md:` 768px  
+- `md:` 768px
 - `lg:` 1024px
 - `xl:` 1280px
 - `2xl:` 1536px
@@ -177,5 +183,7 @@ This project is licensed under the MIT License.
 For questions or support, please contact us at hello@cafpotranto.dev or visit our [website](https://cafpotranto.dev).
 
 ---
+
+**Last Updated**: September 21, 2025
 
 Built with ❤️ by [CafPotranto Dev](https://cafpotranto.dev)
