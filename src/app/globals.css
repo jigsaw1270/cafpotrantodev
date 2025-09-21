@@ -174,6 +174,27 @@ html {
   background: linear-gradient(135deg, var(--navy-dark), var(--navy-very-dark));
 }
 
+/* Custom gradient backgrounds */
+.grad-up-navy {
+  background: linear-gradient(
+    180deg,
+    rgba(13, 21, 51, 1) 0%,
+    rgba(67, 83, 122, 1) 31%,
+    rgba(47, 103, 181, 1) 65%,
+    rgba(0, 168, 204, 1) 100%
+  );
+}
+
+.grad-up-cyan {
+  background: linear-gradient(
+    0deg,
+    rgba(13, 21, 51, 1) 0%,
+    rgba(67, 83, 122, 1) 31%,
+    rgba(47, 103, 181, 1) 65%,
+    rgba(0, 168, 204, 1) 100%
+  );
+}
+
 /* Text gradients */
 .text-gradient-primary {
   background: linear-gradient(

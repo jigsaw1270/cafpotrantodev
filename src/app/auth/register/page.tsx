@@ -67,7 +67,7 @@ export default function Register() {
         url="/auth/register"
       />
 
-      <div className="flex min-h-screen items-center justify-center px-4 py-12 sm:px-6 lg:px-8">
+      <div className="grad-up-navy flex min-h-screen items-center justify-center px-4 py-12 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -94,6 +94,11 @@ export default function Register() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
             className="bg-card rounded-lg border p-8 shadow-sm"
+            style={{
+              background: 'linear-gradient(135deg, #FFD460, #F07B3F)',
+              border: 'none',
+              color: '#142850',
+            }}
           >
             <form onSubmit={handleSubmit} className="space-y-6">
               {/* Name fields */}
@@ -302,7 +307,7 @@ export default function Register() {
               </div>
 
               <div className="mt-6 grid grid-cols-2 gap-3">
-                <Button variant="outline" className="w-full">
+                <Button variant="outline" className="w-full text-white">
                   <svg className="h-5 w-5" viewBox="0 0 24 24">
                     <path
                       fill="currentColor"
@@ -324,7 +329,7 @@ export default function Register() {
                   <span className="ml-2">Google</span>
                 </Button>
 
-                <Button variant="outline" className="w-full">
+                <Button variant="outline" className="w-full text-white">
                   <svg
                     className="h-5 w-5"
                     fill="currentColor"

@@ -214,7 +214,7 @@ export default function CategoryPage() {
       </section>
 
       {/* Subservices Grid */}
-      <section className="py-16">
+      <section className="grad-up-navy py-16">
         <div className="container mx-auto px-8 lg:px-12">
           {/* Section Header */}
           <motion.div

@@ -46,6 +46,7 @@ export default function Home() {
       />
 
       {/* Search/Filter Section */}
+      <div className="bg-cyan max-auto text-cyan px-4 py-[2px]">.</div>
       <section className="bg-gradient-navy border-navy-gradient-1/30 z-30 border-b py-8">
         <div className="container mx-auto px-8 lg:px-12">
           <div className="mx-auto max-w-2xl">
@@ -137,7 +138,7 @@ export default function Home() {
       </section>
 
       {/* Service Categories Section */}
-      <section className="from-cyan/90 to-cyan/5 bg-gradient-to-b py-12 lg:py-24">
+      <section className="grad-up-navy py-12 lg:py-24">
         <div className="container mx-auto px-8 lg:px-12">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -146,10 +147,10 @@ export default function Home() {
             viewport={{ once: true }}
             className="mx-auto max-w-2xl text-center"
           >
-            <h2 className="text-navy-dark mb-4 text-3xl font-bold tracking-tight sm:text-4xl">
+            <h2 className="mb-4 text-3xl font-bold tracking-tight text-white sm:text-4xl">
               Le Nostre Categorie di Servizi
             </h2>
-            <p className="text-navy-very-dark mb-16 text-lg leading-relaxed">
+            <p className="mb-16 text-lg leading-relaxed text-slate-200">
               Esplora la nostra gamma completa di servizi legali e assistenza
               amministrativa. Ogni categoria offre supporto specializzato su
               misura per le tue esigenze specifiche.
@@ -161,7 +162,7 @@ export default function Home() {
       </section>
 
       {/* Features Section */}
-      <section className="bg-gradient-navy py-24">
+      <section className="grad-up-cyan py-24">
         <div className="container mx-auto px-8 lg:px-12">
           <div className="mx-auto max-w-2xl text-center">
             <motion.h2

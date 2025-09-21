@@ -62,7 +62,13 @@ export default function Consulting() {
       />
 
       {/* Hero Section */}
-      <section className="from-accent/80 to-destructive/80 relative overflow-hidden bg-linear-to-bl bg-gradient-to-br py-24">
+      <section
+        className="relative overflow-hidden bg-linear-to-bl bg-gradient-to-br py-24"
+        style={{
+          background:
+            'linear-gradient(342deg,rgba(201, 95, 42, 1) 0%, rgba(229, 104, 41, 1) 6%, rgba(234, 113, 51, 1) 20%, rgba(240, 123, 63, 1) 33%, rgba(255, 212, 96, 1) 100%)',
+        }}
+      >
         <div className="container mx-auto px-8 lg:px-12">
           <div className="mx-auto max-w-4xl text-center">
             <motion.h1
@@ -100,7 +106,7 @@ export default function Consulting() {
       </section>
 
       {/* Services Section */}
-      <section className="py-24">
+      <section className="grad-up-navy py-24">
         <div className="container mx-auto px-8 lg:px-12">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -147,7 +153,7 @@ export default function Consulting() {
       </section>
 
       {/* Specialized Services */}
-      <section className="bg-secondary/30 py-24">
+      <section className="grad-up-cyan py-24">
         <div className="container mx-auto px-8 lg:px-12">
           <div className="grid grid-cols-1 gap-12 lg:grid-cols-2">
             <motion.div
@@ -251,7 +257,7 @@ export default function Consulting() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-24">
+      <section className="grad-up-navy py-24">
         <div className="container mx-auto px-8 lg:px-12">
           <motion.div
             initial={{ opacity: 0, y: 20 }}

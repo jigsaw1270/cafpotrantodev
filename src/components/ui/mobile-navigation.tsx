@@ -47,7 +47,7 @@ export function MobileNavigation({ links }: MobileNavigationProps) {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.2 }}
-              className="fixed inset-0 z-[60] bg-background/80 backdrop-blur-sm md:hidden"
+              className="bg-background/80 fixed inset-0 z-[60] backdrop-blur-sm md:hidden"
               onClick={toggleMenu}
             />
 
@@ -61,10 +61,10 @@ export function MobileNavigation({ links }: MobileNavigationProps) {
                 stiffness: 400,
                 damping: 40,
               }}
-              className="fixed right-0 top-0 z-[70] h-full w-64 bg-card-foreground shadow-lg md:hidden"
+              className="bg-card-foreground fixed top-0 right-0 z-[70] h-full w-64 shadow-lg md:hidden"
             >
-              <div className="flex h-16 items-center justify-between px-4 bg-accent">
-                <h2 className="text-2xl font-semibold text-foreground">Menu</h2>
+              <div className="bg-destructive flex h-16 items-center justify-between px-4">
+                <h2 className="text-foreground text-2xl font-semibold">Menu</h2>
                 <Button
                   variant="ghost"
                   size="icon"
@@ -75,7 +75,7 @@ export function MobileNavigation({ links }: MobileNavigationProps) {
                 </Button>
               </div>
 
-              <nav className="px-4 bg-background rounded-2xl">
+              <nav className="bg-background rounded-2xl px-4">
                 <ul className="space-y-2 py-4">
                   {links.map((link, index) => {
                     const isActive = isActivePath(link.href);
@@ -88,10 +88,10 @@ export function MobileNavigation({ links }: MobileNavigationProps) {
                       >
                         <a
                           href={link.href}
-                          className={`block rounded-md px-4 py-3 font-bold text-xl transition-colors ${
+                          className={`block rounded-md px-4 py-3 text-xl font-bold transition-colors ${
                             isActive
-                              ? 'bg-foreground text-white'
-                              : 'text-foreground bg-accent'
+                              ? 'grad-up-navy text-white'
+                              : 'text-foreground bg-destructive'
                           }`}
                           onClick={toggleMenu}
                         >

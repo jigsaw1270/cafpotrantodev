@@ -33,7 +33,7 @@ export default function PaymentSuccessPage() {
 
   return (
     <div className="bg-background min-h-screen">
-      <div className="container mx-auto px-4 py-16">
+      <div className="grad-up-cyan container mx-auto px-4 py-16">
         <div className="mx-auto max-w-2xl text-center">
           {/* Success Animation */}
           <motion.div

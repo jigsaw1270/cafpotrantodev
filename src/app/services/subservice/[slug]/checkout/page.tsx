@@ -134,7 +134,7 @@ export default function CheckoutPage() {
         </div>
       </div>
 
-      <div className="container mx-auto px-4 py-8">
+      <div className="grad-up-cyan container mx-auto px-4 py-8">
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
           {/* Main Form Section */}
           <div className="space-y-8 lg:col-span-2">

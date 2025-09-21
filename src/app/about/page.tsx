@@ -48,7 +48,13 @@ export default function About() {
       />
 
       {/* Hero Section */}
-      <section className="from-accent/80 to-destructive/80 relative overflow-hidden bg-linear-to-bl bg-gradient-to-br py-24">
+      <section
+        className="relative overflow-hidden bg-linear-to-bl bg-gradient-to-br py-24"
+        style={{
+          background:
+            'linear-gradient(342deg,rgba(201, 95, 42, 1) 0%, rgba(229, 104, 41, 1) 6%, rgba(234, 113, 51, 1) 20%, rgba(240, 123, 63, 1) 33%, rgba(255, 212, 96, 1) 100%)',
+        }}
+      >
         <div className="container mx-auto px-8 lg:px-12">
           <div className="mx-auto max-w-4xl text-center">
             <motion.h1
@@ -75,7 +81,7 @@ export default function About() {
       </section>
 
       {/* Story Section */}
-      <section className="py-24">
+      <section className="bg-foreground py-24">
         <div className="container mx-auto px-8 lg:px-12">
           <div className="grid grid-cols-1 gap-12 lg:grid-cols-2">
             <motion.div
@@ -84,10 +90,10 @@ export default function About() {
               transition={{ duration: 0.5 }}
               viewport={{ once: true }}
             >
-              <h2 className="text-foreground mb-6 text-3xl font-bold tracking-tight">
+              <h2 className="text-background mb-6 text-3xl font-bold tracking-tight">
                 La Nostra Storia
               </h2>
-              <div className="text-muted-foreground space-y-4">
+              <div className="text-background space-y-4">
                 <p>
                   Fondato con l'impegno di fornire servizi legali accessibili e
                   professionali, CafPotranto è cresciuto da uno studio locale a
@@ -123,7 +129,7 @@ export default function About() {
       </section>
 
       {/* Values Section */}
-      <section className="bg-secondary/30 py-24">
+      <section className="grad-up-navy py-24">
         <div className="container mx-auto px-8 lg:px-12">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -170,7 +176,13 @@ export default function About() {
       </section>
 
       {/* Stats Section */}
-      <section className="py-24">
+      <section
+        className="py-24"
+        style={{
+          background:
+            'radial-gradient(circle,rgba(201, 95, 42, 1) 0%, rgba(229, 104, 41, 1) 48%, rgba(240, 123, 63, 1) 68%, rgba(255, 212, 96, 1) 100%)',
+        }}
+      >
         <div className="container mx-auto px-8 lg:px-12">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -198,7 +210,7 @@ export default function About() {
                 viewport={{ once: true }}
                 className="text-center"
               >
-                <div className="text-primary mb-2 text-4xl font-bold sm:text-5xl">
+                <div className="text-background mb-2 text-4xl font-bold sm:text-5xl">
                   {stat.value}
                 </div>
                 <div className="text-muted-foreground text-sm sm:text-base">
@@ -211,7 +223,7 @@ export default function About() {
       </section>
 
       {/* Mission & Vision Section */}
-      <section className="bg-secondary/30 py-24">
+      <section className="grad-up-cyan py-24">
         <div className="container mx-auto px-8 lg:px-12">
           <div className="grid grid-cols-1 gap-16 lg:grid-cols-2">
             <motion.div
