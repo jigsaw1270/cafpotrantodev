@@ -431,9 +431,7 @@ export default function SubservicePage() {
                   transition={{ duration: 0.5, delay: 0.3 }}
                   className="rounded-xl border p-6 shadow-sm"
                   style={{
-                    background: 'linear-gradient(135deg, #FFD460, #F07B3F)',
-                    border: 'none',
-                    color: '#142850',
+                    background: 'linear-gradient(135deg, #c3e6ec, #a7d1d9)',
                   }}
                 >
                   <h3 className="mb-4 text-lg font-bold">
@@ -474,7 +472,7 @@ export default function SubservicePage() {
 
                     {/* VAT */}
                     <div className="flex items-center justify-between">
-                      <span className="text-md text-cyan-100">
+                      <span className="text-md">
                         VAT {subservice.vatPercentage || 22}%:
                       </span>
                       <span className="font-medium">
@@ -489,10 +487,8 @@ export default function SubservicePage() {
 
                     {/* Total */}
                     <div className="border-primary/20 flex items-center justify-between border-t pt-2">
-                      <span className="font-bold text-cyan-200">
-                        Totale Ordine:
-                      </span>
-                      <span className="text-lg font-bold text-cyan-200">
+                      <span className="font-bold">Totale Ordine:</span>
+                      <span className="text-lg font-bold">
                         €
                         {(
                           ((subservice.secretarialFees || 0) +
@@ -504,9 +500,7 @@ export default function SubservicePage() {
 
                     {subservice.estimatedDuration && (
                       <div className="mt-3 flex items-center justify-between border-t pt-3">
-                        <span className="text-accent text-cyan-200">
-                          Durata stimata:
-                        </span>
+                        <span className="text-md">Durata stimata:</span>
                         <span className="text-sm font-medium">
                           {formatDuration(subservice.estimatedDuration)}
                         </span>
@@ -522,9 +516,7 @@ export default function SubservicePage() {
                   transition={{ duration: 0.5, delay: 0.4 }}
                   className="rounded-xl border p-6 shadow-sm"
                   style={{
-                    background: 'linear-gradient(135deg, #FFD460, #F07B3F)',
-                    border: 'none',
-                    color: '#142850',
+                    background: 'linear-gradient(135deg, #c3e6ec, #a7d1d9)',
                   }}
                 >
                   <h3 className="text-navy-dark mb-4 text-lg font-bold">
