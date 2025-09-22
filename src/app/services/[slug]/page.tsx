@@ -4,11 +4,12 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'next/navigation';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
-import { ArrowLeft, FileText, Euro, Clock, Star } from 'lucide-react';
+import { ArrowLeft, FileText } from 'lucide-react';
 import Link from 'next/link';
 import { SEO } from '@/components/seo';
 import { Category, Subservice } from '@/lib/types';
 import apiClient from '@/lib/api';
+import SubserviceCard from '@/components/services/SubserviceCard';
 
 export default function CategoryPage() {
   const params = useParams();
@@ -73,39 +74,6 @@ export default function CategoryPage() {
       fetchCategoryData();
     }
   }, [slug]);
-
-  const formatPrice = (price: number, priceType: string) => {
-    const formatted = new Intl.NumberFormat('it-IT', {
-      style: 'currency',
-      currency: 'EUR',
-      minimumFractionDigits: 0,
-      maximumFractionDigits: 2,
-    }).format(price);
-
-    switch (priceType) {
-      case 'starting_from':
-        return `A partire da ${formatted}`;
-      case 'hourly':
-        return `${formatted}/ora`;
-      case 'consultation':
-        return `${formatted} (consulenza)`;
-      default:
-        return formatted;
-    }
-  };
-
-  const formatDuration = (duration?: { value: number; unit: string }) => {
-    if (!duration) return null;
-
-    const unitLabels = {
-      hours: 'ore',
-      days: 'giorni',
-      weeks: 'settimane',
-      months: 'mesi',
-    };
-
-    return `${duration.value} ${unitLabels[duration.unit as keyof typeof unitLabels] || duration.unit}`;
-  };
 
   if (loading) {
     return (
@@ -242,101 +210,11 @@ export default function CategoryPage() {
               viewport={{ once: true }}
             >
               {subservices.map((subservice, index) => (
-                <motion.div
+                <SubserviceCard
                   key={subservice._id}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{
-                    duration: 0.5,
-                    delay: index * 0.1,
-                    ease: 'easeOut',
-                  }}
-                  viewport={{ once: true }}
-                  className="group rounded-xl border shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md"
-                  style={{
-                    background: 'linear-gradient(135deg, #FFD460, #F07B3F)',
-                    border: 'none',
-                    color: '#142850',
-                  }}
-                >
-                  <Link
-                    href={`/services/subservice/${subservice.slug}`}
-                    className="block h-full p-6"
-                  >
-                    {/* Service Header */}
-                    <div className="mb-4">
-                      <h3 className="text-accent-foreground line-clamp-2 text-xl font-semibold transition-colors group-hover:text-white">
-                        {subservice.name}
-                      </h3>
-
-                      {subservice.rating > 0 && (
-                        <div className="mt-2 flex items-center gap-1">
-                          <Star className="h-4 w-4 fill-current text-yellow-500" />
-                          <span className="text-muted-foreground text-sm">
-                            {subservice.rating.toFixed(1)} (
-                            {subservice.reviews_count} recensioni)
-                          </span>
-                        </div>
-                      )}
-                    </div>
-
-                    {/* Service Description */}
-                    <p className="text-accent-foreground mb-4 line-clamp-3 text-sm">
-                      {subservice.shortDescription || subservice.description}
-                    </p>
-
-                    {/* Service Details */}
-                    <div className="space-y-3">
-                      {/* Price */}
-                      <div className="flex items-center gap-2">
-                        <Euro className="h-4 w-4 text-white" />
-                        <span className="font-semibold text-white">
-                          {formatPrice(
-                            subservice.price_start,
-                            subservice.priceType
-                          )}
-                        </span>
-                      </div>
-
-                      {/* Duration */}
-                      {subservice.estimatedDuration && (
-                        <div className="flex items-center gap-2">
-                          <Clock className="text-muted-foreground h-4 w-4" />
-                          <span className="text-muted-foreground text-sm">
-                            Durata stimata:{' '}
-                            {formatDuration(subservice.estimatedDuration)}
-                          </span>
-                        </div>
-                      )}
-
-                      {/* Tags */}
-                      {subservice.tags && subservice.tags.length > 0 && (
-                        <div className="flex flex-wrap gap-1">
-                          {subservice.tags.slice(0, 3).map((tag, tagIndex) => (
-                            <span
-                              key={tagIndex}
-                              className="bg-secondary/50 text-secondary-foreground inline-block rounded-full px-2 py-1 text-xs"
-                            >
-                              {tag}
-                            </span>
-                          ))}
-                          {subservice.tags.length > 3 && (
-                            <span className="text-muted-foreground text-xs">
-                              +{subservice.tags.length - 3} altri
-                            </span>
-                          )}
-                        </div>
-                      )}
-                    </div>
-
-                    {/* CTA */}
-                    <div className="mt-6 border-t pt-4">
-                      <div className="bg-primary text-primary-foreground hover:bg-popover border-popover w-full rounded-lg border-2 py-2 text-center text-sm font-medium transition-colors">
-                        Scopri di più
-                      </div>
-                    </div>
-                  </Link>
-                </motion.div>
+                  subservice={subservice}
+                  index={index}
+                />
               ))}
             </motion.div>
           ) : (
