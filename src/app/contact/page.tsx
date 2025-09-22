@@ -102,7 +102,7 @@ export default function Contact() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
-              className="text-foreground mb-6 text-4xl font-bold tracking-tight sm:text-6xl"
+              className="text-background mb-6 text-4xl font-bold tracking-tight sm:text-6xl"
             >
               Mettiti <span className="text-primary">in contatto</span>
             </motion.h1>
@@ -132,7 +132,7 @@ export default function Contact() {
               transition={{ duration: 0.5 }}
               viewport={{ once: true }}
             >
-              <h2 className="text-foreground mb-6 text-3xl font-bold tracking-tight">
+              <h2 className="text-background mb-6 text-3xl font-bold tracking-tight">
                 Iniziamo una conversazione
               </h2>
               <p className="text-muted-foreground mb-8 text-lg">
@@ -155,7 +155,7 @@ export default function Contact() {
                       <info.icon className="text-primary h-6 w-6" />
                     </div>
                     <div>
-                      <h3 className="text-foreground font-semibold">
+                      <h3 className="text-background font-semibold">
                         {info.title}
                       </h3>
                       {info.href ? (
@@ -199,12 +199,10 @@ export default function Contact() {
               <div
                 className="rounded-lg border p-8 shadow-sm"
                 style={{
-                  background: 'linear-gradient(135deg, #FFD460, #F07B3F)',
-                  border: 'none',
-                  color: '#142850',
+                  background: 'linear-gradient(135deg, #c3e6ec, #a7d1d9)',
                 }}
               >
-                <h3 className="text-foreground mb-6 text-2xl font-bold">
+                <h3 className="text-background mb-6 text-2xl font-bold">
                   Inviaci un Messaggio
                 </h3>
 
@@ -217,7 +215,7 @@ export default function Contact() {
                     <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-green-100">
                       <Send className="h-8 w-8 text-green-600" />
                     </div>
-                    <h4 className="text-foreground mb-2 text-lg font-semibold">
+                    <h4 className="text-background mb-2 text-lg font-semibold">
                       Message Sent!
                     </h4>
                     <p className="text-muted-foreground">
@@ -230,7 +228,7 @@ export default function Contact() {
                       <div>
                         <label
                           htmlFor="name"
-                          className="text-foreground block text-sm font-medium"
+                          className="text-background block text-sm font-medium"
                         >
                           Nome *
                         </label>
@@ -241,14 +239,14 @@ export default function Contact() {
                           required
                           value={formData.name}
                           onChange={handleChange}
-                          className="border-input bg-background text-foreground placeholder-muted-foreground focus:border-ring focus:ring-ring mt-1 block w-full rounded-md border px-3 py-2 focus:ring-2 focus:outline-none"
+                          className="border-input bg-background text-forground placeholder-muted-foreground focus:border-ring focus:ring-ring mt-1 block w-full rounded-md border px-3 py-2 focus:ring-2 focus:outline-none"
                           placeholder="Il tuo nome"
                         />
                       </div>
                       <div>
                         <label
                           htmlFor="email"
-                          className="text-foreground block text-sm font-medium"
+                          className="text-background block text-sm font-medium"
                         >
                           Email *
                         </label>
@@ -259,7 +257,7 @@ export default function Contact() {
                           required
                           value={formData.email}
                           onChange={handleChange}
-                          className="border-input bg-background text-foreground placeholder-muted-foreground focus:border-ring focus:ring-ring mt-1 block w-full rounded-md border px-3 py-2 focus:ring-2 focus:outline-none"
+                          className="border-input bg-background text-forground placeholder-muted-foreground focus:border-ring focus:ring-ring mt-1 block w-full rounded-md border px-3 py-2 focus:ring-2 focus:outline-none"
                           placeholder="your@email.com"
                         />
                       </div>
@@ -268,7 +266,7 @@ export default function Contact() {
                     <div>
                       <label
                         htmlFor="phone"
-                        className="text-foreground block text-sm font-medium"
+                        className="text-background block text-sm font-medium"
                       >
                         Telefono
                       </label>
@@ -278,7 +276,7 @@ export default function Contact() {
                         name="phone"
                         value={formData.phone}
                         onChange={handleChange}
-                        className="border-input bg-background text-foreground placeholder-muted-foreground focus:border-ring focus:ring-ring mt-1 block w-full rounded-md border px-3 py-2 focus:ring-2 focus:outline-none"
+                        className="border-input bg-background text-forground placeholder-muted-foreground focus:border-ring focus:ring-ring mt-1 block w-full rounded-md border px-3 py-2 focus:ring-2 focus:outline-none"
                         placeholder="Il tuo numero di telefono"
                       />
                     </div>
@@ -286,7 +284,7 @@ export default function Contact() {
                     <div>
                       <label
                         htmlFor="subject"
-                        className="text-foreground block text-sm font-medium"
+                        className="text-background block text-sm font-medium"
                       >
                         Subject *
                       </label>
@@ -297,7 +295,7 @@ export default function Contact() {
                         required
                         value={formData.subject}
                         onChange={handleChange}
-                        className="border-input bg-background text-foreground placeholder-muted-foreground focus:border-ring focus:ring-ring mt-1 block w-full rounded-md border px-3 py-2 focus:ring-2 focus:outline-none"
+                        className="border-input bg-background text-forground placeholder-muted-foreground focus:border-ring focus:ring-ring mt-1 block w-full rounded-md border px-3 py-2 focus:ring-2 focus:outline-none"
                         placeholder="Project inquiry"
                       />
                     </div>
@@ -305,7 +303,7 @@ export default function Contact() {
                     <div>
                       <label
                         htmlFor="message"
-                        className="text-foreground block text-sm font-medium"
+                        className="text-background block text-sm font-medium"
                       >
                         Message *
                       </label>
@@ -316,7 +314,7 @@ export default function Contact() {
                         rows={6}
                         value={formData.message}
                         onChange={handleChange}
-                        className="border-input bg-background text-foreground placeholder-muted-foreground focus:border-ring focus:ring-ring mt-1 block w-full rounded-md border px-3 py-2 focus:ring-2 focus:outline-none"
+                        className="border-input bg-background text-forground placeholder-muted-foreground focus:border-ring focus:ring-ring mt-1 block w-full rounded-md border px-3 py-2 focus:ring-2 focus:outline-none"
                         placeholder="Tell us about your project..."
                       />
                     </div>

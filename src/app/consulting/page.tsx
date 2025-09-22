@@ -198,9 +198,7 @@ export default function Consulting() {
               viewport={{ once: true }}
               className="rounded-lg border p-8 shadow-sm"
               style={{
-                background: 'linear-gradient(135deg, #FFD460, #F07B3F)',
-                border: 'none',
-                color: '#142850',
+                background: 'linear-gradient(135deg, #c3e6ec, #a7d1d9)',
               }}
             >
               <h3 className="text-foreground mb-6 text-2xl font-bold">
