@@ -50,9 +50,7 @@ const categorySchema = new mongoose.Schema({
   toObject: { virtuals: true },
 });
 
-// Indexes
-categorySchema.index({ name: 1 });
-categorySchema.index({ slug: 1 });
+// Indexes - only for fields that don't have unique: true
 categorySchema.index({ isActive: 1 });
 categorySchema.index({ displayOrder: 1 });
 

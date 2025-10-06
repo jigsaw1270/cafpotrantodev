@@ -44,9 +44,6 @@ const adminSchema = new mongoose.Schema({
   timestamps: true,
 });
 
-// Index for email
-adminSchema.index({ email: 1 });
-
 // Virtual for checking if account is locked
 adminSchema.virtual('isLocked').get(function() {
   return !!(this.lockUntil && this.lockUntil > Date.now());
