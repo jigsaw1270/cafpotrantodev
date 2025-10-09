@@ -8,8 +8,8 @@ import { Button } from '@/components/ui/button';
 
 const navigation = [
   { href: '/', label: 'Home' },
-  { href: '/about', label: 'Chi Siamo' },
   { href: '/services', label: 'Servizi' },
+  { href: '/about', label: 'Chi Siamo' },
   { href: '/consulting', label: 'Consulenze' },
   { href: '/faq', label: 'FAQ' },
   { href: '/contact', label: 'Contatti' },

@@ -41,7 +41,27 @@ export default function Home() {
     <>
       <SEO
         title="CafPotranto - Servizi Legali e Assistenza Amministrativa"
-        description="Servizi legali professionali per aziende e cittadini per gestire procedure online. Assistenza specializzata con servizi CAF e Patronato, benefici lavorativi, pensioni e procedure amministrative."
+        description=" Offriamo servizi
+legali professionali
+rivolti ad aziende e
+cittadini, con
+particolare
+competenza nellaF
+gestione di procedure
+online. Forniamo
+assistenza
+specializzata
+nell’ambito dei servizi
+CAF e Patronato,
+inclusi benefici
+lavorativi, pratiche
+pensionistiche,
+procedure per il
+rilascio e il rinnovo
+dei permessi di
+soggiorno, nonché
+altre pratiche
+amministrative."
         url="/"
       />
 
@@ -100,10 +120,12 @@ export default function Home() {
                 ASSISTENZA FISCALE-SPORTELLO IMMIGRAZIONE-AGENZIA MULTISERVIZI
               </span>{' '}
               <br />
-              Servizi legali professionali per aziende e cittadini per gestire
-              procedure online. Assistenza specializzata con servizi CAF e
-              Patronato, benefici lavorativi, pensioni e procedure
-              amministrative.
+              Offriamo servizi legali professionali rivolti ad aziende e
+              cittadini, con particolare competenza nella gestione di procedure
+              online. Forniamo assistenza specializzata nell’ambito dei servizi
+              CAF e Patronato, inclusi benefici lavorativi, pratiche
+              pensionistiche, procedure per il rilascio e il rinnovo dei
+              permessi di soggiorno, nonché altre pratiche amministrative.
             </motion.p>
 
             <motion.div

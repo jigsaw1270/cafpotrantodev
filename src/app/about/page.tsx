@@ -94,25 +94,56 @@ export default function About() {
               viewport={{ once: true }}
             >
               <h2 className="text-background mb-6 text-3xl font-bold tracking-tight">
-                La Nostra Storia
+                Chi Siamo
               </h2>
               <div className="text-background space-y-4">
-                <p>
-                  Fondato con l'impegno di fornire servizi legali accessibili e
-                  professionali, CafPotranto è cresciuto da uno studio locale a
-                  un partner legale di fiducia per individui e aziende in tutta
-                  la regione.
+                <p className="pb-8">
+                  Da oltre cinque anni siamo un punto di riferimento affidabile
+                  per cittadini e aziende nella gestione di pratiche fiscali,
+                  previdenziali e amministrative. AZ CAF-Patronato nasce con
+                  l’obiettivo di offrire un servizio completo, chiaro e
+                  accessibile, in grado di semplificare le procedure
+                  burocratiche e fornire un supporto concreto a chi ne ha
+                  bisogno. <br /> Grazie a un team qualificato, gentile e
+                  costantemente aggiornato, garantiamo assistenza personalizzata
+                  e attenta, mettendo sempre al centro le esigenze di ogni
+                  singola persona. Operiamo con serietà, trasparenza e
+                  attenzione, offrendo soluzioni rapide e su misura. Il nostro
+                  impegno quotidiano è quello di essere sempre vicini alla
+                  comunità, offrendo un servizio professionale ma anche umano,
+                  fondato sull’ascolto, la competenza e la fiducia
                 </p>
-                <p>
-                  La nostra competenza abbraccia servizi CAF e Patronato,
-                  diritto del lavoro, pianificazione pensionistica e procedure
-                  amministrative. Crediamo nel rendere i processi legali
-                  complessi semplici e accessibili per tutti.
+              </div>
+              <h2 className="text-background mb-6 text-3xl font-bold tracking-tight">
+                La Nostra Visione
+              </h2>
+              <div className="text-background space-y-4">
+                <p className="pb-8">
+                  Ambiamo a diventare il punto di riferimento nel settore dei
+                  servizi legali nella nostra regione, distinguendoci per
+                  l’eccellenza e la competenza nei servizi CAF e Patronato, nel
+                  diritto del lavoro e nelle procedure amministrative.
+                  Immaginiamo un futuro in cui l’assistenza legale sia
+                  trasparente, efficiente e realmente accessibile a tutti coloro
+                  che necessitano di supporto, contribuendo a semplificare il
+                  rapporto tra cittadini, istituzioni e normative
                 </p>
-                <p>
-                  Ogni cliente che serviamo riceve attenzione personalizzata e
-                  orientamento esperto, garantendo che le loro esigenze legali
-                  siano soddisfatte con professionalità, efficienza e cura.
+              </div>
+              <h2 className="text-background mb-6 text-3xl font-bold tracking-tight">
+                La Nostra Missione
+              </h2>
+              <div className="text-background space-y-4">
+                <p className="pb-8">
+                  fornire servizi legali accessibili, professionali e completi,
+                  che aiutino individui e aziende a orientarsi con sicurezza
+                  all’interno di processi legali e amministrativi spesso
+                  complessi. Ci impegniamo ogni giorno a offrire soluzioni
+                  personalizzate, pensate per tutelare gli interessi dei nostri
+                  clienti e favorire il raggiungimento dei loro obiettivi. Il
+                  nostro approccio si fonda su competenza, trasparenza e
+                  gentilezza, valori che ci guidano nel costruire un rapporto di
+                  fiducia solido e duraturo con ogni persona che si rivolge a
+                  noi
                 </p>
               </div>
             </motion.div>

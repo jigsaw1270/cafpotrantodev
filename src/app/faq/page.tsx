@@ -226,7 +226,7 @@ export default function FAQPage() {
             >
               <HelpCircle className="text-primary mx-auto mb-4 h-16 w-16" />
               <h1 className="text-foreground mb-4 text-4xl font-bold tracking-tight sm:text-6xl">
-                Domande <span className="text-primary">Frequenti</span>
+                SEZIONE <span className="text-primary">FAQ</span>
               </h1>
             </motion.div>
 
@@ -236,9 +236,13 @@ export default function FAQPage() {
               transition={{ duration: 0.5, delay: 0.1 }}
               className="text-muted-foreground mb-8 text-xl"
             >
-              Trova risposte alle domande più comuni sui nostri servizi CAF,
-              Patronato, SPID e agevolazioni. Se non trovi quello che cerchi,
-              contattaci direttamente.
+              In questa sezione trovi le risposte alle domande più comuni sui
+              nostri servizi CAF e Patronato, sui requisiti necessari per le
+              pratiche e sulle principali agevolazioni disponibili. Il nostro
+              obiettivo è fornirti informazioni chiare e immediate per aiutarti
+              a orientarti tra procedure e documentazioni. Se non trovi ciò che
+              cerchi, non esitare a contattarci direttamente: il nostro team è a
+              tua disposizione per offrirti supporto personalizzato e cortese.
             </motion.p>
           </div>
         </div>
