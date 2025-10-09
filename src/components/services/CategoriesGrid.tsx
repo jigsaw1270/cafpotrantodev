@@ -13,6 +13,20 @@ interface CategoriesGridProps {
 export function CategoriesGrid({ className = '' }: CategoriesGridProps) {
   const { categories, error, isLoading, refetch } = useCategories();
 
+  // Function to determine grid columns based on category count
+  const getGridColumns = (count: number) => {
+    if (count === 2) {
+      return 'grid-cols-1 md:grid-cols-2'; // 2 columns for desktop, 1 for mobile
+    } else if (count === 3 || count === 6) {
+      return 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3'; // 3 columns for desktop, responsive for smaller screens
+    } else if (count >= 8) {
+      return 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'; // 4 columns for extra large screens
+    } else {
+      // Default case for other numbers (1, 4, 5, 7, etc.)
+      return 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3'; // Default to 3 columns
+    }
+  };
+
   if (isLoading) {
     return (
       <div className={className}>
@@ -60,7 +74,7 @@ export function CategoriesGrid({ className = '' }: CategoriesGridProps) {
   return (
     <div className={className}>
       <motion.div
-        className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
+        className={`grid gap-6 ${getGridColumns(categories.length)}`}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.5 }}
