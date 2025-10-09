@@ -168,9 +168,9 @@ router.post('/', [
     .isLength({ min: 2, max: 100 })
     .withMessage('Category name must be between 2 and 100 characters'),
   body('description')
-    .notEmpty()
+    .optional({ nullable: true, checkFalsy: true })
     .isLength({ min: 10, max: 500 })
-    .withMessage('Description must be between 10 and 500 characters'),
+    .withMessage('Description must be between 10 and 500 characters when provided'),
   body('displayOrder')
     .optional()
     .isInt({ min: 0 })
@@ -181,8 +181,16 @@ router.post('/', [
     .withMessage('isActive must be boolean'),
 ], async (req, res) => {
   try {
+    console.log('=== CATEGORY CREATION DEBUG ===');
+    console.log('Headers:', req.headers);
+    console.log('Body:', req.body);
+    console.log('File:', req.file);
+    console.log('FileData:', req.fileData);
+    console.log('================================');
+
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
+      console.log('Validation errors:', errors.array());
       // Delete uploaded file if validation fails
       if (req.file) {
         deleteFile(req.file.path);
@@ -257,9 +265,9 @@ router.put('/:id', [
     .isLength({ min: 2, max: 100 })
     .withMessage('Category name must be between 2 and 100 characters'),
   body('description')
-    .optional()
+    .optional({ nullable: true, checkFalsy: true })
     .isLength({ min: 10, max: 500 })
-    .withMessage('Description must be between 10 and 500 characters'),
+    .withMessage('Description must be between 10 and 500 characters when provided'),
   body('displayOrder')
     .optional()
     .isInt({ min: 0 })

@@ -47,13 +47,24 @@ export default function NewCategoryPage() {
       return;
     }
 
+    // Validate description if provided
+    if (formData.description.trim() && formData.description.trim().length < 10) {
+      toast.error('Description must be at least 10 characters when provided');
+      return;
+    }
+
+    if (formData.description.trim() && formData.description.trim().length > 500) {
+      toast.error('Description cannot exceed 500 characters');
+      return;
+    }
+
     setLoading(true);
 
     try {
       // Prepare category data
       const categoryData = {
         name: formData.name.trim(),
-        description: formData.description.trim(),
+        description: formData.description.trim() || undefined, // Send undefined if empty
         displayOrder: Number(formData.displayOrder),
         isActive: formData.isActive,
       };
@@ -133,6 +144,7 @@ export default function NewCategoryPage() {
               <div>
                 <label htmlFor="description" className="block text-sm font-medium text-gray-700 mb-2">
                   Description
+                  <span className="text-gray-500 text-sm font-normal"> (optional, min 10 characters if provided)</span>
                 </label>
                 <textarea
                   id="description"
@@ -141,8 +153,17 @@ export default function NewCategoryPage() {
                   onChange={handleInputChange}
                   rows={4}
                   className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-                  placeholder="Enter category description"
+                  placeholder="Enter category description (optional)"
                 />
+                <div className="mt-1 text-sm text-gray-500">
+                  {formData.description.length > 0 && (
+                    <span className={formData.description.length < 10 ? 'text-orange-600' : formData.description.length > 500 ? 'text-red-600' : 'text-green-600'}>
+                      {formData.description.length}/500 characters
+                      {formData.description.length > 0 && formData.description.length < 10 && ' (minimum 10 required)'}
+                      {formData.description.length > 500 && ' (exceeds maximum)'}
+                    </span>
+                  )}
+                </div>
               </div>
 
               {/* Display Order */}

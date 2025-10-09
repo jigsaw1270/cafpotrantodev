@@ -14,7 +14,32 @@ class ApiClient {
   private baseURL: string;
 
   constructor() {
-    this.baseURL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api';
+    // Determine the appropriate API URL based on environment
+    let apiUrl = process.env.NEXT_PUBLIC_API_URL;
+    
+    // If no environment variable is set, use intelligent defaults
+    if (!apiUrl) {
+      if (typeof window !== 'undefined') {
+        // Client-side: Check if we're on localhost
+        const isLocalhost = window.location.hostname === 'localhost' || 
+                           window.location.hostname === '127.0.0.1' ||
+                           window.location.hostname.includes('localhost');
+        
+        if (isLocalhost) {
+          apiUrl = 'http://localhost:5000/api';
+        } else {
+          apiUrl = 'https://backend-one-blue-24.vercel.app/api';
+        }
+      } else {
+        // Server-side: Default to localhost during development
+        apiUrl = process.env.NODE_ENV === 'production' 
+          ? 'https://backend-one-blue-24.vercel.app/api'
+          : 'http://localhost:5000/api';
+      }
+    }
+    
+    this.baseURL = apiUrl;
+    console.log('API Client initialized with baseURL:', this.baseURL);
     
     this.instance = axios.create({
       baseURL: this.baseURL,
@@ -145,19 +170,41 @@ class ApiClient {
 
   // File upload helper
   async uploadFile<T = any>(url: string, file: File, additionalData?: any, method: 'POST' | 'PUT' = 'POST'): Promise<ApiResponse<T>> {
+    console.log('=== UPLOAD FILE DEBUG ===');
+    console.log('File:', file.name, file.size, file.type);
+    console.log('Additional data before processing:', additionalData);
+    
     const formData = new FormData();
     formData.append('image', file);
     
     if (additionalData) {
       Object.keys(additionalData).forEach(key => {
         const value = additionalData[key];
-        if (Array.isArray(value) || typeof value === 'object') {
-          formData.append(key, JSON.stringify(value));
+        console.log(`Processing field ${key}:`, value, typeof value);
+        // Skip undefined and null values
+        if (value !== undefined && value !== null) {
+          if (Array.isArray(value) || (typeof value === 'object' && value !== null)) {
+            const jsonValue = JSON.stringify(value);
+            console.log(`Appending ${key} as JSON:`, jsonValue);
+            formData.append(key, jsonValue);
+          } else {
+            // Convert boolean and number to string
+            const stringValue = String(value);
+            console.log(`Appending ${key} as string:`, stringValue);
+            formData.append(key, stringValue);
+          }
         } else {
-          formData.append(key, value);
+          console.log(`Skipping ${key} (undefined/null)`);
         }
       });
     }
+    
+    // Log FormData contents
+    console.log('FormData contents:');
+    for (const [key, value] of formData.entries()) {
+      console.log(`  ${key}:`, value);
+    }
+    console.log('=======================');
 
     const config = {
       headers: {
@@ -231,8 +278,11 @@ class ApiClient {
       const result = await this.post('/categories', data);
       console.log('post result:', result);
       return result;
-    } catch (error) {
+    } catch (error: any) {
       console.error('createCategory error:', error);
+      console.error('Error response data:', error.response?.data);
+      console.error('Error response status:', error.response?.status);
+      console.error('Error response headers:', error.response?.headers);
       throw error;
     }
   }

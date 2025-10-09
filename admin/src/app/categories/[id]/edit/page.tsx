@@ -116,6 +116,7 @@ export default function EditCategoryPage() {
       
       const formData = {
         ...data,
+        description: data.description?.trim() || undefined, // Send undefined if empty
         // Convert metadata to proper format
         metadata: {
           seoTitle: data.metadata?.seoTitle || '',
@@ -222,17 +223,21 @@ export default function EditCategoryPage() {
 
                     <div className="col-span-6">
                       <label htmlFor="description" className="block text-sm font-medium text-gray-700">
-                        Description *
+                        Description
+                        <span className="text-gray-500 text-sm font-normal"> (optional, min 10 characters if provided)</span>
                       </label>
                       <textarea
                         {...register('description', { 
-                          required: 'Description is required',
-                          minLength: { value: 10, message: 'Description must be at least 10 characters' },
-                          maxLength: { value: 500, message: 'Description cannot exceed 500 characters' }
+                          validate: (value) => {
+                            if (!value || value.trim() === '') return true; // Allow empty
+                            if (value.trim().length < 10) return 'Description must be at least 10 characters when provided';
+                            if (value.trim().length > 500) return 'Description cannot exceed 500 characters';
+                            return true;
+                          }
                         })}
                         rows={4}
                         className="mt-1 focus:ring-blue-500 focus:border-blue-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
-                        placeholder="Describe what services are included in this category..."
+                        placeholder="Describe what services are included in this category (optional)..."
                       />
                       {errors.description && (
                         <p className="mt-1 text-sm text-red-600">{errors.description.message}</p>

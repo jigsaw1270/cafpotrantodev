@@ -117,8 +117,13 @@ const getFileUrl = (req, file) => {
     // In production, use the current deployment URL
     baseUrl = `https://${req.get('host')}`;
   } else {
-    // In development, use localhost
-    baseUrl = `${req.protocol}://${req.get('host')}`;
+    // In development, force HTTP for localhost to avoid Next.js image issues
+    const host = req.get('host');
+    if (host.includes('localhost') || host.includes('127.0.0.1')) {
+      baseUrl = `http://${host}`;
+    } else {
+      baseUrl = `${req.protocol}://${host}`;
+    }
   }
   
   // Get the relative path from uploads directory
