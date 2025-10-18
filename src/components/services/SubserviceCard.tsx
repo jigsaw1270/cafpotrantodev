@@ -144,7 +144,7 @@ const StyledWrapper = styled.div`
     text-decoration: none;
     z-index: 0;
     overflow: hidden;
-    background: linear-gradient(to bottom, #c3e6ec, #a7d1d9);
+    background-color: #d0bee2;
     font-family: Arial, Helvetica, sans-serif;
     transition: transform 0.3s ease;
   }

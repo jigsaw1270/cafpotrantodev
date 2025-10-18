@@ -19,11 +19,14 @@ export default function NewCategoryPage() {
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [imagePreview, setImagePreview] = useState<string>('');
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     const { name, value, type } = e.target;
     setFormData(prev => ({
       ...prev,
-      [name]: type === 'checkbox' ? (e.target as HTMLInputElement).checked : value
+      [name]:
+        type === 'checkbox' ? (e.target as HTMLInputElement).checked : value,
     }));
   };
 
@@ -32,7 +35,7 @@ export default function NewCategoryPage() {
     if (file) {
       setImageFile(file);
       const reader = new FileReader();
-      reader.onload = (e) => {
+      reader.onload = e => {
         setImagePreview(e.target?.result as string);
       };
       reader.readAsDataURL(file);
@@ -41,19 +44,25 @@ export default function NewCategoryPage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     if (!formData.name.trim()) {
       toast.error('Category name is required');
       return;
     }
 
     // Validate description if provided
-    if (formData.description.trim() && formData.description.trim().length < 10) {
+    if (
+      formData.description.trim() &&
+      formData.description.trim().length < 10
+    ) {
       toast.error('Description must be at least 10 characters when provided');
       return;
     }
 
-    if (formData.description.trim() && formData.description.trim().length > 500) {
+    if (
+      formData.description.trim() &&
+      formData.description.trim().length > 500
+    ) {
       toast.error('Description cannot exceed 500 characters');
       return;
     }
@@ -71,19 +80,27 @@ export default function NewCategoryPage() {
 
       // Debug logging
       console.log('=== CATEGORY CREATION DEBUG ===');
-      console.log('Category data being sent:', JSON.stringify(categoryData, null, 2));
+      console.log(
+        'Category data being sent:',
+        JSON.stringify(categoryData, null, 2)
+      );
       console.log('Image file:', imageFile);
       console.log('===============================');
 
       // Create the category with image if provided
-      const categoryResponse = await apiClient.createCategory(categoryData, imageFile || undefined);
+      const categoryResponse = await apiClient.createCategory(
+        categoryData,
+        imageFile || undefined
+      );
 
       console.log('=== CATEGORY RESPONSE DEBUG ===');
       console.log('Response:', categoryResponse);
       console.log('===============================');
 
       if (!categoryResponse.success) {
-        throw new Error(categoryResponse.message || 'Failed to create category');
+        throw new Error(
+          categoryResponse.message || 'Failed to create category'
+        );
       }
 
       toast.success('Category created successfully!');
@@ -91,7 +108,8 @@ export default function NewCategoryPage() {
     } catch (error: unknown) {
       console.error('Create category error:', error);
       console.error('Full error object:', JSON.stringify(error, null, 2));
-      const errorMessage = error instanceof Error ? error.message : 'Failed to create category';
+      const errorMessage =
+        error instanceof Error ? error.message : 'Failed to create category';
       toast.error(errorMessage);
     } finally {
       setLoading(false);
@@ -102,15 +120,17 @@ export default function NewCategoryPage() {
     <div className="min-h-screen bg-gray-50">
       {/* Header */}
       <header className="bg-white shadow">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center py-6">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between py-6">
             <div>
-              <h1 className="text-3xl font-bold text-gray-900">Add New Category</h1>
+              <h1 className="text-3xl font-bold text-gray-900">
+                Add New Category
+              </h1>
               <p className="text-gray-600">Create a new service category</p>
             </div>
             <Link
               href="/categories"
-              className="bg-gray-600 hover:bg-gray-700 text-white px-4 py-2 rounded-md text-sm font-medium"
+              className="rounded-md bg-gray-600 px-4 py-2 text-sm font-medium text-white hover:bg-gray-700"
             >
               Back to Categories
             </Link>
@@ -119,13 +139,16 @@ export default function NewCategoryPage() {
       </header>
 
       {/* Main Content */}
-      <main className="max-w-3xl mx-auto py-6 sm:px-6 lg:px-8">
+      <main className="mx-auto max-w-3xl py-6 sm:px-6 lg:px-8">
         <div className="px-4 py-6 sm:px-0">
-          <div className="bg-white shadow rounded-lg">
-            <form onSubmit={handleSubmit} className="p-6 space-y-6">
+          <div className="rounded-lg bg-white shadow">
+            <form onSubmit={handleSubmit} className="space-y-6 p-6">
               {/* Category Name */}
               <div>
-                <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
+                <label
+                  htmlFor="name"
+                  className="mb-2 block text-sm font-medium text-gray-700"
+                >
                   Category Name *
                 </label>
                 <input
@@ -135,16 +158,22 @@ export default function NewCategoryPage() {
                   value={formData.name}
                   onChange={handleInputChange}
                   required
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                  className="admin-input"
                   placeholder="Enter category name"
                 />
               </div>
 
               {/* Description */}
               <div>
-                <label htmlFor="description" className="block text-sm font-medium text-gray-700 mb-2">
+                <label
+                  htmlFor="description"
+                  className="mb-2 block text-sm font-medium text-gray-700"
+                >
                   Description
-                  <span className="text-gray-500 text-sm font-normal"> (optional, min 10 characters if provided)</span>
+                  <span className="text-sm font-normal text-gray-500">
+                    {' '}
+                    (optional, min 10 characters if provided)
+                  </span>
                 </label>
                 <textarea
                   id="description"
@@ -152,15 +181,26 @@ export default function NewCategoryPage() {
                   value={formData.description}
                   onChange={handleInputChange}
                   rows={4}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                  className="admin-textarea"
                   placeholder="Enter category description (optional)"
                 />
                 <div className="mt-1 text-sm text-gray-500">
                   {formData.description.length > 0 && (
-                    <span className={formData.description.length < 10 ? 'text-orange-600' : formData.description.length > 500 ? 'text-red-600' : 'text-green-600'}>
+                    <span
+                      className={
+                        formData.description.length < 10
+                          ? 'text-orange-600'
+                          : formData.description.length > 500
+                            ? 'text-red-600'
+                            : 'text-green-600'
+                      }
+                    >
                       {formData.description.length}/500 characters
-                      {formData.description.length > 0 && formData.description.length < 10 && ' (minimum 10 required)'}
-                      {formData.description.length > 500 && ' (exceeds maximum)'}
+                      {formData.description.length > 0 &&
+                        formData.description.length < 10 &&
+                        ' (minimum 10 required)'}
+                      {formData.description.length > 500 &&
+                        ' (exceeds maximum)'}
                     </span>
                   )}
                 </div>
@@ -168,7 +208,10 @@ export default function NewCategoryPage() {
 
               {/* Display Order */}
               <div>
-                <label htmlFor="displayOrder" className="block text-sm font-medium text-gray-700 mb-2">
+                <label
+                  htmlFor="displayOrder"
+                  className="mb-2 block text-sm font-medium text-gray-700"
+                >
                   Display Order
                 </label>
                 <input
@@ -178,13 +221,16 @@ export default function NewCategoryPage() {
                   value={formData.displayOrder}
                   onChange={handleInputChange}
                   min="1"
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                  className="admin-input"
                 />
               </div>
 
               {/* Image Upload */}
               <div>
-                <label htmlFor="image" className="block text-sm font-medium text-gray-700 mb-2">
+                <label
+                  htmlFor="image"
+                  className="mb-2 block text-sm font-medium text-gray-700"
+                >
                   Category Image
                 </label>
                 <input
@@ -192,7 +238,7 @@ export default function NewCategoryPage() {
                   id="image"
                   accept="image/*"
                   onChange={handleImageChange}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                  className="admin-file-input"
                 />
                 {imagePreview && (
                   <div className="mt-4">
@@ -201,7 +247,7 @@ export default function NewCategoryPage() {
                       alt="Preview"
                       width={128}
                       height={128}
-                      className="w-32 h-32 object-cover rounded-lg border border-gray-300"
+                      className="h-32 w-32 rounded-lg border border-gray-300 object-cover"
                     />
                   </div>
                 )}
@@ -215,25 +261,28 @@ export default function NewCategoryPage() {
                   name="isActive"
                   checked={formData.isActive}
                   onChange={handleInputChange}
-                  className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+                  className="admin-checkbox"
                 />
-                <label htmlFor="isActive" className="ml-2 block text-sm text-gray-900">
+                <label
+                  htmlFor="isActive"
+                  className="ml-2 block text-sm text-gray-900"
+                >
                   Active (visible to users)
                 </label>
               </div>
 
               {/* Submit Buttons */}
-              <div className="flex justify-end space-x-4 pt-6 border-t border-gray-200">
+              <div className="flex justify-end space-x-4 border-t border-gray-200 pt-6">
                 <Link
                   href="/categories"
-                  className="bg-gray-300 hover:bg-gray-400 text-gray-700 px-6 py-2 rounded-md text-sm font-medium"
+                  className="rounded-md bg-gray-300 px-6 py-2 text-sm font-medium text-gray-700 hover:bg-gray-400"
                 >
                   Cancel
                 </Link>
                 <button
                   type="submit"
                   disabled={loading}
-                  className="bg-blue-600 hover:bg-blue-700 disabled:bg-blue-400 text-white px-6 py-2 rounded-md text-sm font-medium"
+                  className="rounded-md bg-blue-600 px-6 py-2 text-sm font-medium text-white hover:bg-blue-700 disabled:bg-blue-400"
                 >
                   {loading ? 'Creating...' : 'Create Category'}
                 </button>

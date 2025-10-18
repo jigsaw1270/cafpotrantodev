@@ -51,13 +51,7 @@ export default function About() {
       <div className="bg-cyan max-auto text-cyan hidden px-4 md:block">.</div>
 
       {/* Hero Section */}
-      <section
-        className="relative overflow-hidden bg-linear-to-bl bg-gradient-to-br py-10"
-        style={{
-          background:
-            'linear-gradient(342deg,rgba(201, 95, 42, 1) 0%, rgba(229, 104, 41, 1) 6%, rgba(234, 113, 51, 1) 20%, rgba(240, 123, 63, 1) 33%, rgba(255, 212, 96, 1) 100%)',
-        }}
-      >
+      <section className="bg-purple relative overflow-hidden py-10">
         <div className="container mx-auto px-8 lg:px-12">
           <div className="mx-auto max-w-4xl text-center">
             <motion.h1
@@ -73,7 +67,7 @@ export default function About() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.1 }}
-              className="text-muted-foreground mb-8 text-xl"
+              className="text-background mb-8 text-xl"
             >
               Siamo un team dedicato di professionisti legali impegnati a
               fornire servizi legali eccezionali e assistenza amministrativa ai
@@ -189,12 +183,7 @@ export default function About() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 viewport={{ once: true }}
-                className="text-accent-foreground rounded-lg border p-6 text-center shadow-sm"
-                style={{
-                  background: 'linear-gradient(135deg, #FFD460, #F07B3F)',
-                  border: 'none',
-                  color: '#142850',
-                }}
+                className="text-accent-foreground bg-purple rounded-lg border p-6 text-center shadow-sm"
               >
                 <div className="bg-primary/10 mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full">
                   <value.icon className="text-primary h-8 w-8" />
@@ -211,7 +200,7 @@ export default function About() {
 
       {/* Stats Section */}
       <section
-        className="py-24"
+        className="hidden py-24"
         style={{
           background:
             'radial-gradient(circle,rgba(201, 95, 42, 1) 0%, rgba(229, 104, 41, 1) 48%, rgba(240, 123, 63, 1) 68%, rgba(255, 212, 96, 1) 100%)',
@@ -265,12 +254,7 @@ export default function About() {
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5 }}
               viewport={{ once: true }}
-              className="rounded-lg border p-8 shadow-sm"
-              style={{
-                background: 'linear-gradient(135deg, #FFD460, #F07B3F)',
-                border: 'none',
-                color: '#142850',
-              }}
+              className="bg-purple rounded-lg border p-8 shadow-sm"
             >
               <div className="bg-primary/10 mb-6 flex h-16 w-16 items-center justify-center rounded-full">
                 <Target className="text-primary h-8 w-8" />
@@ -292,12 +276,7 @@ export default function About() {
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5, delay: 0.1 }}
               viewport={{ once: true }}
-              className="rounded-lg border p-8 shadow-sm"
-              style={{
-                background: 'linear-gradient(135deg, #FFD460, #F07B3F)',
-                border: 'none',
-                color: '#142850',
-              }}
+              className="bg-purple rounded-lg border p-8 shadow-sm"
             >
               <div className="bg-primary/10 mb-6 flex h-16 w-16 items-center justify-center rounded-full">
                 <Lightbulb className="text-primary h-8 w-8" />

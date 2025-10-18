@@ -9,6 +9,7 @@
   --cyan: #00a8cc;
   --orange: #f07b3f;
   --yellow: #ffd460;
+  --purple: #d0bee2;
 
   /* Light theme variables */
   --background: #ffffff;
@@ -73,6 +74,7 @@
   --color-cyan: var(--cyan);
   --color-orange: var(--orange);
   --color-yellow: var(--yellow);
+  --color-purple: var(--purple);
   --color-warning: var(--warning);
   --color-warning-foreground: var(--warning-foreground);
   --color-success: var(--success);

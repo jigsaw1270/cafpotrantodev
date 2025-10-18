@@ -161,7 +161,7 @@ function FAQItem({ question }: FAQItemProps) {
       viewport={{ once: true }}
     >
       <button
-        className="bg-background hover:bg-destructive flex w-full items-center justify-between px-6 py-4 text-left transition-colors duration-200"
+        className="bg-background hover:bg-purple flex w-full items-center justify-between px-6 py-4 text-left transition-colors duration-200"
         onClick={() => setIsOpen(!isOpen)}
       >
         <h3 className="text-foreground pr-4 font-medium">
@@ -209,13 +209,7 @@ export default function FAQPage() {
       <div className="bg-cyan max-auto text-cyan hidden px-4 md:block">.</div>
 
       {/* Hero Section */}
-      <section
-        className="relative overflow-hidden bg-linear-to-bl bg-gradient-to-br py-10"
-        style={{
-          background:
-            'linear-gradient(342deg,rgba(201, 95, 42, 1) 0%, rgba(229, 104, 41, 1) 6%, rgba(234, 113, 51, 1) 20%, rgba(240, 123, 63, 1) 33%, rgba(255, 212, 96, 1) 100%)',
-        }}
-      >
+      <section className="bg-purple relative overflow-hidden bg-linear-to-bl py-10">
         <div className="container mx-auto px-8 lg:px-12">
           <div className="mx-auto max-w-4xl text-center">
             <motion.div
@@ -234,7 +228,7 @@ export default function FAQPage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.1 }}
-              className="text-muted-foreground mb-8 text-xl"
+              className="text-background mb-8 text-xl"
             >
               In questa sezione trovi le risposte alle domande più comuni sui
               nostri servizi CAF e Patronato, sui requisiti necessari per le

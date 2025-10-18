@@ -264,7 +264,7 @@ export default function SubservicePage() {
       </div>
 
       {/* Service Header */}
-      <section className="bg-white py-12">
+      <section className="bg-purple py-12">
         <div className="container mx-auto px-8 lg:px-12">
           <div className="grid grid-cols-1 gap-12 lg:grid-cols-3">
             {/* Main Content */}

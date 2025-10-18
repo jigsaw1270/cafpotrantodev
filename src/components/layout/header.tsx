@@ -10,7 +10,7 @@ const navigation = [
   { href: '/', label: 'Home' },
   { href: '/services', label: 'Servizi' },
   { href: '/about', label: 'Chi Siamo' },
-  { href: '/consulting', label: 'Consulenze' },
+  // { href: '/consulting', label: 'Consulenze' },
   { href: '/faq', label: 'FAQ' },
   { href: '/contact', label: 'Contatti' },
 ];
@@ -73,16 +73,7 @@ export function Header() {
 
         {/* Desktop CTA */}
         <div className="hidden md:flex md:items-center md:space-x-4">
-          <Button
-            variant="outline"
-            asChild
-            className="border-navy-gradient-1 text-navy-gradient-1 hover:bg-navy-gradient-1 hover-lift hover:text-white"
-            style={{
-              background: 'linear-gradient(135deg, #FFD460, #F07B3F)',
-              border: 'none',
-              color: '#142850',
-            }}
-          >
+          <Button className="text-navy-gradient-1 hover:bg-navy-gradient-1 hover-lift bg-purple hover:text-white">
             <Link href="/auth/login">Accedi</Link>
           </Button>
           <Button

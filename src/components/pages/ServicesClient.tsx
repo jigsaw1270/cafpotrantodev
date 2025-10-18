@@ -50,13 +50,7 @@ export default function ServicesClient() {
       <div className="bg-cyan max-auto text-cyan hidden px-4 md:block">.</div>
 
       {/* Hero Section */}
-      <section
-        className="relative overflow-hidden bg-linear-to-bl bg-gradient-to-br py-10"
-        style={{
-          background:
-            'linear-gradient(342deg,rgba(201, 95, 42, 1) 0%, rgba(229, 104, 41, 1) 6%, rgba(234, 113, 51, 1) 20%, rgba(240, 123, 63, 1) 33%, rgba(255, 212, 96, 1) 100%)',
-        }}
-      >
+      <section className="bg-purple relative overflow-hidden bg-linear-to-bl py-10">
         <div className="container mx-auto px-8 lg:px-12">
           <div className="mx-auto max-w-4xl text-center">
             <motion.h1
@@ -72,7 +66,7 @@ export default function ServicesClient() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.1 }}
-              className="text-muted-foreground mb-8 text-xl"
+              className="text-background mb-8 text-xl"
             >
               Servizi legali professionali e assistenza amministrativa su misura
               per le tue esigenze. Dai servizi CAF alla consulenza legale, siamo
@@ -133,12 +127,7 @@ export default function ServicesClient() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 viewport={{ once: true }}
-                className="relative rounded-lg border p-6 shadow-sm"
-                style={{
-                  background: 'linear-gradient(135deg, #FFD460, #F07B3F)',
-                  border: 'none',
-                  color: '#142850',
-                }}
+                className="bg-purple relative rounded-lg border p-6 shadow-sm"
               >
                 <div className="text-primary mb-4 text-2xl font-bold">
                   {step.step}

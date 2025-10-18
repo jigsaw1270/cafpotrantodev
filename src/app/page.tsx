@@ -87,23 +87,30 @@ amministrative."
       </section>
 
       {/* Hero Section */}
-      <section className="to-cyan/5 relative hidden overflow-hidden bg-gradient-to-br from-white via-white py-24 lg:block">
-        <div className="from-cyan via-accent/90 absolute inset-0 bg-gradient-to-r to-transparent"></div>
-        <div className="relative container mx-auto px-8 lg:px-12">
+      <section
+        className="relative min-h-[500px] overflow-hidden bg-cover bg-center bg-no-repeat py-24 md:min-h-[600px] lg:min-h-[700px]"
+        style={{
+          backgroundImage:
+            'url(/images/banner.webp), url(/images/hero-banner.jpg)',
+        }}
+      >
+        {/* Dark Overlay for text readability */}
+        <div className="absolute inset-0 bg-black/50"></div>
+
+        {/* Content */}
+        <div className="relative z-10 container mx-auto flex min-h-[500px] items-center px-8 md:min-h-[600px] lg:min-h-[700px] lg:px-12">
           <div className="mx-auto max-w-4xl text-center">
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
-              className="text-navy-dark mb-6 text-4xl font-bold tracking-tight sm:text-5xl"
+              className="mb-6 text-4xl font-bold tracking-tight text-white sm:text-5xl"
             >
-              <span className="text-background text-4xl font-extrabold sm:text-6xl">
-                {' '}
+              <span className="text-4xl font-extrabold text-white sm:text-6xl">
                 CAF - PATRONATO SINDACATO <br />
               </span>
-              Servizi Legali &
-              <span className="text-destructive"> Assistenza </span>
-              <span className="text-gradient-primary from-destructive to-cyan bg-gradient-to-r bg-clip-text text-transparent">
+              Servizi Legali &<span className="text-yellow"> Assistenza </span>
+              <span className="text-gradient-primary from-yellow to-cyan bg-gradient-to-r bg-clip-text text-transparent">
                 {' '}
                 Amministrativa
               </span>
@@ -113,16 +120,20 @@ amministrative."
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.1 }}
-              className="text-navy-very-dark mb-8 text-xl leading-relaxed"
+              className="mb-4 text-2xl font-semibold text-white"
             >
-              {' '}
-              <span className="text-destructive font-bold">
-                ASSISTENZA FISCALE-SPORTELLO IMMIGRAZIONE-AGENZIA MULTISERVIZI
-              </span>{' '}
-              <br />
+              ASSISTENZA FISCALE-SPORTELLO IMMIGRAZIONE-AGENZIA MULTISERVIZI
+            </motion.p>
+
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="mb-8 text-xl leading-relaxed text-white opacity-90"
+            >
               Offriamo servizi legali professionali rivolti ad aziende e
               cittadini, con particolare competenza nella gestione di procedure
-              online. Forniamo assistenza specializzata nell’ambito dei servizi
+              online. Forniamo assistenza specializzata nell'ambito dei servizi
               CAF e Patronato, inclusi benefici lavorativi, pratiche
               pensionistiche, procedure per il rilascio e il rinnovo dei
               permessi di soggiorno, nonché altre pratiche amministrative.
@@ -131,7 +142,7 @@ amministrative."
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
+              transition={{ duration: 0.5, delay: 0.3 }}
               className="flex flex-col gap-4 sm:flex-row sm:justify-center"
             >
               <CTAButton
@@ -159,12 +170,6 @@ amministrative."
               </Button>
             </motion.div>
           </div>
-        </div>
-
-        {/* Background Pattern */}
-        <div className="absolute inset-0 -z-10 overflow-hidden">
-          <div className="from-cyan/10 to-navy-gradient-2/5 absolute -top-40 -right-32 h-80 w-80 rounded-full bg-gradient-to-br blur-3xl" />
-          <div className="from-yellow/10 to-orange/5 absolute -bottom-40 -left-32 h-80 w-80 rounded-full bg-gradient-to-br blur-3xl" />
         </div>
       </section>
 
@@ -225,12 +230,7 @@ amministrative."
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 viewport={{ once: true }}
-                className="border-navy-gradient-1/20 shadow-elegant hover-lift rounded-lg border p-6 text-center"
-                style={{
-                  background: 'linear-gradient(135deg, #FFD460, #F07B3F)',
-                  border: 'none',
-                  color: '#142850',
-                }}
+                className="border-navy-gradient-1/20 shadow-elegant hover-lift bg-purple rounded-lg border p-6 text-center"
               >
                 <div className="from-cyan/20 to-navy-gradient-2/20 mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br">
                   <feature.icon className="text-navy-gradient-2 h-8 w-8" />
@@ -317,12 +317,7 @@ amministrative."
             </p>
             <CTAButton
               size="lg"
-              className="shadow-elegant-lg hover-lift text-lg"
-              style={{
-                background: 'linear-gradient(135deg, #FFD460, #F07B3F)',
-                border: 'none',
-                color: '#142850',
-              }}
+              className="shadow-elegant-lg hover-lift bg-purple text-lg"
             >
               Prenota Consulenza
             </CTAButton>

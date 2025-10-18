@@ -1,4 +1,4 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
 :root {
   --background: #ffffff;
@@ -23,4 +23,128 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Admin Panel Input Improvements */
+.admin-input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid #d1d5db;
+  border-radius: 0.375rem;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  background-color: #ffffff;
+  color: #111827;
+  transition: all 0.2s ease-in-out;
+}
+
+.admin-input::placeholder {
+  color: #374151;
+}
+
+.admin-input:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.5);
+  border-color: #3b82f6;
+}
+
+.admin-input:focus::placeholder {
+  color: #4b5563;
+}
+
+.admin-textarea {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid #d1d5db;
+  border-radius: 0.375rem;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  background-color: #ffffff;
+  color: #111827;
+  resize: vertical;
+  min-height: 120px;
+  transition: all 0.2s ease-in-out;
+}
+
+.admin-textarea::placeholder {
+  color: #374151;
+}
+
+.admin-textarea:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.5);
+  border-color: #3b82f6;
+}
+
+.admin-textarea:focus::placeholder {
+  color: #4b5563;
+}
+
+.admin-select {
+  width: 100%;
+  padding: 0.75rem 2.5rem 0.75rem 1rem;
+  border: 1px solid #d1d5db;
+  border-radius: 0.375rem;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  background-color: #ffffff;
+  color: #111827;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
+  background-position: right 0.75rem center;
+  background-repeat: no-repeat;
+  background-size: 1.5em 1.5em;
+  transition: all 0.2s ease-in-out;
+}
+
+.admin-select:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.5);
+  border-color: #3b82f6;
+}
+
+.admin-select option {
+  color: #111827;
+  background-color: #ffffff;
+}
+
+.admin-checkbox {
+  height: 1.25rem;
+  width: 1.25rem;
+  color: #2563eb;
+  border-color: #d1d5db;
+  border-radius: 0.25rem;
+}
+
+.admin-checkbox:focus {
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.5);
+}
+
+.admin-file-input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid #d1d5db;
+  border-radius: 0.375rem;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  background-color: #ffffff;
+  color: #111827;
+  transition: all 0.2s ease-in-out;
+}
+
+.admin-file-input:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.5);
+  border-color: #3b82f6;
+}
+
+.admin-file-input::file-selector-button {
+  margin-right: 1rem;
+  padding: 0.5rem 1rem;
+  border-radius: 0.375rem;
+  border: 0;
+  font-size: 0.875rem;
+  font-weight: 500;
+  background-color: #eff6ff;
+  color: #1d4ed8;
+}
+
+.admin-file-input:hover::file-selector-button {
+  background-color: #dbeafe;
 }

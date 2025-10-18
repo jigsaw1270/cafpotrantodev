@@ -29,14 +29,7 @@ export default function CategoryCard({
     >
       <Link href={`/services/${category.slug}`} className="block">
         {/* Background Card - Dark Navy Blue */}
-        <div
-          className="relative flex h-64 w-full items-center justify-center transition-all duration-500"
-          style={{
-            background: 'linear-gradient(135deg, #FFD460, #F07B3F)',
-            border: 'none',
-            color: '#142850',
-          }}
-        >
+        <div className="bg-purple relative flex h-64 w-full items-center justify-center transition-all duration-500">
           {/* Background Image (Visible on mobile, hidden on desktop until hover) */}
           <div className="absolute inset-0 opacity-100 blur-[4px] transition-opacity duration-500 md:opacity-0 md:group-hover:opacity-100">
             {category.image?.url ? (
