@@ -16,6 +16,7 @@ const subserviceRoutes = require('./routes/subservices');
 // Import middleware
 const errorHandler = require('./middleware/errorHandler');
 const { createDefaultAdmin } = require('./utils/createDefaultAdmin');
+const { validateCloudinaryConfig } = require('./config/cloudinary');
 
 const app = express();
 
@@ -122,6 +123,9 @@ const connectDB = async () => {
   try {
     const conn = await mongoose.connect(process.env.MONGODB_URI);
     console.log(`MongoDB Connected: ${conn.connection.host}`);
+    
+    // Validate Cloudinary configuration
+    validateCloudinaryConfig();
     
     // Create default admin user
     await createDefaultAdmin();

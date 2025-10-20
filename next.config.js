@@ -24,6 +24,12 @@ const nextConfig = {
         hostname: '**.vercel.app',
         pathname: '/uploads/**',
       },
+      // Cloudinary image hosting
+      {
+        protocol: 'https',
+        hostname: 'res.cloudinary.com',
+        pathname: '/dbrx5fpi7/**',
+      },
     ],
   },
   experimental: {

@@ -13,6 +13,9 @@ yarn-error.log*
 .env.test.local
 .env.production.local
 
+# Deployment credentials (contains secrets)
+DEPLOYMENT_CREDENTIALS.md
+
 # Logs
 logs
 *.log
