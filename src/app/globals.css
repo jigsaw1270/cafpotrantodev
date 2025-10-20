@@ -636,3 +636,21 @@ html {
 .mobile-search .hover\:bg-background:hover {
   @apply bg-cyan/20;
 }
+
+/* Mobile Menu Scrollbar Styling */
+nav::-webkit-scrollbar {
+  width: 6px;
+}
+
+nav::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+nav::-webkit-scrollbar-thumb {
+  background: var(--cyan);
+  border-radius: 3px;
+}
+
+nav::-webkit-scrollbar-thumb:hover {
+  background: var(--navy-dark);
+}

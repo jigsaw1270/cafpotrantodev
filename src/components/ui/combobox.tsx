@@ -21,7 +21,7 @@ interface ComboboxProps {
 }
 
 export function Combobox({
-  placeholder = 'Search services...',
+  placeholder = 'Cerca servizi...',
   className,
 }: ComboboxProps) {
   const [open, setOpen] = useState(false);
@@ -189,7 +189,7 @@ export function Combobox({
               >
                 <div className="border-primary h-4 w-4 animate-spin rounded-full border-2 border-t-transparent"></div>
                 <span className="text-muted-foreground ml-2 text-sm">
-                  Searching...
+                  Ricerca...
                 </span>
               </div>
             ) : results.length > 0 ? (
@@ -204,13 +204,15 @@ export function Combobox({
                       <div className="flex items-center gap-2">
                         <span
                           className={cn(
-                            'inline-flex items-center rounded-full px-2 py-1 text-xs font-medium',
+                            'inline-flex items-center rounded-full px-2 py-1 text-xs font-medium italic',
                             result.type === 'category'
                               ? 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200'
                               : 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200'
                           )}
                         >
-                          {result.type === 'category' ? 'Category' : 'Service'}
+                          {result.type === 'category'
+                            ? 'categoria'
+                            : 'servizio'}
                         </span>
                         <span className="text-foreground font-medium">
                           {result.name}
@@ -223,7 +225,7 @@ export function Combobox({
                       )}
                       {result.categoryName && (
                         <p className="text-muted-foreground mt-1 text-xs">
-                          in {result.categoryName}
+                          nel {result.categoryName}
                         </p>
                       )}
                     </div>
@@ -235,14 +237,14 @@ export function Combobox({
                 key="no-results"
                 className="text-muted-foreground px-2 py-4 text-center text-sm"
               >
-                No results found for "{searchTerm}"
+                Nessun risultato trovato per "{searchTerm}"
               </div>
             ) : (
               <div
                 key="empty-state"
                 className="text-muted-foreground px-2 py-4 text-center text-sm"
               >
-                Start typing to search services...
+                Inizia a digitare per cercare i servizi...
               </div>
             )}
           </div>
