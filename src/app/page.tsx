@@ -4,7 +4,6 @@ import { motion } from 'framer-motion';
 import { CheckCircle, FileText, Shield, Users } from 'lucide-react';
 import { CTAButton } from '@/components/ui/cta-button';
 import { Button } from '@/components/ui/button';
-import { Combobox } from '@/components/ui/combobox';
 import CategoriesGrid from '@/components/services/CategoriesGrid';
 import { SEO } from '@/components/seo';
 
@@ -65,26 +64,7 @@ amministrative."
         url="/"
       />
 
-      {/* Search/Filter Section */}
-      <div className="bg-cyan max-auto text-cyan hidden px-4 md:block">.</div>
-      <section className="bg-gradient-navy border-navy-gradient-1/30 z-30 border-b py-8">
-        <div className="container mx-auto px-8 lg:px-12">
-          <div className="mx-auto max-w-2xl">
-            <div className="mb-6 text-center">
-              <h2 className="mb-3 text-2xl font-semibold text-white lg:text-3xl">
-                Trova Servizi Legali
-              </h2>
-              <p className="text-cyan text-lg">
-                Cerca servizi legali specifici o assistenza amministrativa
-              </p>
-            </div>
-            <Combobox
-              placeholder="Cerca servizi (es. CAF, Famiglie, Certificati, Lavoro)..."
-              className="shadow-elegant-lg mx-auto max-w-md"
-            />
-          </div>
-        </div>
-      </section>
+      {/* Search section removed - now in navbar */}
 
       {/* Hero Section */}
       <section

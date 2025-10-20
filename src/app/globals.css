@@ -581,3 +581,58 @@ html {
 .animate-swipeOut {
   animation: swipeOut 100ms ease-out;
 }
+
+/* Navbar Search Styles */
+.navbar-search input {
+  @apply border-cyan/30 text-navy-dark placeholder:text-navy-dark/60 bg-white/90;
+  @apply focus-visible:ring-cyan focus-visible:border-cyan;
+  @apply transition-all duration-300;
+  @apply shadow-sm hover:shadow-md;
+  height: 40px;
+  font-size: 14px;
+}
+
+.navbar-search input:focus {
+  @apply bg-white shadow-lg;
+}
+
+.mobile-search input {
+  @apply border-cyan/30 text-navy-dark placeholder:text-navy-dark/60 bg-white/90;
+  @apply focus-visible:ring-cyan focus-visible:border-cyan;
+  @apply transition-all duration-300;
+  height: 36px;
+  font-size: 13px;
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
+.mobile-search input:focus {
+  @apply bg-white shadow-lg;
+  width: 140%;
+}
+
+/* Mobile search dropdown expansion */
+.mobile-search:focus-within .search-dropdown {
+  width: 140%;
+}
+
+/* Search dropdown styling */
+.navbar-search .bg-destructive,
+.mobile-search .bg-destructive {
+  background-color: var(--purple) !important;
+  @apply border-cyan/20 shadow-xl;
+}
+
+/* Dropdown text colors */
+.navbar-search .text-foreground,
+.mobile-search .text-foreground,
+.navbar-search .text-muted-foreground,
+.mobile-search .text-muted-foreground {
+  color: var(--navy-dark) !important;
+}
+
+/* Dropdown hover state */
+.navbar-search .hover\:bg-background:hover,
+.mobile-search .hover\:bg-background:hover {
+  @apply bg-cyan/20;
+}

@@ -179,7 +179,7 @@ export function Combobox({
       {open && (
         <div
           key="search-dropdown"
-          className="bg-destructive text-popover-foreground absolute top-full z-50 mt-1 w-full rounded-md border shadow-md transition-opacity duration-150"
+          className="bg-destructive text-popover-foreground search-dropdown absolute top-full z-50 mt-1 w-full rounded-md border shadow-md transition-all duration-300"
         >
           <div className="p-2">
             {loading ? (
@@ -197,7 +197,7 @@ export function Combobox({
                 {results.map(result => (
                   <div
                     key={`${result.type}-${result.id}-${result.slug}`}
-                    className="hover:bg-background relative flex cursor-pointer items-start rounded-sm px-2 py-2 text-sm outline-none select-none"
+                    className="hover:bg-background relative flex cursor-pointer items-start rounded-sm border-b-2 border-indigo-200 px-2 py-2 text-sm outline-none select-none"
                     onClick={() => handleResultClick(result)}
                   >
                     <div className="flex-1">
