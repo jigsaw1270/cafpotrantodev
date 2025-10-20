@@ -1,7 +1,7 @@
 const multer = require('multer');
 const path = require('path');
 const fs = require('fs');
-const { cloudinary, uploadToCloudinary, deleteFromCloudinary } = require('../config/cloudinary');
+const { cloudinary, deleteFromCloudinary } = require('../config/cloudinary');
 
 // Check if Cloudinary is configured
 const isCloudinaryConfigured = !!(

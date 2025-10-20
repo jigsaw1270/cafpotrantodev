@@ -166,7 +166,7 @@ export default function CategoryPage() {
                   alt={category.name}
                   fill
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 75vw, 50vw"
-                  className="object-none"
+                  className="object-cover"
                   priority
                 />
               ) : (
