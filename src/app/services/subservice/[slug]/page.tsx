@@ -25,6 +25,7 @@ import {
   getBusinessHoursMessage,
   WhatsAppState,
 } from '@/lib/whatsapp';
+import Loader from '@/components/ui/loader';
 
 export default function SubservicePage() {
   const params = useParams();
@@ -202,11 +203,8 @@ export default function SubservicePage() {
 
   if (loading) {
     return (
-      <div className="flex min-h-screen items-center justify-center">
-        <div className="text-center">
-          <div className="border-primary mx-auto mb-4 h-12 w-12 animate-spin rounded-full border-b-2"></div>
-          <p className="text-gray-600">Caricamento servizio...</p>
-        </div>
+      <div className="bg-purple flex min-h-screen items-center justify-center">
+        <Loader size="large" centered />
       </div>
     );
   }

@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 import CategoryCard from './CategoryCard';
 import { useCategories } from '@/hooks/useServicesData';
 import { AlertCircle, RefreshCw } from 'lucide-react';
-import { CategoriesGridSkeleton } from '@/components/ui/skeletons/CategorySkeleton';
+import Loader from '@/components/ui/loader';
 
 interface CategoriesGridProps {
   className?: string;
@@ -29,8 +29,10 @@ export function CategoriesGrid({ className = '' }: CategoriesGridProps) {
 
   if (isLoading) {
     return (
-      <div className={className}>
-        <CategoriesGridSkeleton />
+      <div
+        className={`bg-purple flex items-center justify-center rounded-xl py-12 ${className}`}
+      >
+        <Loader size="large" centered />
       </div>
     );
   }

@@ -10,6 +10,7 @@ import { SEO } from '@/components/seo';
 import { Category, Subservice } from '@/lib/types';
 import apiClient from '@/lib/api';
 import SubserviceCard from '@/components/services/SubserviceCard';
+import Loader from '@/components/ui/loader';
 
 export default function CategoryPage() {
   const params = useParams();
@@ -77,11 +78,8 @@ export default function CategoryPage() {
 
   if (loading) {
     return (
-      <div className="flex min-h-screen items-center justify-center">
-        <div className="text-center">
-          <div className="border-primary mx-auto mb-4 h-12 w-12 animate-spin rounded-full border-b-2"></div>
-          <p className="text-muted-foreground">Caricamento categoria...</p>
-        </div>
+      <div className="bg-purple flex min-h-screen items-center justify-center">
+        <Loader size="large" centered />
       </div>
     );
   }

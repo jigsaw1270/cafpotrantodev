@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import { Search, X } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import apiClient from '@/lib/api';
+import Loader from '@/components/ui/loader';
 
 interface SearchResult {
   type: 'category' | 'subservice';
@@ -187,10 +188,7 @@ export function Combobox({
                 key="loading"
                 className="flex items-center justify-center py-4"
               >
-                <div className="border-primary h-4 w-4 animate-spin rounded-full border-2 border-t-transparent"></div>
-                <span className="text-muted-foreground ml-2 text-sm">
-                  Ricerca...
-                </span>
+                <Loader size="small" />
               </div>
             ) : results.length > 0 ? (
               <div key="results" className="space-y-1">
