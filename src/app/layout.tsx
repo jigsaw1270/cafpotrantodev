@@ -6,6 +6,7 @@ import { ToastProvider } from '@/components/ui/toast';
 import { GlobalToastListener } from '@/components/ui/global-toast-listener';
 import { WhatsAppInitializer } from '@/components/whatsapp-initializer';
 import { SWRProvider } from '@/components/providers/SWRProvider';
+import { LenisProvider } from '@/components/providers/lenis-provider';
 import './globals.css';
 
 const geistSans = Geist({
@@ -95,7 +96,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="it" className="scroll-smooth">
+    <html lang="it">
       <head>
         {/* Language detection for Google Translate */}
         <meta httpEquiv="Content-Language" content="it" />
@@ -105,17 +106,19 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} bg-background min-h-screen font-sans antialiased`}
       >
-        <SWRProvider>
-          <ToastProvider>
-            <GlobalToastListener />
-            <WhatsAppInitializer />
-            <div className="relative flex min-h-screen flex-col">
-              <Header />
-              <main className="flex-1">{children}</main>
-              <Footer />
-            </div>
-          </ToastProvider>
-        </SWRProvider>
+        <LenisProvider>
+          <SWRProvider>
+            <ToastProvider>
+              <GlobalToastListener />
+              <WhatsAppInitializer />
+              <div className="relative flex min-h-screen flex-col">
+                <Header />
+                <main className="flex-1">{children}</main>
+                <Footer />
+              </div>
+            </ToastProvider>
+          </SWRProvider>
+        </LenisProvider>
       </body>
     </html>
   );
