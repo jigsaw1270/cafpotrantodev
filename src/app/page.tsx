@@ -6,6 +6,7 @@ import { CTAButton } from '@/components/ui/cta-button';
 import { Button } from '@/components/ui/button';
 import CategoriesGrid from '@/components/services/CategoriesGrid';
 import { SEO } from '@/components/seo';
+import { PrismBackground } from '@/components/ui/prism-background';
 
 const features = [
   {
@@ -67,18 +68,22 @@ amministrative."
       {/* Search section removed - now in navbar */}
 
       {/* Hero Section */}
-      <section
-        className="relative min-h-[500px] overflow-hidden bg-cover bg-center bg-no-repeat py-24 md:min-h-[600px] lg:min-h-[700px]"
-        style={{
-          backgroundImage:
-            'url(/images/banner.webp), url(/images/hero-banner.jpg)',
-        }}
-      >
-        {/* Dark Overlay for text readability */}
-        <div className="absolute inset-0 bg-black/50"></div>
+      <section className="relative flex min-h-screen items-center justify-center overflow-hidden bg-black">
+        {/* Prism Background */}
+        <PrismBackground
+          animationType="rotate"
+          timeScale={0.5}
+          height={4}
+          baseWidth={5.5}
+          scale={3.4}
+          hueShift={0}
+          colorFrequency={2.5}
+          noise={0}
+          glow={1.3}
+        />
 
         {/* Content */}
-        <div className="relative z-10 container mx-auto flex min-h-[500px] items-center px-8 md:min-h-[600px] lg:min-h-[700px] lg:px-12">
+        <div className="relative z-10 w-full px-8 lg:px-12">
           <div className="mx-auto max-w-4xl text-center">
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
