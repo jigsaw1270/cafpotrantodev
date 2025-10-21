@@ -98,6 +98,15 @@ export default function RootLayout({
   return (
     <html lang="it">
       <head>
+        {/* Preconnect to external domains for faster loading */}
+        <link rel="preconnect" href="https://translate.googleapis.com" />
+        <link
+          rel="preconnect"
+          href="https://www.gstatic.com"
+          crossOrigin="anonymous"
+        />
+        <link rel="dns-prefetch" href="https://translate.googleapis.com" />
+
         {/* Language detection for Google Translate */}
         <meta httpEquiv="Content-Language" content="it" />
         {/* Google Translate Widget */}

@@ -33,18 +33,33 @@ const nextConfig = {
     ],
   },
   experimental: {
-    optimizePackageImports: ['framer-motion'],
+    optimizePackageImports: [
+      'framer-motion',
+      'lucide-react',
+      '@radix-ui/react-dialog',
+      '@radix-ui/react-dropdown-menu',
+    ],
+  },
+  // Performance optimizations
+  compiler: {
+    removeConsole: process.env.NODE_ENV === 'production',
+  },
+  // Reduce bundle size
+  modularizeImports: {
+    'lucide-react': {
+      transform: 'lucide-react/dist/esm/icons/{{kebabCase member}}',
+    },
   },
   // Exclude admin and backend folders from build
   pageExtensions: ['js', 'jsx', 'ts', 'tsx'],
-  webpack: (config) => {
+  webpack: config => {
     // Exclude admin and backend folders
     config.watchOptions = {
       ...config.watchOptions,
-      ignored: ['**/admin/**', '**/backend/**', '**/node_modules/**']
+      ignored: ['**/admin/**', '**/backend/**', '**/node_modules/**'],
     };
     return config;
   },
-}
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;

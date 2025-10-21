@@ -6,7 +6,7 @@ import { CTAButton } from '@/components/ui/cta-button';
 import { Button } from '@/components/ui/button';
 import CategoriesGrid from '@/components/services/CategoriesGrid';
 import { SEO } from '@/components/seo';
-import { PrismBackground } from '@/components/ui/prism-background';
+import { PrismBackgroundLight } from '@/components/ui/prism-background-light';
 
 const features = [
   {
@@ -69,18 +69,8 @@ amministrative."
 
       {/* Hero Section */}
       <section className="relative flex min-h-screen items-center justify-center overflow-hidden bg-black">
-        {/* Prism Background */}
-        <PrismBackground
-          animationType="rotate"
-          timeScale={0.5}
-          height={4}
-          baseWidth={5.5}
-          scale={3.4}
-          hueShift={0}
-          colorFrequency={2.5}
-          noise={0}
-          glow={1.3}
-        />
+        {/* Prism Background - Lightweight SVG version for better performance */}
+        <PrismBackgroundLight />
 
         {/* Content */}
         <div className="relative z-10 w-full px-8 lg:px-12">
