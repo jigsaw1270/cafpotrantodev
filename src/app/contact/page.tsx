@@ -5,12 +5,22 @@ import { motion } from 'framer-motion';
 import { Mail, Phone, MapPin, Send } from 'lucide-react';
 import { SEO } from '@/components/seo';
 import { Button } from '@/components/ui/button';
+import { Label } from '@/components/ui/label';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
 
 interface FormData {
   name: string;
   email: string;
   phone: string;
-  subject: string;
+  location: string;
+  address: string;
+  service: string;
   message: string;
 }
 
@@ -40,7 +50,9 @@ export default function Contact() {
     name: '',
     email: '',
     phone: '',
-    subject: '',
+    location: '',
+    address: '',
+    service: '',
     message: '',
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -50,6 +62,10 @@ export default function Contact() {
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+  };
+
+  const handleSelectChange = (name: string, value: string) => {
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
@@ -71,7 +87,9 @@ export default function Contact() {
         name: '',
         email: '',
         phone: '',
-        subject: '',
+        location: '',
+        address: '',
+        service: '',
         message: '',
       });
     }, 3000);
@@ -210,22 +228,23 @@ export default function Contact() {
                       <Send className="h-8 w-8 text-green-600" />
                     </div>
                     <h4 className="text-background mb-2 text-lg font-semibold">
-                      Message Sent!
+                      Messaggio Inviato!
                     </h4>
                     <p className="text-muted-foreground">
                       Grazie per averci contattato. Ti risponderemo presto.
                     </p>
                   </motion.div>
                 ) : (
-                  <form onSubmit={handleSubmit} className="space-y-6">
+                  <form onSubmit={handleSubmit} className="space-y-5">
+                    {/* Nome e Email */}
                     <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-                      <div>
-                        <label
+                      <div className="space-y-2">
+                        <Label
                           htmlFor="name"
-                          className="text-background block text-sm font-medium"
+                          className="text-navy-dark font-semibold"
                         >
-                          Nome *
-                        </label>
+                          Nome Completo *
+                        </Label>
                         <input
                           type="text"
                           id="name"
@@ -233,17 +252,17 @@ export default function Contact() {
                           required
                           value={formData.name}
                           onChange={handleChange}
-                          className="border-input bg-background text-forground placeholder-muted-foreground focus:border-ring focus:ring-ring mt-1 block w-full rounded-md border px-3 py-2 focus:ring-2 focus:outline-none"
-                          placeholder="Il tuo nome"
+                          className="focus:border-cyan focus:ring-cyan/20 flex h-11 w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 placeholder:text-gray-400 focus:ring-2 focus:outline-none disabled:cursor-not-allowed disabled:opacity-50"
+                          placeholder="Mario Rossi"
                         />
                       </div>
-                      <div>
-                        <label
+                      <div className="space-y-2">
+                        <Label
                           htmlFor="email"
-                          className="text-background block text-sm font-medium"
+                          className="text-navy-dark font-semibold"
                         >
-                          Email *
-                        </label>
+                          Indirizzo Email *
+                        </Label>
                         <input
                           type="email"
                           id="email"
@@ -251,72 +270,154 @@ export default function Contact() {
                           required
                           value={formData.email}
                           onChange={handleChange}
-                          className="border-input bg-background text-forground placeholder-muted-foreground focus:border-ring focus:ring-ring mt-1 block w-full rounded-md border px-3 py-2 focus:ring-2 focus:outline-none"
-                          placeholder="your@email.com"
+                          className="focus:border-cyan focus:ring-cyan/20 flex h-11 w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 placeholder:text-gray-400 focus:ring-2 focus:outline-none disabled:cursor-not-allowed disabled:opacity-50"
+                          placeholder="mario.rossi@email.it"
                         />
                       </div>
                     </div>
 
-                    <div>
-                      <label
+                    {/* Telefono */}
+                    <div className="space-y-2">
+                      <Label
                         htmlFor="phone"
-                        className="text-background block text-sm font-medium"
+                        className="text-navy-dark font-semibold"
                       >
-                        Telefono
-                      </label>
+                        Numero di Telefono *
+                      </Label>
                       <input
                         type="tel"
                         id="phone"
                         name="phone"
+                        required
                         value={formData.phone}
                         onChange={handleChange}
-                        className="border-input bg-background text-forground placeholder-muted-foreground focus:border-ring focus:ring-ring mt-1 block w-full rounded-md border px-3 py-2 focus:ring-2 focus:outline-none"
-                        placeholder="Il tuo numero di telefono"
+                        className="focus:border-cyan focus:ring-cyan/20 flex h-11 w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 placeholder:text-gray-400 focus:ring-2 focus:outline-none disabled:cursor-not-allowed disabled:opacity-50"
+                        placeholder="+39 123 456 7890"
                       />
                     </div>
 
-                    <div>
-                      <label
-                        htmlFor="subject"
-                        className="text-background block text-sm font-medium"
+                    {/* Sede da Contattare */}
+                    <div className="space-y-2">
+                      <Label
+                        htmlFor="location"
+                        className="text-navy-dark font-semibold"
                       >
-                        Subject *
-                      </label>
+                        Sede da Contattare *
+                      </Label>
+                      <Select
+                        value={formData.location}
+                        onValueChange={value =>
+                          handleSelectChange('location', value)
+                        }
+                      >
+                        <SelectTrigger className="focus:border-cyan focus:ring-cyan/20 h-11 border-gray-300 bg-white text-gray-900">
+                          <SelectValue placeholder="Seleziona una sede" />
+                        </SelectTrigger>
+                        <SelectContent className="bg-white text-gray-900">
+                          <SelectItem
+                            value="sede-1"
+                            className="hover:bg-purple cursor-pointer"
+                          >
+                            Sede 1 - Roma Centro
+                          </SelectItem>
+                          <SelectItem
+                            value="sede-2"
+                            className="hover:bg-purple cursor-pointer"
+                          >
+                            Sede 2 - Milano Nord
+                          </SelectItem>
+                          <SelectItem
+                            value="sede-3"
+                            className="hover:bg-purple cursor-pointer"
+                          >
+                            Sede 3 - Napoli
+                          </SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+
+                    {/* Indirizzo */}
+                    <div className="space-y-2">
+                      <Label
+                        htmlFor="address"
+                        className="text-navy-dark font-semibold"
+                      >
+                        Indirizzo Completo *
+                      </Label>
                       <input
                         type="text"
-                        id="subject"
-                        name="subject"
+                        id="address"
+                        name="address"
                         required
-                        value={formData.subject}
+                        value={formData.address}
                         onChange={handleChange}
-                        className="border-input bg-background text-forground placeholder-muted-foreground focus:border-ring focus:ring-ring mt-1 block w-full rounded-md border px-3 py-2 focus:ring-2 focus:outline-none"
-                        placeholder="Project inquiry"
+                        className="focus:border-cyan focus:ring-cyan/20 flex h-11 w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 placeholder:text-gray-400 focus:ring-2 focus:outline-none disabled:cursor-not-allowed disabled:opacity-50"
+                        placeholder="Via Roma 123, 00100 Roma RM"
                       />
                     </div>
 
-                    <div>
-                      <label
-                        htmlFor="message"
-                        className="text-background block text-sm font-medium"
+                    {/* Servizio Richiesto */}
+                    {/* <div className="space-y-2">
+                      <Label htmlFor="service" className="text-navy-dark font-semibold">
+                        Servizio Richiesto *
+                      </Label>
+                      <Select
+                        value={formData.service}
+                        onValueChange={(value) => handleSelectChange('service', value)}
                       >
-                        Message *
-                      </label>
+                        <SelectTrigger className="h-11 border-gray-300 bg-white text-gray-900 focus:border-cyan focus:ring-cyan/20">
+                          <SelectValue placeholder="Seleziona un servizio" />
+                        </SelectTrigger>
+                        <SelectContent className="bg-white">
+                          <SelectItem value="caf-patronato" className="cursor-pointer hover:bg-cyan/10">
+                            CAF e Patronato
+                          </SelectItem>
+                          <SelectItem value="isee" className="cursor-pointer hover:bg-cyan/10">
+                            ISEE
+                          </SelectItem>
+                          <SelectItem value="spid" className="cursor-pointer hover:bg-cyan/10">
+                            SPID
+                          </SelectItem>
+                          <SelectItem value="naspi" className="cursor-pointer hover:bg-cyan/10">
+                            NASpI
+                          </SelectItem>
+                          <SelectItem value="immigrazione" className="cursor-pointer hover:bg-cyan/10">
+                            Sportello Immigrazione
+                          </SelectItem>
+                          <SelectItem value="pensioni" className="cursor-pointer hover:bg-cyan/10">
+                            Pratiche Pensionistiche
+                          </SelectItem>
+                          <SelectItem value="altro" className="cursor-pointer hover:bg-cyan/10">
+                            Altro
+                          </SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div> */}
+
+                    {/* Messaggio */}
+                    <div className="space-y-2">
+                      <Label
+                        htmlFor="message"
+                        className="text-navy-dark font-semibold"
+                      >
+                        Messaggio *
+                      </Label>
                       <textarea
                         id="message"
                         name="message"
                         required
-                        rows={6}
+                        rows={5}
                         value={formData.message}
                         onChange={handleChange}
-                        className="border-input bg-background text-forground placeholder-muted-foreground focus:border-ring focus:ring-ring mt-1 block w-full rounded-md border px-3 py-2 focus:ring-2 focus:outline-none"
-                        placeholder="Tell us about your project..."
+                        className="focus:border-cyan focus:ring-cyan/20 flex w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 placeholder:text-gray-400 focus:ring-2 focus:outline-none disabled:cursor-not-allowed disabled:opacity-50"
+                        placeholder="Descrivi la tua richiesta..."
                       />
                     </div>
 
                     <Button
                       type="submit"
                       disabled={isSubmitting}
-                      className="w-full"
+                      className="from-cyan to-navy-gradient-1 hover:from-cyan/90 hover:to-navy-gradient-1/90 w-full bg-gradient-to-r text-white"
                       size="lg"
                     >
                       {isSubmitting ? (

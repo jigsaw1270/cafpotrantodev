@@ -21,6 +21,8 @@
   "author": "CafPotranto",
   "license": "MIT",
   "dependencies": {
+    "@radix-ui/react-label": "^2.1.7",
+    "@radix-ui/react-select": "^2.2.6",
     "bcryptjs": "^2.4.3",
     "cloudinary": "^1.41.3",
     "compression": "^1.7.4",
