@@ -57,42 +57,69 @@ export default function Contact() {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
+    setError(null); // Clear error on input change
   };
 
   const handleSelectChange = (name: string, value: string) => {
     setFormData(prev => ({ ...prev, [name]: value }));
+    setError(null); // Clear error on selection change
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setError(null);
 
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 1000));
+    console.log('📤 Submitting form data:', formData);
 
-    console.log('Form submitted:', formData);
-    setIsSubmitting(false);
-    setIsSubmitted(true);
-
-    // Reset form after 3 seconds
-    setTimeout(() => {
-      setIsSubmitted(false);
-      setFormData({
-        name: '',
-        email: '',
-        phone: '',
-        location: '',
-        address: '',
-        service: '',
-        message: '',
+    try {
+      const response = await fetch('/api/send-email', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
       });
-    }, 3000);
+
+      const data = await response.json();
+      console.log('📬 API Response:', data);
+
+      if (!response.ok) {
+        throw new Error(data.message || "Errore durante l'invio");
+      }
+
+      // Success
+      setIsSubmitted(true);
+
+      // Reset form after 5 seconds
+      setTimeout(() => {
+        setIsSubmitted(false);
+        setFormData({
+          name: '',
+          email: '',
+          phone: '',
+          location: '',
+          address: '',
+          service: '',
+          message: '',
+        });
+      }, 5000);
+    } catch (err) {
+      setError(
+        err instanceof Error
+          ? err.message
+          : "Errore durante l'invio. Riprova più tardi."
+      );
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -217,6 +244,19 @@ export default function Contact() {
                 <h3 className="text-background mb-6 text-2xl font-bold">
                   Inviaci un Messaggio
                 </h3>
+
+                {/* Error Message */}
+                {error && (
+                  <motion.div
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="mb-4 rounded-lg border border-red-300 bg-red-50 p-4"
+                  >
+                    <p className="text-sm font-medium text-red-800">
+                      ⚠️ {error}
+                    </p>
+                  </motion.div>
+                )}
 
                 {isSubmitted ? (
                   <motion.div
@@ -357,42 +397,68 @@ export default function Contact() {
                     </div>
 
                     {/* Servizio Richiesto */}
-                    {/* <div className="space-y-2">
-                      <Label htmlFor="service" className="text-navy-dark font-semibold">
+                    <div className="space-y-2">
+                      <Label
+                        htmlFor="service"
+                        className="text-navy-dark font-semibold"
+                      >
                         Servizio Richiesto *
                       </Label>
                       <Select
                         value={formData.service}
-                        onValueChange={(value) => handleSelectChange('service', value)}
+                        onValueChange={value =>
+                          handleSelectChange('service', value)
+                        }
                       >
-                        <SelectTrigger className="h-11 border-gray-300 bg-white text-gray-900 focus:border-cyan focus:ring-cyan/20">
+                        <SelectTrigger className="focus:border-cyan focus:ring-cyan/20 h-11 border-gray-300 bg-white text-gray-900">
                           <SelectValue placeholder="Seleziona un servizio" />
                         </SelectTrigger>
-                        <SelectContent className="bg-white">
-                          <SelectItem value="caf-patronato" className="cursor-pointer hover:bg-cyan/10">
+                        <SelectContent className="bg-white text-gray-900">
+                          <SelectItem
+                            value="caf-patronato"
+                            className="hover:bg-purple cursor-pointer"
+                          >
                             CAF e Patronato
                           </SelectItem>
-                          <SelectItem value="isee" className="cursor-pointer hover:bg-cyan/10">
+                          <SelectItem
+                            value="isee"
+                            className="hover:bg-purple cursor-pointer"
+                          >
                             ISEE
                           </SelectItem>
-                          <SelectItem value="spid" className="cursor-pointer hover:bg-cyan/10">
+                          <SelectItem
+                            value="spid"
+                            className="hover:bg-purple cursor-pointer"
+                          >
                             SPID
                           </SelectItem>
-                          <SelectItem value="naspi" className="cursor-pointer hover:bg-cyan/10">
+                          <SelectItem
+                            value="naspi"
+                            className="hover:bg-purple cursor-pointer"
+                          >
                             NASpI
                           </SelectItem>
-                          <SelectItem value="immigrazione" className="cursor-pointer hover:bg-cyan/10">
+                          <SelectItem
+                            value="immigrazione"
+                            className="hover:bg-purple cursor-pointer"
+                          >
                             Sportello Immigrazione
                           </SelectItem>
-                          <SelectItem value="pensioni" className="cursor-pointer hover:bg-cyan/10">
+                          <SelectItem
+                            value="pensioni"
+                            className="hover:bg-purple cursor-pointer"
+                          >
                             Pratiche Pensionistiche
                           </SelectItem>
-                          <SelectItem value="altro" className="cursor-pointer hover:bg-cyan/10">
+                          <SelectItem
+                            value="altro"
+                            className="hover:bg-purple cursor-pointer"
+                          >
                             Altro
                           </SelectItem>
                         </SelectContent>
                       </Select>
-                    </div> */}
+                    </div>
 
                     {/* Messaggio */}
                     <div className="space-y-2">
