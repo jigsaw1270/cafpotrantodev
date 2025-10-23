@@ -1,5 +1,48 @@
 @import 'tailwindcss';
 
+/* Variable Fonts - General Sans */
+@font-face {
+  font-family: 'General Sans';
+  src: url('/fonts/generalSans/GeneralSans-Variable.woff2') format('woff2');
+  font-weight: 200 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'General Sans';
+  src: url('/fonts/generalSans/GeneralSans-VariableItalic.woff2')
+    format('woff2');
+  font-weight: 200 700;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* Variable Fonts - Switzer */
+@font-face {
+  font-family: 'Switzer';
+  src: url('/fonts/switer/Switzer-Variable.woff2') format('woff2');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Switzer';
+  src: url('/fonts/switer/Switzer-VariableItalic.woff2') format('woff2');
+  font-weight: 100 900;
+  font-style: italic;
+  font-display: swap;
+}
+
+@theme {
+  /* Font Family */
+  --font-family-sans: 'General Sans', system-ui, sans-serif;
+  --font-family-mono: ui-monospace, monospace;
+  --font-family-general-sans: 'General Sans', sans-serif;
+  --font-family-switzer: 'Switzer', sans-serif;
+}
+
 :root {
   /* New Color Palette */
   --navy-dark: #142850;

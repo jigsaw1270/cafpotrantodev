@@ -84,9 +84,9 @@ amministrative."
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
-              className="mb-6 text-4xl font-bold tracking-tight text-white sm:text-5xl"
+              className="font-family-switzer mb-6 text-4xl font-extrabold tracking-tight text-white sm:text-5xl"
             >
-              <span className="text-4xl font-extrabold text-white sm:text-6xl">
+              <span className="text-4xl font-bold text-white sm:text-6xl">
                 CAF - PATRONATO SINDACATO <br />
               </span>
               Servizi Legali &<span className="text-yellow"> Assistenza </span>
@@ -109,7 +109,7 @@ amministrative."
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.2 }}
-              className="mb-8 text-xl leading-relaxed text-white opacity-90"
+              className="font-family-switzer mb-8 text-xl leading-relaxed text-white opacity-90"
             >
               Offriamo servizi legali professionali rivolti ad aziende e
               cittadini, con particolare competenza nella gestione di procedure

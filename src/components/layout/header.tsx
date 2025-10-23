@@ -52,14 +52,14 @@ export function Header() {
         </Link>
 
         {/* Desktop Navigation */}
-        <nav className="hidden md:flex md:items-center md:space-x-6 lg:space-x-8">
+        <nav className="font-general-sans hidden md:flex md:items-center md:space-x-6 lg:space-x-8">
           {navigation.map(link => {
             const isActive = isActivePath(link.href);
             return (
               <Link
                 key={link.href}
                 href={link.href}
-                className={`rounded-lg px-3 py-2 text-sm font-medium transition-all duration-200 lg:px-4 ${
+                className={`text-md font-family-general-sans rounded-lg px-3 py-2 font-medium transition-all duration-200 lg:px-4 ${
                   isActive
                     ? 'from-navy-gradient-1 to-navy-gradient-2 shadow-elegant bg-gradient-to-r text-white'
                     : 'text-navy-dark hover:text-cyan hover:bg-cyan/10'
