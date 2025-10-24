@@ -1,9 +1,9 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import { useRouter } from 'next/navigation';
 import { CheckCircle, FileText, Shield, Users } from 'lucide-react';
-import { CTAButton } from '@/components/ui/cta-button';
-import { Button } from '@/components/ui/button';
+import NeonButton from '@/components/ui/neon-button';
 import CategoriesGrid from '@/components/services/CategoriesGrid';
 import { SEO } from '@/components/seo';
 import Pattern from '@/components/ui/pattern-background';
@@ -37,6 +37,16 @@ const benefits = [
 ];
 
 export default function Home() {
+  const router = useRouter();
+
+  const handleServicesClick = () => {
+    router.push('/services');
+  };
+
+  const handleContactClick = () => {
+    router.push('/contact');
+  };
+
   return (
     <>
       <SEO
@@ -126,29 +136,12 @@ amministrative."
               transition={{ duration: 0.5, delay: 0.3 }}
               className="flex flex-col gap-4 sm:flex-row sm:justify-center"
             >
-              <CTAButton
-                size="lg"
-                className="shadow-elegant-lg hover-lift text-lg"
-                style={{
-                  background: 'linear-gradient(135deg, #00A8CC, #142850)',
-                  border: 'none',
-                  color: '#ffffff',
-                }}
-              >
+              <NeonButton onClick={handleServicesClick}>
                 I nostri servizi
-              </CTAButton>
-              <Button
-                variant="outline"
-                size="lg"
-                className="border-navy-gradient-1 text-navy-gradient-1 hover:bg-navy-gradient-1 shadow-elegant text-lg hover:text-white"
-                style={{
-                  background: 'linear-gradient(135deg, #00A8CC, #142850)',
-                  border: 'none',
-                  color: '#ffffff',
-                }}
-              >
+              </NeonButton>
+              <NeonButton onClick={handleContactClick}>
                 Consulenza gratuita
-              </Button>
+              </NeonButton>
             </motion.div>
           </div>
         </div>
@@ -202,12 +195,11 @@ amministrative."
               amministrativo. Il nostro team di esperti è pronto ad aiutarti a
               navigare le procedure complesse.
             </p>
-            <CTAButton
-              size="lg"
-              className="shadow-elegant-lg hover-lift bg-purple text-lg"
-            >
-              Prenota Consulenza
-            </CTAButton>
+            <div className="flex justify-center">
+              <NeonButton onClick={handleContactClick}>
+                Prenota Consulenza
+              </NeonButton>
+            </div>
           </motion.div>
         </div>
       </section>

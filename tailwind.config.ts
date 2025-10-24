@@ -17,6 +17,9 @@ const config: Config = {
         cyan: '#00A8CC',
         orange: '#F07B3F',
         yellow: '#FFD460',
+        neon: '#B6F500',
+        newblack: '#212121',
+        newgrey: '#e6e6e6',
 
         // Semantic colors using the new palette
         background: 'var(--background)',
