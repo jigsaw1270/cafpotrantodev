@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { Mail, Facebook, Instagram, Linkedin } from 'lucide-react';
 
 const quickLinks = [
@@ -166,38 +167,33 @@ export function Footer() {
               <h4 className="mb-2 text-sm font-bold text-white">
                 Certificazioni
               </h4>
-              <div className="grid grid-cols-3 gap-2">
-                <div className="hover:border-cyan/50 flex flex-col items-center rounded-lg border border-gray-800 bg-gray-900/30 p-2 text-center transition-all">
-                  <div className="bg-cyan/10 mb-1 flex h-10 w-10 items-center justify-center rounded-full">
-                    <span className="text-cyan text-sm font-bold">ISO</span>
-                  </div>
-                  <p className="text-xs font-semibold text-white">ISO 25012</p>
+              <div className="flex items-center gap-4">
+                <div className="hover:border-cyan/50 flex items-center justify-center rounded-lg border border-gray-800 bg-gray-900/30 p-3 transition-all">
+                  <Image
+                    src="/images/footer/iso25012-footer.webp"
+                    alt="ISO 25012"
+                    width={80}
+                    height={80}
+                    className="h-16 w-auto object-contain"
+                  />
                 </div>
-                <div className="hover:border-cyan/50 flex flex-col items-center rounded-lg border border-gray-800 bg-gray-900/30 p-2 text-center transition-all">
-                  <div className="bg-cyan/10 mb-1 flex h-10 w-10 items-center justify-center rounded-full">
-                    <span className="text-cyan text-sm font-bold">IG</span>
-                  </div>
-                  <p className="text-xs font-semibold text-white">
-                    Ist. Giordano
-                  </p>
+                <div className="hover:border-cyan/50 flex items-center justify-center rounded-lg border border-gray-800 bg-gray-900/30 p-3 transition-all">
+                  <Image
+                    src="/images/footer/LOGO-SINALP-con-CERCHIO-METALLIZZATO.png"
+                    alt="SINALP"
+                    width={80}
+                    height={80}
+                    className="h-16 w-auto object-contain"
+                  />
                 </div>
-                <div className="hover:border-cyan/50 flex flex-col items-center rounded-lg border border-gray-800 bg-gray-900/30 p-2 text-center transition-all">
-                  <div className="bg-cyan/10 mb-1 flex h-10 w-10 items-center justify-center rounded-full">
-                    <span className="text-cyan text-xs font-bold">AGCM</span>
-                  </div>
-                  <p className="text-xs font-semibold text-white">AGCM</p>
-                </div>
-                <div className="hover:border-cyan/50 flex flex-col items-center rounded-lg border border-gray-800 bg-gray-900/30 p-2 text-center transition-all">
-                  <div className="bg-cyan/10 mb-1 flex h-10 w-10 items-center justify-center rounded-full">
-                    <span className="text-lg">⭐</span>
-                  </div>
-                  <p className="text-xs font-semibold text-white">Rating</p>
-                </div>
-                <div className="hover:border-cyan/50 flex flex-col items-center rounded-lg border border-gray-800 bg-gray-900/30 p-2 text-center transition-all">
-                  <div className="bg-cyan/10 mb-1 flex h-10 w-10 items-center justify-center rounded-full">
-                    <span className="text-lg">🏛️</span>
-                  </div>
-                  <p className="text-xs font-semibold text-white">CCIAA</p>
+                <div className="hover:border-cyan/50 flex items-center justify-center rounded-lg border border-gray-800 bg-gray-900/30 p-3 transition-all">
+                  <Image
+                    src="/images/footer/Tavola-disegno-1v2-1.png"
+                    alt="Certification"
+                    width={80}
+                    height={80}
+                    className="h-16 w-auto object-contain"
+                  />
                 </div>
               </div>
             </div>

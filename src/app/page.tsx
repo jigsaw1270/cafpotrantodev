@@ -2,11 +2,21 @@
 
 import { motion } from 'framer-motion';
 import { useRouter } from 'next/navigation';
-import { CheckCircle, FileText, Shield, Users } from 'lucide-react';
+import {
+  CheckCircle,
+  FileText,
+  Shield,
+  Users,
+  Phone,
+  Mail,
+  MapPin,
+} from 'lucide-react';
 import NeonButton from '@/components/ui/neon-button';
 import CategoriesGrid from '@/components/services/CategoriesGrid';
 import { SEO } from '@/components/seo';
 import Pattern from '@/components/ui/pattern-background';
+import SpotlightCard from '@/components/ui/spotlight-card';
+import OfficeCarousel from '@/components/ui/office-carousel';
 
 const features = [
   {
@@ -34,6 +44,51 @@ const benefits = [
   'Assistenza ISEE, NASpI e SPID',
   'Consulenze lavorative e pensionistiche',
   'Benefici familiari e supporto al reddito',
+];
+
+const officeLocations = [
+  {
+    name: 'MILANO SEDE LEGALE',
+    address: 'Via LORENTEGGIO, 172 - MILANO 20147',
+    phone: ['02.61460044', '349.5214147'],
+    email: 'CAFLORENTEGGIO@GMAIL.COM',
+    images: [
+      '/images/office/office2 (1).jpg',
+      '/images/office/office2 (2).jpg',
+      '/images/office/office2 (3).jpg',
+      '/images/office/office2 (4).jpg',
+    ],
+    mapsUrl:
+      'https://www.google.com/maps/dir/?api=1&destination=Via+Lorenteggio+172+Milano+20147+Italy',
+  },
+  {
+    name: 'MILANO VIA PADOVA',
+    address: 'Via Padova, 288 - MILANO 20132',
+    phone: ['02.36576660', '389.2691768'],
+    email: 'CAFPADOVA288@GMAIL.COM',
+    images: [
+      '/images/office/office3 (1).jpg',
+      '/images/office/office3 (2).jpg',
+      '/images/office/office3 (3).jpg',
+      '/images/office/office3 (4).jpg',
+    ],
+    mapsUrl:
+      'https://www.google.com/maps/dir/?api=1&destination=Via+Padova+288+Milano+20132+Italy',
+  },
+  {
+    name: 'MONZA',
+    address: 'Via CARLO ALBERTO, 32 - MONZA 20900',
+    phone: ['039.2304625', '351.9467782'],
+    email: 'CAFMONZA@GMAIL.COM',
+    images: [
+      '/images/office/office1 (1).jpg',
+      '/images/office/office1 (2).jpg',
+      '/images/office/office1 (3).jpg',
+      '/images/office/office1 (4).jpg',
+    ],
+    mapsUrl:
+      'https://www.google.com/maps/dir/?api=1&destination=Via+Carlo+Alberto+32+Monza+20900+Italy',
+  },
 ];
 
 export default function Home() {
@@ -300,6 +355,101 @@ amministrative."
               <div className="from-cyan/20 via-navy-gradient-2/20 to-navy-gradient-1/20 aspect-square rounded-lg bg-gradient-to-br" />
               <div className="shadow-elegant-xl border-cyan/20 absolute inset-4 rounded-lg border bg-white" />
             </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* Office Locations Section */}
+      <section className="relative overflow-hidden bg-neutral-900 py-24">
+        <div className="container mx-auto px-8 lg:px-12">
+          {/* Section Header */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            viewport={{ once: true }}
+            className="mx-auto mb-16 max-w-2xl text-center"
+          >
+            <h2 className="mb-4 text-3xl font-bold tracking-tight text-white sm:text-4xl">
+              Visita i Nostri Uffici per una Consulenza
+            </h2>
+            <p className="text-lg leading-relaxed text-gray-400">
+              Siamo presenti in tre sedi strategiche per offrirti il miglior
+              servizio possibile. Prenota un appuntamento e vieni a trovarci.
+            </p>
+          </motion.div>
+
+          {/* Office Cards Grid */}
+          <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
+            {officeLocations.map((office, index) => (
+              <motion.div
+                key={office.name}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                viewport={{ once: true }}
+              >
+                <SpotlightCard
+                  spotlightColor="rgba(0, 168, 204, 0.2)"
+                  className="h-full"
+                >
+                  {/* Image Carousel */}
+                  <OfficeCarousel
+                    images={office.images}
+                    officeName={office.name}
+                  />
+
+                  {/* Office Info */}
+                  <div className="mt-6 space-y-4">
+                    <div>
+                      <h3 className="mb-2 text-xl font-bold text-white">
+                        {office.name}
+                      </h3>
+                      <p className="text-sm font-medium text-gray-300">
+                        {office.address}
+                      </p>
+                    </div>
+
+                    <div className="space-y-2 border-t border-gray-700 pt-4">
+                      {office.phone.map((phoneNumber, idx) => (
+                        <div
+                          key={idx}
+                          className="flex items-center gap-2 text-sm"
+                        >
+                          <Phone className="text-cyan h-4 w-4" />
+                          <a
+                            href={`tel:+39${phoneNumber.replace(/\./g, '')}`}
+                            className="hover:text-cyan font-medium text-gray-200 transition-colors"
+                          >
+                            {phoneNumber}
+                          </a>
+                        </div>
+                      ))}
+                      <div className="flex items-center gap-2 text-sm">
+                        <Mail className="text-cyan h-4 w-4" />
+                        <a
+                          href={`mailto:${office.email}`}
+                          className="hover:text-cyan font-medium text-gray-200 transition-colors"
+                        >
+                          {office.email}
+                        </a>
+                      </div>
+                    </div>
+
+                    {/* Get Directions Button */}
+                    <a
+                      href={office.mapsUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="bg-cyan hover:bg-cyan/90 mt-4 flex items-center justify-center gap-2 rounded-lg px-4 py-2.5 text-sm font-semibold text-white transition-colors"
+                    >
+                      <MapPin className="h-4 w-4" />
+                      Ottieni Indicazioni
+                    </a>
+                  </div>
+                </SpotlightCard>
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>
