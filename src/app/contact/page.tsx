@@ -6,7 +6,7 @@ import { Mail, Phone, MapPin, Send } from 'lucide-react';
 import { SEO } from '@/components/seo';
 import { Button } from '@/components/ui/button';
 import { Label } from '@/components/ui/label';
-import Pattern from '@/components/ui/pattern-background';
+import SpotlightCard from '@/components/ui/spotlight-card';
 import {
   Select,
   SelectContent,
@@ -157,207 +157,6 @@ export default function Contact() {
               qui per aiutarti. Contattaci per servizi legali professionali e
               orientamento esperto.
             </motion.p>
-          </div>
-        </div>
-      </section>
-
-      {/* Locations Section */}
-      <section className="relative overflow-hidden py-16 lg:py-24">
-        {/* Pattern Background */}
-        <div className="absolute inset-0 z-0">
-          <Pattern />
-        </div>
-
-        <div className="relative z-10 container mx-auto px-8 lg:px-12">
-          {/* Section Title */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            viewport={{ once: true }}
-            className="mx-auto mb-12 max-w-3xl text-center"
-          >
-            <h2 className="mb-4 text-3xl font-bold tracking-tight text-white sm:text-4xl">
-              Trova la sede a te più vicina e contattaci per ricevere assistenza
-              personalizzata: siamo sempre a tua disposizione
-            </h2>
-          </motion.div>
-
-          {/* Location Cards */}
-          <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-            {/* Milano Sede Legale */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.1 }}
-              viewport={{ once: true }}
-              className="group rounded-xl border border-gray-200 bg-white p-6 shadow-lg transition-all hover:shadow-xl"
-            >
-              {/* Image Placeholder */}
-              <div className="from-cyan/20 to-navy-gradient-1/20 mb-6 h-48 overflow-hidden rounded-lg bg-gradient-to-br">
-                <div className="flex h-full items-center justify-center text-gray-400">
-                  <MapPin className="h-16 w-16" />
-                </div>
-              </div>
-
-              {/* Location Info */}
-              <div className="space-y-4">
-                <div>
-                  <h3 className="text-navy-dark mb-2 text-xl font-bold">
-                    MILANO SEDE LEGALE
-                  </h3>
-                  <p className="text-sm font-medium text-gray-600">
-                    Via LORENTEGGIO, 172 - MILANO 20147
-                  </p>
-                </div>
-
-                <div className="space-y-2 border-t border-gray-200 pt-4">
-                  <div className="flex items-center gap-2 text-sm">
-                    <Phone className="text-cyan h-4 w-4" />
-                    <a
-                      href="tel:0261460044"
-                      className="hover:text-cyan text-gray-700 transition-colors"
-                    >
-                      02.61460044
-                    </a>
-                  </div>
-                  <div className="flex items-center gap-2 text-sm">
-                    <Phone className="text-cyan h-4 w-4" />
-                    <a
-                      href="tel:3512613000"
-                      className="hover:text-cyan text-gray-700 transition-colors"
-                    >
-                      351.2613000
-                    </a>
-                  </div>
-                  <div className="flex items-center gap-2 text-sm">
-                    <Mail className="text-cyan h-4 w-4" />
-                    <a
-                      href="mailto:CAFLORENTEGGIO@GMAIL.COM"
-                      className="hover:text-cyan break-all text-gray-700 transition-colors"
-                    >
-                      CAFLORENTEGGIO@GMAIL.COM
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </motion.div>
-
-            {/* Milano Via Padova */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-              viewport={{ once: true }}
-              className="group rounded-xl border border-gray-200 bg-white p-6 shadow-lg transition-all hover:shadow-xl"
-            >
-              {/* Image Placeholder */}
-              <div className="from-cyan/20 to-navy-gradient-1/20 mb-6 h-48 overflow-hidden rounded-lg bg-gradient-to-br">
-                <div className="flex h-full items-center justify-center text-gray-400">
-                  <MapPin className="h-16 w-16" />
-                </div>
-              </div>
-
-              {/* Location Info */}
-              <div className="space-y-4">
-                <div>
-                  <h3 className="text-navy-dark mb-2 text-xl font-bold">
-                    MILANO
-                  </h3>
-                  <p className="text-sm font-medium text-gray-600">
-                    Via PADOVA 288 - MILANO 20132
-                  </p>
-                </div>
-
-                <div className="space-y-2 border-t border-gray-200 pt-4">
-                  <div className="flex items-center gap-2 text-sm">
-                    <Phone className="text-cyan h-4 w-4" />
-                    <a
-                      href="tel:0236755609"
-                      className="hover:text-cyan text-gray-700 transition-colors"
-                    >
-                      02.36755609
-                    </a>
-                  </div>
-                  <div className="flex items-center gap-2 text-sm">
-                    <Phone className="text-cyan h-4 w-4" />
-                    <a
-                      href="tel:3511721772"
-                      className="hover:text-cyan text-gray-700 transition-colors"
-                    >
-                      351.1721772
-                    </a>
-                  </div>
-                  <div className="flex items-center gap-2 text-sm">
-                    <Mail className="text-cyan h-4 w-4" />
-                    <a
-                      href="mailto:AZCAFPADOVA@GMAIL.COM"
-                      className="hover:text-cyan break-all text-gray-700 transition-colors"
-                    >
-                      AZCAFPADOVA@GMAIL.COM
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </motion.div>
-
-            {/* Monza */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.3 }}
-              viewport={{ once: true }}
-              className="group rounded-xl border border-gray-200 bg-white p-6 shadow-lg transition-all hover:shadow-xl"
-            >
-              {/* Image Placeholder */}
-              <div className="from-cyan/20 to-navy-gradient-1/20 mb-6 h-48 overflow-hidden rounded-lg bg-gradient-to-br">
-                <div className="flex h-full items-center justify-center text-gray-400">
-                  <MapPin className="h-16 w-16" />
-                </div>
-              </div>
-
-              {/* Location Info */}
-              <div className="space-y-4">
-                <div>
-                  <h3 className="text-navy-dark mb-2 text-xl font-bold">
-                    MONZA
-                  </h3>
-                  <p className="text-sm font-medium text-gray-600">
-                    Via AMATI, 12/G - MONZA 20900
-                  </p>
-                </div>
-
-                <div className="space-y-2 border-t border-gray-200 pt-4">
-                  <div className="flex items-center gap-2 text-sm">
-                    <Phone className="text-cyan h-4 w-4" />
-                    <a
-                      href="tel:0395986985"
-                      className="hover:text-cyan text-gray-700 transition-colors"
-                    >
-                      039.5986985
-                    </a>
-                  </div>
-                  <div className="flex items-center gap-2 text-sm">
-                    <Phone className="text-cyan h-4 w-4" />
-                    <a
-                      href="tel:3668735046"
-                      className="hover:text-cyan text-gray-700 transition-colors"
-                    >
-                      366.8735046
-                    </a>
-                  </div>
-                  <div className="flex items-center gap-2 text-sm">
-                    <Mail className="text-cyan h-4 w-4" />
-                    <a
-                      href="mailto:CAFMONZA12@GMAIL.COM"
-                      className="hover:text-cyan break-all text-gray-700 transition-colors"
-                    >
-                      CAFMONZA12@GMAIL.COM
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </motion.div>
           </div>
         </div>
       </section>
@@ -711,6 +510,266 @@ export default function Contact() {
                   </form>
                 )}
               </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* Locations Section */}
+      <section className="bg-gradient-to-b from-gray-900 to-black py-16 lg:py-24">
+        <div className="container mx-auto px-8 lg:px-12">
+          {/* Section Title */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            viewport={{ once: true }}
+            className="mx-auto mb-12 max-w-3xl text-center"
+          >
+            <h2 className="mb-4 text-3xl font-bold tracking-tight text-white sm:text-4xl">
+              Trova la sede a te più vicina e contattaci per ricevere assistenza
+              personalizzata: siamo sempre a tua disposizione
+            </h2>
+          </motion.div>
+
+          {/* Location Cards */}
+          <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+            {/* Milano Sede Legale */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+              viewport={{ once: true }}
+            >
+              <SpotlightCard
+                spotlightColor="rgba(0, 229, 255, 0.2)"
+                className="h-full"
+              >
+                {/* Google Map */}
+                <div className="mb-6 h-64 w-full overflow-hidden rounded-lg shadow-md">
+                  <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2798.4966!2d9.1267!3d45.4570!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4786c15f29e1e40f%3A0x1234567890abcdef!2sVia%20Lorenteggio%2C%20172%2C%2020147%20Milano%20MI%2C%20Italy!5e0!3m2!1sen!2sus!4v1234567890123!5m2!1sen!2sus"
+                    width="100%"
+                    height="100%"
+                    style={{ border: 0 }}
+                    allowFullScreen
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                    title="Milano Sede Legale - Via Lorenteggio 172"
+                  />
+                </div>
+
+                {/* Location Info */}
+                <div className="space-y-4">
+                  <div>
+                    <h3 className="mb-2 text-xl font-bold text-white">
+                      MILANO SEDE LEGALE
+                    </h3>
+                    <p className="text-sm font-medium text-gray-300">
+                      Via LORENTEGGIO, 172 - MILANO 20147
+                    </p>
+                  </div>
+
+                  <div className="space-y-2 border-t border-gray-700 pt-4">
+                    <div className="flex items-center gap-2 text-sm">
+                      <Phone className="text-cyan h-4 w-4" />
+                      <a
+                        href="tel:+390261460044"
+                        className="hover:text-cyan font-medium text-gray-200 transition-colors"
+                      >
+                        02.61460044
+                      </a>
+                    </div>
+                    <div className="flex items-center gap-2 text-sm">
+                      <Phone className="text-cyan h-4 w-4" />
+                      <a
+                        href="tel:+393495214147"
+                        className="hover:text-cyan font-medium text-gray-200 transition-colors"
+                      >
+                        349.5214147
+                      </a>
+                    </div>
+                    <div className="flex items-center gap-2 text-sm">
+                      <Mail className="text-cyan h-4 w-4" />
+                      <a
+                        href="mailto:CAFLORENTEGGIO@GMAIL.COM"
+                        className="hover:text-cyan font-medium text-gray-200 transition-colors"
+                      >
+                        CAFLORENTEGGIO@GMAIL.COM
+                      </a>
+                    </div>
+                  </div>
+
+                  {/* Get Directions Button */}
+                  <a
+                    href="https://www.google.com/maps/dir/?api=1&destination=Via+Lorenteggio+172+Milano+20147+Italy"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="bg-cyan hover:bg-cyan/90 mt-4 flex items-center justify-center gap-2 rounded-lg px-4 py-2.5 text-sm font-semibold text-white transition-colors"
+                  >
+                    <MapPin className="h-4 w-4" />
+                    Ottieni Indicazioni
+                  </a>
+                </div>
+              </SpotlightCard>
+            </motion.div>
+
+            {/* Milano Via Padova */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              viewport={{ once: true }}
+            >
+              <SpotlightCard
+                spotlightColor="rgba(0, 229, 255, 0.2)"
+                className="h-full"
+              >
+                {/* Google Map */}
+                <div className="mb-6 h-64 w-full overflow-hidden rounded-lg shadow-md">
+                  <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2796.8234!2d9.2267!3d45.5070!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4786c6f93e1e40f9%3A0x9876543210fedcba!2sVia%20Padova%2C%20288%2C%2020132%20Milano%20MI%2C%20Italy!5e0!3m2!1sen!2sus!4v1234567890123!5m2!1sen!2sus"
+                    width="100%"
+                    height="100%"
+                    style={{ border: 0 }}
+                    allowFullScreen
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                    title="Milano - Via Padova 288"
+                  />
+                </div>
+
+                {/* Location Info */}
+                <div className="space-y-4">
+                  <div>
+                    <h3 className="mb-2 text-xl font-bold text-white">
+                      MILANO
+                    </h3>
+                    <p className="text-sm font-medium text-gray-300">
+                      Via PADOVA 288 - MILANO 20132
+                    </p>
+                  </div>
+
+                  <div className="space-y-2 border-t border-gray-700 pt-4">
+                    <div className="flex items-center gap-2 text-sm">
+                      <Phone className="text-cyan h-4 w-4" />
+                      <a
+                        href="tel:0236755609"
+                        className="hover:text-cyan text-gray-200 transition-colors"
+                      >
+                        02.36755609
+                      </a>
+                    </div>
+                    <div className="flex items-center gap-2 text-sm">
+                      <Phone className="text-cyan h-4 w-4" />
+                      <a
+                        href="tel:3511721772"
+                        className="hover:text-cyan text-gray-200 transition-colors"
+                      >
+                        351.1721772
+                      </a>
+                    </div>
+                    <div className="flex items-center gap-2 text-sm">
+                      <Mail className="text-cyan h-4 w-4" />
+                      <a
+                        href="mailto:AZCAFPADOVA@GMAIL.COM"
+                        className="hover:text-cyan break-all text-gray-200 transition-colors"
+                      >
+                        AZCAFPADOVA@GMAIL.COM
+                      </a>
+                    </div>
+                  </div>
+
+                  {/* Get Directions Button */}
+                  <a
+                    href="https://www.google.com/maps/dir/?api=1&destination=Via+Padova+288+Milano+20132+Italy"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="bg-cyan hover:bg-cyan/90 mt-4 flex items-center justify-center gap-2 rounded-lg px-4 py-2.5 text-sm font-semibold text-white transition-colors"
+                  >
+                    <MapPin className="h-4 w-4" />
+                    Ottieni Indicazioni
+                  </a>
+                </div>
+              </SpotlightCard>
+            </motion.div>
+
+            {/* Monza */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+              viewport={{ once: true }}
+            >
+              <SpotlightCard
+                spotlightColor="rgba(0, 229, 255, 0.2)"
+                className="h-full"
+              >
+                {/* Google Map */}
+                <div className="mb-6 h-64 w-full overflow-hidden rounded-lg shadow-md">
+                  <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2793.5678!2d9.2734!3d45.5845!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4786b8f93e1e40f9%3A0xabcdef1234567890!2sVia%20Amati%2C%2012%2C%2020900%20Monza%20MB%2C%20Italy!5e0!3m2!1sen!2sus!4v1234567890123!5m2!1sen!2sus"
+                    width="100%"
+                    height="100%"
+                    style={{ border: 0 }}
+                    allowFullScreen
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                    title="Monza - Via Amati 12/G"
+                  />
+                </div>
+
+                {/* Location Info */}
+                <div className="space-y-4">
+                  <div>
+                    <h3 className="mb-2 text-xl font-bold text-white">MONZA</h3>
+                    <p className="text-sm font-medium text-gray-300">
+                      Via AMATI, 12/G - MONZA 20900
+                    </p>
+                  </div>
+
+                  <div className="space-y-2 border-t border-gray-700 pt-4">
+                    <div className="flex items-center gap-2 text-sm">
+                      <Phone className="text-cyan h-4 w-4" />
+                      <a
+                        href="tel:0395986985"
+                        className="hover:text-cyan text-gray-200 transition-colors"
+                      >
+                        039.5986985
+                      </a>
+                    </div>
+                    <div className="flex items-center gap-2 text-sm">
+                      <Phone className="text-cyan h-4 w-4" />
+                      <a
+                        href="tel:3668735046"
+                        className="hover:text-cyan text-gray-200 transition-colors"
+                      >
+                        366.8735046
+                      </a>
+                    </div>
+                    <div className="flex items-center gap-2 text-sm">
+                      <Mail className="text-cyan h-4 w-4" />
+                      <a
+                        href="mailto:CAFMONZA12@GMAIL.COM"
+                        className="hover:text-cyan break-all text-gray-200 transition-colors"
+                      >
+                        CAFMONZA12@GMAIL.COM
+                      </a>
+                    </div>
+                  </div>
+
+                  {/* Get Directions Button */}
+                  <a
+                    href="https://www.google.com/maps/dir/?api=1&destination=Via+Amati+12+Monza+20900+Italy"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="bg-cyan hover:bg-cyan/90 mt-4 flex items-center justify-center gap-2 rounded-lg px-4 py-2.5 text-sm font-semibold text-white transition-colors"
+                  >
+                    <MapPin className="h-4 w-4" />
+                    Ottieni Indicazioni
+                  </a>
+                </div>
+              </SpotlightCard>
             </motion.div>
           </div>
         </div>
