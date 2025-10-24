@@ -69,7 +69,7 @@ amministrative."
 
       {/* Hero Section */}
       <section
-        className="relative min-h-[500px] overflow-hidden bg-cover bg-center bg-no-repeat py-24 md:min-h-[600px] lg:min-h-[700px]"
+        className="relative h-[calc(100vh-4rem)] overflow-hidden bg-cover bg-center bg-no-repeat"
         style={{
           backgroundImage:
             'url(/images/banner.webp), url(/images/hero-banner.jpg)',
@@ -79,7 +79,7 @@ amministrative."
         <div className="absolute inset-0 bg-black/50"></div>
 
         {/* Content */}
-        <div className="relative z-10 container mx-auto flex min-h-[500px] items-center px-8 md:min-h-[600px] lg:min-h-[700px] lg:px-12">
+        <div className="relative z-10 container mx-auto flex h-full items-center px-8 lg:px-12">
           <div className="mx-auto max-w-4xl text-center">
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
