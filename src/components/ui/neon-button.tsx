@@ -42,10 +42,10 @@ const StyledWrapper = styled.div`
     display: flex;
     align-items: center;
     gap: 4px;
-    padding: 16px 36px;
-    border: 4px solid;
+    padding: 10px 16px;
+    border: 2px solid;
     border-color: transparent;
-    font-size: 16px;
+    font-size: 13px;
     background-color: inherit;
     border-radius: 100px;
     font-weight: 600;
@@ -56,16 +56,36 @@ const StyledWrapper = styled.div`
     transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
   }
 
+  @media (min-width: 640px) {
+    .animated-button {
+      padding: 16px 36px;
+      border: 4px solid;
+      font-size: 16px;
+    }
+  }
+
   .animated-button svg {
     position: absolute;
-    width: 24px;
+    width: 18px;
     fill: #00a8cc;
     z-index: 9;
     transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
   }
 
+  @media (min-width: 640px) {
+    .animated-button svg {
+      width: 24px;
+    }
+  }
+
   .animated-button .arr-1 {
-    right: 16px;
+    right: 10px;
+  }
+
+  @media (min-width: 640px) {
+    .animated-button .arr-1 {
+      right: 16px;
+    }
   }
 
   .animated-button .arr-2 {
@@ -88,8 +108,14 @@ const StyledWrapper = styled.div`
   .animated-button .text {
     position: relative;
     z-index: 1;
-    transform: translateX(-12px);
+    transform: translateX(-8px);
     transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+  }
+
+  @media (min-width: 640px) {
+    .animated-button .text {
+      transform: translateX(-12px);
+    }
   }
 
   .animated-button:hover {
@@ -103,11 +129,23 @@ const StyledWrapper = styled.div`
   }
 
   .animated-button:hover .arr-2 {
-    left: 16px;
+    left: 10px;
+  }
+
+  @media (min-width: 640px) {
+    .animated-button:hover .arr-2 {
+      left: 16px;
+    }
   }
 
   .animated-button:hover .text {
-    transform: translateX(12px);
+    transform: translateX(8px);
+  }
+
+  @media (min-width: 640px) {
+    .animated-button:hover .text {
+      transform: translateX(12px);
+    }
   }
 
   .animated-button:hover svg {

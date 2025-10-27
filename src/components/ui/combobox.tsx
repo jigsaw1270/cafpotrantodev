@@ -114,15 +114,22 @@ export function Combobox({
   }, [searchTerm, performSearch]);
 
   const handleResultClick = (result: SearchResult) => {
+    // Prevent default behavior
     if (result.type === 'category') {
       router.push(`/services/${result.slug}`);
     } else {
       router.push(`/services/subservice/${result.slug}`);
     }
 
+    // Close dropdown and reset search
     setOpen(false);
     setSearchTerm('');
     setResults([]);
+
+    // Blur input on mobile to hide keyboard
+    if (inputRef.current) {
+      inputRef.current.blur();
+    }
   };
 
   const clearSearch = () => {
@@ -180,7 +187,7 @@ export function Combobox({
       {open && (
         <div
           key="search-dropdown"
-          className="bg-destructive text-popover-foreground search-dropdown absolute top-full z-50 mt-1 w-full rounded-md border shadow-md transition-all duration-300"
+          className="search-dropdown absolute top-full right-0 left-0 z-50 mt-1 max-h-[70vh] overflow-y-auto rounded-md border border-gray-200 bg-white text-gray-900 shadow-lg md:max-h-96"
         >
           <div className="p-2">
             {loading ? (
@@ -195,8 +202,14 @@ export function Combobox({
                 {results.map(result => (
                   <div
                     key={`${result.type}-${result.id}-${result.slug}`}
-                    className="hover:bg-background relative flex cursor-pointer items-start rounded-sm border-b-2 border-indigo-200 px-2 py-2 text-sm outline-none select-none"
+                    className="relative flex cursor-pointer items-start rounded-sm border-b-2 border-indigo-200 px-2 py-2 text-sm outline-none select-none hover:bg-gray-100 active:bg-gray-200"
                     onClick={() => handleResultClick(result)}
+                    onTouchEnd={e => {
+                      e.preventDefault();
+                      handleResultClick(result);
+                    }}
+                    role="button"
+                    tabIndex={0}
                   >
                     <div className="flex-1">
                       <div className="flex items-center gap-2">
@@ -212,17 +225,17 @@ export function Combobox({
                             ? 'categoria'
                             : 'servizio'}
                         </span>
-                        <span className="text-foreground font-medium">
+                        <span className="font-medium text-gray-900">
                           {result.name}
                         </span>
                       </div>
                       {result.description && (
-                        <p className="text-muted-foreground mt-1 line-clamp-2 text-xs">
+                        <p className="mt-1 line-clamp-2 text-xs text-gray-600">
                           {result.description}
                         </p>
                       )}
                       {result.categoryName && (
-                        <p className="text-muted-foreground mt-1 text-xs">
+                        <p className="mt-1 text-xs text-gray-600">
                           nel {result.categoryName}
                         </p>
                       )}
@@ -233,14 +246,14 @@ export function Combobox({
             ) : searchTerm.trim() ? (
               <div
                 key="no-results"
-                className="text-muted-foreground px-2 py-4 text-center text-sm"
+                className="px-2 py-4 text-center text-sm text-gray-600"
               >
                 Nessun risultato trovato per "{searchTerm}"
               </div>
             ) : (
               <div
                 key="empty-state"
-                className="text-muted-foreground px-2 py-4 text-center text-sm"
+                className="px-2 py-4 text-center text-sm text-gray-600"
               >
                 Inizia a digitare per cercare i servizi...
               </div>

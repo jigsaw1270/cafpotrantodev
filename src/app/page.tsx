@@ -134,7 +134,7 @@ amministrative."
 
       {/* Hero Section */}
       <section
-        className="relative h-[calc(100vh-4rem)] overflow-hidden bg-cover bg-center bg-no-repeat"
+        className="relative min-h-screen overflow-hidden bg-cover bg-center bg-no-repeat pt-16 md:h-[calc(100vh-4rem)] md:pt-0"
         style={{
           backgroundImage:
             'url(/images/banner.webp), url(/images/hero-banner.jpg)',
@@ -144,7 +144,7 @@ amministrative."
         <div className="absolute inset-0 bg-black/50"></div>
 
         {/* Content */}
-        <div className="relative z-10 container mx-auto flex h-full items-center px-8 lg:px-12">
+        <div className="relative z-10 container mx-auto flex h-full items-center px-8 py-12 md:py-0 lg:px-12">
           <div className="mx-auto max-w-4xl text-center">
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
@@ -189,7 +189,7 @@ amministrative."
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.3 }}
-              className="flex flex-col gap-4 sm:flex-row sm:justify-center"
+              className="mb-8 flex flex-row items-center justify-center gap-3 sm:mb-0 sm:gap-4"
             >
               <NeonButton onClick={handleServicesClick}>
                 I nostri servizi
