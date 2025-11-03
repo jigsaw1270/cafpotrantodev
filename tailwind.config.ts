@@ -21,6 +21,14 @@ const config: Config = {
         newblack: '#212121',
         newgrey: '#e6e6e6',
 
+        // New color rework palette
+        'new-navy': '#071739',
+        'new-light-navy': '#4B6382',
+        'new-dim-cyan': '#A4B5C4',
+        'new-white': '#CDD5DB',
+        'new-dark-beige': '#A68868',
+        'new-beige': '#E3C39D',
+
         // Semantic colors using the new palette
         background: 'var(--background)',
         foreground: 'var(--foreground)',
