@@ -146,7 +146,7 @@ export default function CheckoutPage() {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              className="border-light-teal/30 rounded-3xl border bg-white/20 p-8 shadow-2xl backdrop-blur-xl"
+              className="border-light-teal/30 rounded-3xl border bg-white/95 p-8 shadow-2xl backdrop-blur-xl"
             >
               <h2 className="text-light-teal mb-8 flex items-center gap-3 text-2xl font-bold drop-shadow-lg">
                 <User className="text-light-teal h-6 w-6" />I tuoi dati
@@ -154,7 +154,7 @@ export default function CheckoutPage() {
 
               <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
                 <div>
-                  <label className="text-new-navy mb-3 block text-sm font-medium">
+                  <label className="mb-3 block text-sm font-medium text-black">
                     Nome *
                   </label>
                   <input
@@ -163,26 +163,26 @@ export default function CheckoutPage() {
                     onChange={e =>
                       handleFormChange('firstName', e.target.value)
                     }
-                    className="border-light-teal/30 text-new-navy focus:border-light-teal focus:ring-light-teal/50 w-full rounded-xl border bg-white/90 px-4 py-3 text-base backdrop-blur-md focus:ring-2"
+                    className="border-light-teal/30 bg-light-teal/5 focus:border-light-teal focus:ring-light-teal w-full rounded-xl border px-4 py-3 text-base text-black backdrop-blur-md transition-all focus:bg-white focus:ring-2 focus:outline-none"
                     placeholder="Il tuo nome"
                   />
                 </div>
 
                 <div>
-                  <label className="text-new-navy mb-3 block text-sm font-medium">
+                  <label className="mb-3 block text-sm font-medium text-black">
                     Cognome *
                   </label>
                   <input
                     type="text"
                     value={formData.lastName}
                     onChange={e => handleFormChange('lastName', e.target.value)}
-                    className="border-light-teal/30 text-new-navy focus:border-light-teal focus:ring-light-teal/50 w-full rounded-xl border bg-white/90 px-4 py-3 text-base backdrop-blur-md focus:ring-2"
+                    className="border-light-teal/30 bg-light-teal/5 focus:border-light-teal focus:ring-light-teal w-full rounded-xl border px-4 py-3 text-base text-black backdrop-blur-md transition-all focus:bg-white focus:ring-2 focus:outline-none"
                     placeholder="Il tuo cognome"
                   />
                 </div>
 
                 <div className="md:col-span-2">
-                  <label className="text-new-navy mb-3 block text-sm font-medium">
+                  <label className="mb-3 block text-sm font-medium text-black">
                     Email *
                   </label>
                   <div className="relative">
@@ -191,27 +191,27 @@ export default function CheckoutPage() {
                       type="email"
                       value={formData.email}
                       onChange={e => handleFormChange('email', e.target.value)}
-                      className="border-light-teal/30 text-new-navy focus:border-light-teal focus:ring-light-teal/50 w-full rounded-xl border bg-white/90 py-3 pr-4 pl-12 text-base backdrop-blur-md focus:ring-2"
+                      className="border-light-teal/30 bg-light-teal/5 focus:border-light-teal focus:ring-light-teal w-full rounded-xl border py-3 pr-4 pl-12 text-base text-black backdrop-blur-md transition-all focus:bg-white focus:ring-2 focus:outline-none"
                       placeholder="la-tua-email@esempio.com"
                     />
                   </div>
                 </div>
 
                 <div>
-                  <label className="text-new-navy mb-3 block text-sm font-medium">
+                  <label className="mb-3 block text-sm font-medium text-black">
                     Telefono *
                   </label>
                   <input
                     type="tel"
                     value={formData.phone}
                     onChange={e => handleFormChange('phone', e.target.value)}
-                    className="border-light-teal/30 text-new-navy focus:border-light-teal focus:ring-light-teal/50 w-full rounded-xl border bg-white/90 px-4 py-3 text-base backdrop-blur-md focus:ring-2"
+                    className="border-light-teal/30 bg-light-teal/5 focus:border-light-teal focus:ring-light-teal w-full rounded-xl border px-4 py-3 text-base text-black backdrop-blur-md transition-all focus:bg-white focus:ring-2 focus:outline-none"
                     placeholder="+39 123 456 7890"
                   />
                 </div>
 
                 <div>
-                  <label className="text-new-navy mb-3 block text-sm font-medium">
+                  <label className="mb-3 block text-sm font-medium text-black">
                     CAP *
                   </label>
                   <input
@@ -220,13 +220,13 @@ export default function CheckoutPage() {
                     onChange={e =>
                       handleFormChange('postalCode', e.target.value)
                     }
-                    className="border-light-teal/30 text-new-navy focus:border-light-teal focus:ring-light-teal/50 w-full rounded-xl border bg-white/90 px-4 py-3 text-base backdrop-blur-md focus:ring-2"
+                    className="border-light-teal/30 bg-light-teal/5 focus:border-light-teal focus:ring-light-teal w-full rounded-xl border px-4 py-3 text-base text-black backdrop-blur-md transition-all focus:bg-white focus:ring-2 focus:outline-none"
                     placeholder="12345"
                   />
                 </div>
 
                 <div className="md:col-span-2">
-                  <label className="text-new-navy mb-3 block text-sm font-medium">
+                  <label className="mb-3 block text-sm font-medium text-black">
                     Indirizzo *
                   </label>
                   <div className="relative">
@@ -237,21 +237,21 @@ export default function CheckoutPage() {
                       onChange={e =>
                         handleFormChange('address', e.target.value)
                       }
-                      className="border-light-teal/30 text-new-navy focus:border-light-teal focus:ring-light-teal/50 w-full rounded-xl border bg-white/90 py-3 pr-4 pl-12 text-base backdrop-blur-md focus:ring-2"
+                      className="border-light-teal/30 bg-light-teal/5 focus:border-light-teal focus:ring-light-teal w-full rounded-xl border py-3 pr-4 pl-12 text-base text-black backdrop-blur-md transition-all focus:bg-white focus:ring-2 focus:outline-none"
                       placeholder="Via, Numero civico"
                     />
                   </div>
                 </div>
 
                 <div>
-                  <label className="text-new-navy mb-3 block text-sm font-medium">
+                  <label className="mb-3 block text-sm font-medium text-black">
                     Città *
                   </label>
                   <input
                     type="text"
                     value={formData.city}
                     onChange={e => handleFormChange('city', e.target.value)}
-                    className="border-light-teal/30 text-new-navy focus:border-light-teal focus:ring-light-teal/50 w-full rounded-xl border bg-white/90 px-4 py-3 text-base backdrop-blur-md focus:ring-2"
+                    className="border-light-teal/30 bg-light-teal/5 focus:border-light-teal focus:ring-light-teal w-full rounded-xl border px-4 py-3 text-base text-black backdrop-blur-md transition-all focus:bg-white focus:ring-2 focus:outline-none"
                     placeholder="Nome della città"
                   />
                 </div>
@@ -266,7 +266,7 @@ export default function CheckoutPage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1 }}
-              className="border-light-teal/30 rounded-3xl border bg-white/20 p-6 shadow-2xl backdrop-blur-xl"
+              className="border-light-teal/30 rounded-3xl border bg-white/95 p-6 shadow-2xl backdrop-blur-xl"
             >
               <h2 className="text-light-teal mb-6 flex items-center gap-2 text-lg font-bold">
                 <Clock className="h-5 w-5" />
@@ -278,17 +278,17 @@ export default function CheckoutPage() {
                 <div
                   className={`cursor-pointer rounded-xl border-2 p-4 backdrop-blur-md transition-all ${
                     urgency
-                      ? 'border-light-teal bg-light-teal/10'
-                      : 'border-light-teal/30 hover:border-light-teal/50 bg-white/10'
+                      ? 'border-light-teal bg-light-teal/20'
+                      : 'border-light-teal/30 hover:border-light-teal/50 bg-light-teal/5'
                   }`}
                   onClick={() => setUrgency(!urgency)}
                 >
                   <div className="flex items-center justify-between">
                     <div>
-                      <h3 className="text-new-navy text-sm font-semibold">
+                      <h3 className="text-sm font-semibold text-black">
                         Emergency €{urgencyFee.toFixed(2)}
                       </h3>
-                      <p className="text-new-navy/70 text-xs">
+                      <p className="text-xs text-black/70">
                         The application will be processed as quickly as possible
                       </p>
                     </div>
@@ -296,7 +296,7 @@ export default function CheckoutPage() {
                       type="checkbox"
                       checked={urgency}
                       onChange={e => setUrgency(e.target.checked)}
-                      className="border-light-teal/30 text-light-teal focus:ring-light-teal h-4 w-4 rounded"
+                      className="text-light-teal focus:ring-light-teal h-4 w-4 rounded border-white/30"
                     />
                   </div>
                 </div>
@@ -305,17 +305,17 @@ export default function CheckoutPage() {
                 <div
                   className={`cursor-pointer rounded-xl border-2 p-4 backdrop-blur-md transition-all ${
                     premiumSupport
-                      ? 'border-light-teal bg-light-teal/10'
-                      : 'border-light-teal/30 hover:border-light-teal/50 bg-white/10'
+                      ? 'border-light-teal bg-light-teal/20'
+                      : 'border-light-teal/30 hover:border-light-teal/50 bg-light-teal/5'
                   }`}
                   onClick={() => setPremiumSupport(!premiumSupport)}
                 >
                   <div className="flex items-center justify-between">
                     <div>
-                      <h3 className="text-new-navy text-sm font-semibold">
+                      <h3 className="text-sm font-semibold text-black">
                         Premium Assistance €{premiumSupportFee.toFixed(2)}
                       </h3>
-                      <p className="text-new-navy/70 text-xs">
+                      <p className="text-xs text-black/70">
                         Activate premium telephone support
                       </p>
                     </div>
@@ -323,7 +323,7 @@ export default function CheckoutPage() {
                       type="checkbox"
                       checked={premiumSupport}
                       onChange={e => setPremiumSupport(e.target.checked)}
-                      className="border-light-teal/30 text-light-teal focus:ring-light-teal h-4 w-4 rounded"
+                      className="text-light-teal focus:ring-light-teal h-4 w-4 rounded border-white/30"
                     />
                   </div>
                 </div>
@@ -367,7 +367,7 @@ export default function CheckoutPage() {
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.2 }}
-              className="border-light-teal/30 rounded-3xl border bg-white/20 p-6 shadow-2xl backdrop-blur-xl"
+              className="border-light-teal/30 rounded-3xl border bg-white/95 p-6 shadow-2xl backdrop-blur-xl"
             >
               <h2 className="text-light-teal mb-6 flex items-center gap-2 text-lg font-bold">
                 <Receipt className="h-5 w-5" />
@@ -377,21 +377,19 @@ export default function CheckoutPage() {
               <div className="space-y-4">
                 {/* Service Details */}
                 <div className="border-light-teal/30 border-b pb-4">
-                  <h3 className="text-new-navy mb-3 text-sm font-semibold">
+                  <h3 className="mb-3 text-sm font-semibold text-black">
                     {serviceData.name}
                   </h3>
                   <div className="space-y-2 text-sm">
                     <div className="flex justify-between">
-                      <span className="text-new-navy/70">Prezzo base:</span>
-                      <span className="text-new-navy font-medium">
+                      <span className="text-black/70">Prezzo base:</span>
+                      <span className="font-medium text-black">
                         €{serviceData.basePrice.toFixed(2)}
                       </span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-new-navy/70">
-                        Oneri segreteria:
-                      </span>
-                      <span className="text-new-navy font-medium">
+                      <span className="text-black/70">Oneri segreteria:</span>
+                      <span className="font-medium text-black">
                         €{serviceData.secretarialFees.toFixed(2)}
                       </span>
                     </div>
@@ -401,24 +399,24 @@ export default function CheckoutPage() {
                 {/* Additional Services */}
                 {(urgency || premiumSupport) && (
                   <div className="border-light-teal/30 border-b pb-4">
-                    <h4 className="text-new-navy mb-3 text-sm font-medium">
+                    <h4 className="mb-3 text-sm font-medium text-black">
                       Servizi aggiuntivi:
                     </h4>
                     <div className="space-y-2 text-sm">
                       {urgency && (
                         <div className="flex justify-between">
-                          <span className="text-new-navy/70">Emergency:</span>
-                          <span className="text-new-navy font-medium">
+                          <span className="text-black/70">Emergency:</span>
+                          <span className="font-medium text-black">
                             €{urgencyFee.toFixed(2)}
                           </span>
                         </div>
                       )}
                       {premiumSupport && (
                         <div className="flex justify-between">
-                          <span className="text-new-navy/70">
+                          <span className="text-black/70">
                             Premium Support:
                           </span>
-                          <span className="text-new-navy font-medium">
+                          <span className="font-medium text-black">
                             €{premiumSupportFee.toFixed(2)}
                           </span>
                         </div>
@@ -444,16 +442,16 @@ export default function CheckoutPage() {
                 {/* Totals */}
                 <div className="space-y-2 text-sm">
                   <div className="flex justify-between">
-                    <span className="text-new-navy/70">Subtotale:</span>
-                    <span className="text-new-navy font-medium">
+                    <span className="text-black/70">Subtotale:</span>
+                    <span className="font-medium text-black">
                       €{afterDiscount.toFixed(2)}
                     </span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-new-navy/70">
+                    <span className="text-black/70">
                       IVA ({serviceData.vatPercentage}%):
                     </span>
-                    <span className="text-new-navy font-medium">
+                    <span className="font-medium text-black">
                       €{vat.toFixed(2)}
                     </span>
                   </div>
@@ -461,7 +459,7 @@ export default function CheckoutPage() {
 
                 <div className="border-light-teal/30 border-t pt-4">
                   <div className="flex items-center justify-between">
-                    <span className="text-new-navy text-lg font-bold">
+                    <span className="text-lg font-bold text-black">
                       Totale:
                     </span>
                     <span className="text-light-teal text-lg font-bold">
@@ -477,10 +475,8 @@ export default function CheckoutPage() {
                       <div className="h-1.5 w-1.5 rounded-full bg-white"></div>
                     </div>
                     <div>
-                      <h4 className="text-new-navy text-sm font-medium">
-                        Pagamento Sicuro
-                      </h4>
-                      <p className="text-new-navy/70 mt-1 text-xs">
+                      <h4 className="text-sm font-medium text-black"></h4>
+                      <p className="mt-1 text-xs text-black/70">
                         I tuoi dati sono protetti con crittografia SSL
                       </p>
                     </div>
@@ -494,7 +490,7 @@ export default function CheckoutPage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3 }}
-              className="border-light-teal/30 rounded-3xl border bg-white/20 p-6 shadow-2xl backdrop-blur-xl"
+              className="border-light-teal/30 rounded-3xl border bg-white/95 p-6 shadow-2xl backdrop-blur-xl"
             >
               <h2 className="text-light-teal mb-6 flex items-center gap-3 text-xl font-bold drop-shadow-lg">
                 <CreditCard className="text-light-teal h-6 w-6" />
@@ -506,7 +502,7 @@ export default function CheckoutPage() {
                   className={`cursor-pointer rounded-2xl border-2 p-4 backdrop-blur-md transition-all ${
                     selectedPaymentMethod === 'credit-card'
                       ? 'border-light-teal bg-light-teal/20'
-                      : 'border-light-teal/30 hover:border-light-teal/50 bg-white/10'
+                      : 'border-light-teal/30 hover:border-light-teal/50 bg-light-teal/5'
                   }`}
                   onClick={() => setSelectedPaymentMethod('credit-card')}
                 >
@@ -556,7 +552,7 @@ export default function CheckoutPage() {
                   className={`cursor-pointer rounded-2xl border-2 p-4 backdrop-blur-md transition-all ${
                     selectedPaymentMethod === 'paypal'
                       ? 'border-light-teal bg-light-teal/20'
-                      : 'border-light-teal/30 hover:border-light-teal/50 bg-white/10'
+                      : 'border-light-teal/30 hover:border-light-teal/50 bg-light-teal/5'
                   }`}
                   onClick={() => setSelectedPaymentMethod('paypal')}
                 >
@@ -608,7 +604,7 @@ export default function CheckoutPage() {
                   className={`cursor-pointer rounded-2xl border-2 p-4 backdrop-blur-md transition-all ${
                     selectedPaymentMethod === 'bank-transfer'
                       ? 'border-light-teal bg-light-teal/20'
-                      : 'border-light-teal/30 hover:border-light-teal/50 bg-white/10'
+                      : 'border-light-teal/30 hover:border-light-teal/50 bg-light-teal/5'
                   }`}
                   onClick={() => setSelectedPaymentMethod('bank-transfer')}
                 >

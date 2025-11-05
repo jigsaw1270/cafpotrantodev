@@ -338,7 +338,7 @@ export default function SubservicePage() {
                   initial={{ opacity: 0, x: 20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.5, delay: 0.3 }}
-                  className="border-light-teal/30 rounded-3xl border bg-white p-6 shadow-2xl backdrop-blur-xl"
+                  className="border-light-teal/30 rounded-3xl border bg-white/95 p-6 shadow-2xl backdrop-blur-xl"
                 >
                   <h3 className="text-light-teal mb-4 text-lg font-bold drop-shadow-lg">
                     Dettagli di Pagamento
@@ -369,7 +369,7 @@ export default function SubservicePage() {
                       )}
 
                     {/* Subtotal */}
-                    <div className="border-light-teal/30 flex items-center justify-between border-t border-b py-2">
+                    <div className="flex items-center justify-between border-t border-b border-white/30 py-2">
                       <span className="font-medium text-black">Subtotale:</span>
                       <span className="font-medium text-black">
                         €
@@ -396,7 +396,7 @@ export default function SubservicePage() {
                     </div>
 
                     {/* Total */}
-                    <div className="border-light-teal/30 flex items-center justify-between border-t pt-2">
+                    <div className="flex items-center justify-between border-t border-white/30 pt-2">
                       <span className="font-bold text-black">
                         Totale Ordine:
                       </span>
@@ -411,7 +411,7 @@ export default function SubservicePage() {
                     </div>
 
                     {subservice.estimatedDuration && (
-                      <div className="border-light-teal/30 mt-3 flex items-center justify-between border-t pt-3">
+                      <div className="mt-3 flex items-center justify-between border-t border-white/30 pt-3">
                         <span className="text-md text-black/70">
                           Durata stimata:
                         </span>
@@ -428,28 +428,28 @@ export default function SubservicePage() {
                   initial={{ opacity: 0, x: 20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.5, delay: 0.4 }}
-                  className="border-light-teal/30 rounded-3xl border bg-white p-6 shadow-2xl backdrop-blur-xl"
+                  className="border-light-teal/30 rounded-3xl border bg-white/95 p-6 shadow-2xl backdrop-blur-xl"
                 >
                   <h3 className="text-light-teal mb-4 text-lg font-bold drop-shadow-lg">
                     Opzioni di Pagamento
                   </h3>
 
                   <div className="space-y-3">
-                    <div className="bg-light-teal/10 border-light-teal/30 flex items-center gap-3 rounded-xl border p-3 backdrop-blur-md">
+                    <div className="border-light-teal/30 bg-light-teal/10 flex items-center gap-3 rounded-xl border p-3 backdrop-blur-md">
                       <CreditCard className="text-light-teal h-5 w-5" />
                       <span className="text-sm font-medium text-black">
                         Carta di Credito/Debito
                       </span>
                     </div>
 
-                    <div className="bg-light-teal/10 border-light-teal/30 flex items-center gap-3 rounded-xl border p-3 backdrop-blur-md">
+                    <div className="border-light-teal/30 bg-light-teal/10 flex items-center gap-3 rounded-xl border p-3 backdrop-blur-md">
                       <Building className="text-light-teal h-5 w-5" />
                       <span className="text-sm font-medium text-black">
                         Bonifico Bancario
                       </span>
                     </div>
 
-                    <div className="bg-light-teal/10 border-light-teal/30 flex items-center gap-3 rounded-xl border p-3 backdrop-blur-md">
+                    <div className="border-light-teal/30 bg-light-teal/10 flex items-center gap-3 rounded-xl border p-3 backdrop-blur-md">
                       <Banknote className="text-light-teal h-5 w-5" />
                       <span className="text-sm font-medium text-black">
                         Contanti (in ufficio)
