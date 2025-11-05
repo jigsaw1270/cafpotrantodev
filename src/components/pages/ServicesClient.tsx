@@ -61,7 +61,7 @@ export default function ServicesClient() {
               transition={{ duration: 0.5 }}
               className="text-foreground mb-6 text-4xl font-bold tracking-tight sm:text-6xl"
             >
-              I Nostri <span className="text-primary">Servizi</span>
+              I Nostri <span className="text-light-teal">Servizi</span>
             </motion.h1>
 
             <motion.p
