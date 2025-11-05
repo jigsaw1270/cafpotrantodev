@@ -14,8 +14,6 @@ import {
 import NeonButton from '@/components/ui/neon-button';
 import CategoriesGrid from '@/components/services/CategoriesGrid';
 import { SEO } from '@/components/seo';
-import Pattern from '@/components/ui/pattern-background';
-import SpotlightCard from '@/components/ui/spotlight-card';
 import OfficeCarousel from '@/components/ui/office-carousel';
 
 const features = [
@@ -203,7 +201,7 @@ amministrative."
       </section>
 
       {/* Service Categories Section */}
-      <section className="grad-up-navy py-12 lg:py-24">
+      <section className="bg-new-beige py-12 lg:py-24">
         <div className="container mx-auto px-8 lg:px-12">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -212,10 +210,10 @@ amministrative."
             viewport={{ once: true }}
             className="mx-auto max-w-2xl text-center"
           >
-            <h2 className="mb-4 text-3xl font-bold tracking-tight text-white sm:text-4xl">
+            <h2 className="text-new-navy mb-4 text-3xl font-bold tracking-tight sm:text-4xl">
               Le Nostre Categorie di Servizi
             </h2>
-            <p className="mb-16 text-lg leading-relaxed text-slate-200">
+            <p className="text-new-light-navy mb-16 text-lg leading-relaxed">
               Esplora la nostra gamma completa di servizi legali e assistenza
               amministrativa. Ogni categoria offre supporto specializzato su
               misura per le tue esigenze specifiche.
@@ -227,25 +225,22 @@ amministrative."
       </section>
 
       {/* CTA Section */}
-      <section className="relative overflow-hidden py-24">
-        {/* Pattern Background */}
-        <div className="absolute inset-0 z-0">
-          <Pattern />
-        </div>
-
-        {/* Content */}
-        <div className="relative z-10 container mx-auto px-8 lg:px-12">
+      <section className="bg-new-navy py-24">
+        <div className="container mx-auto px-8 lg:px-12">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
             viewport={{ once: true }}
-            className="mx-auto max-w-2xl text-center"
+            className="border-new-beige/20 bg-new-white/10 mx-auto max-w-2xl rounded-3xl border p-12 text-center shadow-2xl backdrop-blur-xl"
           >
-            <h2 className="mb-4 text-3xl font-bold tracking-tight text-white sm:text-4xl">
+            <div className="bg-light-teal/20 border-light-teal/30 mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full border">
+              <Phone className="text-light-teal h-8 w-8" />
+            </div>
+            <h2 className="text-new-white mb-4 text-3xl font-bold tracking-tight sm:text-4xl">
               Hai bisogno di assistenza legale?
             </h2>
-            <p className="mb-8 text-lg leading-relaxed text-white">
+            <p className="text-new-dim-cyan mb-8 text-lg leading-relaxed">
               Contattaci oggi per servizi legali professionali e supporto
               amministrativo. Il nostro team di esperti è pronto ad aiutarti a
               navigare le procedure complesse.
@@ -260,7 +255,7 @@ amministrative."
       </section>
 
       {/* Features Section */}
-      <section className="grad-up-cyan py-24">
+      <section className="bg-new-white py-24">
         <div className="container mx-auto px-8 lg:px-12">
           <div className="mx-auto max-w-2xl text-center">
             <motion.h2
@@ -268,7 +263,7 @@ amministrative."
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
               viewport={{ once: true }}
-              className="mb-4 text-3xl font-bold tracking-tight text-white sm:text-4xl"
+              className="text-new-navy mb-4 text-3xl font-bold tracking-tight sm:text-4xl"
             >
               Perché scegliere noi
             </motion.h2>
@@ -277,7 +272,7 @@ amministrative."
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.1 }}
               viewport={{ once: true }}
-              className="text-cyan mb-16 text-lg leading-relaxed"
+              className="text-new-light-navy mb-16 text-lg leading-relaxed"
             >
               Forniamo assistenza legale completa e supporto amministrativo per
               semplificare i tuoi processi burocratici.
@@ -292,15 +287,15 @@ amministrative."
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 viewport={{ once: true }}
-                className="border-navy-gradient-1/20 shadow-elegant hover-lift bg-purple rounded-lg border p-6 text-center"
+                className="group border-light-teal/30 bg-light-teal/10 rounded-3xl border p-8 text-center shadow-2xl backdrop-blur-xl transition-all hover:scale-[1.02]"
               >
-                <div className="from-cyan/20 to-navy-gradient-2/20 mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br">
-                  <feature.icon className="text-navy-gradient-2 h-8 w-8" />
+                <div className="bg-light-teal/20 border-light-teal/30 group-hover:border-light-teal mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-full border-2 transition-all">
+                  <feature.icon className="text-light-teal h-10 w-10" />
                 </div>
-                <h3 className="text-navy-dark mb-2 text-xl font-semibold">
+                <h3 className="text-new-navy mb-3 text-xl font-bold">
                   {feature.title}
                 </h3>
-                <p className="text-navy-very-dark">{feature.description}</p>
+                <p className="text-new-light-navy">{feature.description}</p>
               </motion.div>
             ))}
           </div>
@@ -308,7 +303,7 @@ amministrative."
       </section>
 
       {/* Benefits Section */}
-      <section className="via-cyan/5 bg-gradient-to-br from-white to-white py-24">
+      <section className="bg-new-navy py-24">
         <div className="container mx-auto px-8 lg:px-12">
           <div className="grid grid-cols-1 gap-12 lg:grid-cols-2">
             <motion.div
@@ -316,11 +311,15 @@ amministrative."
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5 }}
               viewport={{ once: true }}
+              className="border-new-beige/20 bg-new-white/10 rounded-3xl border p-8 shadow-2xl backdrop-blur-xl"
             >
-              <h2 className="text-navy-dark mb-6 text-3xl font-bold tracking-tight sm:text-4xl">
+              <div className="bg-light-teal/20 border-light-teal/30 mb-6 flex h-16 w-16 items-center justify-center rounded-full border">
+                <Shield className="text-light-teal h-8 w-8" />
+              </div>
+              <h2 className="text-new-white mb-6 text-3xl font-bold tracking-tight sm:text-4xl">
                 Progettati per il Successo
               </h2>
-              <p className="text-navy-very-dark mb-8 text-lg leading-relaxed">
+              <p className="text-new-dim-cyan mb-8 text-lg leading-relaxed">
                 Il nostro approccio di sviluppo garantisce che il tuo progetto
                 venga consegnato in tempo, nel budget e superi le aspettative.
                 Ci concentriamo su qualità, performance e scalabilità.
@@ -336,8 +335,8 @@ amministrative."
                     viewport={{ once: true }}
                     className="flex items-center gap-3"
                   >
-                    <CheckCircle className="text-cyan h-5 w-5" />
-                    <span className="text-navy-dark font-medium">
+                    <CheckCircle className="text-light-teal h-6 w-6 flex-shrink-0" />
+                    <span className="text-new-white font-medium">
                       {benefit}
                     </span>
                   </motion.li>
@@ -350,17 +349,16 @@ amministrative."
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5 }}
               viewport={{ once: true }}
-              className="relative"
+              className="border-new-beige/20 bg-new-white/10 flex items-center justify-center rounded-3xl border p-12 shadow-2xl backdrop-blur-xl"
             >
-              <div className="from-cyan/20 via-navy-gradient-2/20 to-navy-gradient-1/20 aspect-square rounded-lg bg-gradient-to-br" />
-              <div className="shadow-elegant-xl border-cyan/20 absolute inset-4 rounded-lg border bg-white" />
+              <Users className="text-light-teal/20 h-48 w-48" />
             </motion.div>
           </div>
         </div>
       </section>
 
       {/* Office Locations Section */}
-      <section className="relative overflow-hidden bg-neutral-900 py-24">
+      <section className="bg-new-white py-24">
         <div className="container mx-auto px-8 lg:px-12">
           {/* Section Header */}
           <motion.div
@@ -370,10 +368,10 @@ amministrative."
             viewport={{ once: true }}
             className="mx-auto mb-16 max-w-2xl text-center"
           >
-            <h2 className="mb-4 text-3xl font-bold tracking-tight text-white sm:text-4xl">
+            <h2 className="text-new-navy mb-4 text-3xl font-bold tracking-tight sm:text-4xl">
               Visita i Nostri Uffici per una Consulenza
             </h2>
-            <p className="text-lg leading-relaxed text-gray-400">
+            <p className="text-new-light-navy text-lg leading-relaxed">
               Siamo presenti in tre sedi strategiche per offrirti il miglior
               servizio possibile. Prenota un appuntamento e vieni a trovarci.
             </p>
@@ -388,66 +386,66 @@ amministrative."
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 viewport={{ once: true }}
+                className="border-light-teal/30 bg-light-teal/10 h-full rounded-3xl border p-6 shadow-2xl backdrop-blur-xl transition-all duration-300 hover:scale-[1.02]"
               >
-                <SpotlightCard
-                  spotlightColor="rgba(0, 168, 204, 0.2)"
-                  className="h-full"
-                >
-                  {/* Image Carousel */}
+                {/* Image Carousel */}
+                <div className="border-light-teal/20 mb-6 overflow-hidden rounded-2xl border shadow-xl">
                   <OfficeCarousel
                     images={office.images}
                     officeName={office.name}
                   />
+                </div>
 
-                  {/* Office Info */}
-                  <div className="mt-6 space-y-4">
-                    <div>
-                      <h3 className="mb-2 text-xl font-bold text-white">
-                        {office.name}
-                      </h3>
-                      <p className="text-sm font-medium text-gray-300">
-                        {office.address}
-                      </p>
-                    </div>
+                {/* Office Info */}
+                <div className="space-y-4">
+                  <div className="border-light-teal/20 bg-light-teal/10 rounded-2xl border p-4 backdrop-blur-md">
+                    <h3 className="text-new-navy mb-2 text-xl font-bold">
+                      {office.name}
+                    </h3>
+                    <p className="text-new-light-navy text-sm font-medium">
+                      {office.address}
+                    </p>
+                  </div>
 
-                    <div className="space-y-2 border-t border-gray-700 pt-4">
-                      {office.phone.map((phoneNumber, idx) => (
-                        <div
-                          key={idx}
-                          className="flex items-center gap-2 text-sm"
-                        >
-                          <Phone className="text-cyan h-4 w-4" />
-                          <a
-                            href={`tel:+39${phoneNumber.replace(/\./g, '')}`}
-                            className="hover:text-cyan font-medium text-gray-200 transition-colors"
-                          >
-                            {phoneNumber}
-                          </a>
+                  <div className="space-y-3">
+                    {office.phone.map((phoneNumber, idx) => (
+                      <a
+                        key={idx}
+                        href={`tel:+39${phoneNumber.replace(/\./g, '')}`}
+                        className="group border-light-teal/30 bg-light-teal/10 hover:bg-light-teal/20 flex items-center gap-3 rounded-xl border p-3 backdrop-blur-md transition-all duration-200 hover:scale-[1.02]"
+                      >
+                        <div className="bg-light-teal rounded-full p-2">
+                          <Phone className="h-4 w-4 text-white" />
                         </div>
-                      ))}
-                      <div className="flex items-center gap-2 text-sm">
-                        <Mail className="text-cyan h-4 w-4" />
-                        <a
-                          href={`mailto:${office.email}`}
-                          className="hover:text-cyan font-medium text-gray-200 transition-colors"
-                        >
-                          {office.email}
-                        </a>
-                      </div>
-                    </div>
-
-                    {/* Get Directions Button */}
+                        <span className="text-new-navy group-hover:text-light-teal font-medium transition-colors">
+                          {phoneNumber}
+                        </span>
+                      </a>
+                    ))}
                     <a
-                      href={office.mapsUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="bg-cyan hover:bg-cyan/90 mt-4 flex items-center justify-center gap-2 rounded-lg px-4 py-2.5 text-sm font-semibold text-white transition-colors"
+                      href={`mailto:${office.email}`}
+                      className="group border-light-teal/30 bg-light-teal/10 hover:bg-light-teal/20 flex items-center gap-3 rounded-xl border p-3 backdrop-blur-md transition-all duration-200 hover:scale-[1.02]"
                     >
-                      <MapPin className="h-4 w-4" />
-                      Ottieni Indicazioni
+                      <div className="bg-light-teal rounded-full p-2">
+                        <Mail className="h-4 w-4 text-white" />
+                      </div>
+                      <span className="text-new-navy group-hover:text-light-teal text-sm font-medium transition-colors">
+                        {office.email}
+                      </span>
                     </a>
                   </div>
-                </SpotlightCard>
+
+                  {/* Get Directions Button */}
+                  <a
+                    href={office.mapsUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="border-light-teal/30 bg-new-white/80 text-light-teal hover:bg-new-white flex w-full items-center justify-center gap-2 rounded-xl border px-4 py-3 font-bold shadow-lg backdrop-blur-md transition-all duration-300 hover:scale-[1.02]"
+                  >
+                    <MapPin className="h-5 w-5" />
+                    Ottieni Indicazioni
+                  </a>
+                </div>
               </motion.div>
             ))}
           </div>

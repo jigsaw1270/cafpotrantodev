@@ -108,7 +108,7 @@ export default function SubservicePage() {
 
   if (loading) {
     return (
-      <div className="bg-new-navy/95 flex min-h-screen items-center justify-center backdrop-blur-xl">
+      <div className="bg-new-beige flex min-h-screen items-center justify-center">
         <Loader size="large" centered />
       </div>
     );

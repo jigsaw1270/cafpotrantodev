@@ -78,7 +78,7 @@ export default function CategoryPage() {
 
   if (loading) {
     return (
-      <div className="bg-purple flex min-h-screen items-center justify-center">
+      <div className="bg-new-beige flex min-h-screen items-center justify-center">
         <Loader size="large" centered />
       </div>
     );
