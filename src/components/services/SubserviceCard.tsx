@@ -14,7 +14,7 @@ interface SubserviceCardProps {
 
 const StyledWrapper = styled.div`
   .card-title {
-    color: #262626;
+    color: #ffffff;
     font-size: 1.4em;
     line-height: 1.2;
     font-weight: 700;
@@ -25,6 +25,7 @@ const StyledWrapper = styled.div`
     -webkit-box-orient: vertical;
     overflow: hidden;
     transition: all 0.5s ease-out;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
   }
 
   .price-section {
@@ -32,20 +33,25 @@ const StyledWrapper = styled.div`
   }
 
   .price-amount {
-    color: #364a60;
+    color: #00bcd4;
     font-size: 1.2em;
     font-weight: 800;
     line-height: 1.2;
     transition: all 0.5s ease-out;
     display: block;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
   }
 
   .divider-line {
     height: 2px;
-    background: linear-gradient(90deg, #6293c8, #384c6c);
+    background: linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.3),
+      rgba(0, 188, 212, 0.5)
+    );
     border-radius: 1px;
     margin: 1rem 0;
-    opacity: 0.6;
+    opacity: 0.8;
     transition: all 0.5s ease-out;
   }
 
@@ -68,7 +74,7 @@ const StyledWrapper = styled.div`
     align-items: center;
     gap: 0.5rem;
     font-size: 0.85em;
-    color: #364a60;
+    color: rgba(255, 255, 255, 0.9);
     transition: all 0.5s ease-out;
   }
 
@@ -76,6 +82,7 @@ const StyledWrapper = styled.div`
     width: 14px;
     height: 14px;
     flex-shrink: 0;
+    color: #00bcd4;
   }
 
   .star-filled {
@@ -86,6 +93,7 @@ const StyledWrapper = styled.div`
   .detail-text {
     font-weight: 500;
     flex: 1;
+    color: rgba(255, 255, 255, 0.85);
   }
 
   .tags-container {
@@ -100,8 +108,10 @@ const StyledWrapper = styled.div`
 
   .tag,
   .tag-more {
-    background: rgba(54, 74, 96, 0.1);
-    color: #364a60;
+    background: rgba(0, 188, 212, 0.2);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(0, 188, 212, 0.3);
+    color: rgba(255, 255, 255, 0.9);
     padding: 0.2rem 0.5rem;
     border-radius: 12px;
     font-size: 0.7em;
@@ -119,8 +129,10 @@ const StyledWrapper = styled.div`
     overflow: hidden;
     top: 0;
     right: 0;
-    background: linear-gradient(135deg, #6293c8, #384c6c);
-    border-radius: 0 4px 0 32px;
+    background: linear-gradient(135deg, #00bcd4, #0f4c75);
+    border-radius: 0 16px 0 32px;
+    backdrop-filter: blur(8px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
   }
 
   .go-arrow {
@@ -137,16 +149,18 @@ const StyledWrapper = styled.div`
     position: relative;
     width: 100%;
     height: 380px; /* Fixed height for all cards */
-    background-color: #f2f8f9;
-    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 16px;
     padding: 2em 1.2em;
     margin: 12px;
     text-decoration: none;
     z-index: 0;
     overflow: hidden;
-    background-color: #d0bee2;
     font-family: Arial, Helvetica, sans-serif;
-    transition: transform 0.3s ease;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
   }
 
   .card:before {
@@ -155,13 +169,14 @@ const StyledWrapper = styled.div`
     z-index: -1;
     top: -16px;
     right: -16px;
-    background: linear-gradient(135deg, #364a60, #384c6c);
+    background: linear-gradient(135deg, #00bcd4, #0f4c75);
     height: 32px;
     width: 32px;
     border-radius: 32px;
     transform: scale(1);
     transform-origin: 50% 50%;
     transition: transform 0.35s ease-out;
+    backdrop-filter: blur(8px);
   }
 
   .card:hover:before {
@@ -170,10 +185,12 @@ const StyledWrapper = styled.div`
 
   .card:hover .card-title {
     color: #ffffff;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
   }
 
   .card:hover .price-amount {
     color: #ffffff;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
   }
 
   .card:hover .divider-line {
@@ -197,10 +214,13 @@ const StyledWrapper = styled.div`
   .card:hover .tag-more {
     background: rgba(255, 255, 255, 0.2);
     color: rgba(255, 255, 255, 0.9);
+    border-color: rgba(255, 255, 255, 0.3);
   }
 
   .card:hover {
     transform: translateY(-4px);
+    background: rgba(255, 255, 255, 0.15);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
   }
 
   @media (max-width: 768px) {
@@ -317,7 +337,7 @@ const SubserviceCard: React.FC<SubserviceCardProps> = ({
                     style={{
                       fontSize: '1em',
                       lineHeight: '1.4',
-                      color: '#566973',
+                      color: 'rgba(255, 255, 255, 0.8)',
                       fontWeight: '500',
                     }}
                   >

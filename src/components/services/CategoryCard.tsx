@@ -25,13 +25,13 @@ export default function CategoryCard({
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
       viewport={{ once: true }}
-      className={`group relative overflow-hidden rounded-xl shadow-sm transition-all duration-500 hover:-translate-y-2 hover:shadow-xl ${className}`}
+      className={`group relative overflow-hidden rounded-xl transition-all duration-300 hover:scale-[1.02] ${className}`}
     >
       <Link href={`/services/${category.slug}`} className="block">
-        {/* Background Card - Dark Navy Blue */}
-        <div className="bg-purple relative flex h-64 w-full items-center justify-center transition-all duration-500">
-          {/* Background Image (Visible on mobile, hidden on desktop until hover) */}
-          <div className="absolute inset-0 opacity-100 blur-[4px] transition-opacity duration-500 md:opacity-0 md:group-hover:opacity-100">
+        {/* Background Card */}
+        <div className="relative flex h-72 w-full items-center justify-center border border-gray-200 bg-white transition-all duration-300 hover:shadow-xl">
+          {/* Background Image */}
+          <div className="absolute inset-0 opacity-20 transition-opacity duration-300 group-hover:opacity-30">
             {category.image?.url ? (
               <Image
                 src={category.image.url}
@@ -41,45 +41,37 @@ export default function CategoryCard({
                 className="object-cover object-center"
               />
             ) : (
-              <div className="from-primary/20 to-secondary/20 h-full w-full bg-gradient-to-br" />
+              <div className="h-full w-full bg-gray-100" />
             )}
-
-            {/* Dark overlay for better text readability */}
-            <div className="absolute inset-0 bg-black/50" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
           </div>
 
-          {/* Default State - Title Only (Hidden on mobile, visible on desktop until hover) */}
-          <div className="relative z-10 px-6 text-center opacity-0 transition-all duration-500 md:opacity-100 md:group-hover:opacity-0">
-            <h3 className="text-accent-foreground mb-2 text-4xl leading-tight font-bold uppercase md:text-2xl">
-              {category.name}
-            </h3>
-          </div>
-
-          {/* Detailed State - Full Details (Visible on mobile, hidden on desktop until hover) */}
-          <div className="absolute inset-0 z-20 flex flex-col justify-center p-6 opacity-100 transition-all duration-500 md:opacity-0 md:group-hover:opacity-100">
-            <motion.div initial={{ y: 20 }} className="text-center text-white">
-              <h3 className="shadow-accent mb-3 text-2xl leading-tight font-bold lg:text-3xl">
+          {/* Content Container */}
+          <div className="relative z-10 p-6 text-center">
+            <motion.div
+              initial={{ y: 20 }}
+              whileHover={{ y: -5 }}
+              transition={{ duration: 0.3 }}
+            >
+              <h3 className="text-new-navy group-hover:text-dark-teal mb-3 text-2xl font-bold transition-colors duration-300">
                 {category.name}
               </h3>
 
-              <p className="text-md mb-4 line-clamp-4 leading-relaxed text-white">
+              <p className="mb-4 line-clamp-2 text-sm text-gray-600">
                 {category.description}
               </p>
 
-              <div className="flex items-center justify-between text-sm">
-                <span className="rounded-full bg-white/20 px-3 py-1">
+              <div className="mb-4 flex items-center justify-between text-xs">
+                <span className="bg-light-teal rounded-full px-3 py-1 font-medium text-white">
                   {displayCount} servizi
                 </span>
-                <div className="flex items-center gap-2 font-medium text-white">
-                  <span>Esplora</span>
+                <div className="text-dark-teal group-hover:text-light-teal flex items-center gap-1 font-medium transition-colors duration-300">
+                  <span>Vedi tutto</span>
                   <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
                 </div>
               </div>
             </motion.div>
           </div>
-
-          {/* Corner accent (Visible on mobile, changes on desktop hover) */}
-          <div className="border-b-primary md:border-b-primary/80 md:group-hover:border-b-primary absolute top-0 right-0 h-0 w-0 border-b-[30px] border-l-[30px] border-l-transparent transition-all duration-300"></div>
         </div>
       </Link>
     </motion.div>

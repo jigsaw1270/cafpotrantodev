@@ -105,13 +105,6 @@ export default function ServicesClient() {
               per le tue esigenze. Dai servizi CAF alla consulenza legale, siamo
               qui per aiutarti.
             </motion.p>
-
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.3 }}
-              className="flex flex-col gap-4 sm:flex-row sm:justify-center"
-            ></motion.div>
           </div>
         </div>
 
@@ -121,20 +114,28 @@ export default function ServicesClient() {
       </section>
 
       {/* Categories Grid */}
-      <section className="bg-new-navy py-20 lg:py-24">
-        <div className="container mx-auto px-6 lg:px-12">
+      <section className="bg-new-navy/90 relative py-20 backdrop-blur-xl lg:py-24">
+        {/* Floating glassmorphism elements */}
+        <div className="bg-cyan/10 absolute top-10 right-10 h-28 w-28 rounded-full backdrop-blur-sm"></div>
+        <div className="absolute bottom-20 left-20 h-36 w-36 rounded-full bg-white/5 backdrop-blur-sm"></div>
+
+        <div className="relative container mx-auto px-6 lg:px-12">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
-            className="mx-auto max-w-3xl text-center"
+            className="mx-auto max-w-4xl text-center"
           >
-            <h2 className="text-new-white mb-4 text-3xl font-bold tracking-tight lg:text-4xl">
-              Le Nostre Categorie di{' '}
-              <span className="text-new-beige">Servizi</span>
+            <div className="mb-6 inline-block rounded-full border border-white/20 bg-white/10 px-6 py-3 backdrop-blur-md">
+              <span className="text-sm font-bold tracking-wide text-white uppercase">
+                Le Nostre Specialità
+              </span>
+            </div>
+            <h2 className="mb-6 text-3xl font-bold tracking-tight text-white drop-shadow-lg lg:text-5xl">
+              Categorie di <span className="text-cyan">Servizi</span>
             </h2>
-            <p className="text-new-dim-cyan mb-16 text-lg">
+            <p className="mb-16 text-lg leading-relaxed text-white/80">
               Esplora la nostra gamma completa di servizi legali e assistenza
               amministrativa. Ogni categoria offre supporto specializzato su
               misura per le tue esigenze specifiche.
@@ -146,19 +147,29 @@ export default function ServicesClient() {
       </section>
 
       {/* Process Section */}
-      <section className="bg-new-white py-20 lg:py-24">
-        <div className="container mx-auto px-6 lg:px-12">
+      <section className="bg-new-navy/95 relative overflow-hidden py-20 backdrop-blur-xl lg:py-24">
+        {/* Background glassmorphism elements */}
+        <div className="bg-dark-teal/10 absolute top-20 left-10 h-32 w-32 rounded-full backdrop-blur-sm"></div>
+        <div className="bg-cyan/10 absolute right-20 bottom-10 h-40 w-40 rounded-full backdrop-blur-sm"></div>
+        <div className="absolute top-1/2 left-1/3 h-24 w-24 rounded-full bg-white/5 backdrop-blur-sm"></div>
+
+        <div className="relative container mx-auto px-6 lg:px-12">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
-            className="mx-auto max-w-3xl text-center"
+            className="mx-auto max-w-4xl text-center"
           >
-            <h2 className="text-new-navy mb-4 text-3xl font-bold tracking-tight lg:text-4xl">
-              Il Nostro <span className="text-dark-teal">Processo</span>
+            <div className="bg-dark-teal/20 border-dark-teal/30 mb-6 inline-block rounded-full border px-6 py-3 backdrop-blur-md">
+              <span className="text-sm font-bold tracking-wide text-white uppercase">
+                Il Nostro Metodo
+              </span>
+            </div>
+            <h2 className="mb-6 text-3xl font-bold tracking-tight text-white drop-shadow-lg lg:text-5xl">
+              Il Nostro <span className="text-cyan">Processo</span>
             </h2>
-            <p className="text-new-light-navy mb-16 text-lg">
+            <p className="mb-16 text-lg leading-relaxed text-white/80">
               Una metodologia collaudata che garantisce risultati eccellenti in
               ogni fase del tuo progetto.
             </p>
@@ -172,26 +183,26 @@ export default function ServicesClient() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 viewport={{ once: true }}
-                className="group relative overflow-hidden rounded-2xl bg-white p-8 shadow-lg transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl"
+                className="group relative overflow-hidden rounded-3xl border border-white/20 bg-white/10 p-8 shadow-2xl backdrop-blur-xl transition-all duration-300 hover:scale-[1.02] hover:bg-white/15"
               >
                 {/* Step Number */}
-                <div className="from-dark-teal to-light-teal absolute -top-4 -right-4 flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-r text-xl font-bold text-white shadow-lg">
+                <div className="bg-cyan absolute -top-4 -right-4 flex h-16 w-16 items-center justify-center rounded-full border border-white/30 text-xl font-bold text-white shadow-xl backdrop-blur-sm">
                   {step.step}
                 </div>
 
                 {/* Icon */}
-                <step.icon className="text-dark-teal mb-4 h-12 w-12" />
+                <step.icon className="text-cyan mb-6 h-12 w-12" />
 
                 {/* Content */}
-                <h3 className="text-new-navy group-hover:text-dark-teal mb-3 text-xl font-bold transition-colors">
+                <h3 className="group-hover:text-cyan mb-4 text-xl font-bold text-white drop-shadow-sm transition-colors">
                   {step.title}
                 </h3>
-                <p className="text-new-light-navy leading-relaxed">
+                <p className="leading-relaxed text-white/80">
                   {step.description}
                 </p>
 
                 {/* Hover Arrow */}
-                <ArrowRight className="text-light-teal absolute right-6 bottom-6 h-5 w-5 opacity-0 transition-all duration-300 group-hover:translate-x-1 group-hover:opacity-100" />
+                <ArrowRight className="text-cyan absolute right-6 bottom-6 h-6 w-6 opacity-0 transition-all duration-300 group-hover:translate-x-1 group-hover:opacity-100" />
               </motion.div>
             ))}
           </div>
@@ -199,8 +210,13 @@ export default function ServicesClient() {
       </section>
 
       {/* CTA Section */}
-      <section className="bg-new-navy relative overflow-hidden py-20 lg:py-24">
-        <div className="container mx-auto px-6 lg:px-12">
+      <section className="bg-new-navy/95 relative overflow-hidden py-20 backdrop-blur-xl lg:py-24">
+        {/* Glassmorphism background elements */}
+        <div className="bg-cyan/10 absolute top-10 left-10 h-32 w-32 rounded-full backdrop-blur-sm"></div>
+        <div className="absolute right-20 bottom-20 h-40 w-40 rounded-full bg-white/5 backdrop-blur-sm"></div>
+        <div className="bg-dark-teal/10 absolute top-1/2 left-1/4 h-24 w-24 rounded-full backdrop-blur-sm"></div>
+
+        <div className="relative container mx-auto px-6 lg:px-12">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -208,13 +224,6 @@ export default function ServicesClient() {
             viewport={{ once: true }}
             className="mx-auto max-w-4xl text-center"
           >
-            {/* Background Pattern */}
-            <div className="absolute inset-0 opacity-5">
-              <div className="bg-new-beige absolute top-10 left-10 h-32 w-32 rounded-full"></div>
-              <div className="bg-light-teal absolute right-10 bottom-10 h-24 w-24 rounded-full"></div>
-              <div className="bg-dark-teal absolute top-1/2 left-1/4 h-16 w-16 rounded-full"></div>
-            </div>
-
             <div className="relative">
               {/* Premium Badge */}
               <motion.div
@@ -224,40 +233,38 @@ export default function ServicesClient() {
                 viewport={{ once: true }}
                 className="mb-8"
               >
-                <span className="from-dark-teal to-light-teal inline-block rounded-full bg-gradient-to-r px-6 py-2 text-sm font-bold tracking-wide text-white uppercase shadow-lg">
+                <span className="bg-cyan/20 border-cyan/30 inline-block rounded-full border px-6 py-3 text-sm font-bold tracking-wide text-white uppercase shadow-lg backdrop-blur-md">
                   Servizio Premium
                 </span>
               </motion.div>
 
-              <h2 className="text-new-white mb-6 text-4xl font-bold tracking-tight lg:text-5xl">
+              <h2 className="mb-6 text-4xl font-bold tracking-tight text-white drop-shadow-lg lg:text-5xl">
                 Pronto per Iniziare il Tuo{' '}
-                <span className="from-new-beige to-light-teal bg-gradient-to-r bg-clip-text text-transparent">
-                  Progetto?
-                </span>
+                <span className="text-cyan">Progetto?</span>
               </h2>
 
-              <p className="text-new-dim-cyan mb-10 text-xl leading-relaxed">
+              <p className="mb-10 text-xl leading-relaxed text-white/80">
                 Parliamo dei tuoi requisiti e creiamo qualcosa di straordinario
                 insieme.
                 <br />
-                <span className="text-new-beige font-semibold">
+                <span className="text-cyan font-semibold">
                   Contattaci per una consulenza gratuita.
                 </span>
               </p>
 
-              <div className="flex flex-col gap-6 sm:flex-row sm:justify-center">
-                <button className="from-dark-teal to-light-teal hover:from-light-teal hover:to-dark-teal flex transform items-center justify-center gap-2 rounded-full bg-gradient-to-r px-8 py-4 text-lg font-bold text-white shadow-2xl transition-all duration-300 hover:scale-105">
-                  <ArrowRight className="h-5 w-5" />
+              <div className="mb-16 flex flex-col gap-6 sm:flex-row sm:justify-center">
+                <button className="bg-cyan hover:bg-cyan/90 flex transform items-center justify-center gap-3 rounded-2xl border border-white/20 px-8 py-4 text-lg font-bold text-white shadow-2xl backdrop-blur-sm transition-all duration-300 hover:scale-105">
+                  <ArrowRight className="h-6 w-6" />
                   Richiedi un Preventivo
                 </button>
-                <button className="border-new-beige text-new-beige hover:bg-new-beige hover:text-new-navy flex items-center justify-center gap-2 rounded-full border-2 px-8 py-4 text-lg font-semibold shadow-lg transition-all duration-300 hover:shadow-xl">
-                  <Phone className="h-5 w-5" />
+                <button className="hover:text-cyan flex items-center justify-center gap-3 rounded-2xl border border-white/30 bg-white/20 px-8 py-4 text-lg font-bold text-white shadow-lg backdrop-blur-md transition-all duration-300 hover:scale-105 hover:bg-white/30">
+                  <Phone className="h-6 w-6" />
                   Chiamaci Ora
                 </button>
               </div>
 
               {/* Enhanced Benefits List */}
-              <div className="mt-16 grid grid-cols-1 gap-6 md:grid-cols-3">
+              <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
                 {[
                   {
                     icon: Target,
@@ -281,15 +288,13 @@ export default function ServicesClient() {
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: 0.3 }}
                     viewport={{ once: true }}
-                    className="bg-new-light-navy/20 border-new-dim-cyan/30 hover:bg-new-light-navy/30 rounded-2xl border p-6 backdrop-blur-sm transition-all duration-300"
+                    className="rounded-2xl border border-white/20 bg-white/10 p-6 backdrop-blur-md transition-all duration-300 hover:scale-[1.02] hover:bg-white/15"
                   >
-                    <benefit.icon className="text-light-teal mb-3 h-8 w-8" />
-                    <div className="text-new-beige mb-2 text-lg font-bold">
+                    <benefit.icon className="text-cyan mb-4 h-10 w-10" />
+                    <div className="mb-2 text-lg font-bold text-white drop-shadow-sm">
                       {benefit.text}
                     </div>
-                    <div className="text-new-dim-cyan text-sm">
-                      {benefit.desc}
-                    </div>
+                    <div className="text-sm text-white/80">{benefit.desc}</div>
                   </motion.div>
                 ))}
               </div>
@@ -302,7 +307,7 @@ export default function ServicesClient() {
                 viewport={{ once: true }}
                 className="mt-12 text-center"
               >
-                <p className="text-light-teal text-sm font-medium">
+                <p className="text-cyan inline-block rounded-full border border-white/20 bg-white/10 px-6 py-2 text-sm font-medium backdrop-blur-md">
                   Offerta limitata: primi 10 clienti ricevono il 20% di sconto
                 </p>
               </motion.div>

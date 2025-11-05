@@ -114,11 +114,16 @@ export default function CategoryPage() {
         url={`/services/${category.slug}`}
       />
 
+      {/* Empty div like homepage */}
+      <div className="bg-light-teal max-auto text-cyan hidden px-4 md:block">
+        .
+      </div>
+
       {/* Back Navigation */}
-      <div className="container mx-auto bg-cyan-100 px-8 pt-6 lg:px-12">
+      <div className="bg-new-beige container mx-auto px-8 pt-6 lg:px-12">
         <Link
           href="/services"
-          className="text-muted-foreground hover:text-primary mb-4 inline-flex items-center gap-2 transition-colors"
+          className="text-new-navy hover:text-dark-teal mb-4 inline-flex items-center gap-2 font-medium transition-colors"
         >
           <ArrowLeft className="h-4 w-4" />
           Torna ai servizi
@@ -126,7 +131,7 @@ export default function CategoryPage() {
       </div>
 
       {/* Category Banner */}
-      <section className="from-background via-cyan to-background relative overflow-hidden bg-gradient-to-br py-16">
+      <section className="bg-new-beige relative overflow-hidden py-16">
         <div className="container mx-auto px-8 lg:px-12">
           <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2">
             {/* Category Content */}
@@ -135,16 +140,27 @@ export default function CategoryPage() {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5 }}
             >
-              <h1 className="text-foreground mb-6 text-4xl font-bold lg:text-5xl">
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.6 }}
+                className="mb-6"
+              >
+                <span className="bg-dark-teal text-new-white inline-block rounded-full px-4 py-2 text-sm font-semibold tracking-wide uppercase">
+                  Categoria Servizi
+                </span>
+              </motion.div>
+
+              <h1 className="text-new-navy mb-6 text-4xl font-bold lg:text-5xl">
                 {category.name}
               </h1>
 
-              <p className="text-muted-foreground mb-6 text-lg leading-relaxed">
+              <p className="text-new-light-navy mb-6 text-lg leading-relaxed">
                 {category.description}
               </p>
 
-              <div className="text-muted-foreground flex items-center gap-4 text-sm">
-                <span className="flex items-center gap-1">
+              <div className="text-new-light-navy flex items-center gap-4 text-sm">
+                <span className="bg-light-teal/20 border-light-teal/30 flex items-center gap-2 rounded-full border px-4 py-2 font-medium backdrop-blur-md">
                   <FileText className="h-4 w-4" />
                   {subservices.length} servizi disponibili
                 </span>
@@ -156,7 +172,7 @@ export default function CategoryPage() {
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5, delay: 0.2 }}
-              className="relative h-80 w-full overflow-hidden rounded-2xl shadow-xl lg:h-[3/4dvh]"
+              className="relative h-80 w-full overflow-hidden rounded-2xl shadow-xl lg:h-96"
             >
               {category.image?.url ? (
                 <Image
@@ -168,8 +184,8 @@ export default function CategoryPage() {
                   priority
                 />
               ) : (
-                <div className="from-primary/20 to-secondary/20 flex h-full w-full items-center justify-center bg-gradient-to-br">
-                  <FileText className="text-primary/40 h-24 w-24" />
+                <div className="from-dark-teal/20 to-light-teal/20 flex h-full w-full items-center justify-center bg-gradient-to-br">
+                  <FileText className="text-dark-teal/40 h-24 w-24" />
                 </div>
               )}
 
@@ -178,11 +194,20 @@ export default function CategoryPage() {
             </motion.div>
           </div>
         </div>
+
+        {/* Decorative Elements */}
+        <div className="bg-light-teal/10 absolute -top-20 -right-20 h-40 w-40 rounded-full"></div>
+        <div className="bg-dark-teal/10 absolute -bottom-10 -left-10 h-32 w-32 rounded-full"></div>
       </section>
 
       {/* Subservices Grid */}
-      <section className="grad-up-navy py-16">
-        <div className="container mx-auto px-8 lg:px-12">
+      <section className="bg-new-navy/95 relative py-16 backdrop-blur-xl">
+        {/* Glassmorphism Background Elements */}
+        <div className="bg-cyan/10 absolute top-20 left-20 h-40 w-40 rounded-full backdrop-blur-sm"></div>
+        <div className="absolute right-10 bottom-10 h-32 w-32 rounded-full bg-white/5 backdrop-blur-sm"></div>
+        <div className="bg-dark-teal/10 absolute top-1/3 right-1/4 h-24 w-24 rounded-full backdrop-blur-sm"></div>
+
+        <div className="relative container mx-auto px-8 lg:px-12">
           {/* Section Header */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -191,10 +216,10 @@ export default function CategoryPage() {
             viewport={{ once: true }}
             className="mb-12 text-center"
           >
-            <h2 className="text-foreground mb-4 text-3xl font-bold">
+            <h2 className="mb-4 text-3xl font-bold text-white drop-shadow-lg">
               I nostri servizi
             </h2>
-            <p className="text-muted-foreground mx-auto max-w-2xl text-lg">
+            <p className="mx-auto max-w-2xl text-lg leading-relaxed text-white/80">
               Scopri tutti i servizi disponibili nella categoria {category.name}
             </p>
           </motion.div>
@@ -224,13 +249,16 @@ export default function CategoryPage() {
               viewport={{ once: true }}
               className="py-12 text-center"
             >
-              <FileText className="text-muted-foreground/40 mx-auto mb-4 h-16 w-16" />
-              <h3 className="text-foreground mb-2 text-lg font-medium">
-                Nessun servizio disponibile
-              </h3>
-              <p className="text-muted-foreground">
-                Al momento non ci sono servizi disponibili in questa categoria.
-              </p>
+              <div className="rounded-2xl border border-white/20 bg-white/10 p-12 shadow-2xl backdrop-blur-xl">
+                <FileText className="mx-auto mb-4 h-16 w-16 text-white/40" />
+                <h3 className="mb-2 text-lg font-medium text-white">
+                  Nessun servizio disponibile
+                </h3>
+                <p className="text-white/70">
+                  Al momento non ci sono servizi disponibili in questa
+                  categoria.
+                </p>
+              </div>
             </motion.div>
           )}
         </div>
