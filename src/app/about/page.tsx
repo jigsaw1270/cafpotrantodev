@@ -53,7 +53,7 @@ export default function About() {
       </div>
 
       {/* Hero Section */}
-      <section className="bg-new-beige relative overflow-hidden py-20 lg:py-24">
+      <section className="bg-new-beige relative overflow-hidden py-20 lg:py-12">
         <div className="container mx-auto px-6 lg:px-12">
           <div className="mx-auto max-w-4xl text-center">
             <motion.div

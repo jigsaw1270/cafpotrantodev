@@ -28,7 +28,7 @@ export function MobileNavigation({ links }: MobileNavigationProps) {
     <Dialog.Root open={isOpen} onOpenChange={setIsOpen}>
       <Dialog.Trigger asChild>
         <button
-          className="text-navy-dark hover:bg-purple/20 flex h-10 w-10 items-center justify-center rounded-lg transition-all duration-200 md:hidden"
+          className="text-new-navy hover:bg-light-teal/20 flex h-10 w-10 items-center justify-center rounded-lg transition-all duration-200 md:hidden"
           aria-label="Toggle menu"
         >
           <Menu className="h-5 w-5" />
@@ -61,22 +61,17 @@ export function MobileNavigation({ links }: MobileNavigationProps) {
                     stiffness: 400,
                     damping: 40,
                   }}
-                  className="fixed top-0 right-0 z-[70] h-full w-[280px] shadow-2xl focus:outline-none"
-                  style={{ backgroundColor: 'var(--purple)' }}
+                  className="bg-new-beige fixed top-0 right-0 z-[70] h-full w-[280px] shadow-2xl focus:outline-none"
                 >
                   {/* Header */}
-                  <div className="border-cyan/20 flex h-16 items-center justify-between border-b px-5">
-                    <Dialog.Title
-                      className="text-lg font-semibold"
-                      style={{ color: 'var(--navy-dark)' }}
-                    >
+                  <div className="border-light-teal/20 flex h-16 items-center justify-between border-b px-5">
+                    <Dialog.Title className="text-new-navy text-lg font-semibold">
                       Menu
                     </Dialog.Title>
                     <Dialog.Close asChild>
                       <button
-                        className="hover:bg-cyan/20 flex h-8 w-8 items-center justify-center rounded-lg transition-all duration-200"
+                        className="text-new-navy hover:bg-light-teal/20 flex h-8 w-8 items-center justify-center rounded-lg transition-all duration-200"
                         aria-label="Close menu"
-                        style={{ color: 'var(--navy-dark)' }}
                       >
                         <X className="h-5 w-5" />
                       </button>
@@ -102,28 +97,22 @@ export function MobileNavigation({ links }: MobileNavigationProps) {
                               href={link.href}
                               className={`group flex items-center justify-between rounded-lg px-4 py-3 transition-all duration-200 ${
                                 isActive
-                                  ? 'bg-cyan shadow-md'
-                                  : 'hover:bg-cyan/20'
+                                  ? 'bg-light-teal shadow-md'
+                                  : 'hover:bg-light-teal/20'
                               }`}
                               onClick={() => setIsOpen(false)}
                             >
                               <span
                                 className={`text-lg font-medium ${
-                                  isActive ? 'text-white' : ''
+                                  isActive ? 'text-white' : 'text-new-navy'
                                 }`}
-                                style={
-                                  !isActive ? { color: 'var(--navy-dark)' } : {}
-                                }
                               >
                                 {link.label}
                               </span>
                               <ChevronRight
                                 className={`h-4 w-4 transition-transform duration-200 group-hover:translate-x-1 ${
-                                  isActive ? 'text-white' : ''
+                                  isActive ? 'text-white' : 'text-new-navy'
                                 }`}
-                                style={
-                                  !isActive ? { color: 'var(--navy-dark)' } : {}
-                                }
                               />
                             </a>
                           </motion.li>

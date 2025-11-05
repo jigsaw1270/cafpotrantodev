@@ -69,7 +69,7 @@ export default function ServicesClient() {
       </div>
 
       {/* Hero Section */}
-      <section className="bg-new-beige relative overflow-hidden py-20 lg:py-24">
+      <section className="bg-new-beige relative overflow-hidden py-20 lg:py-12">
         <div className="container mx-auto px-6 lg:px-12">
           <div className="mx-auto max-w-4xl text-center">
             <motion.div
@@ -128,18 +128,10 @@ export default function ServicesClient() {
             className="mx-auto max-w-4xl text-center"
           >
             <div className="mb-6 inline-block rounded-full border border-white/20 bg-white/10 px-6 py-3 backdrop-blur-md">
-              <span className="text-sm font-bold tracking-wide text-white uppercase">
+              <span className="pb-6 text-sm font-bold tracking-wide text-white uppercase">
                 Le Nostre Specialità
               </span>
             </div>
-            <h2 className="mb-6 text-3xl font-bold tracking-tight text-white drop-shadow-lg lg:text-5xl">
-              Categorie di <span className="text-cyan">Servizi</span>
-            </h2>
-            <p className="mb-16 text-lg leading-relaxed text-white/80">
-              Esplora la nostra gamma completa di servizi legali e assistenza
-              amministrativa. Ogni categoria offre supporto specializzato su
-              misura per le tue esigenze specifiche.
-            </p>
           </motion.div>
 
           <CategoriesGrid />
