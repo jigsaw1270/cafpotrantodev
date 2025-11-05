@@ -2,13 +2,23 @@
 
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronDown, HelpCircle, Phone, MessageCircle } from 'lucide-react';
+import {
+  ChevronDown,
+  HelpCircle,
+  Phone,
+  MessageCircle,
+  Calculator,
+  Shield,
+  Smartphone,
+  Gift,
+  FileText,
+} from 'lucide-react';
 import { SEO } from '@/components/seo';
-import { Button } from '@/components/ui/button';
 
 const faqData = [
   {
     category: 'Servizi CAF',
+    icon: Calculator,
     questions: [
       {
         id: 'caf-1',
@@ -38,6 +48,7 @@ const faqData = [
   },
   {
     category: 'Servizi Patronato',
+    icon: Shield,
     questions: [
       {
         id: 'patronato-1',
@@ -67,6 +78,7 @@ const faqData = [
   },
   {
     category: 'SPID e Servizi Digitali',
+    icon: Smartphone,
     questions: [
       {
         id: 'spid-1',
@@ -90,6 +102,7 @@ const faqData = [
   },
   {
     category: 'Bonus e Agevolazioni',
+    icon: Gift,
     questions: [
       {
         id: 'bonus-1',
@@ -113,6 +126,7 @@ const faqData = [
   },
   {
     category: 'Pratiche Generali',
+    icon: FileText,
     questions: [
       {
         id: 'general-1',
@@ -155,23 +169,24 @@ function FAQItem({ question }: FAQItemProps) {
 
   return (
     <motion.div
-      className="border-border overflow-hidden rounded-lg border"
+      className="border-new-dim-cyan/20 group overflow-hidden rounded-xl border bg-white shadow-lg transition-all duration-300 hover:shadow-xl"
       initial={{ opacity: 0, y: 10 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
     >
       <button
-        className="bg-background hover:bg-purple flex w-full items-center justify-between px-6 py-4 text-left transition-colors duration-200"
+        className="group-hover:bg-new-beige/10 flex w-full items-center justify-between px-6 py-5 text-left transition-colors duration-300"
         onClick={() => setIsOpen(!isOpen)}
       >
-        <h3 className="text-foreground pr-4 font-medium">
+        <h3 className="text-new-navy pr-4 text-lg font-semibold">
           {question.question}
         </h3>
         <motion.div
           animate={{ rotate: isOpen ? 180 : 0 }}
-          transition={{ duration: 0.2 }}
+          transition={{ duration: 0.3 }}
+          className="flex-shrink-0"
         >
-          <ChevronDown className="text-muted-foreground h-5 w-5 flex-shrink-0" />
+          <ChevronDown className="text-dark-teal h-6 w-6" />
         </motion.div>
       </button>
 
@@ -181,11 +196,11 @@ function FAQItem({ question }: FAQItemProps) {
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: 'auto', opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.3, ease: 'easeInOut' }}
+            transition={{ duration: 0.4, ease: 'easeInOut' }}
             className="overflow-hidden"
           >
-            <div className="bg-secondary/30 border-border border-t px-6 py-4">
-              <p className="text-muted-foreground leading-relaxed">
+            <div className="from-new-beige/5 to-light-teal/5 border-new-dim-cyan/20 border-t bg-gradient-to-r px-6 py-5">
+              <p className="text-new-light-navy leading-relaxed">
                 {question.answer}
               </p>
             </div>
@@ -211,59 +226,89 @@ export default function FAQPage() {
       </div>
 
       {/* Hero Section */}
-      <section className="bg-new-beige relative overflow-hidden bg-linear-to-bl py-10">
-        <div className="container mx-auto px-8 lg:px-12">
+      <section className="bg-new-beige relative overflow-hidden py-20 lg:py-24">
+        <div className="container mx-auto px-6 lg:px-12">
           <div className="mx-auto max-w-4xl text-center">
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.6 }}
               className="mb-6"
             >
-              <HelpCircle className="text-primary mx-auto mb-4 h-16 w-16" />
-              <h1 className="text-foreground mb-4 text-4xl font-bold tracking-tight sm:text-6xl">
-                SEZIONE <span className="text-primary">FAQ</span>
-              </h1>
+              <span className="bg-dark-teal text-new-white inline-block rounded-full px-4 py-2 text-sm font-semibold tracking-wide uppercase">
+                Domande Frequenti
+              </span>
             </motion.div>
 
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
+            <motion.h1
+              initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.1 }}
-              className="text-background mb-8 text-xl"
+              transition={{ duration: 0.7, delay: 0.1 }}
+              className="text-new-navy mb-6 text-4xl font-bold tracking-tight lg:text-6xl"
             >
-              In questa sezione trovi le risposte alle domande più comuni sui
-              nostri servizi CAF e Patronato, sui requisiti necessari per le
-              pratiche e sulle principali agevolazioni disponibili. Il nostro
-              obiettivo è fornirti informazioni chiare e immediate per aiutarti
-              a orientarti tra procedure e documentazioni. Se non trovi ciò che
-              cerchi, non esitare a contattarci direttamente: il nostro team è a
-              tua disposizione per offrirti supporto personalizzato e cortese.
+              FAQ - Sezione{' '}
+              <span className="from-dark-teal to-light-teal bg-gradient-to-r bg-clip-text text-transparent">
+                Domande
+              </span>
+            </motion.h1>
+
+            <motion.p
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.2 }}
+              className="text-new-light-navy mb-10 text-lg lg:text-xl"
+            >
+              Trova risposte alle domande più comuni sui nostri servizi CAF,
+              Patronato, SPID e bonus. Se non trovi quello che cerchi,
+              contattaci direttamente per una consulenza personalizzata.
             </motion.p>
           </div>
         </div>
+
+        {/* Decorative Elements */}
+        <div className="bg-light-teal/10 absolute -top-20 -right-20 h-40 w-40 rounded-full"></div>
+        <div className="bg-dark-teal/10 absolute -bottom-10 -left-10 h-32 w-32 rounded-full"></div>
       </section>
 
       {/* FAQ Content */}
-      <section className="grad-up-navy py-12 lg:py-24">
-        <div className="container mx-auto px-8 lg:px-12">
-          <div className="mx-auto max-w-4xl">
+      <section className="bg-new-white py-20 lg:py-24">
+        <div className="container mx-auto px-6 lg:px-12">
+          <div className="mx-auto max-w-5xl">
             {faqData.map((category, categoryIndex) => (
               <motion.div
                 key={category.category}
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: categoryIndex * 0.1 }}
+                transition={{ duration: 0.6, delay: categoryIndex * 0.1 }}
                 viewport={{ once: true }}
-                className="mb-12"
+                className="mb-16"
               >
-                <h2 className="text-foreground border-primary/20 mb-6 border-b pb-3 text-2xl font-bold">
-                  {category.category}
-                </h2>
+                <div className="mb-12 text-center">
+                  <div className="mb-4 flex items-center justify-center gap-3">
+                    <div className="from-dark-teal to-light-teal flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-br">
+                      <category.icon className="h-6 w-6 text-white" />
+                    </div>
+                    <h2 className="text-new-navy text-3xl font-bold tracking-tight lg:text-4xl">
+                      {category.category.split(' ')[0]}{' '}
+                      <span className="from-dark-teal to-light-teal bg-gradient-to-r bg-clip-text text-transparent">
+                        {category.category.split(' ').slice(1).join(' ')}
+                      </span>
+                    </h2>
+                  </div>
+                  <div className="from-dark-teal to-light-teal mx-auto h-1 w-24 rounded-full bg-gradient-to-r"></div>
+                </div>
 
-                <div className="space-y-4">
-                  {category.questions.map(question => (
-                    <FAQItem key={question.id} question={question} />
+                <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
+                  {category.questions.map((question, questionIndex) => (
+                    <motion.div
+                      key={question.id}
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.5, delay: questionIndex * 0.1 }}
+                      viewport={{ once: true }}
+                    >
+                      <FAQItem question={question} />
+                    </motion.div>
                   ))}
                 </div>
               </motion.div>
@@ -272,41 +317,168 @@ export default function FAQPage() {
         </div>
       </section>
 
-      {/* Contact CTA */}
-      <section className="bg-secondary/30 py-24">
-        <div className="container mx-auto px-8 lg:px-12">
+      {/* Support Statistics Section */}
+      <section className="bg-new-navy relative overflow-hidden py-20 lg:py-24">
+        <div className="container mx-auto px-6 lg:px-12">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
+            transition={{ duration: 0.6 }}
             viewport={{ once: true }}
-            className="mx-auto max-w-2xl text-center"
+            className="mb-16 text-center"
           >
-            <h2 className="text-foreground mb-4 text-3xl font-bold">
-              Non hai trovato la risposta che cercavi?
+            <h2 className="text-new-white mb-4 text-3xl font-bold tracking-tight lg:text-4xl">
+              Il Nostro{' '}
+              <span className="from-new-beige to-light-teal bg-gradient-to-r bg-clip-text text-transparent">
+                Supporto
+              </span>{' '}
+              in Numeri
             </h2>
-            <p className="text-muted-foreground mb-8">
-              Il nostro team è pronto ad aiutarti con qualsiasi domanda sui
-              nostri servizi. Contattaci per una consulenza gratuita e
-              personalizzata.
+            <p className="text-new-dim-cyan mx-auto max-w-2xl text-lg">
+              Ogni giorno aiutiamo centinaia di persone a risolvere le loro
+              pratiche amministrative e fiscali con professionalità e
+              competenza.
             </p>
+          </motion.div>
 
-            <div className="flex flex-col justify-center gap-4 sm:flex-row">
-              <Button size="lg" className="flex items-center gap-2">
-                <Phone className="h-5 w-5" />
-                Chiamaci ora
-              </Button>
-              <Button
-                variant="outline"
-                size="lg"
-                className="flex items-center gap-2"
-              >
-                <MessageCircle className="h-5 w-5" />
-                WhatsApp
-              </Button>
+          <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              viewport={{ once: true }}
+              className="group text-center"
+            >
+              <div className="from-dark-teal/20 to-light-teal/40 border-new-beige/20 hover:border-new-beige/40 rounded-2xl border bg-gradient-to-br p-8 transition-all duration-300 hover:scale-105">
+                <div className="text-new-beige mb-2 text-4xl font-bold lg:text-5xl">
+                  CAF
+                </div>
+                <div className="text-new-white mb-2 text-lg font-semibold">
+                  Servizi Fiscali
+                </div>
+                <div className="text-new-dim-cyan text-sm">
+                  Assistenza completa
+                </div>
+              </div>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              viewport={{ once: true }}
+              className="group text-center"
+            >
+              <div className="from-light-teal/20 to-dark-teal/40 border-light-teal/20 hover:border-light-teal/40 rounded-2xl border bg-gradient-to-br p-8 transition-all duration-300 hover:scale-105">
+                <div className="text-light-teal mb-2 text-4xl font-bold lg:text-5xl">
+                  SPID
+                </div>
+                <div className="text-new-white mb-2 text-lg font-semibold">
+                  Identità Digitale
+                </div>
+                <div className="text-new-dim-cyan text-sm">
+                  Attivazione e supporto
+                </div>
+              </div>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              viewport={{ once: true }}
+              className="group text-center"
+            >
+              <div className="from-new-beige/20 to-dark-teal/40 border-new-beige/20 hover:border-new-beige/40 rounded-2xl border bg-gradient-to-br p-8 transition-all duration-300 hover:scale-105">
+                <div className="text-new-beige mb-2 text-4xl font-bold lg:text-5xl">
+                  24/7
+                </div>
+                <div className="text-new-white mb-2 text-lg font-semibold">
+                  Accessibilità
+                </div>
+                <div className="text-new-dim-cyan text-sm">
+                  FAQ sempre disponibili
+                </div>
+              </div>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              viewport={{ once: true }}
+              className="group text-center"
+            >
+              <div className="from-dark-teal/20 to-new-beige/40 border-dark-teal/20 hover:border-dark-teal/40 rounded-2xl border bg-gradient-to-br p-8 transition-all duration-300 hover:scale-105">
+                <div className="text-dark-teal mb-2 text-4xl font-bold lg:text-5xl">
+                  FREE
+                </div>
+                <div className="text-new-white mb-2 text-lg font-semibold">
+                  Molti Servizi
+                </div>
+                <div className="text-new-dim-cyan text-sm">
+                  Senza costi aggiuntivi
+                </div>
+              </div>
+            </motion.div>
+          </div>
+
+          {/* Quick Help Cards */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.5 }}
+            viewport={{ once: true }}
+            className="mt-16"
+          >
+            <h3 className="text-new-white mb-10 text-center text-2xl font-bold">
+              I Nostri{' '}
+              <span className="text-light-teal">Servizi Principali</span>
+            </h3>
+
+            <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
+              <div className="bg-new-light-navy/30 border-new-dim-cyan/30 hover:border-light-teal/50 rounded-xl border p-6 backdrop-blur-sm transition-all duration-300">
+                <div className="from-dark-teal to-light-teal mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-br">
+                  <Phone className="h-6 w-6 text-white" />
+                </div>
+                <h4 className="text-new-white mb-2 text-center font-semibold">
+                  Assistenza CAF
+                </h4>
+                <p className="text-new-dim-cyan text-center text-sm">
+                  Dichiarazioni redditi, ISEE e pratiche fiscali
+                </p>
+              </div>
+
+              <div className="bg-new-light-navy/30 border-new-dim-cyan/30 hover:border-light-teal/50 rounded-xl border p-6 backdrop-blur-sm transition-all duration-300">
+                <div className="from-light-teal to-dark-teal mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-br">
+                  <MessageCircle className="h-6 w-6 text-white" />
+                </div>
+                <h4 className="text-new-white mb-2 text-center font-semibold">
+                  Servizi Patronato
+                </h4>
+                <p className="text-new-dim-cyan text-center text-sm">
+                  Pensioni, NASpI e pratiche previdenziali
+                </p>
+              </div>
+
+              <div className="bg-new-light-navy/30 border-new-dim-cyan/30 hover:border-light-teal/50 rounded-xl border p-6 backdrop-blur-sm transition-all duration-300">
+                <div className="from-new-beige to-dark-teal mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-br">
+                  <HelpCircle className="h-6 w-6 text-white" />
+                </div>
+                <h4 className="text-new-white mb-2 text-center font-semibold">
+                  Consulenza Legale
+                </h4>
+                <p className="text-new-dim-cyan text-center text-sm">
+                  Supporto amministrativo e documentale
+                </p>
+              </div>
             </div>
           </motion.div>
         </div>
+
+        {/* Decorative Elements */}
+        <div className="bg-light-teal/10 absolute -top-20 -right-20 h-40 w-40 rounded-full"></div>
+        <div className="bg-dark-teal/10 absolute -bottom-20 -left-20 h-32 w-32 rounded-full"></div>
       </section>
     </>
   );
