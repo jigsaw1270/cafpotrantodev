@@ -53,23 +53,37 @@ export default function About() {
       </div>
 
       {/* Hero Section */}
-      <section className="bg-new-beige relative overflow-hidden py-10">
-        <div className="container mx-auto px-8 lg:px-12">
+      <section className="bg-new-beige relative overflow-hidden py-20 lg:py-24">
+        <div className="container mx-auto px-6 lg:px-12">
           <div className="mx-auto max-w-4xl text-center">
-            <motion.h1
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              className="text-foreground mb-6 text-4xl font-bold tracking-tight sm:text-6xl"
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.6 }}
+              className="mb-6"
             >
-              Chi Siamo <span className="text-primary">Il Nostro Studio</span>
+              <span className="bg-dark-teal text-new-white inline-block rounded-full px-4 py-2 text-sm font-semibold tracking-wide uppercase">
+                Il Nostro Studio
+              </span>
+            </motion.div>
+
+            <motion.h1
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.1 }}
+              className="text-new-navy mb-6 text-4xl font-bold tracking-tight lg:text-6xl"
+            >
+              Chi{' '}
+              <span className="from-dark-teal to-light-teal bg-gradient-to-r bg-clip-text text-transparent">
+                Siamo
+              </span>
             </motion.h1>
 
             <motion.p
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.1 }}
-              className="text-background mb-8 text-xl"
+              transition={{ duration: 0.7, delay: 0.2 }}
+              className="text-new-light-navy mb-10 text-lg lg:text-xl"
             >
               Siamo un team dedicato di professionisti legali impegnati a
               fornire servizi legali eccezionali e assistenza amministrativa ai
@@ -77,70 +91,51 @@ export default function About() {
             </motion.p>
           </div>
         </div>
+
+        {/* Decorative Elements */}
+        <div className="bg-light-teal/10 absolute -top-20 -right-20 h-40 w-40 rounded-full"></div>
+        <div className="bg-dark-teal/10 absolute -bottom-10 -left-10 h-32 w-32 rounded-full"></div>
       </section>
 
-      {/* Story Section */}
-      <section className="bg-foreground py-24">
-        <div className="container mx-auto px-8 lg:px-12">
-          <div className="grid grid-cols-1 gap-12 lg:grid-cols-2">
+      {/* Chi Siamo Section */}
+      <section className="bg-new-navy py-20 lg:py-24">
+        <div className="container mx-auto px-6 lg:px-12">
+          <div className="flex flex-col items-center gap-12 lg:flex-row">
             <motion.div
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5 }}
               viewport={{ once: true }}
+              className="flex-1"
             >
-              <h2 className="text-background mb-6 text-3xl font-bold tracking-tight">
-                Chi Siamo
+              <h2 className="text-new-white mb-6 text-3xl font-bold tracking-tight">
+                Chi <span className="text-new-beige">Siamo</span>
               </h2>
-              <div className="text-background space-y-4">
-                <p className="pb-8">
+              <div className="text-new-dim-cyan space-y-6">
+                <p className="leading-relaxed">
                   Da oltre cinque anni siamo un punto di riferimento affidabile
                   per cittadini e aziende nella gestione di pratiche fiscali,
                   previdenziali e amministrative. AZ CAF-Patronato nasce con
-                  l’obiettivo di offrire un servizio completo, chiaro e
+                  l'obiettivo di offrire un servizio completo, chiaro e
                   accessibile, in grado di semplificare le procedure
                   burocratiche e fornire un supporto concreto a chi ne ha
-                  bisogno. <br /> Grazie a un team qualificato, gentile e
-                  costantemente aggiornato, garantiamo assistenza personalizzata
-                  e attenta, mettendo sempre al centro le esigenze di ogni
-                  singola persona. Operiamo con serietà, trasparenza e
-                  attenzione, offrendo soluzioni rapide e su misura. Il nostro
-                  impegno quotidiano è quello di essere sempre vicini alla
-                  comunità, offrendo un servizio professionale ma anche umano,
-                  fondato sull’ascolto, la competenza e la fiducia
+                  bisogno.
                 </p>
-              </div>
-              <h2 className="text-background mb-6 text-3xl font-bold tracking-tight">
-                La Nostra Visione
-              </h2>
-              <div className="text-background space-y-4">
-                <p className="pb-8">
-                  Ambiamo a diventare il punto di riferimento nel settore dei
-                  servizi legali nella nostra regione, distinguendoci per
-                  l’eccellenza e la competenza nei servizi CAF e Patronato, nel
-                  diritto del lavoro e nelle procedure amministrative.
-                  Immaginiamo un futuro in cui l’assistenza legale sia
-                  trasparente, efficiente e realmente accessibile a tutti coloro
-                  che necessitano di supporto, contribuendo a semplificare il
-                  rapporto tra cittadini, istituzioni e normative
+                <p className="leading-relaxed">
+                  Grazie a un team qualificato, gentile e costantemente
+                  aggiornato, garantiamo assistenza personalizzata e attenta,
+                  mettendo sempre al centro le esigenze di ogni singola persona.
+                  Operiamo con serietà, trasparenza e attenzione, offrendo
+                  soluzioni rapide e su misura.
                 </p>
-              </div>
-              <h2 className="text-background mb-6 text-3xl font-bold tracking-tight">
-                La Nostra Missione
-              </h2>
-              <div className="text-background space-y-4">
-                <p className="pb-8">
-                  fornire servizi legali accessibili, professionali e completi,
-                  che aiutino individui e aziende a orientarsi con sicurezza
-                  all’interno di processi legali e amministrativi spesso
-                  complessi. Ci impegniamo ogni giorno a offrire soluzioni
-                  personalizzate, pensate per tutelare gli interessi dei nostri
-                  clienti e favorire il raggiungimento dei loro obiettivi. Il
-                  nostro approccio si fonda su competenza, trasparenza e
-                  gentilezza, valori che ci guidano nel costruire un rapporto di
-                  fiducia solido e duraturo con ogni persona che si rivolge a
-                  noi
-                </p>
+                <div className="bg-new-light-navy/30 border-new-dim-cyan/30 rounded-lg border p-6">
+                  <p className="text-new-beige font-medium">
+                    Il nostro impegno quotidiano è quello di essere sempre
+                    vicini alla comunità, offrendo un servizio professionale ma
+                    anche umano, fondato sull'ascolto, la competenza e la
+                    fiducia.
+                  </p>
+                </div>
               </div>
             </motion.div>
 
@@ -149,29 +144,154 @@ export default function About() {
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5 }}
               viewport={{ once: true }}
-              className="relative"
+              className="relative flex-1"
             >
-              <div className="from-primary/20 to-secondary/40 aspect-square rounded-lg bg-gradient-to-br" />
-              <div className="bg-card absolute inset-4 rounded-lg shadow-xl" />
+              <div className="from-dark-teal/20 to-light-teal/40 aspect-video rounded-2xl bg-gradient-to-br shadow-2xl">
+                <div className="bg-new-white/10 border-new-beige/20 absolute inset-4 flex items-center justify-center rounded-xl border backdrop-blur-sm">
+                  <div className="text-center">
+                    <div className="text-new-beige mb-2 text-4xl font-bold">
+                      Chi Siamo
+                    </div>
+                    <div className="text-new-white text-sm">
+                      Image Placeholder
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* La Nostra Visione Section */}
+      <section className="bg-new-white py-20 lg:py-24">
+        <div className="container mx-auto px-6 lg:px-12">
+          <div className="flex flex-col items-center gap-12 lg:flex-row-reverse">
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.5 }}
+              viewport={{ once: true }}
+              className="flex-1"
+            >
+              <h2 className="text-new-navy mb-6 text-3xl font-bold tracking-tight">
+                La Nostra <span className="text-light-teal">Visione</span>
+              </h2>
+              <div className="text-new-light-navy space-y-6">
+                <p className="leading-relaxed">
+                  Ambiamo a diventare il punto di riferimento nel settore dei
+                  servizi legali nella nostra regione, distinguendoci per
+                  l'eccellenza e la competenza nei servizi CAF e Patronato, nel
+                  diritto del lavoro e nelle procedure amministrative.
+                </p>
+                <div className="bg-light-teal/10 border-light-teal/30 rounded-lg border p-6">
+                  <p className="text-light-teal font-medium">
+                    Immaginiamo un futuro in cui l'assistenza legale sia
+                    trasparente, efficiente e realmente accessibile a tutti
+                    coloro che necessitano di supporto, contribuendo a
+                    semplificare il rapporto tra cittadini, istituzioni e
+                    normative.
+                  </p>
+                </div>
+              </div>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.5 }}
+              viewport={{ once: true }}
+              className="relative flex-1"
+            >
+              <div className="from-light-teal/20 to-dark-teal/40 aspect-video rounded-2xl bg-gradient-to-br shadow-2xl">
+                <div className="bg-new-white/10 border-light-teal/20 absolute inset-4 flex items-center justify-center rounded-xl border backdrop-blur-sm">
+                  <div className="text-center">
+                    <div className="text-light-teal mb-2 text-4xl font-bold">
+                      Visione
+                    </div>
+                    <div className="text-new-navy text-sm">
+                      Image Placeholder
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* La Nostra Missione Section */}
+      <section className="bg-new-beige py-20 lg:py-24">
+        <div className="container mx-auto px-6 lg:px-12">
+          <div className="flex flex-col items-center gap-12 lg:flex-row">
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.5 }}
+              viewport={{ once: true }}
+              className="flex-1"
+            >
+              <h2 className="text-new-navy mb-6 text-3xl font-bold tracking-tight">
+                La Nostra <span className="text-dark-teal">Missione</span>
+              </h2>
+              <div className="text-new-light-navy space-y-6">
+                <p className="leading-relaxed">
+                  Fornire servizi legali accessibili, professionali e completi,
+                  che aiutino individui e aziende a orientarsi con sicurezza
+                  all'interno di processi legali e amministrativi spesso
+                  complessi. Ci impegniamo ogni giorno a offrire soluzioni
+                  personalizzate, pensate per tutelare gli interessi dei nostri
+                  clienti e favorire il raggiungimento dei loro obiettivi.
+                </p>
+                <div className="bg-dark-teal/20 border-dark-teal/30 rounded-lg border p-6">
+                  <p className="text-dark-teal font-medium">
+                    Il nostro approccio si fonda su competenza, trasparenza e
+                    gentilezza, valori che ci guidano nel costruire un rapporto
+                    di fiducia solido e duraturo con ogni persona che si rivolge
+                    a noi.
+                  </p>
+                </div>
+              </div>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.5 }}
+              viewport={{ once: true }}
+              className="relative flex-1"
+            >
+              <div className="from-dark-teal/20 to-new-navy/40 aspect-video rounded-2xl bg-gradient-to-br shadow-2xl">
+                <div className="bg-new-white/10 border-dark-teal/20 absolute inset-4 flex items-center justify-center rounded-xl border backdrop-blur-sm">
+                  <div className="text-center">
+                    <div className="text-dark-teal mb-2 text-4xl font-bold">
+                      Missione
+                    </div>
+                    <div className="text-new-navy text-sm">
+                      Image Placeholder
+                    </div>
+                  </div>
+                </div>
+              </div>
             </motion.div>
           </div>
         </div>
       </section>
 
       {/* Values Section */}
-      <section className="grad-up-navy py-24">
-        <div className="container mx-auto px-8 lg:px-12">
+      <section className="bg-new-white py-20 lg:py-24">
+        <div className="container mx-auto px-6 lg:px-12">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
+            transition={{ duration: 0.6 }}
             viewport={{ once: true }}
-            className="mx-auto max-w-2xl text-center"
+            className="mx-auto max-w-3xl text-center"
           >
-            <h2 className="text-foreground mb-4 text-3xl font-bold tracking-tight sm:text-4xl">
-              I nostri valori
+            <h2 className="text-new-navy mb-4 text-3xl font-bold tracking-tight lg:text-4xl">
+              I Nostri <span className="text-dark-teal">Valori</span>
             </h2>
-            <p className="text-muted-foreground mb-16 text-lg">
+            <p className="text-new-light-navy mb-16 text-lg">
               I principi che guidano tutto ciò che facciamo e modellano come
               lavoriamo con i nostri clienti e tra di noi.
             </p>
@@ -181,17 +301,19 @@ export default function About() {
             {values.map((value, index) => (
               <motion.div
                 key={value.title}
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
                 viewport={{ once: true }}
-                className="text-accent-foreground bg-purple rounded-lg border p-6 text-center shadow-sm"
+                className="group relative overflow-hidden rounded-2xl bg-white p-8 text-center shadow-lg transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl"
               >
-                <div className="bg-primary/10 mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full">
-                  <value.icon className="text-primary h-8 w-8" />
+                <div className="from-dark-teal/10 to-light-teal/20 group-hover:from-dark-teal group-hover:to-light-teal mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br transition-all duration-300">
+                  <value.icon className="text-dark-teal h-8 w-8 transition-colors duration-300 group-hover:text-white" />
                 </div>
-                <h3 className="mb-2 text-lg font-semibold">{value.title}</h3>
-                <p className="text-accent-foreground text-sm">
+                <h3 className="text-new-navy group-hover:text-dark-teal mb-3 text-lg font-bold transition-colors">
+                  {value.title}
+                </h3>
+                <p className="text-new-light-navy text-sm leading-relaxed">
                   {value.description}
                 </p>
               </motion.div>
@@ -244,99 +366,6 @@ export default function About() {
               </motion.div>
             ))}
           </div>
-        </div>
-      </section>
-
-      {/* Mission & Vision Section */}
-      <section className="grad-up-cyan py-24">
-        <div className="container mx-auto px-8 lg:px-12">
-          <div className="grid grid-cols-1 gap-16 lg:grid-cols-2">
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.5 }}
-              viewport={{ once: true }}
-              className="bg-purple rounded-lg border p-8 shadow-sm"
-            >
-              <div className="bg-primary/10 mb-6 flex h-16 w-16 items-center justify-center rounded-full">
-                <Target className="text-primary h-8 w-8" />
-              </div>
-              <h3 className="text-accent-foreground mb-4 text-2xl font-bold">
-                La nostra missione
-              </h3>
-              <p className="text-accent-foreground leading-relaxed">
-                Fornire servizi legali accessibili, professionali e completi che
-                permettano a individui e aziende di navigare processi legali e
-                amministrativi complessi con fiducia. Siamo impegnati a fornire
-                soluzioni personalizzate che proteggano gli interessi dei nostri
-                clienti e raggiungano i loro obiettivi.
-              </p>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.5, delay: 0.1 }}
-              viewport={{ once: true }}
-              className="bg-purple rounded-lg border p-8 shadow-sm"
-            >
-              <div className="bg-primary/10 mb-6 flex h-16 w-16 items-center justify-center rounded-full">
-                <Lightbulb className="text-primary h-8 w-8" />
-              </div>
-              <h3 className="text-accent-foreground mb-4 text-2xl font-bold">
-                La Nostra Visione
-              </h3>
-              <p className="text-accent-foreground leading-relaxed">
-                Essere il principale fornitore di servizi legali nella nostra
-                regione, riconosciuto per la nostra competenza nei servizi CAF e
-                Patronato, diritto del lavoro e procedure amministrative.
-                Immaginiamo un futuro in cui l'assistenza legale è trasparente,
-                efficiente e accessibile a tutti coloro che ne hanno bisogno.
-              </p>
-            </motion.div>
-          </div>
-
-          {/* Why Choose Us */}
-          {/* <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            viewport={{ once: true }}
-            className="mt-16 text-center"
-          >
-            <h3 className="text-foreground mb-8 text-2xl font-bold">
-              Why Choose CafPotranto?
-            </h3>
-            <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
-              <div className="bg-card/50 rounded-lg border p-6">
-                <h4 className="text-foreground mb-2 font-semibold">
-                  Specialized Expertise
-                </h4>
-                <p className="text-muted-foreground text-sm">
-                  Conoscenza approfondita in CAF, Patronato e diritto
-                  amministrativo italiano
-                </p>
-              </div>
-              <div className="bg-card/50 rounded-lg border p-6">
-                <h4 className="text-foreground mb-2 font-semibold">
-                  Personal Approach
-                </h4>
-                <p className="text-muted-foreground text-sm">
-                  Soluzioni su misura che affrontano le tue esigenze legali
-                  specifiche
-                </p>
-              </div>
-              <div className="bg-card/50 rounded-lg border p-6">
-                <h4 className="text-foreground mb-2 font-semibold">
-                  Proven Results
-                </h4>
-                <p className="text-muted-foreground text-sm">
-                  15+ anni di risoluzione di casi di successo e soddisfazione
-                  del cliente
-                </p>
-              </div>
-            </div>
-          </motion.div> */}
         </div>
       </section>
     </>
