@@ -108,7 +108,7 @@ export default function SubservicePage() {
 
   if (loading) {
     return (
-      <div className="bg-purple flex min-h-screen items-center justify-center">
+      <div className="bg-new-navy/95 flex min-h-screen items-center justify-center backdrop-blur-xl">
         <Loader size="large" centered />
       </div>
     );
@@ -145,29 +145,32 @@ export default function SubservicePage() {
       />
 
       {/* Back Navigation */}
-      <div className="container mx-auto px-8 pt-6 text-white lg:px-12">
+      <div className="bg-new-beige container mx-auto px-8 pt-6 lg:px-12">
         <div className="flex items-center gap-2 text-sm">
-          <Link href="/services" className="hover:text-cyan transition-colors">
+          <Link
+            href="/services"
+            className="text-new-navy hover:text-light-teal font-medium transition-colors"
+          >
             Servizi
           </Link>
           {category && (
             <>
-              <span>/</span>
+              <span className="text-new-light-navy">/</span>
               <Link
                 href={`/services/${category.slug}`}
-                className="hover:text-cyan transition-colors"
+                className="text-new-navy hover:text-light-teal font-medium transition-colors"
               >
                 {category.name}
               </Link>
             </>
           )}
-          <span>/</span>
-          <span className="text-white">{subservice.name}</span>
+          <span className="text-new-light-navy">/</span>
+          <span className="text-new-light-navy">{subservice.name}</span>
         </div>
       </div>
 
       {/* Service Header */}
-      <section className="bg-purple py-12">
+      <section className="bg-new-beige py-12">
         <div className="container mx-auto px-8 lg:px-12">
           <div className="grid grid-cols-1 gap-12 lg:grid-cols-3">
             {/* Main Content */}
@@ -179,35 +182,38 @@ export default function SubservicePage() {
                 transition={{ duration: 0.5 }}
                 className="mb-8"
               >
-                <h1 className="text-navy-dark mb-4 text-3xl font-bold lg:text-4xl">
+                <div className="bg-dark-teal mb-4 inline-block rounded-full px-4 py-2 text-sm font-semibold tracking-wide text-white uppercase">
+                  Servizio Professionale
+                </div>
+                <h1 className="text-new-navy mb-4 text-3xl font-bold lg:text-4xl">
                   {subservice.name}
                 </h1>
 
                 {/* Service Meta */}
                 <div className="mb-6 flex flex-wrap items-center gap-4">
                   {subservice.rating > 0 && (
-                    <div className="flex items-center gap-1">
+                    <div className="bg-light-teal/10 border-light-teal/30 flex items-center gap-1 rounded-full border px-3 py-1">
                       <Star className="h-5 w-5 fill-current text-yellow-500" />
-                      <span className="font-medium">
+                      <span className="text-new-navy font-medium">
                         {subservice.rating.toFixed(1)}
                       </span>
-                      <span className="text-navy-dark">
+                      <span className="text-new-light-navy">
                         ({subservice.reviews_count} recensioni)
                       </span>
                     </div>
                   )}
 
                   {subservice.estimatedDuration && (
-                    <div className="text-navy-dark flex items-center gap-2">
-                      <Clock className="h-5 w-5" />
+                    <div className="text-new-navy bg-light-teal/10 border-light-teal/30 flex items-center gap-2 rounded-full border px-3 py-1">
+                      <Clock className="text-light-teal h-5 w-5" />
                       <span>
                         Durata: {formatDuration(subservice.estimatedDuration)}
                       </span>
                     </div>
                   )}
 
-                  <div className="text-navy-dark flex items-center gap-2">
-                    <Users className="h-5 w-5" />
+                  <div className="text-new-navy bg-light-teal/10 border-light-teal/30 flex items-center gap-2 rounded-full border px-3 py-1">
+                    <Users className="text-light-teal h-5 w-5" />
                     <span>Categoria: {category?.name || 'N/A'}</span>
                   </div>
                 </div>
@@ -220,13 +226,13 @@ export default function SubservicePage() {
                 transition={{ duration: 0.5, delay: 0.2 }}
                 className="mb-8"
               >
-                <h2 className="text-navy-dark mb-4 text-2xl font-bold">
+                <h2 className="text-new-navy mb-4 text-2xl font-bold">
                   Descrizione del Servizio
                 </h2>
-                <div className="prose prose-lg text-navy-dark service-content max-w-none">
+                <div className="prose prose-lg text-new-light-navy service-content max-w-none">
                   {/* Rich text description */}
                   <div
-                    className="prose text-navy-dark service-content leading-relaxed"
+                    className="prose text-new-light-navy service-content leading-relaxed"
                     dangerouslySetInnerHTML={{
                       __html: markdownToHtml(subservice.description),
                     }}
@@ -242,22 +248,22 @@ export default function SubservicePage() {
                   transition={{ duration: 0.5, delay: 0.3 }}
                   className="mb-8"
                 >
-                  <h3 className="text-navy-dark mb-4 text-xl font-bold">
+                  <h3 className="text-new-navy mb-4 text-xl font-bold">
                     Cosa include
                   </h3>
                   <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
                     {subservice.features.map((feature, index) => (
                       <div
                         key={index}
-                        className={`flex items-start gap-3 rounded-lg p-4 ${
+                        className={`flex items-start gap-3 rounded-xl border p-4 backdrop-blur-md transition-all duration-300 ${
                           feature.isIncluded
-                            ? 'border border-green-200 bg-green-50'
-                            : 'border border-red-200 bg-red-50'
+                            ? 'border-light-teal/30 bg-light-teal/10'
+                            : 'border-red-300/30 bg-red-50/50'
                         }`}
                       >
                         <div
                           className={`mt-0.5 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full ${
-                            feature.isIncluded ? 'bg-green-500' : 'bg-red-500'
+                            feature.isIncluded ? 'bg-light-teal' : 'bg-red-500'
                           }`}
                         >
                           <span className="text-xs text-white">
@@ -326,26 +332,25 @@ export default function SubservicePage() {
 
             {/* Sidebar - Payment & Contact */}
             <div className="lg:col-span-1">
-              <div className="text-navy-dark sticky top-6 space-y-6">
+              <div className="sticky top-6 space-y-6">
                 {/* Payment Details Card */}
                 <motion.div
                   initial={{ opacity: 0, x: 20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.5, delay: 0.3 }}
-                  className="rounded-xl border p-6 shadow-sm"
-                  style={{
-                    background: 'linear-gradient(135deg, #c3e6ec, #a7d1d9)',
-                  }}
+                  className="border-light-teal/30 rounded-3xl border bg-white p-6 shadow-2xl backdrop-blur-xl"
                 >
-                  <h3 className="mb-4 text-lg font-bold">
+                  <h3 className="text-light-teal mb-4 text-lg font-bold drop-shadow-lg">
                     Dettagli di Pagamento
                   </h3>
 
                   <div className="space-y-3">
                     {/* Service Price */}
                     <div className="flex items-center justify-between">
-                      <span className="text-sm">Prezzo servizio:</span>
-                      <span className="font-medium">
+                      <span className="text-sm text-black/70">
+                        Prezzo servizio:
+                      </span>
+                      <span className="font-medium text-black">
                         €{subservice.price_start.toFixed(2)}
                       </span>
                     </div>
@@ -354,17 +359,19 @@ export default function SubservicePage() {
                     {subservice.secretarialFees &&
                       subservice.secretarialFees > 0 && (
                         <div className="flex items-center justify-between">
-                          <span className="text-sm">Oneri di segreteria:</span>
-                          <span className="font-medium">
+                          <span className="text-sm text-black/70">
+                            Oneri di segreteria:
+                          </span>
+                          <span className="font-medium text-black">
                             €{subservice.secretarialFees.toFixed(2)}
                           </span>
                         </div>
                       )}
 
                     {/* Subtotal */}
-                    <div className="flex items-center justify-between border-t border-b py-2">
-                      <span className="font-medium">Subtotale:</span>
-                      <span className="font-medium">
+                    <div className="border-light-teal/30 flex items-center justify-between border-t border-b py-2">
+                      <span className="font-medium text-black">Subtotale:</span>
+                      <span className="font-medium text-black">
                         €
                         {(
                           (subservice.secretarialFees || 0) +
@@ -375,10 +382,10 @@ export default function SubservicePage() {
 
                     {/* VAT */}
                     <div className="flex items-center justify-between">
-                      <span className="text-md">
+                      <span className="text-md text-black/70">
                         VAT {subservice.vatPercentage || 22}%:
                       </span>
-                      <span className="font-medium">
+                      <span className="font-medium text-black">
                         €
                         {(
                           ((subservice.secretarialFees || 0) +
@@ -389,9 +396,11 @@ export default function SubservicePage() {
                     </div>
 
                     {/* Total */}
-                    <div className="border-primary/20 flex items-center justify-between border-t pt-2">
-                      <span className="font-bold">Totale Ordine:</span>
-                      <span className="text-lg font-bold">
+                    <div className="border-light-teal/30 flex items-center justify-between border-t pt-2">
+                      <span className="font-bold text-black">
+                        Totale Ordine:
+                      </span>
+                      <span className="text-light-teal text-lg font-bold">
                         €
                         {(
                           ((subservice.secretarialFees || 0) +
@@ -402,9 +411,11 @@ export default function SubservicePage() {
                     </div>
 
                     {subservice.estimatedDuration && (
-                      <div className="mt-3 flex items-center justify-between border-t pt-3">
-                        <span className="text-md">Durata stimata:</span>
-                        <span className="text-sm font-medium">
+                      <div className="border-light-teal/30 mt-3 flex items-center justify-between border-t pt-3">
+                        <span className="text-md text-black/70">
+                          Durata stimata:
+                        </span>
+                        <span className="text-sm font-medium text-black">
                           {formatDuration(subservice.estimatedDuration)}
                         </span>
                       </div>
@@ -417,39 +428,36 @@ export default function SubservicePage() {
                   initial={{ opacity: 0, x: 20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.5, delay: 0.4 }}
-                  className="rounded-xl border p-6 shadow-sm"
-                  style={{
-                    background: 'linear-gradient(135deg, #c3e6ec, #a7d1d9)',
-                  }}
+                  className="border-light-teal/30 rounded-3xl border bg-white p-6 shadow-2xl backdrop-blur-xl"
                 >
-                  <h3 className="text-navy-dark mb-4 text-lg font-bold">
+                  <h3 className="text-light-teal mb-4 text-lg font-bold drop-shadow-lg">
                     Opzioni di Pagamento
                   </h3>
 
                   <div className="space-y-3">
-                    <div className="bg-secondary/30 flex items-center gap-3 rounded-lg p-3">
-                      <CreditCard className="text-primary h-5 w-5" />
-                      <span className="text-sm font-medium">
+                    <div className="bg-light-teal/10 border-light-teal/30 flex items-center gap-3 rounded-xl border p-3 backdrop-blur-md">
+                      <CreditCard className="text-light-teal h-5 w-5" />
+                      <span className="text-sm font-medium text-black">
                         Carta di Credito/Debito
                       </span>
                     </div>
 
-                    <div className="bg-secondary/30 flex items-center gap-3 rounded-lg p-3">
-                      <Building className="text-primary h-5 w-5" />
-                      <span className="text-sm font-medium">
+                    <div className="bg-light-teal/10 border-light-teal/30 flex items-center gap-3 rounded-xl border p-3 backdrop-blur-md">
+                      <Building className="text-light-teal h-5 w-5" />
+                      <span className="text-sm font-medium text-black">
                         Bonifico Bancario
                       </span>
                     </div>
 
-                    <div className="bg-secondary/30 flex items-center gap-3 rounded-lg p-3">
-                      <Banknote className="text-primary h-5 w-5" />
-                      <span className="text-sm font-medium">
+                    <div className="bg-light-teal/10 border-light-teal/30 flex items-center gap-3 rounded-xl border p-3 backdrop-blur-md">
+                      <Banknote className="text-light-teal h-5 w-5" />
+                      <span className="text-sm font-medium text-black">
                         Contanti (in ufficio)
                       </span>
                     </div>
                   </div>
 
-                  <p className="text-navy-very-dark mt-4 text-xs">
+                  <p className="mt-4 text-xs text-black/60">
                     * Le opzioni di pagamento disponibili verranno confermate
                     durante la consultazione
                   </p>
@@ -465,7 +473,7 @@ export default function SubservicePage() {
                   {/* WhatsApp Button - Hidden on mobile (shown as floating) */}
                   <button
                     onClick={handleWhatsAppClick}
-                    className="hidden w-full items-center justify-center gap-2 rounded-lg bg-green-500 px-4 py-3 font-medium text-white transition-colors hover:bg-green-600 md:flex"
+                    className="hidden w-full items-center justify-center gap-2 rounded-xl bg-green-500 px-4 py-3 font-medium text-white shadow-lg transition-all duration-300 hover:scale-[1.02] hover:bg-green-600 md:flex"
                     title={getBusinessHoursMessage()}
                   >
                     <MessageCircle className="h-5 w-5" />
@@ -473,7 +481,7 @@ export default function SubservicePage() {
                   </button>
 
                   {/* Phone Button */}
-                  <button className="flex w-full items-center justify-center gap-2 rounded-lg bg-blue-500 px-4 py-3 font-medium text-white transition-colors hover:bg-blue-600">
+                  <button className="bg-light-teal hover:bg-light-teal/90 flex w-full items-center justify-center gap-2 rounded-xl px-4 py-3 font-medium text-white shadow-lg transition-all duration-300 hover:scale-[1.02]">
                     <Phone className="h-5 w-5" />
                     Chiama ora
                   </button>
@@ -481,7 +489,7 @@ export default function SubservicePage() {
                   {/* Request Now Button - Always Enabled */}
                   <Link
                     href={`/services/subservice/${slug}/checkout`}
-                    className="from-cyan to-navy-gradient-2 hover:from-navy-gradient-2 hover:to-cyan shadow-elegant flex w-full items-center justify-center gap-2 rounded-lg bg-gradient-to-r px-4 py-3 font-medium text-white transition-colors"
+                    className="bg-dark-teal hover:bg-dark-teal/90 flex w-full items-center justify-center gap-2 rounded-xl px-4 py-3 font-medium text-white shadow-lg transition-all duration-300 hover:scale-[1.02]"
                   >
                     Richiedi ora
                   </Link>
@@ -492,9 +500,9 @@ export default function SubservicePage() {
                   initial={{ opacity: 0, x: 20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.5, delay: 0.6 }}
-                  className="rounded-lg border border-blue-200 bg-blue-50 p-4"
+                  className="border-light-teal/30 bg-light-teal/10 rounded-2xl border p-4 backdrop-blur-md"
                 >
-                  <h4 className="mb-2 font-medium text-blue-900">
+                  <h4 className="text-new-navy mb-2 font-medium">
                     💡 Nota Importante
                   </h4>
                   <p className="text-sm text-blue-800">
