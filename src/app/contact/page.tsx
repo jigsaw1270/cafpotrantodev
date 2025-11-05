@@ -581,9 +581,9 @@ export default function Contact() {
       {/* Locations Section */}
       <section className="bg-new-navy/95 relative overflow-hidden py-16 backdrop-blur-xl lg:py-24">
         {/* Glassmorphism Background Elements */}
-        <div className="bg-cyan/10 absolute top-10 left-10 h-32 w-32 rounded-full backdrop-blur-sm"></div>
-        <div className="absolute right-20 bottom-20 h-40 w-40 rounded-full bg-white/5 backdrop-blur-sm"></div>
-        <div className="bg-yellow/10 absolute top-1/2 left-1/3 h-24 w-24 rounded-full backdrop-blur-sm"></div>
+        <div className="bg-light-teal/10 absolute top-10 left-10 h-32 w-32 rounded-full backdrop-blur-sm"></div>
+        <div className="bg-dark-teal/5 absolute right-20 bottom-20 h-40 w-40 rounded-full backdrop-blur-sm"></div>
+        <div className="bg-light-teal/15 absolute top-1/2 left-1/3 h-24 w-24 rounded-full backdrop-blur-sm"></div>
 
         <div className="relative container mx-auto px-8 lg:px-12">
           {/* Section Title */}
@@ -594,13 +594,14 @@ export default function Contact() {
             viewport={{ once: true }}
             className="mx-auto mb-16 max-w-4xl text-center"
           >
-            <div className="bg-cyan/20 border-cyan/30 mb-6 inline-block rounded-full border px-6 py-3 backdrop-blur-md">
+            <div className="bg-light-teal/20 border-light-teal/30 mb-6 inline-block rounded-full border px-6 py-3 backdrop-blur-md">
               <span className="text-sm font-bold tracking-wide text-white uppercase">
                 Le Nostre Sedi
               </span>
             </div>
             <h2 className="mb-6 text-4xl font-bold tracking-tight text-white drop-shadow-lg sm:text-5xl">
-              Trova la sede a te più <span className="text-cyan">vicina</span>
+              Trova la sede a te più{' '}
+              <span className="text-light-teal">vicina</span>
             </h2>
             <p className="text-xl leading-relaxed text-white/80">
               Contattaci per ricevere assistenza personalizzata: siamo sempre a
@@ -646,23 +647,23 @@ export default function Contact() {
                   <div className="space-y-3">
                     <a
                       href="tel:+390261460044"
-                      className="bg-cyan/20 hover:bg-cyan/30 border-cyan/30 group flex items-center gap-3 rounded-xl border p-3 backdrop-blur-md transition-all duration-200 hover:scale-[1.02]"
+                      className="bg-light-teal/20 hover:bg-light-teal/30 border-light-teal/30 group flex items-center gap-3 rounded-xl border p-3 backdrop-blur-md transition-all duration-200 hover:scale-[1.02]"
                     >
-                      <div className="bg-cyan rounded-full p-2">
+                      <div className="bg-light-teal rounded-full p-2">
                         <Phone className="h-4 w-4 text-white" />
                       </div>
-                      <span className="group-hover:text-cyan font-medium text-white transition-colors">
+                      <span className="group-hover:text-light-teal font-medium text-white transition-colors">
                         02.61460044
                       </span>
                     </a>
                     <a
                       href="tel:+393495214147"
-                      className="bg-cyan/20 hover:bg-cyan/30 border-cyan/30 group flex items-center gap-3 rounded-xl border p-3 backdrop-blur-md transition-all duration-200 hover:scale-[1.02]"
+                      className="bg-light-teal/20 hover:bg-light-teal/30 border-light-teal/30 group flex items-center gap-3 rounded-xl border p-3 backdrop-blur-md transition-all duration-200 hover:scale-[1.02]"
                     >
-                      <div className="bg-cyan rounded-full p-2">
+                      <div className="bg-light-teal rounded-full p-2">
                         <Phone className="h-4 w-4 text-white" />
                       </div>
-                      <span className="group-hover:text-cyan font-medium text-white transition-colors">
+                      <span className="group-hover:text-light-teal font-medium text-white transition-colors">
                         349.5214147
                       </span>
                     </a>
@@ -729,23 +730,23 @@ export default function Contact() {
                   <div className="space-y-3">
                     <a
                       href="tel:0236755609"
-                      className="bg-cyan/20 hover:bg-cyan/30 border-cyan/30 group flex items-center gap-3 rounded-xl border p-3 backdrop-blur-md transition-all duration-200 hover:scale-[1.02]"
+                      className="bg-light-teal/20 hover:bg-light-teal/30 border-light-teal/30 group flex items-center gap-3 rounded-xl border p-3 backdrop-blur-md transition-all duration-200 hover:scale-[1.02]"
                     >
-                      <div className="bg-cyan rounded-full p-2">
+                      <div className="bg-light-teal rounded-full p-2">
                         <Phone className="h-4 w-4 text-white" />
                       </div>
-                      <span className="group-hover:text-cyan font-medium text-white transition-colors">
+                      <span className="group-hover:text-light-teal font-medium text-white transition-colors">
                         02.36755609
                       </span>
                     </a>
                     <a
                       href="tel:3511721772"
-                      className="bg-cyan/20 hover:bg-cyan/30 border-cyan/30 group flex items-center gap-3 rounded-xl border p-3 backdrop-blur-md transition-all duration-200 hover:scale-[1.02]"
+                      className="bg-light-teal/20 hover:bg-light-teal/30 border-light-teal/30 group flex items-center gap-3 rounded-xl border p-3 backdrop-blur-md transition-all duration-200 hover:scale-[1.02]"
                     >
-                      <div className="bg-cyan rounded-full p-2">
+                      <div className="bg-light-teal rounded-full p-2">
                         <Phone className="h-4 w-4 text-white" />
                       </div>
-                      <span className="group-hover:text-cyan font-medium text-white transition-colors">
+                      <span className="group-hover:text-light-teal font-medium text-white transition-colors">
                         351.1721772
                       </span>
                     </a>
@@ -812,23 +813,23 @@ export default function Contact() {
                   <div className="space-y-3">
                     <a
                       href="tel:0395986985"
-                      className="bg-cyan/20 hover:bg-cyan/30 border-cyan/30 group flex items-center gap-3 rounded-xl border p-3 backdrop-blur-md transition-all duration-200 hover:scale-[1.02]"
+                      className="bg-light-teal/20 hover:bg-light-teal/30 border-light-teal/30 group flex items-center gap-3 rounded-xl border p-3 backdrop-blur-md transition-all duration-200 hover:scale-[1.02]"
                     >
-                      <div className="bg-cyan rounded-full p-2">
+                      <div className="bg-light-teal rounded-full p-2">
                         <Phone className="h-4 w-4 text-white" />
                       </div>
-                      <span className="group-hover:text-cyan font-medium text-white transition-colors">
+                      <span className="group-hover:text-light-teal font-medium text-white transition-colors">
                         039.5986985
                       </span>
                     </a>
                     <a
                       href="tel:3668735046"
-                      className="bg-cyan/20 hover:bg-cyan/30 border-cyan/30 group flex items-center gap-3 rounded-xl border p-3 backdrop-blur-md transition-all duration-200 hover:scale-[1.02]"
+                      className="bg-light-teal/20 hover:bg-light-teal/30 border-light-teal/30 group flex items-center gap-3 rounded-xl border p-3 backdrop-blur-md transition-all duration-200 hover:scale-[1.02]"
                     >
-                      <div className="bg-cyan rounded-full p-2">
+                      <div className="bg-light-teal rounded-full p-2">
                         <Phone className="h-4 w-4 text-white" />
                       </div>
-                      <span className="group-hover:text-cyan font-medium text-white transition-colors">
+                      <span className="group-hover:text-light-teal font-medium text-white transition-colors">
                         366.8735046
                       </span>
                     </a>

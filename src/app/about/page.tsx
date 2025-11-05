@@ -279,8 +279,13 @@ export default function About() {
       </section>
 
       {/* Values Section */}
-      <section className="bg-new-white py-20 lg:py-24">
-        <div className="container mx-auto px-6 lg:px-12">
+      <section className="bg-new-navy/95 relative overflow-hidden py-20 backdrop-blur-xl lg:py-24">
+        {/* Glassmorphism Background Elements */}
+        <div className="bg-light-teal/10 absolute top-20 left-20 h-40 w-40 rounded-full backdrop-blur-sm"></div>
+        <div className="bg-dark-teal/5 absolute right-10 bottom-10 h-32 w-32 rounded-full backdrop-blur-sm"></div>
+        <div className="bg-light-teal/15 absolute top-1/3 right-1/4 h-24 w-24 rounded-full backdrop-blur-sm"></div>
+
+        <div className="relative container mx-auto px-6 lg:px-12">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -288,10 +293,15 @@ export default function About() {
             viewport={{ once: true }}
             className="mx-auto max-w-3xl text-center"
           >
-            <h2 className="text-new-navy mb-4 text-3xl font-bold tracking-tight lg:text-4xl">
-              I Nostri <span className="text-dark-teal">Valori</span>
+            <div className="border-light-teal/30 bg-light-teal/10 mb-6 inline-block rounded-full border px-6 py-3 backdrop-blur-md">
+              <span className="text-sm font-bold tracking-wide text-white uppercase">
+                I Nostri Principi
+              </span>
+            </div>
+            <h2 className="mb-4 text-3xl font-bold tracking-tight text-white drop-shadow-lg lg:text-4xl">
+              I Nostri <span className="text-light-teal">Valori</span>
             </h2>
-            <p className="text-new-light-navy mb-16 text-lg">
+            <p className="mb-16 text-lg leading-relaxed text-white/80">
               I principi che guidano tutto ciò che facciamo e modellano come
               lavoriamo con i nostri clienti e tra di noi.
             </p>
@@ -305,17 +315,20 @@ export default function About() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 viewport={{ once: true }}
-                className="group relative overflow-hidden rounded-2xl bg-white p-8 text-center shadow-lg transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl"
+                className="group relative overflow-hidden rounded-3xl border border-white/20 bg-white/10 p-8 text-center shadow-2xl backdrop-blur-xl transition-all duration-300 hover:scale-[1.02] hover:bg-white/15"
               >
-                <div className="from-dark-teal/10 to-light-teal/20 group-hover:from-dark-teal group-hover:to-light-teal mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br transition-all duration-300">
-                  <value.icon className="text-dark-teal h-8 w-8 transition-colors duration-300 group-hover:text-white" />
+                <div className="bg-light-teal/20 border-light-teal/40 group-hover:bg-light-teal group-hover:border-light-teal/60 mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full border backdrop-blur-md transition-all duration-300">
+                  <value.icon className="text-light-teal h-8 w-8 transition-colors duration-300 group-hover:text-white" />
                 </div>
-                <h3 className="text-new-navy group-hover:text-dark-teal mb-3 text-lg font-bold transition-colors">
+                <h3 className="group-hover:text-light-teal mb-3 text-lg font-bold text-white drop-shadow-sm transition-colors">
                   {value.title}
                 </h3>
-                <p className="text-new-light-navy text-sm leading-relaxed">
+                <p className="text-sm leading-relaxed text-white/80">
                   {value.description}
                 </p>
+
+                {/* Glassmorphism accent corner */}
+                <div className="bg-light-teal absolute top-4 right-4 h-3 w-3 rounded-full opacity-60 shadow-lg transition-opacity duration-300 group-hover:opacity-100"></div>
               </motion.div>
             ))}
           </div>
