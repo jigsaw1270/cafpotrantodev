@@ -29,6 +29,10 @@ const config: Config = {
         'new-dark-beige': '#A68868',
         'new-beige': '#E3C39D',
 
+        // Teal palette for gradients and accents
+        'dark-teal': '#0F4C75',
+        'light-teal': '#3282B8',
+
         // Semantic colors using the new palette
         background: 'var(--background)',
         foreground: 'var(--foreground)',
