@@ -32,7 +32,7 @@ export function Header() {
       transition={{ type: 'spring', stiffness: 400, damping: 40 }}
       className="border-cyan/20 shadow-elegant sticky top-0 z-50 border-b bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/85"
     >
-      <div className="container mx-auto flex h-16 items-center justify-between gap-4 px-4">
+      <div className="bg-new-navy container mx-auto flex h-16 items-center justify-between gap-4 px-4">
         {/* Logo */}
         <Link href="/" className="flex shrink-0 items-center space-x-2">
           <motion.div
@@ -46,7 +46,7 @@ export function Header() {
               className="h-full w-full"
             />
           </motion.div>
-          <span className="text-navy-dark hidden text-lg font-bold uppercase md:inline">
+          <span className="text-new-beige hidden text-lg font-bold uppercase md:inline">
             Caf-Potranto
           </span>
         </Link>
@@ -62,7 +62,7 @@ export function Header() {
                 className={`text-md font-family-general-sans rounded-lg px-3 py-2 font-medium transition-all duration-200 lg:px-4 ${
                   isActive
                     ? 'from-navy-gradient-1 to-navy-gradient-2 shadow-elegant bg-gradient-to-r text-white'
-                    : 'text-navy-dark hover:text-cyan hover:bg-cyan/10'
+                    : 'text-new-beige hover:text-cyan hover:bg-cyan/10'
                 }`}
               >
                 {link.label}

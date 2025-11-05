@@ -171,7 +171,12 @@ export function Combobox({
           onFocus={() => {
             if (!open) setOpen(true);
           }}
-          className="border-input bg-background ring-offset-background placeholder:text-muted-foreground focus-visible:ring-ring w-full rounded-lg border px-10 py-3 text-sm file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50"
+          style={{
+            backgroundColor: '#E3C39D',
+            color: '#071739',
+            borderColor: '#A4B5C4',
+          }}
+          className="ring-offset-background w-full rounded-lg border px-10 py-3 text-sm file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-[#4B6382] focus-visible:border-[#A68868] focus-visible:ring-2 focus-visible:ring-[#A68868] focus-visible:ring-offset-2 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50"
         />
         {searchTerm && (
           <button
@@ -187,7 +192,8 @@ export function Combobox({
       {open && (
         <div
           key="search-dropdown"
-          className="search-dropdown absolute top-full right-0 left-0 z-50 mt-1 max-h-[70vh] overflow-y-auto rounded-md border border-gray-200 bg-white text-gray-900 shadow-lg md:max-h-96"
+          style={{ backgroundColor: '#E3C39D', borderColor: '#A4B5C4' }}
+          className="search-dropdown absolute top-full right-0 left-0 z-50 mt-1 max-h-[70vh] overflow-y-auto rounded-md border shadow-lg md:max-h-96"
         >
           <div className="p-2">
             {loading ? (
@@ -202,7 +208,8 @@ export function Combobox({
                 {results.map(result => (
                   <div
                     key={`${result.type}-${result.id}-${result.slug}`}
-                    className="relative flex cursor-pointer items-start rounded-sm border-b-2 border-indigo-200 px-2 py-2 text-sm outline-none select-none hover:bg-gray-100 active:bg-gray-200"
+                    style={{ borderColor: '#A4B5C4' }}
+                    className="relative flex cursor-pointer items-start rounded-sm border-b-2 px-2 py-2 text-sm outline-none select-none hover:bg-[#A68868] hover:text-white active:bg-[#071739] active:text-white"
                     onClick={() => handleResultClick(result)}
                     onTouchEnd={e => {
                       e.preventDefault();
@@ -214,28 +221,30 @@ export function Combobox({
                     <div className="flex-1">
                       <div className="flex items-center gap-2">
                         <span
-                          className={cn(
-                            'inline-flex items-center rounded-full px-2 py-1 text-xs font-medium italic',
-                            result.type === 'category'
-                              ? 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200'
-                              : 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200'
-                          )}
+                          style={{
+                            backgroundColor:
+                              result.type === 'category'
+                                ? '#071739'
+                                : '#4B6382',
+                            color: '#E3C39D',
+                          }}
+                          className="inline-flex items-center rounded-full px-2 py-1 text-xs font-medium italic"
                         >
                           {result.type === 'category'
                             ? 'categoria'
                             : 'servizio'}
                         </span>
-                        <span className="font-medium text-gray-900">
+                        <span className="font-medium text-[#071739]">
                           {result.name}
                         </span>
                       </div>
                       {result.description && (
-                        <p className="mt-1 line-clamp-2 text-xs text-gray-600">
+                        <p className="mt-1 line-clamp-2 text-xs text-[#4B6382]">
                           {result.description}
                         </p>
                       )}
                       {result.categoryName && (
-                        <p className="mt-1 text-xs text-gray-600">
+                        <p className="mt-1 text-xs text-[#4B6382]">
                           nel {result.categoryName}
                         </p>
                       )}
@@ -246,14 +255,14 @@ export function Combobox({
             ) : searchTerm.trim() ? (
               <div
                 key="no-results"
-                className="px-2 py-4 text-center text-sm text-gray-600"
+                className="px-2 py-4 text-center text-sm text-[#4B6382]"
               >
                 Nessun risultato trovato per "{searchTerm}"
               </div>
             ) : (
               <div
                 key="empty-state"
-                className="px-2 py-4 text-center text-sm text-gray-600"
+                className="px-2 py-4 text-center text-sm text-[#4B6382]"
               >
                 Inizia a digitare per cercare i servizi...
               </div>

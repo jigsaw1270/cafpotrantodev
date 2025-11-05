@@ -48,10 +48,12 @@ export default function About() {
       />
 
       {/* Empty div like homepage */}
-      <div className="bg-cyan max-auto text-cyan hidden px-4 md:block">.</div>
+      <div className="bg-light-teal max-auto text-cyan hidden px-4 md:block">
+        .
+      </div>
 
       {/* Hero Section */}
-      <section className="bg-purple relative overflow-hidden py-10">
+      <section className="bg-new-beige relative overflow-hidden py-10">
         <div className="container mx-auto px-8 lg:px-12">
           <div className="mx-auto max-w-4xl text-center">
             <motion.h1

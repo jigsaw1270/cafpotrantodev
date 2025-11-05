@@ -41,6 +41,16 @@
   --font-family-mono: ui-monospace, monospace;
   --font-family-general-sans: 'General Sans', sans-serif;
   --font-family-switzer: 'Switzer', sans-serif;
+
+  /* New Color Rework Palette */
+  --color-new-navy: #071739;
+  --color-new-light-navy: #4b6382;
+  --color-new-dim-cyan: #a4b5c4;
+  --color-new-white: #cdd5db;
+  --color-new-dark-beige: #a68868;
+  --color-new-beige: #e3c39d;
+  --color-dark-teal: #0a7075;
+  --color-light-teal: #0c969c;
 }
 
 :root {

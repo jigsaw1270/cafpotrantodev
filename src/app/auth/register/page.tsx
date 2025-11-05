@@ -68,7 +68,9 @@ export default function Register() {
       />
 
       {/* Empty div like homepage */}
-      <div className="bg-cyan max-auto text-cyan hidden px-4 md:block">.</div>
+      <div className="bg-light-teal max-auto text-cyan hidden px-4 md:block">
+        .
+      </div>
 
       <div className="grad-up-navy flex min-h-screen items-center justify-center px-4 py-12 sm:px-6 lg:px-8">
         <motion.div
