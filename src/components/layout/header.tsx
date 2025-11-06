@@ -10,6 +10,7 @@ const navigation = [
   { href: '/', label: 'Home' },
   { href: '/services', label: 'Servizi' },
   { href: '/about', label: 'Chi Siamo' },
+  { href: '/lavora-con-noi', label: 'Lavora con Noi' },
   // { href: '/consulting', label: 'Consulenze' },
   { href: '/faq', label: 'FAQ' },
   { href: '/contact', label: 'Contatti' },
