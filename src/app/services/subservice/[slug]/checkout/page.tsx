@@ -13,6 +13,10 @@ import {
   User,
   Mail,
   MapPin,
+  Upload,
+  X,
+  File,
+  FileImage,
 } from 'lucide-react';
 import Link from 'next/link';
 
@@ -57,6 +61,7 @@ export default function CheckoutPage() {
   const [acceptDataProcessing, setAcceptDataProcessing] = useState(false);
   const [acceptTermsAndConditions, setAcceptTermsAndConditions] =
     useState(false);
+  const [uploadedFiles, setUploadedFiles] = useState<File[]>([]);
 
   // Mock service data
   const serviceData = {
@@ -118,6 +123,44 @@ export default function CheckoutPage() {
     setAcceptTermsAndConditions(false);
   };
 
+  const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const files = event.target.files;
+    if (!files) return;
+
+    const validFiles: File[] = [];
+    const maxSize = 10 * 1024 * 1024; // 10MB
+    const allowedTypes = [
+      'application/pdf',
+      'image/jpeg',
+      'image/jpg',
+      'image/png',
+    ];
+
+    for (let i = 0; i < files.length; i++) {
+      const file = files[i];
+
+      if (!allowedTypes.includes(file.type)) {
+        alert(
+          `File ${file.name} non è supportato. Solo PDF, JPG, PNG sono permessi.`
+        );
+        continue;
+      }
+
+      if (file.size > maxSize) {
+        alert(`File ${file.name} è troppo grande. Massimo 10MB per file.`);
+        continue;
+      }
+
+      validFiles.push(file);
+    }
+
+    setUploadedFiles(prev => [...prev, ...validFiles]);
+  };
+
+  const removeFile = (index: number) => {
+    setUploadedFiles(prev => prev.filter((_, i) => i !== index));
+  };
+
   const applyCoupon = () => {
     if (couponCode === 'DISCOUNT10') {
       setAppliedCoupon({ code: couponCode, discount: 10 });
@@ -157,24 +200,60 @@ export default function CheckoutPage() {
       }
     }
 
-    // Save form data to localStorage or state management
-    localStorage.setItem(
-      'checkoutData',
-      JSON.stringify({
-        formType,
-        formData: currentFormData,
-        acceptDataProcessing,
-        acceptTermsAndConditions,
-        urgency,
-        premiumSupport,
-        appliedCoupon,
-        serviceData,
-        totals: { subtotal, discount, afterDiscount, vat, total },
-      })
-    );
+    // Prepare checkout data for localStorage (including files metadata)
+    const checkoutData = {
+      formType,
+      formData: currentFormData,
+      acceptDataProcessing,
+      acceptTermsAndConditions,
+      urgency,
+      premiumSupport,
+      appliedCoupon,
+      serviceData,
+      totals: { subtotal, discount, afterDiscount, vat, total },
+      selectedPaymentMethod: method,
+      uploadedFiles: uploadedFiles.map(file => ({
+        name: file.name,
+        size: file.size,
+        type: file.type,
+        lastModified: file.lastModified,
+      })), // Store file metadata for later email sending
+    };
 
-    // Navigate to specific payment method page
-    router.push(`/services/subservice/${slug}/checkout/${method}`);
+    // Save form data to localStorage
+    localStorage.setItem('checkoutData', JSON.stringify(checkoutData));
+
+    // Convert files to base64 and store them separately for email attachments
+    if (uploadedFiles.length > 0) {
+      const filePromises = uploadedFiles.map(file => {
+        return new Promise(resolve => {
+          const reader = new FileReader();
+          reader.onload = () => {
+            resolve({
+              filename: file.name,
+              content: reader.result?.toString().split(',')[1], // Remove data:type;base64, prefix
+              contentType: file.type,
+              size: file.size,
+            });
+          };
+          reader.readAsDataURL(file);
+        });
+      });
+
+      // Wait for all files to be processed before navigating
+      Promise.all(filePromises).then(base64Files => {
+        localStorage.setItem('checkoutFiles', JSON.stringify(base64Files));
+        // Navigate after files are stored
+        router.push(
+          `/services/subservice/${slug}/checkout/payment-confirmation?method=${method}&status=completed`
+        );
+      });
+    } else {
+      // No files to process, navigate immediately
+      router.push(
+        `/services/subservice/${slug}/checkout/payment-confirmation?method=${method}&status=completed`
+      );
+    }
   };
 
   return (
@@ -407,6 +486,76 @@ export default function CheckoutPage() {
                         recesso. *
                       </label>
                     </div>
+
+                    {/* File Upload Section */}
+                    <div className="border-light-teal/20 border-t pt-6">
+                      <label className="mb-3 block text-sm font-medium text-black">
+                        📎 Allega Documenti (Opzionale)
+                      </label>
+                      <p className="mb-4 text-xs text-black/70">
+                        Puoi allegare documenti PDF, JPG o PNG (max 10MB per
+                        file)
+                      </p>
+
+                      <div className="space-y-4">
+                        {/* File Input */}
+                        <div className="relative">
+                          <input
+                            type="file"
+                            id="fileUpload"
+                            multiple
+                            accept=".pdf,.jpg,.jpeg,.png"
+                            onChange={handleFileUpload}
+                            className="hidden"
+                          />
+                          <label
+                            htmlFor="fileUpload"
+                            className="border-light-teal/30 bg-light-teal/5 hover:border-light-teal/50 hover:bg-light-teal/10 flex cursor-pointer items-center justify-center gap-2 rounded-xl border-2 border-dashed px-6 py-4 text-sm font-medium text-black transition-all"
+                          >
+                            <Upload className="h-5 w-5" />
+                            Seleziona File
+                          </label>
+                        </div>
+
+                        {/* Uploaded Files List */}
+                        {uploadedFiles.length > 0 && (
+                          <div className="space-y-2">
+                            <p className="text-sm font-medium text-black">
+                              File caricati ({uploadedFiles.length}):
+                            </p>
+                            {uploadedFiles.map((file, index) => (
+                              <div
+                                key={index}
+                                className="border-light-teal/20 flex items-center justify-between rounded-lg border bg-white/50 p-3"
+                              >
+                                <div className="flex items-center gap-3">
+                                  {file.type === 'application/pdf' ? (
+                                    <File className="h-4 w-4 text-red-500" />
+                                  ) : (
+                                    <FileImage className="h-4 w-4 text-blue-500" />
+                                  )}
+                                  <div>
+                                    <p className="text-sm font-medium text-black">
+                                      {file.name}
+                                    </p>
+                                    <p className="text-xs text-black/60">
+                                      {(file.size / 1024 / 1024).toFixed(2)} MB
+                                    </p>
+                                  </div>
+                                </div>
+                                <button
+                                  type="button"
+                                  onClick={() => removeFile(index)}
+                                  className="rounded-full p-1 text-red-500 hover:bg-red-50"
+                                >
+                                  <X className="h-4 w-4" />
+                                </button>
+                              </div>
+                            ))}
+                          </div>
+                        )}
+                      </div>
+                    </div>
                   </div>
                 </div>
               )}
@@ -579,6 +728,76 @@ export default function CheckoutPage() {
                         Accetto le condizioni contrattuali e le condizioni di
                         recesso. *
                       </label>
+                    </div>
+
+                    {/* File Upload Section for Agency */}
+                    <div className="border-light-teal/20 border-t pt-6">
+                      <label className="mb-3 block text-sm font-medium text-black">
+                        📎 Allega Documenti (Opzionale)
+                      </label>
+                      <p className="mb-4 text-xs text-black/70">
+                        Puoi allegare documenti PDF, JPG o PNG (max 10MB per
+                        file)
+                      </p>
+
+                      <div className="space-y-4">
+                        {/* File Input */}
+                        <div className="relative">
+                          <input
+                            type="file"
+                            id="fileUploadAgency"
+                            multiple
+                            accept=".pdf,.jpg,.jpeg,.png"
+                            onChange={handleFileUpload}
+                            className="hidden"
+                          />
+                          <label
+                            htmlFor="fileUploadAgency"
+                            className="border-light-teal/30 bg-light-teal/5 hover:border-light-teal/50 hover:bg-light-teal/10 flex cursor-pointer items-center justify-center gap-2 rounded-xl border-2 border-dashed px-6 py-4 text-sm font-medium text-black transition-all"
+                          >
+                            <Upload className="h-5 w-5" />
+                            Seleziona File
+                          </label>
+                        </div>
+
+                        {/* Uploaded Files List */}
+                        {uploadedFiles.length > 0 && (
+                          <div className="space-y-2">
+                            <p className="text-sm font-medium text-black">
+                              File caricati ({uploadedFiles.length}):
+                            </p>
+                            {uploadedFiles.map((file, index) => (
+                              <div
+                                key={index}
+                                className="border-light-teal/20 flex items-center justify-between rounded-lg border bg-white/50 p-3"
+                              >
+                                <div className="flex items-center gap-3">
+                                  {file.type === 'application/pdf' ? (
+                                    <File className="h-4 w-4 text-red-500" />
+                                  ) : (
+                                    <FileImage className="h-4 w-4 text-blue-500" />
+                                  )}
+                                  <div>
+                                    <p className="text-sm font-medium text-black">
+                                      {file.name}
+                                    </p>
+                                    <p className="text-xs text-black/60">
+                                      {(file.size / 1024 / 1024).toFixed(2)} MB
+                                    </p>
+                                  </div>
+                                </div>
+                                <button
+                                  type="button"
+                                  onClick={() => removeFile(index)}
+                                  className="rounded-full p-1 text-red-500 hover:bg-red-50"
+                                >
+                                  <X className="h-4 w-4" />
+                                </button>
+                              </div>
+                            ))}
+                          </div>
+                        )}
+                      </div>
                     </div>
                   </div>
                 </div>
