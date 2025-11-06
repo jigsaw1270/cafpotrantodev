@@ -22,6 +22,7 @@ export default function CheckoutPage() {
   const slug = params.slug as string;
 
   // Form states
+  const [formType, setFormType] = useState<'private' | 'agency'>('private');
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -33,6 +34,17 @@ export default function CheckoutPage() {
     country: 'Italy',
   });
 
+  const [agencyFormData, setAgencyFormData] = useState({
+    vatNumber: '',
+    companyName: '',
+    pecOrSdi: '',
+    email: '',
+    phone: '',
+    address: '',
+    postalCode: '',
+    city: '',
+  });
+
   const [urgency, setUrgency] = useState(false);
   const [premiumSupport, setPremiumSupport] = useState(false);
   const [couponCode, setCouponCode] = useState('');
@@ -42,6 +54,9 @@ export default function CheckoutPage() {
   } | null>(null);
   const [selectedPaymentMethod, setSelectedPaymentMethod] =
     useState<string>('credit-card');
+  const [acceptDataProcessing, setAcceptDataProcessing] = useState(false);
+  const [acceptTermsAndConditions, setAcceptTermsAndConditions] =
+    useState(false);
 
   // Mock service data
   const serviceData = {
@@ -89,6 +104,20 @@ export default function CheckoutPage() {
     }));
   };
 
+  const handleAgencyFormChange = (field: string, value: string) => {
+    setAgencyFormData(prev => ({
+      ...prev,
+      [field]: value,
+    }));
+  };
+
+  const handleFormTypeChange = (type: 'private' | 'agency') => {
+    setFormType(type);
+    // Reset checkboxes when switching form types to ensure user re-confirms
+    setAcceptDataProcessing(false);
+    setAcceptTermsAndConditions(false);
+  };
+
   const applyCoupon = () => {
     if (couponCode === 'DISCOUNT10') {
       setAppliedCoupon({ code: couponCode, discount: 10 });
@@ -98,11 +127,44 @@ export default function CheckoutPage() {
   };
 
   const handlePaymentMethod = (method: string) => {
+    // Validate required checkboxes
+    if (!acceptDataProcessing || !acceptTermsAndConditions) {
+      alert(
+        'È necessario accettare il trattamento dei dati personali e le condizioni contrattuali per procedere.'
+      );
+      return;
+    }
+
+    // Validate form data based on form type
+    const currentFormData = formType === 'private' ? formData : agencyFormData;
+    const requiredFields =
+      formType === 'private'
+        ? [
+            'firstName',
+            'lastName',
+            'email',
+            'phone',
+            'address',
+            'city',
+            'postalCode',
+          ]
+        : ['vatNumber', 'companyName', 'pecOrSdi', 'email', 'phone'];
+
+    for (const field of requiredFields) {
+      if (!currentFormData[field as keyof typeof currentFormData]) {
+        alert(`Il campo ${field} è obbligatorio.`);
+        return;
+      }
+    }
+
     // Save form data to localStorage or state management
     localStorage.setItem(
       'checkoutData',
       JSON.stringify({
-        formData,
+        formType,
+        formData: currentFormData,
+        acceptDataProcessing,
+        acceptTermsAndConditions,
         urgency,
         premiumSupport,
         appliedCoupon,
@@ -152,110 +214,375 @@ export default function CheckoutPage() {
                 <User className="text-light-teal h-6 w-6" />I tuoi dati
               </h2>
 
-              <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-                <div>
-                  <label className="mb-3 block text-sm font-medium text-black">
-                    Nome *
-                  </label>
-                  <input
-                    type="text"
-                    value={formData.firstName}
-                    onChange={e =>
-                      handleFormChange('firstName', e.target.value)
-                    }
-                    className="border-light-teal/30 bg-light-teal/5 focus:border-light-teal focus:ring-light-teal w-full rounded-xl border px-4 py-3 text-base text-black backdrop-blur-md transition-all focus:bg-white focus:ring-2 focus:outline-none"
-                    placeholder="Il tuo nome"
-                  />
-                </div>
-
-                <div>
-                  <label className="mb-3 block text-sm font-medium text-black">
-                    Cognome *
-                  </label>
-                  <input
-                    type="text"
-                    value={formData.lastName}
-                    onChange={e => handleFormChange('lastName', e.target.value)}
-                    className="border-light-teal/30 bg-light-teal/5 focus:border-light-teal focus:ring-light-teal w-full rounded-xl border px-4 py-3 text-base text-black backdrop-blur-md transition-all focus:bg-white focus:ring-2 focus:outline-none"
-                    placeholder="Il tuo cognome"
-                  />
-                </div>
-
-                <div className="md:col-span-2">
-                  <label className="mb-3 block text-sm font-medium text-black">
-                    Email *
-                  </label>
-                  <div className="relative">
-                    <Mail className="text-light-teal absolute top-1/2 left-4 h-5 w-5 -translate-y-1/2 transform" />
+              {/* Form Type Selection */}
+              <div className="border-light-teal/30 bg-light-teal/5 mb-8 rounded-xl border p-4">
+                <h3 className="mb-4 text-sm font-medium text-black">
+                  Tipo di cliente
+                </h3>
+                <div className="flex gap-6">
+                  <label className="flex cursor-pointer items-center gap-2">
                     <input
-                      type="email"
-                      value={formData.email}
-                      onChange={e => handleFormChange('email', e.target.value)}
-                      className="border-light-teal/30 bg-light-teal/5 focus:border-light-teal focus:ring-light-teal w-full rounded-xl border py-3 pr-4 pl-12 text-base text-black backdrop-blur-md transition-all focus:bg-white focus:ring-2 focus:outline-none"
-                      placeholder="la-tua-email@esempio.com"
-                    />
-                  </div>
-                </div>
-
-                <div>
-                  <label className="mb-3 block text-sm font-medium text-black">
-                    Telefono *
-                  </label>
-                  <input
-                    type="tel"
-                    value={formData.phone}
-                    onChange={e => handleFormChange('phone', e.target.value)}
-                    className="border-light-teal/30 bg-light-teal/5 focus:border-light-teal focus:ring-light-teal w-full rounded-xl border px-4 py-3 text-base text-black backdrop-blur-md transition-all focus:bg-white focus:ring-2 focus:outline-none"
-                    placeholder="+39 123 456 7890"
-                  />
-                </div>
-
-                <div>
-                  <label className="mb-3 block text-sm font-medium text-black">
-                    CAP *
-                  </label>
-                  <input
-                    type="text"
-                    value={formData.postalCode}
-                    onChange={e =>
-                      handleFormChange('postalCode', e.target.value)
-                    }
-                    className="border-light-teal/30 bg-light-teal/5 focus:border-light-teal focus:ring-light-teal w-full rounded-xl border px-4 py-3 text-base text-black backdrop-blur-md transition-all focus:bg-white focus:ring-2 focus:outline-none"
-                    placeholder="12345"
-                  />
-                </div>
-
-                <div className="md:col-span-2">
-                  <label className="mb-3 block text-sm font-medium text-black">
-                    Indirizzo *
-                  </label>
-                  <div className="relative">
-                    <MapPin className="text-light-teal absolute top-1/2 left-4 h-5 w-5 -translate-y-1/2 transform" />
-                    <input
-                      type="text"
-                      value={formData.address}
+                      type="radio"
+                      name="formType"
+                      value="private"
+                      checked={formType === 'private'}
                       onChange={e =>
-                        handleFormChange('address', e.target.value)
+                        handleFormTypeChange(
+                          e.target.value as 'private' | 'agency'
+                        )
                       }
-                      className="border-light-teal/30 bg-light-teal/5 focus:border-light-teal focus:ring-light-teal w-full rounded-xl border py-3 pr-4 pl-12 text-base text-black backdrop-blur-md transition-all focus:bg-white focus:ring-2 focus:outline-none"
-                      placeholder="Via, Numero civico"
+                      className="text-light-teal border-light-teal/30 focus:ring-light-teal h-4 w-4"
                     />
-                  </div>
-                </div>
-
-                <div>
-                  <label className="mb-3 block text-sm font-medium text-black">
-                    Città *
+                    <span className="text-sm font-medium text-black">
+                      Privato
+                    </span>
                   </label>
-                  <input
-                    type="text"
-                    value={formData.city}
-                    onChange={e => handleFormChange('city', e.target.value)}
-                    className="border-light-teal/30 bg-light-teal/5 focus:border-light-teal focus:ring-light-teal w-full rounded-xl border px-4 py-3 text-base text-black backdrop-blur-md transition-all focus:bg-white focus:ring-2 focus:outline-none"
-                    placeholder="Nome della città"
-                  />
+                  <label className="flex cursor-pointer items-center gap-2">
+                    <input
+                      type="radio"
+                      name="formType"
+                      value="agency"
+                      checked={formType === 'agency'}
+                      onChange={e =>
+                        handleFormTypeChange(
+                          e.target.value as 'private' | 'agency'
+                        )
+                      }
+                      className="text-light-teal border-light-teal/30 focus:ring-light-teal h-4 w-4"
+                    />
+                    <span className="text-sm font-medium text-black">
+                      Azienda
+                    </span>
+                  </label>
                 </div>
               </div>
+
+              {/* Private Form */}
+              {formType === 'private' && (
+                <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+                  <div>
+                    <label className="mb-3 block text-sm font-medium text-black">
+                      Nome *
+                    </label>
+                    <input
+                      type="text"
+                      value={formData.firstName}
+                      onChange={e =>
+                        handleFormChange('firstName', e.target.value)
+                      }
+                      className="border-light-teal/30 bg-light-teal/5 focus:border-light-teal focus:ring-light-teal w-full rounded-xl border px-4 py-3 text-base text-black backdrop-blur-md transition-all focus:bg-white focus:ring-2 focus:outline-none"
+                      placeholder="Il tuo nome"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="mb-3 block text-sm font-medium text-black">
+                      Cognome *
+                    </label>
+                    <input
+                      type="text"
+                      value={formData.lastName}
+                      onChange={e =>
+                        handleFormChange('lastName', e.target.value)
+                      }
+                      className="border-light-teal/30 bg-light-teal/5 focus:border-light-teal focus:ring-light-teal w-full rounded-xl border px-4 py-3 text-base text-black backdrop-blur-md transition-all focus:bg-white focus:ring-2 focus:outline-none"
+                      placeholder="Il tuo cognome"
+                    />
+                  </div>
+
+                  <div className="md:col-span-2">
+                    <label className="mb-3 block text-sm font-medium text-black">
+                      Email *
+                    </label>
+                    <div className="relative">
+                      <Mail className="text-light-teal absolute top-1/2 left-4 h-5 w-5 -translate-y-1/2 transform" />
+                      <input
+                        type="email"
+                        value={formData.email}
+                        onChange={e =>
+                          handleFormChange('email', e.target.value)
+                        }
+                        className="border-light-teal/30 bg-light-teal/5 focus:border-light-teal focus:ring-light-teal w-full rounded-xl border py-3 pr-4 pl-12 text-base text-black backdrop-blur-md transition-all focus:bg-white focus:ring-2 focus:outline-none"
+                        placeholder="la-tua-email@esempio.com"
+                      />
+                    </div>
+                  </div>
+
+                  <div>
+                    <label className="mb-3 block text-sm font-medium text-black">
+                      Telefono *
+                    </label>
+                    <input
+                      type="tel"
+                      value={formData.phone}
+                      onChange={e => handleFormChange('phone', e.target.value)}
+                      className="border-light-teal/30 bg-light-teal/5 focus:border-light-teal focus:ring-light-teal w-full rounded-xl border px-4 py-3 text-base text-black backdrop-blur-md transition-all focus:bg-white focus:ring-2 focus:outline-none"
+                      placeholder="+39 123 456 7890"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="mb-3 block text-sm font-medium text-black">
+                      CAP *
+                    </label>
+                    <input
+                      type="text"
+                      value={formData.postalCode}
+                      onChange={e =>
+                        handleFormChange('postalCode', e.target.value)
+                      }
+                      className="border-light-teal/30 bg-light-teal/5 focus:border-light-teal focus:ring-light-teal w-full rounded-xl border px-4 py-3 text-base text-black backdrop-blur-md transition-all focus:bg-white focus:ring-2 focus:outline-none"
+                      placeholder="12345"
+                    />
+                  </div>
+
+                  <div className="md:col-span-2">
+                    <label className="mb-3 block text-sm font-medium text-black">
+                      Indirizzo *
+                    </label>
+                    <div className="relative">
+                      <MapPin className="text-light-teal absolute top-1/2 left-4 h-5 w-5 -translate-y-1/2 transform" />
+                      <input
+                        type="text"
+                        value={formData.address}
+                        onChange={e =>
+                          handleFormChange('address', e.target.value)
+                        }
+                        className="border-light-teal/30 bg-light-teal/5 focus:border-light-teal focus:ring-light-teal w-full rounded-xl border py-3 pr-4 pl-12 text-base text-black backdrop-blur-md transition-all focus:bg-white focus:ring-2 focus:outline-none"
+                        placeholder="Via, Numero civico"
+                      />
+                    </div>
+                  </div>
+
+                  <div>
+                    <label className="mb-3 block text-sm font-medium text-black">
+                      Città *
+                    </label>
+                    <input
+                      type="text"
+                      value={formData.city}
+                      onChange={e => handleFormChange('city', e.target.value)}
+                      className="border-light-teal/30 bg-light-teal/5 focus:border-light-teal focus:ring-light-teal w-full rounded-xl border px-4 py-3 text-base text-black backdrop-blur-md transition-all focus:bg-white focus:ring-2 focus:outline-none"
+                      placeholder="Nome della città"
+                    />
+                  </div>
+
+                  {/* Required Checkboxes */}
+                  <div className="space-y-4 md:col-span-2">
+                    <div className="flex items-start space-x-3">
+                      <input
+                        type="checkbox"
+                        id="acceptDataProcessingPrivate"
+                        checked={acceptDataProcessing}
+                        onChange={e =>
+                          setAcceptDataProcessing(e.target.checked)
+                        }
+                        className="border-light-teal/30 text-light-teal focus:ring-light-teal mt-1 h-4 w-4 rounded focus:ring-2"
+                        required
+                      />
+                      <label
+                        htmlFor="acceptDataProcessingPrivate"
+                        className="cursor-pointer text-sm text-black"
+                      >
+                        Accetto al trattamento dei miei dati personali. *
+                      </label>
+                    </div>
+
+                    <div className="flex items-start space-x-3">
+                      <input
+                        type="checkbox"
+                        id="acceptTermsPrivate"
+                        checked={acceptTermsAndConditions}
+                        onChange={e =>
+                          setAcceptTermsAndConditions(e.target.checked)
+                        }
+                        className="border-light-teal/30 text-light-teal focus:ring-light-teal mt-1 h-4 w-4 rounded focus:ring-2"
+                        required
+                      />
+                      <label
+                        htmlFor="acceptTermsPrivate"
+                        className="cursor-pointer text-sm text-black"
+                      >
+                        Accetto le condizioni contrattuali e le condizioni di
+                        recesso. *
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {/* Agency Form */}
+              {formType === 'agency' && (
+                <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+                  <div>
+                    <label className="mb-3 block text-sm font-medium text-black">
+                      Partita IVA *
+                    </label>
+                    <input
+                      type="text"
+                      value={agencyFormData.vatNumber}
+                      onChange={e =>
+                        handleAgencyFormChange('vatNumber', e.target.value)
+                      }
+                      className="border-light-teal/30 bg-light-teal/5 focus:border-light-teal focus:ring-light-teal w-full rounded-xl border px-4 py-3 text-base text-black backdrop-blur-md transition-all focus:bg-white focus:ring-2 focus:outline-none"
+                      placeholder="IT12345678901"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="mb-3 block text-sm font-medium text-black">
+                      Ragione Sociale *
+                    </label>
+                    <input
+                      type="text"
+                      value={agencyFormData.companyName}
+                      onChange={e =>
+                        handleAgencyFormChange('companyName', e.target.value)
+                      }
+                      className="border-light-teal/30 bg-light-teal/5 focus:border-light-teal focus:ring-light-teal w-full rounded-xl border px-4 py-3 text-base text-black backdrop-blur-md transition-all focus:bg-white focus:ring-2 focus:outline-none"
+                      placeholder="Nome dell'azienda"
+                    />
+                  </div>
+
+                  <div className="md:col-span-2">
+                    <label className="mb-3 block text-sm font-medium text-black">
+                      PEC o Codice SDI *
+                    </label>
+                    <input
+                      type="text"
+                      value={agencyFormData.pecOrSdi}
+                      onChange={e =>
+                        handleAgencyFormChange('pecOrSdi', e.target.value)
+                      }
+                      className="border-light-teal/30 bg-light-teal/5 focus:border-light-teal focus:ring-light-teal w-full rounded-xl border px-4 py-3 text-base text-black backdrop-blur-md transition-all focus:bg-white focus:ring-2 focus:outline-none"
+                      placeholder="pec@esempio.it o ABCDEFG"
+                    />
+                  </div>
+
+                  <div className="md:col-span-2">
+                    <label className="mb-3 block text-sm font-medium text-black">
+                      Email *
+                    </label>
+                    <div className="relative">
+                      <Mail className="text-light-teal absolute top-1/2 left-4 h-5 w-5 -translate-y-1/2 transform" />
+                      <input
+                        type="email"
+                        value={agencyFormData.email}
+                        onChange={e =>
+                          handleAgencyFormChange('email', e.target.value)
+                        }
+                        className="border-light-teal/30 bg-light-teal/5 focus:border-light-teal focus:ring-light-teal w-full rounded-xl border py-3 pr-4 pl-12 text-base text-black backdrop-blur-md transition-all focus:bg-white focus:ring-2 focus:outline-none"
+                        placeholder="azienda@esempio.com"
+                      />
+                    </div>
+                  </div>
+
+                  <div>
+                    <label className="mb-3 block text-sm font-medium text-black">
+                      Telefono *
+                    </label>
+                    <input
+                      type="tel"
+                      value={agencyFormData.phone}
+                      onChange={e =>
+                        handleAgencyFormChange('phone', e.target.value)
+                      }
+                      className="border-light-teal/30 bg-light-teal/5 focus:border-light-teal focus:ring-light-teal w-full rounded-xl border px-4 py-3 text-base text-black backdrop-blur-md transition-all focus:bg-white focus:ring-2 focus:outline-none"
+                      placeholder="+39 123 456 7890"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="mb-3 block text-sm font-medium text-black">
+                      CAP
+                    </label>
+                    <input
+                      type="text"
+                      value={agencyFormData.postalCode}
+                      onChange={e =>
+                        handleAgencyFormChange('postalCode', e.target.value)
+                      }
+                      className="border-light-teal/30 bg-light-teal/5 focus:border-light-teal focus:ring-light-teal w-full rounded-xl border px-4 py-3 text-base text-black backdrop-blur-md transition-all focus:bg-white focus:ring-2 focus:outline-none"
+                      placeholder="12345"
+                    />
+                  </div>
+
+                  <div className="md:col-span-2">
+                    <label className="mb-3 block text-sm font-medium text-black">
+                      Indirizzo
+                    </label>
+                    <div className="relative">
+                      <MapPin className="text-light-teal absolute top-1/2 left-4 h-5 w-5 -translate-y-1/2 transform" />
+                      <input
+                        type="text"
+                        value={agencyFormData.address}
+                        onChange={e =>
+                          handleAgencyFormChange('address', e.target.value)
+                        }
+                        className="border-light-teal/30 bg-light-teal/5 focus:border-light-teal focus:ring-light-teal w-full rounded-xl border py-3 pr-4 pl-12 text-base text-black backdrop-blur-md transition-all focus:bg-white focus:ring-2 focus:outline-none"
+                        placeholder="Via, Numero civico"
+                      />
+                    </div>
+                  </div>
+
+                  <div>
+                    <label className="mb-3 block text-sm font-medium text-black">
+                      Città
+                    </label>
+                    <input
+                      type="text"
+                      value={agencyFormData.city}
+                      onChange={e =>
+                        handleAgencyFormChange('city', e.target.value)
+                      }
+                      className="border-light-teal/30 bg-light-teal/5 focus:border-light-teal focus:ring-light-teal w-full rounded-xl border px-4 py-3 text-base text-black backdrop-blur-md transition-all focus:bg-white focus:ring-2 focus:outline-none"
+                      placeholder="Nome della città"
+                    />
+                  </div>
+
+                  {/* Required Checkboxes */}
+                  <div className="space-y-4 md:col-span-2">
+                    <div className="flex items-start space-x-3">
+                      <input
+                        type="checkbox"
+                        id="acceptDataProcessingAgency"
+                        checked={acceptDataProcessing}
+                        onChange={e =>
+                          setAcceptDataProcessing(e.target.checked)
+                        }
+                        className="border-light-teal/30 text-light-teal focus:ring-light-teal mt-1 h-4 w-4 rounded focus:ring-2"
+                        required
+                      />
+                      <label
+                        htmlFor="acceptDataProcessingAgency"
+                        className="cursor-pointer text-sm text-black"
+                      >
+                        Accetto al trattamento dei miei dati personali. *
+                      </label>
+                    </div>
+
+                    <div className="flex items-start space-x-3">
+                      <input
+                        type="checkbox"
+                        id="acceptTermsAgency"
+                        checked={acceptTermsAndConditions}
+                        onChange={e =>
+                          setAcceptTermsAndConditions(e.target.checked)
+                        }
+                        className="border-light-teal/30 text-light-teal focus:ring-light-teal mt-1 h-4 w-4 rounded focus:ring-2"
+                        required
+                      />
+                      <label
+                        htmlFor="acceptTermsAgency"
+                        className="cursor-pointer text-sm text-black"
+                      >
+                        Accetto le condizioni contrattuali e le condizioni di
+                        recesso. *
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              )}
             </motion.div>
           </div>
 
@@ -655,10 +982,20 @@ export default function CheckoutPage() {
               <div className="mt-6">
                 <button
                   onClick={() => handlePaymentMethod(selectedPaymentMethod)}
-                  className="bg-light-teal hover:bg-light-teal/90 w-full rounded-xl px-6 py-4 text-lg font-semibold text-white shadow-lg backdrop-blur-md transition-all duration-300 hover:scale-[1.02]"
+                  disabled={!acceptDataProcessing || !acceptTermsAndConditions}
+                  className={`w-full rounded-xl px-6 py-4 text-lg font-semibold shadow-lg backdrop-blur-md transition-all duration-300 ${
+                    acceptDataProcessing && acceptTermsAndConditions
+                      ? 'bg-light-teal hover:bg-light-teal/90 cursor-pointer text-white hover:scale-[1.02]'
+                      : 'cursor-not-allowed bg-gray-400 text-gray-600 opacity-60'
+                  }`}
                 >
                   Continua con il Pagamento
                 </button>
+                {(!acceptDataProcessing || !acceptTermsAndConditions) && (
+                  <p className="mt-2 text-center text-xs text-red-600">
+                    Accetta i termini e le condizioni per procedere
+                  </p>
+                )}
               </div>
             </motion.div>
           </div>
