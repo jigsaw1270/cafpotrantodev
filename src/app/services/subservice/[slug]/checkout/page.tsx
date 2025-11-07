@@ -108,7 +108,6 @@ export default function CheckoutPage() {
         console.error('Error fetching subservice data:', err);
 
         // Temporary: Use mock data for testing when API fails
-        console.log('🚧 Using mock data for testing checkout calculations...');
         const mockSubservice = {
           _id: 'mock-id',
           name: 'SPID con Video Riconoscimento',
@@ -124,13 +123,6 @@ export default function CheckoutPage() {
         };
 
         setSubservice(mockSubservice as any);
-        console.log('📦 Using mock subservice data:', {
-          name: mockSubservice.name,
-          price_start: mockSubservice.price_start,
-          secretarialFees: mockSubservice.secretarialFees,
-          vatPercentage: mockSubservice.vatPercentage,
-        });
-
         setError(null); // Clear error to allow testing
       } finally {
         setLoading(false);
@@ -164,7 +156,6 @@ export default function CheckoutPage() {
   const { subtotal, discount, afterDiscount, vat, total } = useMemo(() => {
     // Don't calculate if subservice data is not loaded yet
     if (!subservice) {
-      console.log('⏳ Subservice data not loaded yet, returning zero values');
       return {
         subtotal: 0,
         discount: 0,
@@ -174,61 +165,30 @@ export default function CheckoutPage() {
       };
     }
 
-    console.log('🧮 Calculating totals...', {
-      urgency,
-      premiumSupport,
-      basePrice: serviceData.basePrice,
-      secretarialFees: serviceData.secretarialFees,
-      urgencyFee,
-      premiumSupportFee,
-    });
-
     // Ensure we have valid base prices before calculating
     const basePrice = Number(serviceData.basePrice) || 0;
     const secretarialFees = Number(serviceData.secretarialFees) || 0;
 
     let subtotal = basePrice + secretarialFees;
-    console.log('🏁 Initial subtotal (base + secretarial):', subtotal);
 
     // Add additional services
     if (urgency) {
-      console.log('🚨 Adding urgency fee:', urgencyFee);
       subtotal += urgencyFee;
-      console.log('🧮 Subtotal after urgency:', subtotal);
     }
     if (premiumSupport) {
-      console.log('📞 Adding premium support fee:', premiumSupportFee);
       subtotal += premiumSupportFee;
-      console.log('🧮 Subtotal after premium support:', subtotal);
     }
-
-    console.log('💎 Final subtotal before discount:', subtotal);
 
     // Apply coupon discount
     let discount = 0;
     if (appliedCoupon) {
       discount = subtotal * (appliedCoupon.discount / 100);
-      console.log('💰 Applying discount:', discount);
     }
 
     const afterDiscount = subtotal - discount;
     const vatRate = Number(serviceData.vatPercentage) || 22;
     const vat = afterDiscount * (vatRate / 100);
     const total = afterDiscount + vat;
-
-    console.log('📊 Final calculation breakdown:', {
-      'Base Price': basePrice.toFixed(2),
-      'Secretarial Fees': secretarialFees.toFixed(2),
-      'Urgency Fee': urgency ? urgencyFee.toFixed(2) : '0.00',
-      'Premium Support Fee': premiumSupport
-        ? premiumSupportFee.toFixed(2)
-        : '0.00',
-      Subtotal: subtotal.toFixed(2),
-      Discount: discount.toFixed(2),
-      'After Discount': afterDiscount.toFixed(2),
-      VAT: vat.toFixed(2),
-      TOTAL: total.toFixed(2),
-    });
 
     return {
       subtotal,
@@ -1001,7 +961,6 @@ export default function CheckoutPage() {
                   }`}
                   onClick={() => {
                     setUrgency(!urgency);
-                    console.log('🚨 Urgency toggled to:', !urgency);
                   }}
                 >
                   <div className="flex items-center justify-between">
@@ -1019,10 +978,6 @@ export default function CheckoutPage() {
                       onChange={e => {
                         e.stopPropagation();
                         setUrgency(e.target.checked);
-                        console.log(
-                          '🚨 Urgency checkbox changed to:',
-                          e.target.checked
-                        );
                       }}
                       className="text-light-teal focus:ring-light-teal h-4 w-4 rounded border-white/30"
                     />
@@ -1038,10 +993,6 @@ export default function CheckoutPage() {
                   }`}
                   onClick={() => {
                     setPremiumSupport(!premiumSupport);
-                    console.log(
-                      '📞 Premium Support toggled to:',
-                      !premiumSupport
-                    );
                   }}
                 >
                   <div className="flex items-center justify-between">
@@ -1059,10 +1010,6 @@ export default function CheckoutPage() {
                       onChange={e => {
                         e.stopPropagation();
                         setPremiumSupport(e.target.checked);
-                        console.log(
-                          '📞 Premium Support checkbox changed to:',
-                          e.target.checked
-                        );
                       }}
                       className="text-light-teal focus:ring-light-teal h-4 w-4 rounded border-white/30"
                     />
@@ -1210,29 +1157,6 @@ export default function CheckoutPage() {
                       </span>
                     </div>
                   </div>
-
-                  {/* Debug Info (only in development) */}
-                  {process.env.NODE_ENV === 'development' && (
-                    <div className="mt-4 rounded-lg bg-gray-100 p-3 text-xs">
-                      <strong>Debug Info:</strong>
-                      <br />
-                      Base Price: €{serviceData.basePrice.toFixed(2)}
-                      <br />
-                      Secretarial Fees: €
-                      {serviceData.secretarialFees.toFixed(2)}
-                      <br />
-                      Urgency: {urgency ? `€${urgencyFee}` : 'No'}
-                      <br />
-                      Premium Support:{' '}
-                      {premiumSupport ? `€${premiumSupportFee}` : 'No'}
-                      <br />
-                      Subtotal: €{subtotal.toFixed(2)}
-                      <br />
-                      VAT: €{vat.toFixed(2)} ({serviceData.vatPercentage}%)
-                      <br />
-                      Total: €{total.toFixed(2)}
-                    </div>
-                  )}
 
                   <div className="border-light-teal/30 border-t pt-4">
                     <div className="flex items-center justify-between">

@@ -12,8 +12,8 @@ const navigation = [
   { href: '/about', label: 'Chi Siamo' },
   { href: '/lavora-con-noi', label: 'Lavora con Noi' },
   // { href: '/consulting', label: 'Consulenze' },
-  { href: '/faq', label: 'FAQ' },
   { href: '/contact', label: 'Contatti' },
+  { href: '/faq', label: 'FAQ' },
 ];
 
 export function Header() {

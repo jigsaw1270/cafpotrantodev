@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Mail, Phone, MapPin, Send } from 'lucide-react';
+import { Mail, Phone, MapPin, Send, MessageCircle } from 'lucide-react';
 import { SEO } from '@/components/seo';
 import { Label } from '@/components/ui/label';
 import {
@@ -12,6 +12,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
+import { openWhatsApp } from '@/lib/whatsapp';
 
 interface FormData {
   name: string;
@@ -28,25 +29,29 @@ const contactInfo = [
     icon: Mail,
     title: 'Email',
     content: 'CAFMONZA12@GMAIL.COM',
+    type: 'email' as const,
     href: 'mailto:CAFMONZA12@GMAIL.COM',
   },
   {
     icon: Phone,
     title: 'Milano Lorenteggio',
     content: '+39 02 6146 0044',
-    href: 'tel:+390261460044',
+    type: 'phone' as const,
+    phone: '0261460044',
   },
   {
     icon: Phone,
     title: 'Milano Padova',
     content: '+39 02 3675 5609',
-    href: 'tel:+390236755609',
+    type: 'phone' as const,
+    phone: '0236755609',
   },
   {
-    icon: Phone,
-    title: 'Monza',
-    content: '+39 039 598 6985',
-    href: 'tel:+390395986985',
+    icon: MessageCircle,
+    title: 'CAF Monza',
+    content: '+39 366 8735 046',
+    type: 'phone' as const,
+    phone: '3668735046',
   },
 ];
 
@@ -63,6 +68,76 @@ export default function Contact() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [error, setError] = useState<string | null>(null);
+
+  // Handle WhatsApp call action
+  const handleWhatsAppCall = (phone: string, title: string) => {
+    // Clean and format phone number for WhatsApp
+    let cleanPhone = phone.replace(/\D/g, ''); // Remove all non-digits
+
+    // Ensure Italian country code is present
+    if (!cleanPhone.startsWith('39')) {
+      // Italian numbers: landlines start with 0, mobiles start with 3
+      if (cleanPhone.startsWith('0') || cleanPhone.startsWith('3')) {
+        cleanPhone = '39' + cleanPhone;
+      } else {
+        // Fallback: just add 39
+        cleanPhone = '39' + cleanPhone;
+      }
+    }
+
+    console.log(`📞 Original phone: ${phone} -> WhatsApp phone: ${cleanPhone}`);
+
+    const message = `Ciao! 👋\n\nVorrei contattare la sede: *${title}*\n\nPotete aiutarmi?\n\nGrazie! 🙏`;
+
+    openWhatsApp({
+      phone: cleanPhone,
+      message: message,
+    });
+  };
+
+  // Handle email action - detect mobile vs desktop and open appropriate email service
+  const handleEmailClick = (email: string) => {
+    const subject = encodeURIComponent('Richiesta informazioni - CafPotranto');
+    const body = encodeURIComponent(
+      'Buongiorno,\n\nVorrei ricevere informazioni sui vostri servizi.\n\nGrazie'
+    );
+
+    // Detect if we're on mobile
+    const isMobile =
+      /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+        navigator.userAgent
+      );
+
+    const isAndroid = /Android/i.test(navigator.userAgent);
+    const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
+
+    if (isMobile) {
+      // On mobile devices, try different email app approaches
+      if (isAndroid) {
+        // Try Gmail app on Android first
+        try {
+          const gmailUrl = `googlegmail://co?to=${email}&subject=${subject}&body=${body}`;
+          window.location.href = gmailUrl;
+        } catch {
+          // Fallback to mailto
+          const mailtoUrl = `mailto:${email}?subject=${subject}&body=${body}`;
+          window.location.href = mailtoUrl;
+        }
+      } else if (isIOS) {
+        // On iOS, use mailto which opens the default mail app
+        const mailtoUrl = `mailto:${email}?subject=${subject}&body=${body}`;
+        window.location.href = mailtoUrl;
+      } else {
+        // Other mobile devices
+        const mailtoUrl = `mailto:${email}?subject=${subject}&body=${body}`;
+        window.location.href = mailtoUrl;
+      }
+    } else {
+      // On desktop/web browser, open Gmail in browser
+      const gmailWebUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${email}&subject=${subject}&body=${body}`;
+      window.open(gmailWebUrl, '_blank', 'noopener,noreferrer');
+    }
+  };
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -216,7 +291,14 @@ export default function Contact() {
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: index * 0.1 }}
                     viewport={{ once: true }}
-                    className="flex items-start gap-4 rounded-xl border border-white/10 bg-white/5 p-4 backdrop-blur-md transition-all duration-300 hover:bg-white/10"
+                    className="flex cursor-pointer items-start gap-4 rounded-xl border border-white/10 bg-white/5 p-4 backdrop-blur-md transition-all duration-300 hover:bg-white/10"
+                    onClick={() => {
+                      if (info.type === 'phone' && info.phone) {
+                        handleWhatsAppCall(info.phone, info.title);
+                      } else if (info.type === 'email') {
+                        handleEmailClick(info.content);
+                      }
+                    }}
                   >
                     <div className="from-dark-teal to-light-teal flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-gradient-to-br shadow-lg">
                       <info.icon className="h-6 w-6 text-white" />
@@ -225,26 +307,9 @@ export default function Contact() {
                       <h3 className="text-new-white mb-1 text-sm font-semibold tracking-wide uppercase">
                         {info.title}
                       </h3>
-                      {info.href ? (
-                        <a
-                          href={info.href}
-                          target={
-                            info.title.includes('Sede') ? '_blank' : undefined
-                          }
-                          rel={
-                            info.title.includes('Sede')
-                              ? 'noopener noreferrer'
-                              : undefined
-                          }
-                          className="text-new-dim-cyan hover:text-light-teal text-sm break-words transition-colors"
-                        >
-                          {info.content}
-                        </a>
-                      ) : (
-                        <p className="text-new-dim-cyan text-sm">
-                          {info.content}
-                        </p>
-                      )}
+                      <p className="text-new-dim-cyan text-sm break-words">
+                        {info.content}
+                      </p>
                     </div>
                   </motion.div>
                 ))}
@@ -645,9 +710,11 @@ export default function Contact() {
                   </div>
 
                   <div className="space-y-3">
-                    <a
-                      href="tel:+390261460044"
-                      className="bg-light-teal/20 hover:bg-light-teal/30 border-light-teal/30 group flex items-center gap-3 rounded-xl border p-3 backdrop-blur-md transition-all duration-200 hover:scale-[1.02]"
+                    <div
+                      onClick={() =>
+                        handleWhatsAppCall('0261460044', 'MILANO SEDE LEGALE')
+                      }
+                      className="bg-light-teal/20 hover:bg-light-teal/30 border-light-teal/30 group flex cursor-pointer items-center gap-3 rounded-xl border p-3 backdrop-blur-md transition-all duration-200 hover:scale-[1.02]"
                     >
                       <div className="bg-light-teal rounded-full p-2">
                         <Phone className="h-4 w-4 text-white" />
@@ -655,10 +722,12 @@ export default function Contact() {
                       <span className="group-hover:text-light-teal font-medium text-white transition-colors">
                         02.61460044
                       </span>
-                    </a>
-                    <a
-                      href="tel:+393495214147"
-                      className="bg-light-teal/20 hover:bg-light-teal/30 border-light-teal/30 group flex items-center gap-3 rounded-xl border p-3 backdrop-blur-md transition-all duration-200 hover:scale-[1.02]"
+                    </div>
+                    <div
+                      onClick={() =>
+                        handleWhatsAppCall('3495214147', 'MILANO SEDE LEGALE')
+                      }
+                      className="bg-light-teal/20 hover:bg-light-teal/30 border-light-teal/30 group flex cursor-pointer items-center gap-3 rounded-xl border p-3 backdrop-blur-md transition-all duration-200 hover:scale-[1.02]"
                     >
                       <div className="bg-light-teal rounded-full p-2">
                         <Phone className="h-4 w-4 text-white" />
@@ -666,10 +735,12 @@ export default function Contact() {
                       <span className="group-hover:text-light-teal font-medium text-white transition-colors">
                         349.5214147
                       </span>
-                    </a>
-                    <a
-                      href="mailto:CAFLORENTEGGIO@GMAIL.COM"
-                      className="bg-yellow/20 hover:bg-yellow/30 border-yellow/30 group flex items-center gap-3 rounded-xl border p-3 backdrop-blur-md transition-all duration-200 hover:scale-[1.02]"
+                    </div>
+                    <div
+                      onClick={() =>
+                        handleEmailClick('CAFLORENTEGGIO@GMAIL.COM')
+                      }
+                      className="bg-yellow/20 hover:bg-yellow/30 border-yellow/30 group flex cursor-pointer items-center gap-3 rounded-xl border p-3 backdrop-blur-md transition-all duration-200 hover:scale-[1.02]"
                     >
                       <div className="bg-yellow rounded-full p-2">
                         <Mail className="h-4 w-4 text-white" />
@@ -677,7 +748,7 @@ export default function Contact() {
                       <span className="group-hover:text-yellow text-sm font-medium text-white transition-colors">
                         CAFLORENTEGGIO@GMAIL.COM
                       </span>
-                    </a>
+                    </div>
                   </div>
 
                   {/* Get Directions Button */}
@@ -728,9 +799,11 @@ export default function Contact() {
                   </div>
 
                   <div className="space-y-3">
-                    <a
-                      href="tel:0236755609"
-                      className="bg-light-teal/20 hover:bg-light-teal/30 border-light-teal/30 group flex items-center gap-3 rounded-xl border p-3 backdrop-blur-md transition-all duration-200 hover:scale-[1.02]"
+                    <div
+                      onClick={() =>
+                        handleWhatsAppCall('0236755609', 'MILANO - Via Padova')
+                      }
+                      className="bg-light-teal/20 hover:bg-light-teal/30 border-light-teal/30 group flex cursor-pointer items-center gap-3 rounded-xl border p-3 backdrop-blur-md transition-all duration-200 hover:scale-[1.02]"
                     >
                       <div className="bg-light-teal rounded-full p-2">
                         <Phone className="h-4 w-4 text-white" />
@@ -738,10 +811,12 @@ export default function Contact() {
                       <span className="group-hover:text-light-teal font-medium text-white transition-colors">
                         02.36755609
                       </span>
-                    </a>
-                    <a
-                      href="tel:3511721772"
-                      className="bg-light-teal/20 hover:bg-light-teal/30 border-light-teal/30 group flex items-center gap-3 rounded-xl border p-3 backdrop-blur-md transition-all duration-200 hover:scale-[1.02]"
+                    </div>
+                    <div
+                      onClick={() =>
+                        handleWhatsAppCall('3511721772', 'MILANO - Via Padova')
+                      }
+                      className="bg-light-teal/20 hover:bg-light-teal/30 border-light-teal/30 group flex cursor-pointer items-center gap-3 rounded-xl border p-3 backdrop-blur-md transition-all duration-200 hover:scale-[1.02]"
                     >
                       <div className="bg-light-teal rounded-full p-2">
                         <Phone className="h-4 w-4 text-white" />
@@ -749,10 +824,10 @@ export default function Contact() {
                       <span className="group-hover:text-light-teal font-medium text-white transition-colors">
                         351.1721772
                       </span>
-                    </a>
-                    <a
-                      href="mailto:AZCAFPADOVA@GMAIL.COM"
-                      className="bg-yellow/20 hover:bg-yellow/30 border-yellow/30 group flex items-center gap-3 rounded-xl border p-3 backdrop-blur-md transition-all duration-200 hover:scale-[1.02]"
+                    </div>
+                    <div
+                      onClick={() => handleEmailClick('AZCAFPADOVA@GMAIL.COM')}
+                      className="bg-yellow/20 hover:bg-yellow/30 border-yellow/30 group flex cursor-pointer items-center gap-3 rounded-xl border p-3 backdrop-blur-md transition-all duration-200 hover:scale-[1.02]"
                     >
                       <div className="bg-yellow rounded-full p-2">
                         <Mail className="h-4 w-4 text-white" />
@@ -760,7 +835,7 @@ export default function Contact() {
                       <span className="group-hover:text-yellow text-sm font-medium text-white transition-colors">
                         AZCAFPADOVA@GMAIL.COM
                       </span>
-                    </a>
+                    </div>
                   </div>
 
                   {/* Get Directions Button */}
@@ -811,9 +886,11 @@ export default function Contact() {
                   </div>
 
                   <div className="space-y-3">
-                    <a
-                      href="tel:0395986985"
-                      className="bg-light-teal/20 hover:bg-light-teal/30 border-light-teal/30 group flex items-center gap-3 rounded-xl border p-3 backdrop-blur-md transition-all duration-200 hover:scale-[1.02]"
+                    <div
+                      onClick={() =>
+                        handleWhatsAppCall('0395986985', 'MONZA - Via Amati')
+                      }
+                      className="bg-light-teal/20 hover:bg-light-teal/30 border-light-teal/30 group flex cursor-pointer items-center gap-3 rounded-xl border p-3 backdrop-blur-md transition-all duration-200 hover:scale-[1.02]"
                     >
                       <div className="bg-light-teal rounded-full p-2">
                         <Phone className="h-4 w-4 text-white" />
@@ -821,10 +898,12 @@ export default function Contact() {
                       <span className="group-hover:text-light-teal font-medium text-white transition-colors">
                         039.5986985
                       </span>
-                    </a>
-                    <a
-                      href="tel:3668735046"
-                      className="bg-light-teal/20 hover:bg-light-teal/30 border-light-teal/30 group flex items-center gap-3 rounded-xl border p-3 backdrop-blur-md transition-all duration-200 hover:scale-[1.02]"
+                    </div>
+                    <div
+                      onClick={() =>
+                        handleWhatsAppCall('3668735046', 'MONZA - Via Amati')
+                      }
+                      className="bg-light-teal/20 hover:bg-light-teal/30 border-light-teal/30 group flex cursor-pointer items-center gap-3 rounded-xl border p-3 backdrop-blur-md transition-all duration-200 hover:scale-[1.02]"
                     >
                       <div className="bg-light-teal rounded-full p-2">
                         <Phone className="h-4 w-4 text-white" />
@@ -832,10 +911,10 @@ export default function Contact() {
                       <span className="group-hover:text-light-teal font-medium text-white transition-colors">
                         366.8735046
                       </span>
-                    </a>
-                    <a
-                      href="mailto:CAFMONZA12@GMAIL.COM"
-                      className="bg-yellow/20 hover:bg-yellow/30 border-yellow/30 group flex items-center gap-3 rounded-xl border p-3 backdrop-blur-md transition-all duration-200 hover:scale-[1.02]"
+                    </div>
+                    <div
+                      onClick={() => handleEmailClick('CAFMONZA12@GMAIL.COM')}
+                      className="bg-yellow/20 hover:bg-yellow/30 border-yellow/30 group flex cursor-pointer items-center gap-3 rounded-xl border p-3 backdrop-blur-md transition-all duration-200 hover:scale-[1.02]"
                     >
                       <div className="bg-yellow rounded-full p-2">
                         <Mail className="h-4 w-4 text-white" />
@@ -843,7 +922,7 @@ export default function Contact() {
                       <span className="group-hover:text-yellow text-sm font-medium text-white transition-colors">
                         CAFMONZA12@GMAIL.COM
                       </span>
-                    </a>
+                    </div>
                   </div>
 
                   {/* Get Directions Button */}

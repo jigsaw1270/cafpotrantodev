@@ -481,7 +481,10 @@ export default function SubservicePage() {
                   </button>
 
                   {/* Phone Button */}
-                  <button className="bg-light-teal hover:bg-light-teal/90 flex w-full items-center justify-center gap-2 rounded-xl px-4 py-3 font-medium text-white shadow-lg transition-all duration-300 hover:scale-[1.02]">
+                  <button
+                    onClick={() => window.open('tel:+393668735046', '_self')}
+                    className="bg-light-teal hover:bg-light-teal/90 flex w-full items-center justify-center gap-2 rounded-xl px-4 py-3 font-medium text-white shadow-lg transition-all duration-300 hover:scale-[1.02]"
+                  >
                     <Phone className="h-5 w-5" />
                     Chiama ora
                   </button>

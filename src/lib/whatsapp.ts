@@ -364,7 +364,7 @@ export function openWhatsApp(data: WhatsAppMessage): void {
  * You can customize this with your business WhatsApp number
  */
 export const DEFAULT_WHATSAPP_CONFIG = {
-  phone: '+8801942511663', // Replace with your actual WhatsApp business number
+  phone: '+393668735046', // CAF Monza WhatsApp business number
   businessName: 'CafPotranto',
   businessHours: '9:00 - 18:00 (Lun-Ven)',
 };
