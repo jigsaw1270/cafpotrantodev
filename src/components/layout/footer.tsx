@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { Mail, Facebook, Instagram, Linkedin } from 'lucide-react';
+import { CookiePreferencesLink } from '@/components/ui/cookie-preferences-link';
 
 const quickLinks = [
   { href: '/', label: 'Home' },
@@ -139,9 +140,11 @@ export function Footer() {
               <h4 className="mb-2 text-sm font-bold text-white">Seguici</h4>
               <div className="flex gap-3">
                 <a
-                  href="#"
+                  href="https://www.facebook.com/p/Caf-Patronato-Sindacato-AZ-Assistenza-Fiscale-100083555323350/"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="hover:border-cyan hover:bg-cyan flex h-8 w-8 items-center justify-center rounded-full border border-gray-800 bg-gray-900/50 text-gray-400 transition-all hover:text-white"
-                  title="Facebook"
+                  title="Facebook - CAF Patronato Sindacato AZ Assistenza Fiscale"
                 >
                   <Facebook className="h-4 w-4" />
                 </a>
@@ -223,12 +226,7 @@ export function Footer() {
               >
                 Privacy
               </Link>
-              <Link
-                href="/cookie"
-                className="hover:text-cyan transition-colors"
-              >
-                Cookie
-              </Link>
+              <CookiePreferencesLink />
               <Link href="/terms" className="hover:text-cyan transition-colors">
                 Termini
               </Link>

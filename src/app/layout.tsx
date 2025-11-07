@@ -6,7 +6,7 @@ import { ToastProvider } from '@/components/ui/toast';
 import { GlobalToastListener } from '@/components/ui/global-toast-listener';
 import { WhatsAppInitializer } from '@/components/whatsapp-initializer';
 import { SWRProvider } from '@/components/providers/SWRProvider';
-import { LenisProvider } from '@/components/providers/lenis-provider';
+import { CookieConsent } from '@/components/ui/cookie-consent';
 import './globals.css';
 
 const geistSans = Geist({
@@ -115,19 +115,18 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} bg-background min-h-screen font-sans antialiased`}
       >
-        <LenisProvider>
-          <SWRProvider>
-            <ToastProvider>
-              <GlobalToastListener />
-              <WhatsAppInitializer />
-              <div className="relative flex min-h-screen flex-col">
-                <Header />
-                <main className="flex-1">{children}</main>
-                <Footer />
-              </div>
-            </ToastProvider>
-          </SWRProvider>
-        </LenisProvider>
+        <SWRProvider>
+          <ToastProvider>
+            <GlobalToastListener />
+            <WhatsAppInitializer />
+            <CookieConsent />
+            <div className="relative flex min-h-screen flex-col">
+              <Header />
+              <main className="flex-1">{children}</main>
+              <Footer />
+            </div>
+          </ToastProvider>
+        </SWRProvider>
       </body>
     </html>
   );

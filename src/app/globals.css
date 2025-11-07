@@ -197,28 +197,6 @@ body {
   background: var(--accent);
 }
 
-/* Lenis smooth scroll optimization */
-html.lenis,
-html.lenis body {
-  height: auto;
-}
-
-.lenis.lenis-smooth {
-  scroll-behavior: auto !important;
-}
-
-.lenis.lenis-smooth [data-lenis-prevent] {
-  overscroll-behavior: contain;
-}
-
-.lenis.lenis-stopped {
-  overflow: hidden;
-}
-
-.lenis.lenis-smooth iframe {
-  pointer-events: none;
-}
-
 /* Focus ring */
 *:focus-visible {
   outline: 2px solid var(--ring);
