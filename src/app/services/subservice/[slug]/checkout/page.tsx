@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
 import {
@@ -19,11 +19,20 @@ import {
   FileImage,
 } from 'lucide-react';
 import Link from 'next/link';
+import { Subservice, Category } from '@/lib/types';
+import apiClient from '@/lib/api';
+import Loader from '@/components/ui/loader';
 
 export default function CheckoutPage() {
   const params = useParams();
   const router = useRouter();
   const slug = params.slug as string;
+
+  // Data states
+  const [subservice, setSubservice] = useState<Subservice | null>(null);
+  const [category, setCategory] = useState<Category | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
   // Form states
   const [formType, setFormType] = useState<'private' | 'agency'>('private');
@@ -63,13 +72,61 @@ export default function CheckoutPage() {
     useState(false);
   const [uploadedFiles, setUploadedFiles] = useState<File[]>([]);
 
-  // Mock service data
-  const serviceData = {
-    name: 'Servizio Professionale',
-    basePrice: 299.99,
-    secretarialFees: 25.0,
-    vatPercentage: 22,
-  };
+  // Load subservice data
+  useEffect(() => {
+    const fetchSubserviceData = async () => {
+      try {
+        setLoading(true);
+        setError(null);
+
+        // Fetch subservice by slug
+        const subserviceResponse = await apiClient.getSubserviceBySlug(slug);
+
+        if (!subserviceResponse.success || !subserviceResponse.data) {
+          throw new Error('Failed to fetch subservice');
+        }
+
+        const foundSubservice = subserviceResponse.data.subservice;
+        setSubservice(foundSubservice);
+
+        // Get the category details
+        if (foundSubservice.categoryId) {
+          const categoryResponse = await apiClient.getCategoryById(
+            foundSubservice.categoryId
+          );
+          if (categoryResponse.success && categoryResponse.data) {
+            setCategory(categoryResponse.data);
+          }
+        }
+      } catch (err) {
+        console.error('Error fetching subservice data:', err);
+        setError(
+          err instanceof Error ? err.message : 'Failed to load subservice'
+        );
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    if (slug) {
+      fetchSubserviceData();
+    }
+  }, [slug]);
+
+  // Service data derived from subservice
+  const serviceData = subservice
+    ? {
+        name: subservice.name,
+        basePrice: subservice.price_start,
+        secretarialFees: subservice.secretarialFees || 0,
+        vatPercentage: subservice.vatPercentage || 22,
+      }
+    : {
+        name: 'Loading...',
+        basePrice: 0,
+        secretarialFees: 0,
+        vatPercentage: 22,
+      };
 
   const urgencyFee = 15.0;
   const premiumSupportFee = 10.0;
@@ -255,6 +312,31 @@ export default function CheckoutPage() {
       );
     }
   };
+
+  // Show loading state
+  if (loading) {
+    return (
+      <div className="bg-new-beige flex min-h-screen items-center justify-center">
+        <Loader size="large" centered />
+      </div>
+    );
+  }
+
+  // Show error state
+  if (error || !subservice) {
+    return (
+      <div className="flex min-h-screen items-center justify-center">
+        <div className="text-center">
+          <h1 className="mb-4 text-2xl font-bold text-gray-900">
+            {error || 'Servizio non trovato'}
+          </h1>
+          <Link href="/services" className="text-blue-600 hover:text-blue-800">
+            Torna ai servizi
+          </Link>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="bg-new-beige/95 relative min-h-screen overflow-hidden backdrop-blur-xl">
@@ -908,128 +990,155 @@ export default function CheckoutPage() {
               </div>
             </motion.div>
 
-            {/* Purchase Summary */}
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.2 }}
-              className="border-light-teal/30 rounded-3xl border bg-white/95 p-6 shadow-2xl backdrop-blur-xl"
-            >
-              <h2 className="text-light-teal mb-6 flex items-center gap-2 text-lg font-bold">
-                <Receipt className="h-5 w-5" />
-                Riepilogo Acquisto
-              </h2>
+            {/* Purchase Summary - Only show when subservice data is loaded */}
+            {subservice ? (
+              <motion.div
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.2 }}
+                className="border-light-teal/30 rounded-3xl border bg-white/95 p-6 shadow-2xl backdrop-blur-xl"
+              >
+                <h2 className="text-light-teal mb-6 flex items-center gap-2 text-lg font-bold">
+                  <Receipt className="h-5 w-5" />
+                  Riepilogo Acquisto
+                </h2>
 
-              <div className="space-y-4">
-                {/* Service Details */}
-                <div className="border-light-teal/30 border-b pb-4">
-                  <h3 className="mb-3 text-sm font-semibold text-black">
-                    {serviceData.name}
-                  </h3>
-                  <div className="space-y-2 text-sm">
-                    <div className="flex justify-between">
-                      <span className="text-black/70">Prezzo base:</span>
-                      <span className="font-medium text-black">
-                        €{serviceData.basePrice.toFixed(2)}
-                      </span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span className="text-black/70">Oneri segreteria:</span>
-                      <span className="font-medium text-black">
-                        €{serviceData.secretarialFees.toFixed(2)}
-                      </span>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Additional Services */}
-                {(urgency || premiumSupport) && (
+                <div className="space-y-4">
+                  {/* Service Details */}
                   <div className="border-light-teal/30 border-b pb-4">
-                    <h4 className="mb-3 text-sm font-medium text-black">
-                      Servizi aggiuntivi:
-                    </h4>
+                    <h3 className="mb-3 text-sm font-semibold text-black">
+                      {subservice.name}
+                    </h3>
                     <div className="space-y-2 text-sm">
-                      {urgency && (
-                        <div className="flex justify-between">
-                          <span className="text-black/70">Emergency:</span>
-                          <span className="font-medium text-black">
-                            €{urgencyFee.toFixed(2)}
-                          </span>
-                        </div>
-                      )}
-                      {premiumSupport && (
+                      <div className="flex justify-between">
+                        <span className="text-black/70">Prezzo base:</span>
+                        <span className="font-medium text-black">
+                          €{subservice.price_start.toFixed(2)}
+                        </span>
+                      </div>
+                      {(subservice.secretarialFees || 0) > 0 && (
                         <div className="flex justify-between">
                           <span className="text-black/70">
-                            Premium Support:
+                            Oneri segreteria:
                           </span>
                           <span className="font-medium text-black">
-                            €{premiumSupportFee.toFixed(2)}
+                            €{(subservice.secretarialFees || 0).toFixed(2)}
                           </span>
                         </div>
                       )}
                     </div>
                   </div>
-                )}
 
-                {/* Discount */}
-                {discount > 0 && (
-                  <div className="border-light-teal/30 border-b pb-4">
-                    <div className="flex justify-between text-sm">
-                      <span className="text-green-600">
-                        Sconto ({appliedCoupon?.discount}%):
+                  {/* Additional Services */}
+                  {(urgency || premiumSupport) && (
+                    <div className="border-light-teal/30 border-b pb-4">
+                      <h4 className="mb-3 text-sm font-medium text-black">
+                        Servizi aggiuntivi:
+                      </h4>
+                      <div className="space-y-2 text-sm">
+                        {urgency && (
+                          <div className="flex justify-between">
+                            <span className="text-black/70">Emergency:</span>
+                            <span className="font-medium text-black">
+                              €{urgencyFee.toFixed(2)}
+                            </span>
+                          </div>
+                        )}
+                        {premiumSupport && (
+                          <div className="flex justify-between">
+                            <span className="text-black/70">
+                              Premium Support:
+                            </span>
+                            <span className="font-medium text-black">
+                              €{premiumSupportFee.toFixed(2)}
+                            </span>
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Discount */}
+                  {discount > 0 && (
+                    <div className="border-light-teal/30 border-b pb-4">
+                      <div className="flex justify-between text-sm">
+                        <span className="text-green-600">
+                          Sconto ({appliedCoupon?.discount}%):
+                        </span>
+                        <span className="font-medium text-green-600">
+                          -€{discount.toFixed(2)}
+                        </span>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Totals */}
+                  <div className="space-y-2 text-sm">
+                    <div className="flex justify-between">
+                      <span className="text-black/70">Subtotale:</span>
+                      <span className="font-medium text-black">
+                        €{afterDiscount.toFixed(2)}
                       </span>
-                      <span className="font-medium text-green-600">
-                        -€{discount.toFixed(2)}
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-black/70">
+                        IVA ({serviceData.vatPercentage}%):
+                      </span>
+                      <span className="font-medium text-black">
+                        €{vat.toFixed(2)}
                       </span>
                     </div>
                   </div>
-                )}
 
-                {/* Totals */}
-                <div className="space-y-2 text-sm">
-                  <div className="flex justify-between">
-                    <span className="text-black/70">Subtotale:</span>
-                    <span className="font-medium text-black">
-                      €{afterDiscount.toFixed(2)}
-                    </span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-black/70">
-                      IVA ({serviceData.vatPercentage}%):
-                    </span>
-                    <span className="font-medium text-black">
-                      €{vat.toFixed(2)}
-                    </span>
-                  </div>
-                </div>
-
-                <div className="border-light-teal/30 border-t pt-4">
-                  <div className="flex items-center justify-between">
-                    <span className="text-lg font-bold text-black">
-                      Totale:
-                    </span>
-                    <span className="text-light-teal text-lg font-bold">
-                      €{total.toFixed(2)}
-                    </span>
-                  </div>
-                </div>
-
-                {/* Security Notice */}
-                <div className="border-light-teal/30 bg-light-teal/10 mt-4 rounded-xl border p-4 backdrop-blur-md">
-                  <div className="flex items-start gap-3">
-                    <div className="bg-light-teal mt-1 flex h-4 w-4 items-center justify-center rounded-full">
-                      <div className="h-1.5 w-1.5 rounded-full bg-white"></div>
+                  <div className="border-light-teal/30 border-t pt-4">
+                    <div className="flex items-center justify-between">
+                      <span className="text-lg font-bold text-black">
+                        Totale:
+                      </span>
+                      <span className="text-light-teal text-lg font-bold">
+                        €{total.toFixed(2)}
+                      </span>
                     </div>
-                    <div>
-                      <h4 className="text-sm font-medium text-black"></h4>
-                      <p className="mt-1 text-xs text-black/70">
-                        I tuoi dati sono protetti con crittografia SSL
-                      </p>
+                  </div>
+
+                  {/* Security Notice */}
+                  <div className="border-light-teal/30 bg-light-teal/10 mt-4 rounded-xl border p-4 backdrop-blur-md">
+                    <div className="flex items-start gap-3">
+                      <div className="bg-light-teal mt-1 flex h-4 w-4 items-center justify-center rounded-full">
+                        <div className="h-1.5 w-1.5 rounded-full bg-white"></div>
+                      </div>
+                      <div>
+                        <h4 className="text-sm font-medium text-black"></h4>
+                        <p className="mt-1 text-xs text-black/70">
+                          I tuoi dati sono protetti con crittografia SSL
+                        </p>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            </motion.div>
+              </motion.div>
+            ) : (
+              <motion.div
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.2 }}
+                className="border-light-teal/30 rounded-3xl border bg-white/95 p-6 shadow-2xl backdrop-blur-xl"
+              >
+                <h2 className="text-light-teal mb-6 flex items-center gap-2 text-lg font-bold">
+                  <Receipt className="h-5 w-5" />
+                  Riepilogo Acquisto
+                </h2>
+                <div className="space-y-4">
+                  <div className="py-8 text-center">
+                    <div className="animate-pulse">
+                      <div className="mb-2 h-4 rounded bg-gray-200"></div>
+                      <div className="mx-auto mb-2 h-4 w-3/4 rounded bg-gray-200"></div>
+                      <div className="mx-auto h-4 w-1/2 rounded bg-gray-200"></div>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            )}
 
             {/* Payment Method Selection */}
             <motion.div
