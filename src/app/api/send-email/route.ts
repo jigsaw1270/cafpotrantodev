@@ -42,30 +42,50 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const body = await request.json();
+    let body;
+    try {
+      body = await request.json();
+    } catch (parseError) {
+      console.error('JSON parse error:', parseError);
+      return NextResponse.json(
+        {
+          success: false,
+          message: 'Dati del modulo non validi. Riprova.',
+        },
+        { status: 400 }
+      );
+    }
 
     // Log received data for debugging
     console.log('📨 Received form data:', body);
 
-    // Validate required fields
-    const { name, email, phone, location, address, service, message } = body;
+    // Sanitize and validate input data
+    const sanitizeString = (str: string) => {
+      if (typeof str !== 'string') return '';
+      return str
+        .trim()
+        .replace(/[\r\n\t]/g, ' ')
+        .substring(0, 1000); // Limit length and clean
+    };
 
-    if (
-      !name ||
-      !email ||
-      !phone ||
-      !location ||
-      !address ||
-      !service ||
-      !message
-    ) {
+    // Validate required fields
+    let { name, email, phone, location, address, message } = body;
+
+    // Sanitize all input fields
+    name = sanitizeString(name);
+    email = sanitizeString(email);
+    phone = sanitizeString(phone);
+    location = sanitizeString(location);
+    address = sanitizeString(address);
+    message = sanitizeString(message);
+
+    if (!name || !email || !phone || !location || !address || !message) {
       console.log('❌ Validation failed. Missing fields:', {
         name: !!name,
         email: !!email,
         phone: !!phone,
         location: !!location,
         address: !!address,
-        service: !!service,
         message: !!message,
       });
       return NextResponse.json(
@@ -78,7 +98,6 @@ export async function POST(request: NextRequest) {
             phone: !phone,
             location: !location,
             address: !address,
-            service: !service,
             message: !message,
           },
         },
@@ -109,9 +128,9 @@ export async function POST(request: NextRequest) {
 
     // Get location name
     const locationNames: Record<string, string> = {
-      'sede-1': 'Sede 1 - Roma Centro',
-      'sede-2': 'Sede 2 - Milano Nord',
-      'sede-3': 'Sede 3 - Napoli',
+      'milano-lorenteggio': 'Milano Lorenteggio - Via Lorenteggio 172',
+      'milano-padova': 'Milano Padova - Via Padova 288',
+      monza: 'Monza - Via Amati 12/G',
     };
 
     const locationName = locationNames[location] || location;
@@ -120,7 +139,7 @@ export async function POST(request: NextRequest) {
     const adminMailOptions = {
       from: process.env.GMAIL_USER,
       to: process.env.ADMIN_EMAIL || process.env.GMAIL_USER,
-      subject: `🔔 Nuova Richiesta Contatto - ${service}`,
+      subject: `🔔 Nuova Richiesta Contatto - ${locationName}`,
       html: `
         <!DOCTYPE html>
         <html>
@@ -248,13 +267,6 @@ export async function POST(request: NextRequest) {
                   <div class="value">${address}</div>
                 </div>
 
-                <div class="field">
-                  <div class="label">🔧 Servizio Richiesto</div>
-                  <div class="value">
-                    <span class="highlight">${service}</span>
-                  </div>
-                </div>
-
                 <div class="divider"></div>
 
                 <div class="field">
@@ -363,8 +375,7 @@ export async function POST(request: NextRequest) {
                 <p style="font-size: 18px;">Gentile <strong>${name}</strong>,</p>
                 
                 <p style="font-size: 16px;">
-                  Abbiamo ricevuto la tua richiesta riguardo a <strong>${service}</strong> 
-                  per la sede di <strong>${locationName}</strong>.
+                  Abbiamo ricevuto la tua richiesta per la sede di <strong>${locationName}</strong>.
                 </p>
 
                 <div class="info-box">

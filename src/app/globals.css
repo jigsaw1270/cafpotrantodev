@@ -359,10 +359,6 @@ body {
   line-clamp: 3;
 }
 
-#google_translate_element {
-  display: none !important;
-}
-
 /* Custom prose styles for markdown content */
 .prose {
   max-width: none;
@@ -701,4 +697,34 @@ nav::-webkit-scrollbar-thumb {
 
 nav::-webkit-scrollbar-thumb:hover {
   background: var(--navy-dark);
+}
+
+/* Prevent Google Translate from interfering with dropdown components */
+.notranslate,
+.notranslate *,
+[translate='no'],
+[translate='no'] * {
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  pointer-events: auto !important;
+}
+
+/* Google Translate specific overrides */
+body.translated-ltr .notranslate,
+body.translated-rtl .notranslate {
+  -webkit-transform: translateZ(0) !important;
+  transform: translateZ(0) !important;
+}
+
+/* Prevent translation of specific select components */
+[role='combobox'].notranslate,
+[role='listbox'].notranslate,
+[role='option'].notranslate {
+  font-family: inherit !important;
+  direction: ltr !important;
+  unicode-bidi: embed !important;
 }

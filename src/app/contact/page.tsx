@@ -1,17 +1,10 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Mail, Phone, MapPin, Send, MessageCircle } from 'lucide-react';
 import { SEO } from '@/components/seo';
 import { Label } from '@/components/ui/label';
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '@/components/ui/select';
 import { openWhatsApp } from '@/lib/whatsapp';
 
 interface FormData {
@@ -20,7 +13,6 @@ interface FormData {
   phone: string;
   location: string;
   address: string;
-  service: string;
   message: string;
 }
 
@@ -62,12 +54,24 @@ export default function Contact() {
     phone: '',
     location: '',
     address: '',
-    service: '',
     message: '',
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [error, setError] = useState<string | null>(null);
+
+  // Validate location value on change (simpler approach)
+  useEffect(() => {
+    const validLocationValues = [
+      'milano-lorenteggio',
+      'milano-padova',
+      'monza',
+    ];
+    if (formData.location && !validLocationValues.includes(formData.location)) {
+      console.log('🌐 Invalid location detected, clearing value');
+      setFormData(prev => ({ ...prev, location: '' }));
+    }
+  }, [formData.location]);
 
   // Handle WhatsApp call action
   const handleWhatsAppCall = (phone: string, title: string) => {
@@ -148,8 +152,23 @@ export default function Contact() {
   };
 
   const handleSelectChange = (name: string, value: string) => {
+    console.log('📍 Location selected:', { name, value });
+
+    // Validate that the selected value is one of our expected values
+    const validLocationValues = [
+      'milano-lorenteggio',
+      'milano-padova',
+      'monza',
+    ];
+
+    if (name === 'location' && value && !validLocationValues.includes(value)) {
+      console.warn('⚠️ Invalid location value selected:', value);
+      setError('Valore della sede non valido. Riprova a selezionare una sede.');
+      return;
+    }
+
     setFormData(prev => ({ ...prev, [name]: value }));
-    setError(null); // Clear error on selection change
+    setError(null); // Clear error on valid selection
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -160,43 +179,92 @@ export default function Contact() {
     console.log('📤 Submitting form data:', formData);
 
     try {
+      // Add encoding safety for form data
+      const safeFormData = {
+        name: formData.name.trim(),
+        email: formData.email.trim().toLowerCase(),
+        phone: formData.phone.trim(),
+        location: formData.location.trim(),
+        address: formData.address.trim(),
+        message: formData.message.trim(),
+      };
+
+      // Validate location before submission
+      const validLocationValues = [
+        'milano-lorenteggio',
+        'milano-padova',
+        'monza',
+      ];
+      if (!validLocationValues.includes(safeFormData.location)) {
+        throw new Error(
+          'Please select a valid office location. If using translation, try switching to Italian first.'
+        );
+      }
+
       const response = await fetch('/api/send-email', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json',
+          'Content-Type': 'application/json; charset=utf-8',
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify(safeFormData),
       });
+
+      if (!response.ok) {
+        // Handle different HTTP error codes
+        if (response.status === 429) {
+          throw new Error('Troppe richieste. Riprova tra qualche minuto.');
+        } else if (response.status >= 500) {
+          throw new Error('Errore del server. Riprova più tardi.');
+        } else if (response.status === 400) {
+          const errorData = await response.json();
+          throw new Error(errorData.message || 'Dati non validi.');
+        } else {
+          throw new Error(
+            'Errore di connessione. Verifica la tua connessione internet.'
+          );
+        }
+      }
 
       const data = await response.json();
       console.log('📬 API Response:', data);
 
-      if (!response.ok) {
+      if (!data.success) {
         throw new Error(data.message || "Errore durante l'invio");
       }
 
-      // Success
-      setIsSubmitted(true);
+      // Success - use stable state updates
+      setTimeout(() => {
+        setIsSubmitted(true);
+      }, 100);
 
       // Reset form after 5 seconds
       setTimeout(() => {
         setIsSubmitted(false);
-        setFormData({
-          name: '',
-          email: '',
-          phone: '',
-          location: '',
-          address: '',
-          service: '',
-          message: '',
-        });
+        setTimeout(() => {
+          setFormData({
+            name: '',
+            email: '',
+            phone: '',
+            location: '',
+            address: '',
+            message: '',
+          });
+        }, 100);
       }, 5000);
     } catch (err) {
-      setError(
-        err instanceof Error
-          ? err.message
-          : "Errore durante l'invio. Riprova più tardi."
-      );
+      console.error('Form submission error:', err);
+
+      if (err instanceof TypeError && err.message.includes('fetch')) {
+        setError(
+          'Errore di connessione. Verifica la tua connessione internet e riprova.'
+        );
+      } else {
+        setError(
+          err instanceof Error
+            ? err.message
+            : "Errore durante l'invio. Riprova più tardi."
+        );
+      }
     } finally {
       setIsSubmitting(false);
     }
@@ -340,7 +408,10 @@ export default function Contact() {
               transition={{ duration: 0.5 }}
               viewport={{ once: true }}
             >
-              <div className="rounded-3xl border border-white/20 bg-white/10 p-8 shadow-2xl backdrop-blur-xl transition-all duration-300 hover:bg-white/15">
+              <div
+                key="contact-form-container"
+                className="rounded-3xl border border-white/20 bg-white/10 p-8 shadow-2xl backdrop-blur-xl transition-all duration-300 hover:bg-white/15"
+              >
                 <div className="mb-8 text-center">
                   <div className="bg-dark-teal/90 mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-full border border-white/30 shadow-xl backdrop-blur-sm">
                     <Mail className="h-10 w-10 text-white" />
@@ -363,15 +434,18 @@ export default function Contact() {
                     <p className="text-sm font-medium text-red-800">
                       ⚠️ {error}
                     </p>
+                    {error.includes('sede') && (
+                      <p className="mt-2 text-xs text-red-600">
+                        💡 If you're using translation: please try switching
+                        back to Italian, select the office, then translate
+                        again.
+                      </p>
+                    )}
                   </motion.div>
                 )}
 
                 {isSubmitted ? (
-                  <motion.div
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    className="py-8 text-center"
-                  >
+                  <div className="py-8 text-center">
                     <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-green-100">
                       <Send className="h-8 w-8 text-green-600" />
                     </div>
@@ -381,7 +455,7 @@ export default function Contact() {
                     <p className="text-new-light-navy">
                       Grazie per averci contattato. Ti risponderemo presto.
                     </p>
-                  </motion.div>
+                  </div>
                 ) : (
                   <form onSubmit={handleSubmit} className="space-y-5">
                     {/* Nome e Email */}
@@ -451,47 +525,41 @@ export default function Contact() {
                     </div>
 
                     {/* Sede da Contattare */}
-                    <div className="space-y-3">
+                    <div className="space-y-3" key="location-field">
                       <Label
                         htmlFor="location"
                         className="flex items-center gap-2 text-sm font-bold tracking-wide text-white uppercase drop-shadow-sm"
                       >
-                        Sede da Contattare *
+                        <span>Sede da Contattare</span> /{' '}
+                        <span>Office to Contact</span> *
                       </Label>
                       <div className="relative">
-                        <Select
+                        {/* Simple native HTML select - immune to Google Translate interference */}
+                        <select
                           value={formData.location}
-                          onValueChange={value =>
-                            handleSelectChange('location', value)
+                          onChange={e =>
+                            handleSelectChange('location', e.target.value)
                           }
+                          className="text-new-navy focus:border-dark-teal focus:ring-dark-teal/50 h-14 w-full appearance-none rounded-2xl border border-white/30 bg-white/90 bg-right bg-no-repeat px-5 py-4 pr-10 font-medium shadow-lg backdrop-blur-md transition-all duration-300 hover:bg-white focus:bg-white focus:ring-2 focus:outline-none"
+                          style={{
+                            backgroundImage: `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e")`,
+                            backgroundPosition: 'right 0.5rem center',
+                            backgroundSize: '1.5em 1.5em',
+                          }}
+                          required
                         >
-                          <SelectTrigger className="text-new-navy focus:border-dark-teal focus:ring-dark-teal/50 h-14 w-full rounded-2xl border border-white/30 bg-white/90 px-5 py-4 font-medium shadow-lg backdrop-blur-md transition-all duration-300 hover:bg-white focus:bg-white focus:ring-2 focus:outline-none">
-                            <SelectValue
-                              placeholder="Seleziona una sede"
-                              className="text-new-light-navy/70 font-medium"
-                            />
-                          </SelectTrigger>
-                          <SelectContent className="border-dark-teal/30 rounded-2xl border bg-white shadow-2xl backdrop-blur-xl">
-                            <SelectItem
-                              value="sede-1"
-                              className="text-new-navy hover:bg-dark-teal/10 focus:bg-dark-teal/20 cursor-pointer rounded-lg font-medium transition-all duration-200"
-                            >
-                              Sede 1 - Roma Centro
-                            </SelectItem>
-                            <SelectItem
-                              value="sede-2"
-                              className="text-new-navy hover:bg-dark-teal/10 focus:bg-dark-teal/20 cursor-pointer rounded-lg font-medium transition-all duration-200"
-                            >
-                              Sede 2 - Milano Nord
-                            </SelectItem>
-                            <SelectItem
-                              value="sede-3"
-                              className="text-new-navy hover:bg-dark-teal/10 focus:bg-dark-teal/20 cursor-pointer rounded-lg font-medium transition-all duration-200"
-                            >
-                              Sede 3 - Napoli
-                            </SelectItem>
-                          </SelectContent>
-                        </Select>
+                          <option value="" disabled>
+                            {/* Show bilingual placeholder */}
+                            Select an office / Seleziona una sede
+                          </option>
+                          <option value="milano-lorenteggio">
+                            Milano Lorenteggio - Via Lorenteggio 172
+                          </option>
+                          <option value="milano-padova">
+                            Milano Padova - Via Padova 288
+                          </option>
+                          <option value="monza">Monza - Via Amati 12/G</option>
+                        </select>
                       </div>
                     </div>
 
@@ -514,75 +582,6 @@ export default function Contact() {
                           className="focus:border-cyan focus:ring-cyan/50 h-14 w-full rounded-2xl border border-white/30 bg-white/20 px-5 py-4 font-medium text-white shadow-lg backdrop-blur-md transition-all duration-300 placeholder:text-white/60 hover:bg-white/25 focus:bg-white/25 focus:ring-2 focus:outline-none"
                           placeholder="Via Roma 123, 00100 Roma RM"
                         />
-                      </div>
-                    </div>
-
-                    {/* Servizio Richiesto */}
-                    <div className="space-y-3">
-                      <Label
-                        htmlFor="service"
-                        className="flex items-center gap-2 text-sm font-bold tracking-wide text-white uppercase drop-shadow-sm"
-                      >
-                        Servizio Richiesto *
-                      </Label>
-                      <div className="relative">
-                        <Select
-                          value={formData.service}
-                          onValueChange={value =>
-                            handleSelectChange('service', value)
-                          }
-                        >
-                          <SelectTrigger className="text-new-navy focus:border-dark-teal focus:ring-dark-teal/50 h-14 w-full rounded-2xl border border-white/30 bg-white/90 px-5 py-4 font-medium shadow-lg backdrop-blur-md transition-all duration-300 hover:bg-white focus:bg-white focus:ring-2 focus:outline-none">
-                            <SelectValue
-                              placeholder="Seleziona un servizio"
-                              className="text-new-light-navy/70 font-medium"
-                            />
-                          </SelectTrigger>
-                          <SelectContent className="border-dark-teal/30 rounded-2xl border bg-white shadow-2xl backdrop-blur-xl">
-                            <SelectItem
-                              value="caf-patronato"
-                              className="text-new-navy hover:bg-dark-teal/10 focus:bg-dark-teal/20 cursor-pointer rounded-lg font-medium transition-all duration-200"
-                            >
-                              CAF e Patronato
-                            </SelectItem>
-                            <SelectItem
-                              value="isee"
-                              className="text-new-navy hover:bg-dark-teal/10 focus:bg-dark-teal/20 cursor-pointer rounded-lg font-medium transition-all duration-200"
-                            >
-                              ISEE
-                            </SelectItem>
-                            <SelectItem
-                              value="spid"
-                              className="text-new-navy hover:bg-dark-teal/10 focus:bg-dark-teal/20 cursor-pointer rounded-lg font-medium transition-all duration-200"
-                            >
-                              SPID
-                            </SelectItem>
-                            <SelectItem
-                              value="naspi"
-                              className="text-new-navy hover:bg-dark-teal/10 focus:bg-dark-teal/20 cursor-pointer rounded-lg font-medium transition-all duration-200"
-                            >
-                              NASpI
-                            </SelectItem>
-                            <SelectItem
-                              value="immigrazione"
-                              className="text-new-navy hover:bg-dark-teal/10 focus:bg-dark-teal/20 cursor-pointer rounded-lg font-medium transition-all duration-200"
-                            >
-                              Sportello Immigrazione
-                            </SelectItem>
-                            <SelectItem
-                              value="pensioni"
-                              className="text-new-navy hover:bg-dark-teal/10 focus:bg-dark-teal/20 cursor-pointer rounded-lg font-medium transition-all duration-200"
-                            >
-                              Pratiche Pensionistiche
-                            </SelectItem>
-                            <SelectItem
-                              value="altro"
-                              className="text-new-navy hover:bg-dark-teal/10 focus:bg-dark-teal/20 cursor-pointer rounded-lg font-medium transition-all duration-200"
-                            >
-                              Altro
-                            </SelectItem>
-                          </SelectContent>
-                        </Select>
                       </div>
                     </div>
 
@@ -616,15 +615,7 @@ export default function Contact() {
                       >
                         {isSubmitting ? (
                           <>
-                            <motion.div
-                              animate={{ rotate: 360 }}
-                              transition={{
-                                duration: 1,
-                                repeat: Infinity,
-                                ease: 'linear',
-                              }}
-                              className="mr-2 h-6 w-6 rounded-full border-3 border-current border-t-transparent"
-                            />
+                            <div className="mr-2 h-6 w-6 animate-spin rounded-full border-3 border-current border-t-transparent" />
                             Invio in corso...
                           </>
                         ) : (

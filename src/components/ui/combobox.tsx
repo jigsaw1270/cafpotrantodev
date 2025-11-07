@@ -177,6 +177,7 @@ export function Combobox({
             borderColor: '#A4B5C4',
           }}
           className="ring-offset-background w-full rounded-lg border px-10 py-3 text-sm file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-[#4B6382] focus-visible:border-[#A68868] focus-visible:ring-2 focus-visible:ring-[#A68868] focus-visible:ring-offset-2 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50"
+          suppressHydrationWarning
         />
         {searchTerm && (
           <button

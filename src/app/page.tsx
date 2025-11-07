@@ -149,6 +149,7 @@ amministrative."
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
               className="font-family-switzer mb-6 text-4xl font-extrabold tracking-tight text-white sm:text-5xl"
+              suppressHydrationWarning
             >
               <span className="text-4xl font-bold text-white sm:text-6xl">
                 CAF - PATRONATO SINDACATO <br />

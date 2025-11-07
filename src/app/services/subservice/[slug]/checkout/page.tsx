@@ -60,6 +60,16 @@ export default function CheckoutPage() {
 
   const [urgency, setUrgency] = useState(false);
   const [premiumSupport, setPremiumSupport] = useState(false);
+
+  // Stable handlers to prevent translation interference
+  const handleUrgencyChange = (checked: boolean) => {
+    setUrgency(checked);
+  };
+
+  const handlePremiumSupportChange = (checked: boolean) => {
+    setPremiumSupport(checked);
+  };
+
   const [couponCode, setCouponCode] = useState('');
   const [appliedCoupon, setAppliedCoupon] = useState<{
     code: string;
@@ -152,7 +162,7 @@ export default function CheckoutPage() {
   const urgencyFee = 15.0;
   const premiumSupportFee = 10.0;
 
-  // Calculate totals with memoization for performance and reactivity
+  // Calculate totals with proper reactivity - recalculate whenever urgency/premium states change
   const { subtotal, discount, afterDiscount, vat, total } = useMemo(() => {
     // Don't calculate if subservice data is not loaded yet
     if (!subservice) {
@@ -165,13 +175,13 @@ export default function CheckoutPage() {
       };
     }
 
-    // Ensure we have valid base prices before calculating
-    const basePrice = Number(serviceData.basePrice) || 0;
-    const secretarialFees = Number(serviceData.secretarialFees) || 0;
+    // Use direct subservice properties to avoid stale closure issues
+    const basePrice = Number(subservice.price_start) || 0;
+    const secretarialFees = Number(subservice.secretarialFees) || 0;
 
     let subtotal = basePrice + secretarialFees;
 
-    // Add additional services
+    // Add additional services - these should update when state changes
     if (urgency) {
       subtotal += urgencyFee;
     }
@@ -186,7 +196,7 @@ export default function CheckoutPage() {
     }
 
     const afterDiscount = subtotal - discount;
-    const vatRate = Number(serviceData.vatPercentage) || 22;
+    const vatRate = Number(subservice.vatPercentage) || 22;
     const vat = afterDiscount * (vatRate / 100);
     const total = afterDiscount + vat;
 
@@ -197,17 +207,7 @@ export default function CheckoutPage() {
       vat,
       total,
     };
-  }, [
-    subservice, // Add subservice as a dependency
-    serviceData.basePrice,
-    serviceData.secretarialFees,
-    serviceData.vatPercentage,
-    urgency,
-    premiumSupport,
-    appliedCoupon,
-    urgencyFee,
-    premiumSupportFee,
-  ]);
+  }, [subservice, urgency, premiumSupport, appliedCoupon]);
 
   const handleFormChange = (field: string, value: string) => {
     setFormData(prev => ({
@@ -941,6 +941,7 @@ export default function CheckoutPage() {
           <div className="space-y-3 lg:col-span-1">
             {/* Combined Add-ons Section */}
             <motion.div
+              key={`addons-${urgency}-${premiumSupport}`}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1 }}
@@ -959,17 +960,24 @@ export default function CheckoutPage() {
                       ? 'border-light-teal bg-light-teal/20'
                       : 'border-light-teal/30 hover:border-light-teal/50 bg-light-teal/5'
                   }`}
-                  onClick={() => {
-                    setUrgency(!urgency);
-                  }}
+                  onClick={() => handleUrgencyChange(!urgency)}
+                  suppressHydrationWarning
                 >
                   <div className="flex items-center justify-between">
                     <div>
                       <h3 className="text-sm font-semibold text-black">
-                        Emergency €{urgencyFee.toFixed(2)}
+                        <span>Emergenza</span> / <span>Emergency</span> €
+                        {urgencyFee.toFixed(2)}
                       </h3>
                       <p className="text-xs text-black/70">
-                        The application will be processed as quickly as possible
+                        <span>
+                          La pratica sarà elaborata il più velocemente possibile
+                        </span>{' '}
+                        /{' '}
+                        <span>
+                          The application will be processed as quickly as
+                          possible
+                        </span>
                       </p>
                     </div>
                     <input
@@ -977,7 +985,7 @@ export default function CheckoutPage() {
                       checked={urgency}
                       onChange={e => {
                         e.stopPropagation();
-                        setUrgency(e.target.checked);
+                        handleUrgencyChange(e.target.checked);
                       }}
                       className="text-light-teal focus:ring-light-teal h-4 w-4 rounded border-white/30"
                     />
@@ -991,17 +999,19 @@ export default function CheckoutPage() {
                       ? 'border-light-teal bg-light-teal/20'
                       : 'border-light-teal/30 hover:border-light-teal/50 bg-light-teal/5'
                   }`}
-                  onClick={() => {
-                    setPremiumSupport(!premiumSupport);
-                  }}
+                  onClick={() => handlePremiumSupportChange(!premiumSupport)}
+                  suppressHydrationWarning
                 >
                   <div className="flex items-center justify-between">
                     <div>
                       <h3 className="text-sm font-semibold text-black">
-                        Premium Assistance €{premiumSupportFee.toFixed(2)}
+                        <span>Supporto Premium</span> /{' '}
+                        <span>Premium Assistance</span> €
+                        {premiumSupportFee.toFixed(2)}
                       </h3>
                       <p className="text-xs text-black/70">
-                        Activate premium telephone support
+                        <span>Attiva supporto telefonico premium</span> /{' '}
+                        <span>Activate premium telephone support</span>
                       </p>
                     </div>
                     <input
@@ -1009,7 +1019,7 @@ export default function CheckoutPage() {
                       checked={premiumSupport}
                       onChange={e => {
                         e.stopPropagation();
-                        setPremiumSupport(e.target.checked);
+                        handlePremiumSupportChange(e.target.checked);
                       }}
                       className="text-light-teal focus:ring-light-teal h-4 w-4 rounded border-white/30"
                     />
@@ -1053,6 +1063,7 @@ export default function CheckoutPage() {
             {/* Purchase Summary - Only show when subservice data is loaded */}
             {subservice ? (
               <motion.div
+                key={`summary-${urgency}-${premiumSupport}-${total}`}
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.2 }}
@@ -1098,7 +1109,9 @@ export default function CheckoutPage() {
                       <div className="space-y-2 text-sm">
                         {urgency && (
                           <div className="flex justify-between">
-                            <span className="text-black/70">Emergency:</span>
+                            <span className="text-black/70">
+                              <span>Emergenza</span> / <span>Emergency</span>:
+                            </span>
                             <span className="font-medium text-black">
                               €{urgencyFee.toFixed(2)}
                             </span>
@@ -1107,7 +1120,8 @@ export default function CheckoutPage() {
                         {premiumSupport && (
                           <div className="flex justify-between">
                             <span className="text-black/70">
-                              Premium Support:
+                              <span>Supporto Premium</span> /{' '}
+                              <span>Premium Support</span>:
                             </span>
                             <span className="font-medium text-black">
                               €{premiumSupportFee.toFixed(2)}

@@ -79,6 +79,7 @@ export function Header() {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.3 }}
             className="w-64 lg:w-80"
+            suppressHydrationWarning
           >
             <Combobox
               placeholder="Cerca servizi..."
@@ -94,6 +95,7 @@ export function Header() {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.3 }}
             className="flex-1"
+            suppressHydrationWarning
           >
             <Combobox placeholder="Cerca..." className="mobile-search" />
           </motion.div>

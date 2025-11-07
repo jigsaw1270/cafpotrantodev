@@ -96,24 +96,17 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="it">
+    <html lang="it" suppressHydrationWarning>
       <head>
         {/* Preconnect to external domains for faster loading */}
-        <link rel="preconnect" href="https://translate.googleapis.com" />
-        <link
-          rel="preconnect"
-          href="https://www.gstatic.com"
-          crossOrigin="anonymous"
-        />
-        <link rel="dns-prefetch" href="https://translate.googleapis.com" />
 
-        {/* Language detection for Google Translate */}
+        {/* Language detection for Chrome's built-in translation */}
         <meta httpEquiv="Content-Language" content="it" />
-        {/* Google Translate Widget */}
-        <script async src="/google-translate.js"></script>
+        <meta name="language" content="it" />
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} bg-background min-h-screen font-sans antialiased`}
+        suppressHydrationWarning
       >
         <SWRProvider>
           <ToastProvider>
