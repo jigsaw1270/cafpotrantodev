@@ -3,7 +3,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { ArrowRight, FileText } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { Category } from '@/lib/types';
 
 interface CategoryCardProps {
@@ -46,20 +46,23 @@ export default function CategoryCard({
               <div className="front-content">
                 <div className="front-title-container">
                   <h3 className="front-title font-family-general-sans">
-                    {category.name}
+                    {category.name.length > 25
+                      ? `${category.name.substring(0, 25)}...`
+                      : category.name}
                   </h3>
                 </div>
               </div>
             </div>
 
             {/* Back side */}
-            <div className="back-side">
+            <div
+              className={`back-side ${category.image?.url ? 'has-image' : ''}`}
+            >
               <div className="back-content">
-                <div className="back-icon">
-                  <FileText />
-                </div>
                 <h3 className="back-title font-family-general-sans">
-                  {category.name}
+                  {category.name.length > 20
+                    ? `${category.name.substring(0, 20)}...`
+                    : category.name}
                 </h3>
                 <div className="services-count-back">
                   <span>
@@ -67,7 +70,11 @@ export default function CategoryCard({
                     disponibili
                   </span>
                 </div>
-                <p className="back-description">{category.description}</p>
+                <p className="back-description">
+                  {category.description && category.description.length > 80
+                    ? `${category.description.substring(0, 80)}... vedi di più`
+                    : category.description}
+                </p>
                 <div className="cta-text">
                   <span>Esplora i servizi</span>
                   <ArrowRight className="h-4 w-4" />
@@ -152,6 +159,34 @@ export default function CategoryCard({
           display: flex;
           align-items: center;
           justify-content: center;
+        }
+
+        .back-side.has-image::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background-image: url('${category.image?.url || ''}');
+          background-size: cover;
+          background-position: center;
+          background-repeat: no-repeat;
+          filter: grayscale(100%) blur(3px);
+          border-radius: 16px;
+          z-index: 0;
+        }
+
+        .back-side.has-image::after {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background: rgba(0, 0, 0, 0.7);
+          border-radius: 16px;
+          z-index: 1;
         }
 
         /* Animated border for front side */
@@ -304,47 +339,38 @@ export default function CategoryCard({
           height: 100%;
           display: flex;
           flex-direction: column;
-          justify-content: flex-end;
-          z-index: 1;
+          justify-content: center;
+          align-items: center;
+          z-index: 2;
         }
 
         .front-title-container {
           position: relative;
           padding: 24px;
-          z-index: 2;
+          z-index: 3;
+          text-align: center;
         }
 
         .front-title {
-          font-size: 24px;
+          font-size: 28px;
           font-weight: 700;
-          color: white;
+          color: white !important;
           line-height: 1.2;
-          text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+          text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
         }
 
         .back-content {
-          position: absolute;
-          top: 5%;
-          left: 5%;
-          width: 90%;
-          height: 90%;
-          background: rgba(0, 0, 0, 0.4);
-          border-radius: 12px;
+          position: relative;
+          width: 100%;
+          height: 100%;
           padding: 24px;
           display: flex;
           flex-direction: column;
           align-items: center;
           justify-content: center;
           text-align: center;
-          backdrop-filter: blur(10px);
           box-sizing: border-box;
-        }
-
-        .back-icon {
-          width: 48px;
-          height: 48px;
-          color: #e3c39d;
-          margin-bottom: 16px;
+          z-index: 2;
         }
 
         .back-title {
@@ -404,10 +430,11 @@ export default function CategoryCard({
 
           .front-title-container {
             padding: 20px;
+            margin-top: 0;
           }
 
           .front-title {
-            font-size: 20px;
+            font-size: 24px;
           }
 
           .back-content {
@@ -426,7 +453,7 @@ export default function CategoryCard({
           }
 
           .front-title {
-            font-size: 18px;
+            font-size: 20px;
           }
 
           .back-title {
