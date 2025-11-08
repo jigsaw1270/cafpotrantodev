@@ -132,7 +132,7 @@ amministrative."
 
       {/* Hero Section */}
       <section
-        className="relative min-h-screen overflow-hidden bg-cover bg-center bg-no-repeat pt-16 md:h-[calc(100vh-4rem)] md:pt-0"
+        className="relative min-h-screen overflow-hidden bg-cover bg-center bg-no-repeat pt-32 md:h-[calc(100vh-4rem)] md:pt-24"
         style={{
           backgroundImage:
             'url(/images/banner.webp), url(/images/hero-banner.jpg)',

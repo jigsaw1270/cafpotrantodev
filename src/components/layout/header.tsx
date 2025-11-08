@@ -81,7 +81,7 @@ export function Header() {
                     href={link.href}
                     className={`rounded-lg px-3 py-2 transition-all duration-200 lg:px-4 ${
                       isActive
-                        ? 'from-navy-gradient-1 to-navy-gradient-2 shadow-elegant bg-gradient-to-r text-white'
+                        ? 'text-new-beige border border-white/20 bg-white/10 shadow-sm backdrop-blur-sm'
                         : 'text-new-beige hover:text-cyan hover:bg-cyan/10'
                     }`}
                   >
