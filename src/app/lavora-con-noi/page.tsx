@@ -182,7 +182,7 @@ export default function LavoraConNoi() {
             viewport={{ once: true }}
             className="mx-auto mb-16 max-w-3xl text-center"
           >
-            <h2 className="text-new-white mb-6 text-3xl font-bold tracking-tight lg:text-4xl">
+            <h2 className="text-new-white font-family-general-sans mb-6 text-3xl font-bold tracking-tight lg:text-4xl">
               Profili <span className="text-new-beige">Ricercati</span>
             </h2>
             <p className="text-new-dim-cyan text-lg">
@@ -205,7 +205,7 @@ export default function LavoraConNoi() {
                   <profile.icon className="text-light-teal h-8 w-8" />
                 </div>
 
-                <h3 className="text-new-white mb-4 text-xl font-bold">
+                <h3 className="text-new-white font-family-general-sans mb-4 text-xl font-bold">
                   {profile.title}
                 </h3>
 
@@ -240,7 +240,7 @@ export default function LavoraConNoi() {
             viewport={{ once: true }}
             className="mx-auto mb-16 max-w-3xl text-center"
           >
-            <h2 className="text-new-navy mb-6 text-3xl font-bold tracking-tight lg:text-4xl">
+            <h2 className="text-new-navy font-family-general-sans mb-6 text-3xl font-bold tracking-tight lg:text-4xl">
               Perché Scegliere <span className="text-light-teal">Noi</span>
             </h2>
             <p className="text-new-light-navy text-lg">
@@ -263,7 +263,7 @@ export default function LavoraConNoi() {
                   <benefit.icon className="text-light-teal h-8 w-8" />
                 </div>
 
-                <h3 className="text-new-navy mb-3 text-lg font-bold">
+                <h3 className="text-new-navy font-family-general-sans mb-3 text-lg font-bold">
                   {benefit.title}
                 </h3>
 
@@ -287,7 +287,7 @@ export default function LavoraConNoi() {
               viewport={{ once: true }}
               className="flex-1"
             >
-              <h2 className="text-new-white mb-6 text-3xl font-bold tracking-tight">
+              <h2 className="text-new-white font-family-general-sans mb-6 text-3xl font-bold tracking-tight">
                 I Nostri <span className="text-new-beige">Valori</span>
               </h2>
               <div className="text-new-dim-cyan space-y-6">
@@ -356,7 +356,7 @@ export default function LavoraConNoi() {
               <Mail className="text-light-teal h-10 w-10" />
             </div>
 
-            <h2 className="text-new-navy mb-6 text-3xl font-bold tracking-tight lg:text-4xl">
+            <h2 className="text-new-navy font-family-general-sans mb-6 text-3xl font-bold tracking-tight lg:text-4xl">
               Pronto a Unirti a Noi?
             </h2>
 

@@ -43,6 +43,7 @@
   --font-family-switzer: 'Switzer', sans-serif;
   --font-family-roundex: var(--font-roundex), sans-serif;
   --font-family-flemmatico: var(--font-flemmatico), sans-serif;
+  --font-family-pathway-extreme: var(--font-pathway-extreme), sans-serif;
 
   /* New Color Rework Palette */
   --color-new-navy: #071739;
@@ -795,5 +796,56 @@ body.translated-rtl .notranslate {
 
 .font-flemmatico-black {
   font-family: var(--font-flemmatico), sans-serif;
+  font-weight: 900;
+}
+
+/* Pathway Extreme Font Utility Classes */
+.font-pathway-extreme {
+  font-family: var(--font-pathway-extreme), sans-serif;
+}
+
+/* Pathway Extreme Font Weight Utilities (Variable Font) */
+.font-pathway-extreme-thin {
+  font-family: var(--font-pathway-extreme), sans-serif;
+  font-weight: 100;
+}
+
+.font-pathway-extreme-extralight {
+  font-family: var(--font-pathway-extreme), sans-serif;
+  font-weight: 200;
+}
+
+.font-pathway-extreme-light {
+  font-family: var(--font-pathway-extreme), sans-serif;
+  font-weight: 300;
+}
+
+.font-pathway-extreme-normal {
+  font-family: var(--font-pathway-extreme), sans-serif;
+  font-weight: 400;
+}
+
+.font-pathway-extreme-medium {
+  font-family: var(--font-pathway-extreme), sans-serif;
+  font-weight: 500;
+}
+
+.font-pathway-extreme-semibold {
+  font-family: var(--font-pathway-extreme), sans-serif;
+  font-weight: 600;
+}
+
+.font-pathway-extreme-bold {
+  font-family: var(--font-pathway-extreme), sans-serif;
+  font-weight: 700;
+}
+
+.font-pathway-extreme-extrabold {
+  font-family: var(--font-pathway-extreme), sans-serif;
+  font-weight: 800;
+}
+
+.font-pathway-extreme-black {
+  font-family: var(--font-pathway-extreme), sans-serif;
   font-weight: 900;
 }

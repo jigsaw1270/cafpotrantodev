@@ -111,6 +111,7 @@ const config: Config = {
       fontFamily: {
         roundex: ['var(--font-roundex)', 'sans-serif'],
         flemmatico: ['var(--font-flemmatico)', 'sans-serif'],
+        'pathway-extreme': ['var(--font-pathway-extreme)', 'sans-serif'],
         sans: ['var(--font-geist-sans)', 'sans-serif'],
         mono: ['var(--font-geist-mono)', 'monospace'],
       },

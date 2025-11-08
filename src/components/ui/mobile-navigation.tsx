@@ -28,7 +28,7 @@ export function MobileNavigation({ links }: MobileNavigationProps) {
     <Dialog.Root open={isOpen} onOpenChange={setIsOpen}>
       <Dialog.Trigger asChild>
         <button
-          className="text-new-navy hover:bg-light-teal/20 flex h-10 w-10 items-center justify-center rounded-lg transition-all duration-200 md:hidden"
+          className="text-new-beige hover:bg-light-teal/20 flex h-10 w-10 items-center justify-center rounded-lg transition-all duration-200 md:hidden"
           aria-label="Toggle menu"
         >
           <Menu className="h-5 w-5" />

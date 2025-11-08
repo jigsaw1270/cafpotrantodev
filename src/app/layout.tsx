@@ -75,6 +75,18 @@ const flemmatico = localFont({
   display: 'swap',
 });
 
+const pathwayExtreme = localFont({
+  src: [
+    {
+      path: '../../public/fonts/pathway/PathwayExtreme-VariableFont_opsz,wdth,wght.ttf',
+      weight: '100 900', // Variable font weight range
+      style: 'normal',
+    },
+  ],
+  variable: '--font-pathway-extreme',
+  display: 'swap',
+});
+
 export const metadata: Metadata = {
   title: {
     default: 'CafPotranto - Servizi Legali e Assistenza Amministrativa',
@@ -154,7 +166,7 @@ export default function RootLayout({
   return (
     <html
       lang="it"
-      className={`${roundex.variable} ${flemmatico.variable}`}
+      className={`${roundex.variable} ${flemmatico.variable} ${pathwayExtreme.variable}`}
       suppressHydrationWarning
     >
       <head>
@@ -165,7 +177,7 @@ export default function RootLayout({
         <meta name="language" content="it" />
       </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${roundex.variable} ${flemmatico.variable} bg-background min-h-screen font-sans antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${roundex.variable} ${flemmatico.variable} ${pathwayExtreme.variable} bg-background min-h-screen font-sans antialiased`}
         suppressHydrationWarning
       >
         <SWRProvider>
@@ -175,7 +187,9 @@ export default function RootLayout({
             <CookieConsent />
             <div className="relative flex min-h-screen flex-col">
               <Header />
-              <main className="flex-1">{children}</main>
+              <main className="font-pathway-extreme-normal flex-1">
+                {children}
+              </main>
               <Footer />
             </div>
           </ToastProvider>

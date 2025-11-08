@@ -148,7 +148,7 @@ amministrative."
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
-              className="font-family-switzer mb-6 pt-8 text-4xl font-extrabold tracking-tight text-white sm:text-5xl"
+              className="font-family-general-sans mb-6 pt-8 text-4xl font-extrabold tracking-tight text-white sm:text-5xl"
               suppressHydrationWarning
             >
               <span className="font-family-roundex text-shadow-light-teal text-4xl font-extrabold text-white text-shadow-lg sm:text-8xl">
@@ -181,7 +181,7 @@ amministrative."
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.2 }}
-              className="font-family-switzer mb-8 text-xl leading-relaxed text-white opacity-90"
+              className="font-family-general-sans mb-8 text-xl leading-relaxed text-white opacity-90"
             >
               Offriamo servizi legali professionali rivolti ad aziende e
               cittadini, con particolare competenza nella gestione di procedure
