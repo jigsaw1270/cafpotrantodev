@@ -95,6 +95,7 @@ export function CategoriesGrid({ className = '' }: CategoriesGridProps) {
             <CategoryCard
               category={category}
               subservicesCount={category.subservicesCount || 0}
+              index={index}
             />
           </motion.div>
         ))}
