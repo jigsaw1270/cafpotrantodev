@@ -16,6 +16,7 @@ import {
   Award,
 } from 'lucide-react';
 import { SEO } from '@/components/seo';
+import GlossyButton from '@/components/ui/glossy-button';
 
 const jobProfiles = [
   {
@@ -367,13 +368,10 @@ export default function LavoraConNoi() {
             </p>
 
             <div className="flex flex-col justify-center gap-4 sm:flex-row">
-              <button
-                onClick={handleWhatsAppClick}
-                className="border-light-teal/30 bg-new-white/80 text-light-teal hover:bg-new-white inline-flex items-center gap-2 rounded-xl border px-6 py-3 font-semibold transition-all hover:scale-105"
-              >
-                <Phone className="h-5 w-5" />
+              <GlossyButton onClick={handleWhatsAppClick} className="px-6 py-3">
+                <Phone className="mr-2 h-5 w-5" />
                 WhatsApp: 349.521.4147
-              </button>
+              </GlossyButton>
             </div>
 
             <div className="border-light-teal/20 mt-8 border-t pt-8">

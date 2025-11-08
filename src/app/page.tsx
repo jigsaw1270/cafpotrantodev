@@ -11,7 +11,7 @@ import {
   Mail,
   MapPin,
 } from 'lucide-react';
-import NeonButton from '@/components/ui/neon-button';
+import GlossyButton from '@/components/ui/glossy-button';
 import CategoriesGrid from '@/components/services/CategoriesGrid';
 import { SEO } from '@/components/seo';
 import OfficeCarousel from '@/components/ui/office-carousel';
@@ -197,12 +197,12 @@ amministrative."
               transition={{ duration: 0.5, delay: 0.3 }}
               className="mb-8 flex flex-row items-center justify-center gap-3 sm:mb-0 sm:gap-4"
             >
-              <NeonButton onClick={handleServicesClick}>
+              <GlossyButton onClick={handleServicesClick}>
                 I nostri servizi
-              </NeonButton>
-              <NeonButton onClick={handleContactClick}>
+              </GlossyButton>
+              <GlossyButton onClick={handleContactClick}>
                 Consulenza gratuita
-              </NeonButton>
+              </GlossyButton>
             </motion.div>
           </div>
         </div>
@@ -254,9 +254,9 @@ amministrative."
               navigare le procedure complesse.
             </p>
             <div className="flex justify-center">
-              <NeonButton onClick={handleContactClick}>
+              <GlossyButton onClick={handleContactClick}>
                 Prenota Consulenza
-              </NeonButton>
+              </GlossyButton>
             </div>
           </motion.div>
         </div>
@@ -448,10 +448,14 @@ amministrative."
                     href={office.mapsUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="border-light-teal/30 bg-new-white/80 text-light-teal hover:bg-new-white flex w-full items-center justify-center gap-2 rounded-xl border px-4 py-3 font-bold shadow-lg backdrop-blur-md transition-all duration-300 hover:scale-[1.02]"
+                    className="w-full"
                   >
-                    <MapPin className="h-5 w-5" />
-                    Ottieni Indicazioni
+                    <GlossyButton className="flex w-full items-center justify-center px-4 py-3 text-sm font-semibold">
+                      <div className="flex items-center justify-center gap-2">
+                        <MapPin className="h-5 w-5" />
+                        <span>Ottieni Indicazioni</span>
+                      </div>
+                    </GlossyButton>
                   </a>
                 </div>
               </motion.div>

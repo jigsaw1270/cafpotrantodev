@@ -6,6 +6,7 @@ import { Mail, Phone, MapPin, Send, MessageCircle } from 'lucide-react';
 import { SEO } from '@/components/seo';
 import { Label } from '@/components/ui/label';
 import { openWhatsApp } from '@/lib/whatsapp';
+import GlossyButton from '@/components/ui/glossy-button';
 
 interface FormData {
   name: string;
@@ -608,23 +609,23 @@ export default function Contact() {
                     </div>
 
                     <div className="pt-6">
-                      <button
+                      <GlossyButton
                         type="submit"
                         disabled={isSubmitting}
-                        className="bg-dark-teal hover:bg-dark-teal/90 active:bg-dark-teal/80 hover:shadow-3xl flex w-full items-center justify-center gap-3 rounded-2xl border border-white/20 px-8 py-5 text-lg font-bold text-white shadow-2xl backdrop-blur-sm transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-70 disabled:hover:scale-100"
+                        className="flex w-full items-center justify-center !border-white/30 !bg-gradient-to-r !from-white/20 !to-white/10 px-8 py-3 text-sm font-semibold !shadow-lg !backdrop-blur-md hover:!from-white/30 hover:!to-white/20"
                       >
                         {isSubmitting ? (
-                          <>
-                            <div className="mr-2 h-6 w-6 animate-spin rounded-full border-3 border-current border-t-transparent" />
-                            Invio in corso...
-                          </>
+                          <div className="flex items-center justify-center gap-2">
+                            <div className="h-5 w-5 animate-spin rounded-full border-2 border-current border-t-transparent" />
+                            <span>Invio in corso...</span>
+                          </div>
                         ) : (
-                          <>
-                            <Send className="h-6 w-6" />
-                            Invia Messaggio
-                          </>
+                          <div className="flex items-center justify-center gap-2">
+                            <Send className="h-5 w-5" />
+                            <span>Invia Messaggio</span>
+                          </div>
                         )}
-                      </button>
+                      </GlossyButton>
                     </div>
                   </form>
                 )}
@@ -747,10 +748,14 @@ export default function Contact() {
                     href="https://www.google.com/maps/dir/?api=1&destination=Via+Lorenteggio+172+Milano+20147+Italy"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex w-full items-center justify-center gap-2 rounded-xl border border-white/30 bg-white/20 px-4 py-3 font-bold text-white shadow-lg backdrop-blur-md transition-all duration-300 hover:scale-[1.02] hover:bg-white/30"
+                    className="w-full"
                   >
-                    <MapPin className="h-5 w-5" />
-                    Ottieni Indicazioni
+                    <GlossyButton className="flex w-full items-center justify-center !border-white/30 !bg-gradient-to-r !from-white/20 !to-white/10 px-4 py-3 text-sm font-semibold !shadow-lg !backdrop-blur-md hover:!from-white/30 hover:!to-white/20">
+                      <div className="flex items-center justify-center gap-2">
+                        <MapPin className="h-5 w-5" />
+                        <span>Ottieni Indicazioni</span>
+                      </div>
+                    </GlossyButton>
                   </a>
                 </div>
               </div>
@@ -834,10 +839,14 @@ export default function Contact() {
                     href="https://www.google.com/maps/dir/?api=1&destination=Via+Padova+288+Milano+20132+Italy"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex w-full items-center justify-center gap-2 rounded-xl border border-white/30 bg-white/20 px-4 py-3 font-bold text-white shadow-lg backdrop-blur-md transition-all duration-300 hover:scale-[1.02] hover:bg-white/30"
+                    className="w-full"
                   >
-                    <MapPin className="h-5 w-5" />
-                    Ottieni Indicazioni
+                    <GlossyButton className="flex w-full items-center justify-center !border-white/30 !bg-gradient-to-r !from-white/20 !to-white/10 px-4 py-3 text-sm font-semibold !shadow-lg !backdrop-blur-md hover:!from-white/30 hover:!to-white/20">
+                      <div className="flex items-center justify-center gap-2">
+                        <MapPin className="h-5 w-5" />
+                        <span>Ottieni Indicazioni</span>
+                      </div>
+                    </GlossyButton>
                   </a>
                 </div>
               </div>
@@ -921,10 +930,14 @@ export default function Contact() {
                     href="https://www.google.com/maps/dir/?api=1&destination=Via+Amati+12+Monza+20900+Italy"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex w-full items-center justify-center gap-2 rounded-xl border border-white/30 bg-white/20 px-4 py-3 font-bold text-white shadow-lg backdrop-blur-md transition-all duration-300 hover:scale-[1.02] hover:bg-white/30"
+                    className="w-full"
                   >
-                    <MapPin className="h-5 w-5" />
-                    Ottieni Indicazioni
+                    <GlossyButton className="flex w-full items-center justify-center !border-white/30 !bg-gradient-to-r !from-white/20 !to-white/10 px-4 py-3 text-sm font-semibold !shadow-lg !backdrop-blur-md hover:!from-white/30 hover:!to-white/20">
+                      <div className="flex items-center justify-center gap-2">
+                        <MapPin className="h-5 w-5" />
+                        <span>Ottieni Indicazioni</span>
+                      </div>
+                    </GlossyButton>
                   </a>
                 </div>
               </div>

@@ -14,6 +14,7 @@ import {
   Users,
   CheckCircle,
 } from 'lucide-react';
+import GlossyButton from '@/components/ui/glossy-button';
 
 const process = [
   {
@@ -245,14 +246,18 @@ export default function ServicesClient() {
               </p>
 
               <div className="mb-16 flex flex-col gap-6 sm:flex-row sm:justify-center">
-                <button className="bg-light-teal hover:bg-light-teal/90 flex transform items-center justify-center gap-3 rounded-2xl border border-white/20 px-8 py-4 text-lg font-bold text-white shadow-2xl backdrop-blur-sm transition-all duration-300 hover:scale-105">
-                  <ArrowRight className="h-6 w-6" />
-                  Richiedi un Preventivo
-                </button>
-                <button className="hover:text-light-teal flex items-center justify-center gap-3 rounded-2xl border border-white/30 bg-white/20 px-8 py-4 text-lg font-bold text-white shadow-lg backdrop-blur-md transition-all duration-300 hover:scale-105 hover:bg-white/30">
-                  <Phone className="h-6 w-6" />
-                  Chiamaci Ora
-                </button>
+                <GlossyButton className="flex items-center justify-center px-8 py-3 text-sm font-semibold">
+                  <div className="flex items-center justify-center gap-2">
+                    <ArrowRight className="h-5 w-5" />
+                    <span>Richiedi un Preventivo</span>
+                  </div>
+                </GlossyButton>
+                <GlossyButton className="flex items-center justify-center px-8 py-3 text-sm font-semibold">
+                  <div className="flex items-center justify-center gap-2">
+                    <Phone className="h-5 w-5" />
+                    <span>Chiamaci Ora</span>
+                  </div>
+                </GlossyButton>
               </div>
 
               {/* Enhanced Benefits List */}
