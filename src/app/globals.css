@@ -18,31 +18,12 @@
   font-display: swap;
 }
 
-/* Variable Fonts - Switzer */
-@font-face {
-  font-family: 'Switzer';
-  src: url('/fonts/switer/Switzer-Variable.woff2') format('woff2');
-  font-weight: 100 900;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Switzer';
-  src: url('/fonts/switer/Switzer-VariableItalic.woff2') format('woff2');
-  font-weight: 100 900;
-  font-style: italic;
-  font-display: swap;
-}
-
 @theme {
   /* Font Family */
   --font-family-sans: 'General Sans', system-ui, sans-serif;
   --font-family-mono: ui-monospace, monospace;
   --font-family-general-sans: 'General Sans', sans-serif;
-  --font-family-switzer: 'Switzer', sans-serif;
   --font-family-roundex: var(--font-roundex), sans-serif;
-  --font-family-flemmatico: var(--font-flemmatico), sans-serif;
   --font-family-pathway-extreme: var(--font-pathway-extreme), sans-serif;
 
   /* New Color Rework Palette */
@@ -761,42 +742,6 @@ body.translated-rtl .notranslate {
 .font-roundex-bold {
   font-family: var(--font-roundex), sans-serif;
   font-weight: 700;
-}
-
-/* Flemmatico Font Utility Classes */
-.font-flemmatico {
-  font-family: var(--font-flemmatico), sans-serif;
-}
-
-/* Flemmatico Font Weight Utilities */
-.font-flemmatico-thin {
-  font-family: var(--font-flemmatico), sans-serif;
-  font-weight: 100;
-}
-
-.font-flemmatico-light {
-  font-family: var(--font-flemmatico), sans-serif;
-  font-weight: 300;
-}
-
-.font-flemmatico-normal {
-  font-family: var(--font-flemmatico), sans-serif;
-  font-weight: 400;
-}
-
-.font-flemmatico-semibold {
-  font-family: var(--font-flemmatico), sans-serif;
-  font-weight: 600;
-}
-
-.font-flemmatico-bold {
-  font-family: var(--font-flemmatico), sans-serif;
-  font-weight: 700;
-}
-
-.font-flemmatico-black {
-  font-family: var(--font-flemmatico), sans-serif;
-  font-weight: 900;
 }
 
 /* Pathway Extreme Font Utility Classes */

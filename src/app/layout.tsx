@@ -38,43 +38,6 @@ const roundex = localFont({
   display: 'swap',
 });
 
-const flemmatico = localFont({
-  src: [
-    {
-      path: '../../public/fonts/flemmatico/Flemmatico Thin.ttf',
-      weight: '100',
-      style: 'normal',
-    },
-    {
-      path: '../../public/fonts/flemmatico/Flemmatico Light.ttf',
-      weight: '300',
-      style: 'normal',
-    },
-    {
-      path: '../../public/fonts/flemmatico/Flemmatico Regular.ttf',
-      weight: '400',
-      style: 'normal',
-    },
-    {
-      path: '../../public/fonts/flemmatico/Flemmatico Semibold.ttf',
-      weight: '600',
-      style: 'normal',
-    },
-    {
-      path: '../../public/fonts/flemmatico/Flemmatico Bold.ttf',
-      weight: '700',
-      style: 'normal',
-    },
-    {
-      path: '../../public/fonts/flemmatico/Flemmatico Black.ttf',
-      weight: '900',
-      style: 'normal',
-    },
-  ],
-  variable: '--font-flemmatico',
-  display: 'swap',
-});
-
 const pathwayExtreme = localFont({
   src: [
     {
@@ -166,7 +129,7 @@ export default function RootLayout({
   return (
     <html
       lang="it"
-      className={`${roundex.variable} ${flemmatico.variable} ${pathwayExtreme.variable}`}
+      className={`${roundex.variable} ${pathwayExtreme.variable}`}
       suppressHydrationWarning
     >
       <head>
@@ -177,7 +140,7 @@ export default function RootLayout({
         <meta name="language" content="it" />
       </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${roundex.variable} ${flemmatico.variable} ${pathwayExtreme.variable} bg-background min-h-screen font-sans antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${roundex.variable} ${pathwayExtreme.variable} bg-background min-h-screen font-sans antialiased`}
         suppressHydrationWarning
       >
         <SWRProvider>
