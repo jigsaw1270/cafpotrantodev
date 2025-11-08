@@ -5,6 +5,7 @@ import { usePathname } from 'next/navigation';
 import { motion } from 'framer-motion';
 import { MobileNavigation } from '@/components/ui/mobile-navigation';
 import { Combobox } from '@/components/ui/combobox';
+import { useState, useEffect } from 'react';
 
 const navigation = [
   { href: '/', label: 'Home' },
@@ -18,6 +19,7 @@ const navigation = [
 
 export function Header() {
   const pathname = usePathname();
+  const [isAtTop, setIsAtTop] = useState(true);
 
   const isActivePath = (href: string) => {
     if (href === '/') {
@@ -26,12 +28,27 @@ export function Header() {
     return pathname.startsWith(href);
   };
 
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollTop = window.scrollY;
+      setIsAtTop(scrollTop < 50);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  if (!isAtTop) {
+    return null;
+  }
+
   return (
-    <div className="sticky top-0 z-50 w-full">
+    <div className="fixed top-0 z-50 w-full">
       <div className="container mx-auto px-4 py-4">
         <motion.header
           initial={{ y: -100, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
+          exit={{ y: -100, opacity: 0 }}
           transition={{ type: 'spring', stiffness: 400, damping: 40 }}
           className="bg-new-navy shadow-elegant border-cyan/20 supports-[backdrop-filter]:bg-new-navy/95 rounded-2xl border backdrop-blur"
         >

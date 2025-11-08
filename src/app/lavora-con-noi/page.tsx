@@ -129,7 +129,7 @@ export default function LavoraConNoi() {
               transition={{ duration: 0.6 }}
               className="mb-6"
             >
-              <span className="bg-dark-teal text-new-white inline-block rounded-full px-4 py-2 text-sm font-semibold tracking-wide uppercase">
+              <span className="bg-dark-teal text-new-white mt-6 inline-block rounded-full px-4 py-2 text-sm font-semibold tracking-wide uppercase">
                 Opportunità di Carriera
               </span>
             </motion.div>
