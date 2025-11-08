@@ -87,7 +87,7 @@ export default function ServicesClient() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.1 }}
-              className="text-new-navy mb-6 text-4xl font-bold tracking-tight lg:text-6xl"
+              className="text-new-navy font-family-roundex mb-6 text-4xl font-bold tracking-tight text-shadow-md lg:text-6xl"
             >
               I Nostri{' '}
               <span className="from-dark-teal to-light-teal bg-gradient-to-r bg-clip-text text-transparent">
@@ -158,7 +158,7 @@ export default function ServicesClient() {
                 Il Nostro Metodo
               </span>
             </div>
-            <h2 className="mb-6 text-3xl font-bold tracking-tight text-white drop-shadow-lg lg:text-5xl">
+            <h2 className="font-family-general-sans mb-6 text-3xl font-bold tracking-tight text-white drop-shadow-lg lg:text-5xl">
               Il Nostro <span className="text-light-teal">Processo</span>
             </h2>
             <p className="mb-16 text-lg leading-relaxed text-white/80">
@@ -186,7 +186,7 @@ export default function ServicesClient() {
                 <step.icon className="text-light-teal mb-6 h-12 w-12" />
 
                 {/* Content */}
-                <h3 className="group-hover:text-light-teal mb-4 text-xl font-bold text-white drop-shadow-sm transition-colors">
+                <h3 className="group-hover:text-light-teal font-family-general-sans mb-4 text-xl font-bold text-white drop-shadow-sm transition-colors">
                   {step.title}
                 </h3>
                 <p className="leading-relaxed text-white/80">
@@ -230,7 +230,7 @@ export default function ServicesClient() {
                 </span>
               </motion.div>
 
-              <h2 className="mb-6 text-4xl font-bold tracking-tight text-white drop-shadow-lg lg:text-5xl">
+              <h2 className="font-family-general-sans mb-6 text-4xl font-bold tracking-tight text-white drop-shadow-lg lg:text-5xl">
                 Pronto per Iniziare il Tuo{' '}
                 <span className="text-light-teal">Progetto?</span>
               </h2>

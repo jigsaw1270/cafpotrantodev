@@ -138,7 +138,7 @@ export default function LavoraConNoi() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.1 }}
-              className="text-new-navy mb-6 text-4xl font-bold tracking-tight lg:text-6xl"
+              className="text-new-navy font-family-roundex mb-6 text-4xl font-bold tracking-tight text-shadow-md lg:text-6xl"
             >
               Lavora{' '}
               <span className="from-dark-teal to-light-teal bg-gradient-to-r bg-clip-text text-transparent">

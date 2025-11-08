@@ -108,6 +108,12 @@ const config: Config = {
         'slide-down': 'slideDown 0.5s ease-out',
         'scale-in': 'scaleIn 0.3s ease-out',
       },
+      fontFamily: {
+        roundex: ['var(--font-roundex)', 'sans-serif'],
+        flemmatico: ['var(--font-flemmatico)', 'sans-serif'],
+        sans: ['var(--font-geist-sans)', 'sans-serif'],
+        mono: ['var(--font-geist-mono)', 'monospace'],
+      },
       keyframes: {
         fadeIn: {
           '0%': { opacity: '0' },

@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
+import localFont from 'next/font/local';
 import { Header } from '@/components/layout/header';
 import { Footer } from '@/components/layout/footer';
 import { ToastProvider } from '@/components/ui/toast';
@@ -17,6 +18,61 @@ const geistSans = Geist({
 const geistMono = Geist_Mono({
   variable: '--font-geist-mono',
   subsets: ['latin'],
+});
+
+const roundex = localFont({
+  src: [
+    {
+      path: '../../public/fonts/roundex/Roundex.otf',
+      weight: '400',
+      style: 'normal',
+    },
+    // Add more weights if you have them:
+    // {
+    //   path: '../../public/fonts/roundex/Roundex-Bold.otf',
+    //   weight: '700',
+    //   style: 'normal',
+    // },
+  ],
+  variable: '--font-roundex',
+  display: 'swap',
+});
+
+const flemmatico = localFont({
+  src: [
+    {
+      path: '../../public/fonts/flemmatico/Flemmatico Thin.ttf',
+      weight: '100',
+      style: 'normal',
+    },
+    {
+      path: '../../public/fonts/flemmatico/Flemmatico Light.ttf',
+      weight: '300',
+      style: 'normal',
+    },
+    {
+      path: '../../public/fonts/flemmatico/Flemmatico Regular.ttf',
+      weight: '400',
+      style: 'normal',
+    },
+    {
+      path: '../../public/fonts/flemmatico/Flemmatico Semibold.ttf',
+      weight: '600',
+      style: 'normal',
+    },
+    {
+      path: '../../public/fonts/flemmatico/Flemmatico Bold.ttf',
+      weight: '700',
+      style: 'normal',
+    },
+    {
+      path: '../../public/fonts/flemmatico/Flemmatico Black.ttf',
+      weight: '900',
+      style: 'normal',
+    },
+  ],
+  variable: '--font-flemmatico',
+  display: 'swap',
 });
 
 export const metadata: Metadata = {
@@ -96,7 +152,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="it" suppressHydrationWarning>
+    <html
+      lang="it"
+      className={`${roundex.variable} ${flemmatico.variable}`}
+      suppressHydrationWarning
+    >
       <head>
         {/* Preconnect to external domains for faster loading */}
 
@@ -105,7 +165,7 @@ export default function RootLayout({
         <meta name="language" content="it" />
       </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} bg-background min-h-screen font-sans antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${roundex.variable} ${flemmatico.variable} bg-background min-h-screen font-sans antialiased`}
         suppressHydrationWarning
       >
         <SWRProvider>

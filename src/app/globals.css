@@ -41,6 +41,8 @@
   --font-family-mono: ui-monospace, monospace;
   --font-family-general-sans: 'General Sans', sans-serif;
   --font-family-switzer: 'Switzer', sans-serif;
+  --font-family-roundex: var(--font-roundex), sans-serif;
+  --font-family-flemmatico: var(--font-flemmatico), sans-serif;
 
   /* New Color Rework Palette */
   --color-new-navy: #071739;
@@ -727,4 +729,71 @@ body.translated-rtl .notranslate {
   font-family: inherit !important;
   direction: ltr !important;
   unicode-bidi: embed !important;
+}
+
+/* Roundex Font Utility Classes */
+.font-roundex {
+  font-family: var(--font-roundex), sans-serif;
+}
+
+/* Roundex Font Weight Utilities */
+.font-roundex-light {
+  font-family: var(--font-roundex), sans-serif;
+  font-weight: 300;
+}
+
+.font-roundex-normal {
+  font-family: var(--font-roundex), sans-serif;
+  font-weight: 400;
+}
+
+.font-roundex-medium {
+  font-family: var(--font-roundex), sans-serif;
+  font-weight: 500;
+}
+
+.font-roundex-semibold {
+  font-family: var(--font-roundex), sans-serif;
+  font-weight: 600;
+}
+
+.font-roundex-bold {
+  font-family: var(--font-roundex), sans-serif;
+  font-weight: 700;
+}
+
+/* Flemmatico Font Utility Classes */
+.font-flemmatico {
+  font-family: var(--font-flemmatico), sans-serif;
+}
+
+/* Flemmatico Font Weight Utilities */
+.font-flemmatico-thin {
+  font-family: var(--font-flemmatico), sans-serif;
+  font-weight: 100;
+}
+
+.font-flemmatico-light {
+  font-family: var(--font-flemmatico), sans-serif;
+  font-weight: 300;
+}
+
+.font-flemmatico-normal {
+  font-family: var(--font-flemmatico), sans-serif;
+  font-weight: 400;
+}
+
+.font-flemmatico-semibold {
+  font-family: var(--font-flemmatico), sans-serif;
+  font-weight: 600;
+}
+
+.font-flemmatico-bold {
+  font-family: var(--font-flemmatico), sans-serif;
+  font-weight: 700;
+}
+
+.font-flemmatico-black {
+  font-family: var(--font-flemmatico), sans-serif;
+  font-weight: 900;
 }

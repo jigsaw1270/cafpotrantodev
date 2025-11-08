@@ -71,7 +71,7 @@ export default function About() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.1 }}
-              className="text-new-navy mb-6 text-4xl font-bold tracking-tight lg:text-6xl"
+              className="text-new-navy font-family-roundex mb-6 text-4xl font-bold tracking-tight text-shadow-md lg:text-6xl"
             >
               Chi{' '}
               <span className="from-dark-teal to-light-teal bg-gradient-to-r bg-clip-text text-transparent">
@@ -108,7 +108,7 @@ export default function About() {
               viewport={{ once: true }}
               className="flex-1"
             >
-              <h2 className="text-new-white mb-6 text-3xl font-bold tracking-tight">
+              <h2 className="text-new-white font-family-general-sans mb-6 text-3xl font-bold tracking-tight">
                 Chi <span className="text-new-beige">Siamo</span>
               </h2>
               <div className="text-new-dim-cyan space-y-6">
@@ -174,7 +174,7 @@ export default function About() {
               viewport={{ once: true }}
               className="flex-1"
             >
-              <h2 className="text-new-navy mb-6 text-3xl font-bold tracking-tight">
+              <h2 className="text-new-navy font-family-general-sans mb-6 text-3xl font-bold tracking-tight">
                 La Nostra <span className="text-light-teal">Visione</span>
               </h2>
               <div className="text-new-light-navy space-y-6">
@@ -231,7 +231,7 @@ export default function About() {
               viewport={{ once: true }}
               className="flex-1"
             >
-              <h2 className="text-new-navy mb-6 text-3xl font-bold tracking-tight">
+              <h2 className="text-new-navy font-family-general-sans mb-6 text-3xl font-bold tracking-tight">
                 La Nostra <span className="text-dark-teal">Missione</span>
               </h2>
               <div className="text-new-light-navy space-y-6">
@@ -298,7 +298,7 @@ export default function About() {
                 I Nostri Principi
               </span>
             </div>
-            <h2 className="mb-4 text-3xl font-bold tracking-tight text-white drop-shadow-lg lg:text-4xl">
+            <h2 className="font-family-general-sans mb-4 text-3xl font-bold tracking-tight text-white drop-shadow-lg lg:text-4xl">
               I Nostri <span className="text-light-teal">Valori</span>
             </h2>
             <p className="mb-16 text-lg leading-relaxed text-white/80">
@@ -320,7 +320,7 @@ export default function About() {
                 <div className="bg-light-teal/20 border-light-teal/40 group-hover:bg-light-teal group-hover:border-light-teal/60 mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full border backdrop-blur-md transition-all duration-300">
                   <value.icon className="text-light-teal h-8 w-8 transition-colors duration-300 group-hover:text-white" />
                 </div>
-                <h3 className="group-hover:text-light-teal mb-3 text-lg font-bold text-white drop-shadow-sm transition-colors">
+                <h3 className="group-hover:text-light-teal font-family-general-sans mb-3 text-lg font-bold text-white drop-shadow-sm transition-colors">
                   {value.title}
                 </h3>
                 <p className="text-sm leading-relaxed text-white/80">
@@ -351,7 +351,7 @@ export default function About() {
             viewport={{ once: true }}
             className="mx-auto max-w-2xl text-center"
           >
-            <h2 className="text-foreground mb-4 text-3xl font-bold tracking-tight sm:text-4xl">
+            <h2 className="text-foreground font-family-general-sans mb-4 text-3xl font-bold tracking-tight sm:text-4xl">
               I Numeri Parlano
             </h2>
             <p className="text-muted-foreground mb-16 text-lg">

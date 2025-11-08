@@ -148,14 +148,21 @@ amministrative."
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
-              className="font-family-switzer mb-6 text-4xl font-extrabold tracking-tight text-white sm:text-5xl"
+              className="font-family-switzer mb-6 pt-8 text-4xl font-extrabold tracking-tight text-white sm:text-5xl"
               suppressHydrationWarning
             >
-              <span className="text-4xl font-bold text-white sm:text-6xl">
+              <span className="font-family-roundex text-shadow-light-teal text-4xl font-extrabold text-white text-shadow-lg sm:text-8xl">
                 CAF - PATRONATO SINDACATO <br />
               </span>
-              Servizi Legali &<span className="text-yellow"> Assistenza </span>
-              <span className="text-gradient-primary from-yellow to-cyan bg-gradient-to-r bg-clip-text text-transparent">
+              <span className="tracking-wide sm:text-5xl">
+                {' '}
+                Servizi Legali &
+              </span>
+              <span className="text-yellow sm:text-5xl">
+                {' '}
+                <span className="sm:text-5xl"> Assistenza </span>
+              </span>
+              <span className="text-gradient-primary from-yellow to-cyan bg-gradient-to-r bg-clip-text text-transparent sm:text-5xl">
                 {' '}
                 Amministrativa
               </span>
@@ -211,7 +218,7 @@ amministrative."
             viewport={{ once: true }}
             className="mx-auto max-w-2xl text-center"
           >
-            <h2 className="text-new-navy mb-4 text-3xl font-bold tracking-tight sm:text-4xl">
+            <h2 className="text-new-navy font-family-general-sans mb-4 text-3xl font-bold tracking-tight sm:text-4xl">
               Le Nostre Categorie di Servizi
             </h2>
             <p className="text-new-light-navy mb-16 text-lg leading-relaxed">
@@ -238,7 +245,7 @@ amministrative."
             <div className="bg-light-teal/20 border-light-teal/30 mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full border">
               <Phone className="text-light-teal h-8 w-8" />
             </div>
-            <h2 className="text-new-white mb-4 text-3xl font-bold tracking-tight sm:text-4xl">
+            <h2 className="text-new-white font-family-general-sans mb-4 text-3xl font-bold tracking-tight sm:text-4xl">
               Hai bisogno di assistenza legale?
             </h2>
             <p className="text-new-dim-cyan mb-8 text-lg leading-relaxed">
@@ -264,7 +271,7 @@ amministrative."
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
               viewport={{ once: true }}
-              className="text-new-navy mb-4 text-3xl font-bold tracking-tight sm:text-4xl"
+              className="text-new-navy font-family-general-sans mb-4 text-3xl font-bold tracking-tight sm:text-4xl"
             >
               Perché scegliere noi
             </motion.h2>
@@ -317,7 +324,7 @@ amministrative."
               <div className="bg-light-teal/20 border-light-teal/30 mb-6 flex h-16 w-16 items-center justify-center rounded-full border">
                 <Shield className="text-light-teal h-8 w-8" />
               </div>
-              <h2 className="text-new-white mb-6 text-3xl font-bold tracking-tight sm:text-4xl">
+              <h2 className="text-new-white font-family-general-sans mb-6 text-3xl font-bold tracking-tight sm:text-4xl">
                 Progettati per il Successo
               </h2>
               <p className="text-new-dim-cyan mb-8 text-lg leading-relaxed">
@@ -369,7 +376,7 @@ amministrative."
             viewport={{ once: true }}
             className="mx-auto mb-16 max-w-2xl text-center"
           >
-            <h2 className="text-new-navy mb-4 text-3xl font-bold tracking-tight sm:text-4xl">
+            <h2 className="text-new-navy font-family-general-sans mb-4 text-3xl font-bold tracking-tight sm:text-4xl">
               Visita i Nostri Uffici per una Consulenza
             </h2>
             <p className="text-new-light-navy text-lg leading-relaxed">

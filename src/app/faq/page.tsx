@@ -178,7 +178,7 @@ function FAQItem({ question }: FAQItemProps) {
         className="group-hover:bg-new-beige/10 flex w-full items-center justify-between px-6 py-5 text-left transition-colors duration-300"
         onClick={() => setIsOpen(!isOpen)}
       >
-        <h3 className="text-new-navy pr-4 text-lg font-semibold">
+        <h3 className="text-new-navy font-family-general-sans pr-4 text-lg font-semibold">
           {question.question}
         </h3>
         <motion.div
@@ -244,7 +244,7 @@ export default function FAQPage() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.1 }}
-              className="text-new-navy mb-6 text-4xl font-bold tracking-tight lg:text-6xl"
+              className="text-new-navy font-family-roundex mb-6 text-4xl font-bold tracking-tight text-shadow-md lg:text-6xl"
             >
               FAQ - Sezione{' '}
               <span className="from-dark-teal to-light-teal bg-gradient-to-r bg-clip-text text-transparent">
@@ -288,7 +288,7 @@ export default function FAQPage() {
                     <div className="from-dark-teal to-light-teal flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-br">
                       <category.icon className="h-6 w-6 text-white" />
                     </div>
-                    <h2 className="text-new-navy text-3xl font-bold tracking-tight lg:text-4xl">
+                    <h2 className="text-new-navy font-family-general-sans text-3xl font-bold tracking-tight lg:text-4xl">
                       {category.category.split(' ')[0]}{' '}
                       <span className="from-dark-teal to-light-teal bg-gradient-to-r bg-clip-text text-transparent">
                         {category.category.split(' ').slice(1).join(' ')}
@@ -327,7 +327,7 @@ export default function FAQPage() {
             viewport={{ once: true }}
             className="mb-16 text-center"
           >
-            <h2 className="text-new-white mb-4 text-3xl font-bold tracking-tight lg:text-4xl">
+            <h2 className="text-new-white font-family-general-sans mb-4 text-3xl font-bold tracking-tight lg:text-4xl">
               Il Nostro{' '}
               <span className="from-new-beige to-light-teal bg-gradient-to-r bg-clip-text text-transparent">
                 Supporto
@@ -431,7 +431,7 @@ export default function FAQPage() {
             viewport={{ once: true }}
             className="mt-16"
           >
-            <h3 className="text-new-white mb-10 text-center text-2xl font-bold">
+            <h3 className="text-new-white font-family-general-sans mb-10 text-center text-2xl font-bold">
               I Nostri{' '}
               <span className="text-light-teal">Servizi Principali</span>
             </h3>

@@ -302,7 +302,7 @@ export default function Contact() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.1 }}
-              className="text-new-navy mb-6 text-4xl font-bold tracking-tight lg:text-6xl"
+              className="text-new-navy font-family-roundex mb-6 text-4xl font-bold tracking-tight text-shadow-md lg:text-6xl"
             >
               Mettiti in{' '}
               <span className="from-dark-teal to-light-teal bg-gradient-to-r bg-clip-text text-transparent">
@@ -339,7 +339,7 @@ export default function Contact() {
               transition={{ duration: 0.5 }}
               viewport={{ once: true }}
             >
-              <h2 className="text-new-white mb-6 text-3xl font-bold tracking-tight">
+              <h2 className="text-new-white font-family-general-sans mb-6 text-3xl font-bold tracking-tight">
                 Iniziamo una{' '}
                 <span className="text-new-beige">conversazione</span>
               </h2>
@@ -655,7 +655,7 @@ export default function Contact() {
                 Le Nostre Sedi
               </span>
             </div>
-            <h2 className="mb-6 text-4xl font-bold tracking-tight text-white drop-shadow-lg sm:text-5xl">
+            <h2 className="font-family-general-sans mb-6 text-4xl font-bold tracking-tight text-white drop-shadow-lg sm:text-5xl">
               Trova la sede a te più{' '}
               <span className="text-light-teal">vicina</span>
             </h2>
