@@ -108,7 +108,7 @@ export function CategoriesGrid({ className = '' }: CategoriesGridProps) {
         animate={{ opacity: 1 }}
         transition={{ duration: 0.5, delay: 0.3 }}
       >
-        <p className="text-muted-foreground">
+        <p className="text-muted-foreground hidden">
           Showing {categories.length} service{' '}
           {categories.length === 1 ? 'category' : 'categories'}
         </p>

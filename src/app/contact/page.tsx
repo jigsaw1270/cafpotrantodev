@@ -285,7 +285,12 @@ export default function Contact() {
       </div>
 
       {/* Hero Section */}
-      <section className="bg-new-beige relative overflow-hidden py-20 lg:py-12">
+      <section
+        className="bg-new-beige relative overflow-hidden bg-cover bg-center bg-no-repeat py-20 lg:py-12"
+        style={{
+          backgroundImage: 'url(/images/banner/beigebanner.svg)',
+        }}
+      >
         <div className="container mx-auto px-6 lg:px-12">
           <div className="mx-auto max-w-4xl text-center">
             <motion.div
@@ -315,7 +320,7 @@ export default function Contact() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.2 }}
-              className="text-new-light-navy mb-10 text-lg lg:text-xl"
+              className="mb-10 text-lg text-gray-700 lg:text-xl"
             >
               Hai bisogno di assistenza legale o supporto amministrativo? Siamo
               qui per aiutarti. Contattaci per servizi legali professionali e

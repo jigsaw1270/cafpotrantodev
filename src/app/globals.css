@@ -794,3 +794,33 @@ body.translated-rtl .notranslate {
   font-family: var(--font-pathway-extreme), sans-serif;
   font-weight: 900;
 }
+
+/* Zigzag 3D Background Pattern */
+.bg-zigzag3d {
+  background-color: #e3c39e;
+  opacity: 1;
+  background:
+    linear-gradient(135deg, #aeaeae55 25%, transparent 25%) -10px 0/ 20px 20px,
+    linear-gradient(225deg, #aeaeae 25%, transparent 25%) -10px 0/ 20px 20px,
+    linear-gradient(315deg, #aeaeae55 25%, transparent 25%) 0px 0/ 20px 20px,
+    linear-gradient(45deg, #aeaeae 25%, #e3c39e 25%) 0px 0/ 20px 20px;
+}
+
+/* Polka Dot Background Pattern */
+.bg-polka {
+  background-color: #e3c39e;
+  opacity: 1;
+  background-image: radial-gradient(#efefef 1.25px, #e3c39e 1.25px);
+  background-size: 25px 25px;
+}
+
+/* White Zigzag 3D Background Pattern */
+.bg-white-zigzag3d {
+  background-color: #cdd5db;
+  opacity: 1;
+  background:
+    linear-gradient(135deg, #dedede55 25%, transparent 25%) -34px 0/ 68px 68px,
+    linear-gradient(225deg, #dedede 25%, transparent 25%) -34px 0/ 68px 68px,
+    linear-gradient(315deg, #dedede55 25%, transparent 25%) 0px 0/ 68px 68px,
+    linear-gradient(45deg, #dedede 25%, #cdd5db 25%) 0px 0/ 68px 68px;
+}

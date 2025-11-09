@@ -53,7 +53,12 @@ export default function About() {
       </div>
 
       {/* Hero Section */}
-      <section className="bg-new-beige relative overflow-hidden py-20 lg:py-12">
+      <section
+        className="bg-new-beige relative overflow-hidden bg-cover bg-center bg-no-repeat py-20 lg:py-12"
+        style={{
+          backgroundImage: 'url(/images/banner/beigebanner.svg)',
+        }}
+      >
         <div className="container mx-auto px-6 lg:px-12">
           <div className="mx-auto max-w-4xl text-center">
             <motion.div
@@ -62,7 +67,7 @@ export default function About() {
               transition={{ duration: 0.6 }}
               className="mb-6"
             >
-              <span className="bg-dark-teal text-new-white mt-6 mt-8 inline-block rounded-full px-4 py-2 text-sm font-semibold tracking-wide uppercase">
+              <span className="bg-dark-teal text-new-white mt-8 inline-block rounded-full px-4 py-2 text-sm font-semibold tracking-wide uppercase">
                 Il Nostro Studio
               </span>
             </motion.div>
@@ -83,7 +88,7 @@ export default function About() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.2 }}
-              className="text-new-light-navy mb-10 text-lg lg:text-xl"
+              className="mb-10 text-lg text-gray-700 lg:text-xl"
             >
               Siamo un team dedicato di professionisti legali impegnati a
               fornire servizi legali eccezionali e assistenza amministrativa ai

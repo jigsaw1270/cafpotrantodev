@@ -226,7 +226,12 @@ export default function FAQPage() {
       </div>
 
       {/* Hero Section */}
-      <section className="bg-new-beige relative overflow-hidden py-20 lg:py-12">
+      <section
+        className="bg-new-beige relative overflow-hidden bg-cover bg-center bg-no-repeat py-20 lg:py-12"
+        style={{
+          backgroundImage: 'url(/images/banner/beigebanner.svg)',
+        }}
+      >
         <div className="container mx-auto px-6 lg:px-12">
           <div className="mx-auto max-w-4xl text-center">
             <motion.div
@@ -256,7 +261,7 @@ export default function FAQPage() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.2 }}
-              className="text-new-light-navy mb-10 text-lg lg:text-xl"
+              className="mb-10 text-lg text-gray-700 lg:text-xl"
             >
               Trova risposte alle domande più comuni sui nostri servizi CAF,
               Patronato, SPID e bonus. Se non trovi quello che cerchi,
@@ -271,7 +276,7 @@ export default function FAQPage() {
       </section>
 
       {/* FAQ Content */}
-      <section className="bg-new-white py-20 lg:py-24">
+      <section className="bg-white-zigzag3d py-20 lg:py-24">
         <div className="container mx-auto px-6 lg:px-12">
           <div className="mx-auto max-w-5xl">
             {faqData.map((category, categoryIndex) => (
