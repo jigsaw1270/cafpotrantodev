@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { Award, Users, Target, Lightbulb } from 'lucide-react';
+import Image from 'next/image';
 import { SEO } from '@/components/seo';
 
 const values = [
@@ -151,17 +152,15 @@ export default function About() {
               viewport={{ once: true }}
               className="relative flex-1"
             >
-              <div className="from-dark-teal/20 to-light-teal/40 aspect-video rounded-2xl bg-gradient-to-br shadow-2xl">
-                <div className="bg-new-white/10 border-new-beige/20 absolute inset-4 flex items-center justify-center rounded-xl border backdrop-blur-sm">
-                  <div className="text-center">
-                    <div className="text-new-beige mb-2 text-4xl font-bold">
-                      Chi Siamo
-                    </div>
-                    <div className="text-new-white text-sm">
-                      Image Placeholder
-                    </div>
-                  </div>
-                </div>
+              <div className="border-new-beige/30 hover:border-new-beige/50 aspect-video overflow-hidden rounded-2xl border-4 shadow-2xl backdrop-blur-sm transition-all duration-300 hover:shadow-[0_25px_50px_-12px_rgba(0,0,0,0.25)]">
+                <Image
+                  src="/images/webimages/whoweare.webp"
+                  alt="Chi Siamo - Il nostro team di professionisti legali"
+                  width={600}
+                  height={400}
+                  className="h-full w-full object-cover transition-transform duration-300 hover:scale-105"
+                  priority
+                />
               </div>
             </motion.div>
           </div>
@@ -208,17 +207,14 @@ export default function About() {
               viewport={{ once: true }}
               className="relative flex-1"
             >
-              <div className="from-light-teal/20 to-dark-teal/40 aspect-video rounded-2xl bg-gradient-to-br shadow-2xl">
-                <div className="bg-new-white/10 border-light-teal/20 absolute inset-4 flex items-center justify-center rounded-xl border backdrop-blur-sm">
-                  <div className="text-center">
-                    <div className="text-light-teal mb-2 text-4xl font-bold">
-                      Visione
-                    </div>
-                    <div className="text-new-navy text-sm">
-                      Image Placeholder
-                    </div>
-                  </div>
-                </div>
+              <div className="border-light-teal/40 hover:border-light-teal/60 aspect-video overflow-hidden rounded-2xl border-4 shadow-2xl backdrop-blur-sm transition-all duration-300 hover:shadow-[0_25px_50px_-12px_rgba(12,150,156,0.3)]">
+                <Image
+                  src="/images/webimages/vission.webp"
+                  alt="La Nostra Visione - Futuro dei servizi legali"
+                  width={600}
+                  height={400}
+                  className="h-full w-full object-cover transition-transform duration-300 hover:scale-105"
+                />
               </div>
             </motion.div>
           </div>
@@ -266,17 +262,14 @@ export default function About() {
               viewport={{ once: true }}
               className="relative flex-1"
             >
-              <div className="from-dark-teal/20 to-new-navy/40 aspect-video rounded-2xl bg-gradient-to-br shadow-2xl">
-                <div className="bg-new-white/10 border-dark-teal/20 absolute inset-4 flex items-center justify-center rounded-xl border backdrop-blur-sm">
-                  <div className="text-center">
-                    <div className="text-dark-teal mb-2 text-4xl font-bold">
-                      Missione
-                    </div>
-                    <div className="text-new-navy text-sm">
-                      Image Placeholder
-                    </div>
-                  </div>
-                </div>
+              <div className="border-dark-teal/40 hover:border-dark-teal/60 aspect-video overflow-hidden rounded-2xl border-4 shadow-2xl backdrop-blur-sm transition-all duration-300 hover:shadow-[0_25px_50px_-12px_rgba(10,112,117,0.3)]">
+                <Image
+                  src="/images/webimages/mission.webp"
+                  alt="La Nostra Missione - Servizi legali accessibili e professionali"
+                  width={600}
+                  height={400}
+                  className="h-full w-full object-cover transition-transform duration-300 hover:scale-105"
+                />
               </div>
             </motion.div>
           </div>

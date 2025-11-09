@@ -1,6 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 import {
   Users,
   Briefcase,
@@ -333,14 +334,17 @@ export default function LavoraConNoi() {
               viewport={{ once: true }}
               className="relative flex-1"
             >
-              <div className="from-dark-teal/20 to-light-teal/40 aspect-square rounded-2xl bg-gradient-to-br shadow-2xl">
-                <div className="bg-new-white/10 border-new-beige/20 absolute inset-4 flex items-center justify-center rounded-xl border backdrop-blur-sm">
-                  <div className="text-center">
-                    <Users className="text-light-teal mx-auto mb-4 h-24 w-24" />
-                    <div className="text-new-beige text-2xl font-bold">
-                      Join Our Team
-                    </div>
-                  </div>
+              <div className="border-new-white/80 bg-new-white/80 relative aspect-square overflow-hidden rounded-2xl border-8 p-2 shadow-2xl">
+                <div className="h-full w-full overflow-hidden rounded-xl">
+                  <Image
+                    src="/images/jointeam.webp"
+                    alt="Join Our Team - Unisciti al nostro team professionale"
+                    width={500}
+                    height={500}
+                    className="h-full w-full object-cover grayscale transition-all duration-300 hover:grayscale-0"
+                  />
+                  {/* Light teal overlay */}
+                  <div className="bg-light-teal/15 absolute inset-2 rounded-xl backdrop-blur-[0.5px]"></div>
                 </div>
               </div>
             </motion.div>

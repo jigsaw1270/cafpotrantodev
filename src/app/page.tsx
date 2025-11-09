@@ -233,8 +233,16 @@ amministrative."
       </section>
 
       {/* CTA Section */}
-      <section className="bg-new-navy py-24">
-        <div className="container mx-auto px-8 lg:px-12">
+      <section
+        className="relative overflow-hidden bg-cover bg-center bg-no-repeat py-24"
+        style={{
+          backgroundImage: 'url(/images/bgimage1.webp)',
+        }}
+      >
+        {/* Navy gradient overlay */}
+        <div className="from-new-navy/90 via-new-navy/80 to-new-light-navy/70 absolute inset-0 bg-gradient-to-br"></div>
+
+        <div className="relative z-10 container mx-auto px-8 lg:px-12">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -357,9 +365,15 @@ amministrative."
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5 }}
               viewport={{ once: true }}
-              className="border-new-beige/20 bg-new-white/10 flex items-center justify-center rounded-3xl border p-12 shadow-2xl backdrop-blur-xl"
+              className="border-new-beige/20 bg-new-white/10 overflow-hidden rounded-3xl border shadow-2xl backdrop-blur-xl"
             >
-              <Users className="text-light-teal/20 h-48 w-48" />
+              <div className="aspect-square overflow-hidden rounded-3xl">
+                <img
+                  src="/images/successo.webp"
+                  alt="Progettati per il Successo - Il nostro approccio professionale"
+                  className="h-full w-full object-cover transition-transform duration-300 hover:scale-105"
+                />
+              </div>
             </motion.div>
           </div>
         </div>
