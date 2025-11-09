@@ -76,7 +76,7 @@ export function CategoriesGrid({ className = '' }: CategoriesGridProps) {
   return (
     <div className={className}>
       <motion.div
-        className={`grid gap-6 ${getGridColumns(categories.length)}`}
+        className={`grid gap-6 ${getGridColumns(categories.length)} place-items-center`}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.5 }}
@@ -91,6 +91,7 @@ export function CategoriesGrid({ className = '' }: CategoriesGridProps) {
               delay: index * 0.1,
               ease: 'easeOut',
             }}
+            className="flex w-full justify-center"
           >
             <CategoryCard
               category={category}

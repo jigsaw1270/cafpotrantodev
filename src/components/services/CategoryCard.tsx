@@ -108,6 +108,17 @@ export default function CategoryCard({
           transform: rotateY(180deg);
         }
 
+        /* Mobile: Always show flipped state since there's no hover */
+        @media (max-width: 768px) {
+          .card-content {
+            transform: rotateY(180deg);
+          }
+
+          .category-card:hover .card-content {
+            transform: rotateY(180deg);
+          }
+        }
+
         .front-side,
         .back-side {
           position: absolute;
@@ -424,8 +435,10 @@ export default function CategoryCard({
         @media (max-width: 768px) {
           .category-card {
             width: 100%;
-            max-width: 320px;
+            max-width: 100%;
+            min-width: 300px;
             height: 240px;
+            margin: 0 auto;
           }
 
           .front-title-container {
@@ -448,8 +461,11 @@ export default function CategoryCard({
 
         @media (max-width: 480px) {
           .category-card {
-            max-width: 280px;
+            width: 100%;
+            max-width: 100%;
+            min-width: 280px;
             height: 220px;
+            margin: 0 auto;
           }
 
           .front-title {
