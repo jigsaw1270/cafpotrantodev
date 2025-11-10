@@ -8,6 +8,7 @@ import { GlobalToastListener } from '@/components/ui/global-toast-listener';
 import { WhatsAppInitializer } from '@/components/whatsapp-initializer';
 import { SWRProvider } from '@/components/providers/SWRProvider';
 import { CookieConsent } from '@/components/ui/cookie-consent';
+import { DevToolbar } from '@/components/dev/DevToolbar';
 import './globals.css';
 
 const geistSans = Geist({
@@ -154,6 +155,7 @@ export default function RootLayout({
                 {children}
               </main>
               <Footer />
+              <DevToolbar />
             </div>
           </ToastProvider>
         </SWRProvider>
