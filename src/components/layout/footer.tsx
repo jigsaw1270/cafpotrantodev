@@ -6,7 +6,10 @@ import { CookiePreferencesLink } from '@/components/ui/cookie-preferences-link';
 const quickLinks = [
   { href: '/', label: 'Home' },
   { href: '/about', label: 'Chi Siamo' },
+  { href: '/services', label: 'Servizi' },
   { href: '/contact', label: 'Contatti' },
+  { href: '/lavora-con-noi', label: 'Lavora con Noi' },
+  { href: '/faq', label: 'FAQ' },
 ];
 
 export function Footer() {
@@ -121,14 +124,7 @@ export function Footer() {
                     › Privacy
                   </Link>
                 </li>
-                <li>
-                  <Link
-                    href="/cookie"
-                    className="hover:text-cyan text-xs text-gray-400 transition-colors"
-                  >
-                    › Cookie
-                  </Link>
-                </li>
+                <li></li>
               </ul>
             </div>
           </div>
@@ -147,20 +143,6 @@ export function Footer() {
                   title="Facebook - CAF Patronato Sindacato AZ Assistenza Fiscale"
                 >
                   <Facebook className="h-4 w-4" />
-                </a>
-                <a
-                  href="#"
-                  className="hover:border-cyan hover:bg-cyan flex h-8 w-8 items-center justify-center rounded-full border border-gray-800 bg-gray-900/50 text-gray-400 transition-all hover:text-white"
-                  title="Instagram"
-                >
-                  <Instagram className="h-4 w-4" />
-                </a>
-                <a
-                  href="#"
-                  className="hover:border-cyan hover:bg-cyan flex h-8 w-8 items-center justify-center rounded-full border border-gray-800 bg-gray-900/50 text-gray-400 transition-all hover:text-white"
-                  title="LinkedIn"
-                >
-                  <Linkedin className="h-4 w-4" />
                 </a>
               </div>
             </div>

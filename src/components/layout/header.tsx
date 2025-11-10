@@ -66,7 +66,7 @@ export function Header() {
                   className="h-full w-full"
                 />
               </motion.div>
-              <span className="text-new-beige hidden text-lg font-bold uppercase md:inline">
+              <span className="text-new-beige font-family-pathway-extreme hidden text-lg font-bold uppercase md:inline">
                 Caf-Potranto
               </span>
             </Link>
@@ -79,13 +79,21 @@ export function Header() {
                   <Link
                     key={link.href}
                     href={link.href}
-                    className={`rounded-lg px-3 py-2 transition-all duration-200 lg:px-4 ${
+                    className={`relative overflow-hidden rounded-lg px-3 py-2 transition-all duration-300 lg:px-4 ${
                       isActive
-                        ? 'text-new-beige border border-white/20 bg-white/10 shadow-sm backdrop-blur-sm'
+                        ? 'text-new-beige border-light-teal/40 from-light-teal/30 to-dark-teal/20 group border bg-gradient-to-r shadow-lg backdrop-blur-sm'
                         : 'text-new-beige hover:text-cyan hover:bg-cyan/10'
                     }`}
                   >
-                    {link.label}
+                    {/* Glossy overlay for active tab */}
+                    {isActive && (
+                      <>
+                        <div className="absolute inset-0 bg-gradient-to-r from-white/20 via-white/10 to-transparent opacity-60" />
+                        <div className="absolute inset-0 -translate-x-full -skew-x-12 bg-gradient-to-r from-transparent via-white/30 to-transparent transition-transform duration-700 ease-out group-hover:translate-x-full" />
+                        <div className="bg-light-teal/20 absolute inset-0 -z-10 rounded-lg opacity-0 blur-xl transition-opacity duration-300 group-hover:opacity-100" />
+                      </>
+                    )}
+                    <span className="relative z-10">{link.label}</span>
                   </Link>
                 );
               })}
