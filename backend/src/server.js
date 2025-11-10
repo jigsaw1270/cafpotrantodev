@@ -57,6 +57,11 @@ app.use(cors({
       return callback(null, true);
     }
     
+    // Allow Vercel preview deployments for cafpotrantodev (development frontend)
+    if (origin.includes('cafpotrantodev') && origin.includes('vercel.app')) {
+      return callback(null, true);
+    }
+    
     // Allow development environment
     if (process.env.NODE_ENV === 'development') {
       return callback(null, true);
