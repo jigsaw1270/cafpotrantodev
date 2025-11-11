@@ -32,6 +32,7 @@ const limiter = rateLimit({
 });
 app.use('/api/', limiter);
 
+// Enhanced CORS configuration with zero caching to fix browser cache issues
 app.use(cors({
   origin: function (origin, callback) {
     // Allow requests with no origin (like mobile apps or curl requests)
@@ -78,7 +79,20 @@ app.use(cors({
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'],
+  maxAge: 0, // ✅ CRITICAL: Prevent CORS preflight caching to fix browser cache issues
 }));
+
+// Middleware to add anti-cache headers for CORS preflight requests
+app.use((req, res, next) => {
+  if (req.method === 'OPTIONS') {
+    res.set({
+      'Cache-Control': 'no-cache, no-store, must-revalidate',
+      'Pragma': 'no-cache',
+      'Expires': '0',
+    });
+  }
+  next();
+});
 
 // Body parsing middleware
 app.use(express.json({ limit: '10mb' }));
@@ -96,9 +110,13 @@ app.use('/uploads', express.static(path.join(__dirname, '../uploads')));
 app.get('/api/health', (req, res) => {
   res.status(200).json({
     status: 'OK',
-    message: 'CafPotranto Backend API is running',
+    message: 'CafPatronatoAZ Backend API is running',
     timestamp: new Date().toISOString(),
     environment: process.env.NODE_ENV,
+    cors: {
+      maxAge: 0,
+      cachePolicy: 'no-cache'
+    }
   });
 });
 
@@ -110,14 +128,20 @@ app.use('/api/subservices', subserviceRoutes);
 // Root endpoint
 app.get('/', (req, res) => {
   res.status(200).json({
-    message: 'CafPotranto Backend API',
+    message: 'CafPatronatoAZ Backend API',
     version: '1.0.0',
     status: 'running',
+    timestamp: new Date().toISOString(),
     endpoints: {
       health: '/api/health',
       categories: '/api/categories',
       subservices: '/api/subservices',
       auth: '/api/auth'
+    },
+    cors: {
+      maxAge: 0,
+      credentials: true,
+      cachePolicy: 'no-cache'
     }
   });
 });
@@ -159,11 +183,11 @@ if (process.env.VERCEL !== '1') {
     
     app.listen(PORT, () => {
       console.log(`
-🚀 CafPotranto Backend Server running!
+🚀 CafPatronatoAZ Backend Server running!
 📍 Environment: ${process.env.NODE_ENV}
 🌐 Port: ${PORT}
 📊 Health Check: http://localhost:${PORT}/api/health
-📚 API Docs: http://localhost:${PORT}/api/docs (coming soon)
+ CORS Policy: Zero-cache, production-grade (maxAge: 0)
       `);
     });
   };
