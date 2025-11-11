@@ -12,14 +12,39 @@ export default function SubservicesPage() {
   const [categories, setCategories] = useState<Category[]>([]);
   const [loading, setLoading] = useState(true);
   const [deleteLoading, setDeleteLoading] = useState<string | null>(null);
+  const [statusLoading, setStatusLoading] = useState<string | null>(null);
   const [selectedCategory, setSelectedCategory] = useState<string>('');
   const [searchTerm, setSearchTerm] = useState('');
 
   const fetchCategories = useCallback(async () => {
     try {
-      const response = await apiClient.getCategories({ limit: 100 });
-      if (response.success && response.data) {
-        setCategories(response.data.categories || []);
+      // Admin panel should show ALL categories (both active and inactive)
+      const [activeResponse, inactiveResponse] = await Promise.all([
+        apiClient.getCategories({ limit: 100, active: true }),
+        apiClient.getCategories({ limit: 100, active: false }),
+      ]);
+
+      if (activeResponse.success && inactiveResponse.success) {
+        // Combine both active and inactive categories
+        const allCategories = [
+          ...(activeResponse.data?.categories || []),
+          ...(inactiveResponse.data?.categories || []),
+        ];
+
+        // Sort by displayOrder to maintain proper order
+        allCategories.sort(
+          (a, b) => (a.displayOrder || 0) - (b.displayOrder || 0)
+        );
+
+        setCategories(allCategories);
+      } else {
+        // Fallback: if one request fails, try to get at least some data
+        const successResponse = activeResponse.success
+          ? activeResponse
+          : inactiveResponse;
+        if (successResponse.success && successResponse.data) {
+          setCategories(successResponse.data.categories || []);
+        }
       }
     } catch (error) {
       console.error('Failed to fetch categories:', error);
@@ -28,13 +53,42 @@ export default function SubservicesPage() {
 
   const fetchSubservices = useCallback(async () => {
     try {
-      const params: { limit: number; categoryId?: string; search?: string } = { limit: 50 };
-      if (selectedCategory) params.categoryId = selectedCategory;
-      if (searchTerm) params.search = searchTerm;
-      
-      const response = await apiClient.getSubservices(params);
-      if (response.success && response.data) {
-        setSubservices(response.data.subservices || []);
+      // Admin panel should show ALL subservices (both active and inactive)
+      const baseParams: {
+        limit: number;
+        categoryId?: string;
+        search?: string;
+      } = { limit: 50 };
+      if (selectedCategory) baseParams.categoryId = selectedCategory;
+      if (searchTerm) baseParams.search = searchTerm;
+
+      // Make parallel requests to get both active and inactive subservices
+      const [activeResponse, inactiveResponse] = await Promise.all([
+        apiClient.getSubservices({ ...baseParams, active: true }),
+        apiClient.getSubservices({ ...baseParams, active: false }),
+      ]);
+
+      if (activeResponse.success && inactiveResponse.success) {
+        // Combine both active and inactive subservices
+        const allSubservices = [
+          ...(activeResponse.data?.subservices || []),
+          ...(inactiveResponse.data?.subservices || []),
+        ];
+
+        // Sort by displayOrder to maintain proper order
+        allSubservices.sort(
+          (a, b) => (a.displayOrder || 0) - (b.displayOrder || 0)
+        );
+
+        setSubservices(allSubservices);
+      } else {
+        // Fallback: if one request fails, try to get at least some data
+        const successResponse = activeResponse.success
+          ? activeResponse
+          : inactiveResponse;
+        if (successResponse.success && successResponse.data) {
+          setSubservices(successResponse.data.subservices || []);
+        }
       }
     } catch (error) {
       console.error('Failed to fetch subservices:', error);
@@ -85,9 +139,14 @@ export default function SubservicesPage() {
 
   const toggleStatus = async (id: string, isActive: boolean) => {
     try {
-      const response = await apiClient.updateSubservice(id, { isActive: !isActive });
+      setStatusLoading(id);
+      const response = await apiClient.updateSubservice(id, {
+        isActive: !isActive,
+      });
       if (response.success) {
-        toast.success(`Subservice ${!isActive ? 'activated' : 'deactivated'} successfully`);
+        toast.success(
+          `Subservice ${!isActive ? 'activated' : 'deactivated'} successfully`
+        );
         fetchSubservices();
       } else {
         toast.error(response.message || 'Failed to update subservice');
@@ -95,21 +154,8 @@ export default function SubservicesPage() {
     } catch (error) {
       console.error('Update error:', error);
       toast.error('Failed to update subservice');
-    }
-  };
-
-  const toggleFeatured = async (id: string, isFeatured: boolean) => {
-    try {
-      const response = await apiClient.updateSubservice(id, { isFeatured: !isFeatured });
-      if (response.success) {
-        toast.success(`Subservice ${!isFeatured ? 'featured' : 'unfeatured'} successfully`);
-        fetchSubservices();
-      } else {
-        toast.error(response.message || 'Failed to update subservice');
-      }
-    } catch (error) {
-      console.error('Update error:', error);
-      toast.error('Failed to update subservice');
+    } finally {
+      setStatusLoading(null);
     }
   };
 
@@ -119,7 +165,7 @@ export default function SubservicesPage() {
       style: 'currency',
       currency: 'EUR',
     });
-    
+
     switch (subservice.priceType) {
       case 'fixed':
         return formatter.format(price);
@@ -134,25 +180,33 @@ export default function SubservicesPage() {
     }
   };
 
-  const getCategoryName = (subservice: { categoryId: string | { _id: string; name: string; slug?: string } }) => {
+  const getCategoryName = (subservice: {
+    categoryId: string | { _id: string; name: string; slug?: string };
+  }) => {
     // If categoryId is populated (object), use its name
-    if (subservice.categoryId && typeof subservice.categoryId === 'object' && 'name' in subservice.categoryId) {
+    if (
+      subservice.categoryId &&
+      typeof subservice.categoryId === 'object' &&
+      'name' in subservice.categoryId
+    ) {
       return subservice.categoryId.name;
     }
-    
+
     // If categoryId is just an ID string, find it in categories array
     if (typeof subservice.categoryId === 'string') {
-      const category = categories.find(cat => cat._id === subservice.categoryId);
+      const category = categories.find(
+        cat => cat._id === subservice.categoryId
+      );
       return category ? category.name : 'Unknown Category';
     }
-    
+
     return 'Unknown Category';
   };
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+      <div className="flex min-h-screen items-center justify-center">
+        <div className="h-12 w-12 animate-spin rounded-full border-b-2 border-blue-600"></div>
       </div>
     );
   }
@@ -161,8 +215,8 @@ export default function SubservicesPage() {
     <div className="min-h-screen bg-gray-50">
       {/* Header */}
       <header className="bg-white shadow">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center py-6">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between py-6">
             <div>
               <h1 className="text-3xl font-bold text-gray-900">Subservices</h1>
               <p className="text-gray-600">Manage your legal services</p>
@@ -170,19 +224,19 @@ export default function SubservicesPage() {
             <div className="flex space-x-4">
               <Link
                 href="/dashboard"
-                className="bg-gray-600 hover:bg-gray-700 text-white px-4 py-2 rounded-md text-sm font-medium"
+                className="rounded-md bg-gray-600 px-4 py-2 text-sm font-medium text-white hover:bg-gray-700"
               >
                 Back to Dashboard
               </Link>
               <Link
                 href="/categories"
-                className="bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-md text-sm font-medium"
+                className="rounded-md bg-purple-600 px-4 py-2 text-sm font-medium text-white hover:bg-purple-700"
               >
                 Manage Categories
               </Link>
               <Link
                 href="/subservices/new"
-                className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md text-sm font-medium"
+                className="rounded-md bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700"
               >
                 Add Subservice
               </Link>
@@ -192,21 +246,24 @@ export default function SubservicesPage() {
       </header>
 
       {/* Filters */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-        <div className="bg-white shadow rounded-lg p-6 mb-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+        <div className="mb-6 rounded-lg bg-white p-6 shadow">
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
             <div>
-              <label htmlFor="category-filter" className="block text-sm font-medium text-gray-700 mb-2">
+              <label
+                htmlFor="category-filter"
+                className="mb-2 block text-sm font-medium text-gray-700"
+              >
                 Filter by Category
               </label>
               <select
                 id="category-filter"
                 value={selectedCategory}
-                onChange={(e) => setSelectedCategory(e.target.value)}
+                onChange={e => setSelectedCategory(e.target.value)}
                 className="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
               >
                 <option value="">All Categories</option>
-                {categories.map((category) => (
+                {categories.map(category => (
                   <option key={category._id} value={category._id}>
                     {category.name}
                   </option>
@@ -214,14 +271,17 @@ export default function SubservicesPage() {
               </select>
             </div>
             <div>
-              <label htmlFor="search" className="block text-sm font-medium text-gray-700 mb-2">
+              <label
+                htmlFor="search"
+                className="mb-2 block text-sm font-medium text-gray-700"
+              >
                 Search Subservices
               </label>
               <input
                 type="text"
                 id="search"
                 value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
+                onChange={e => setSearchTerm(e.target.value)}
                 placeholder="Search by name or description..."
                 className="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
               />
@@ -231,114 +291,130 @@ export default function SubservicesPage() {
       </div>
 
       {/* Main Content */}
-      <main className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
+      <main className="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8">
         <div className="px-4 py-6 sm:px-0">
           {subservices.length === 0 ? (
-            <div className="text-center py-12">
-              <div className="w-24 h-24 mx-auto mb-4 text-gray-400">
+            <div className="py-12 text-center">
+              <div className="mx-auto mb-4 h-24 w-24 text-gray-400">
                 <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                  />
                 </svg>
               </div>
-              <h3 className="text-lg font-medium text-gray-900 mb-2">No subservices found</h3>
-              <p className="text-gray-500 mb-6">
-                {selectedCategory || searchTerm 
-                  ? "No subservices match your current filters." 
-                  : "Get started by creating your first subservice."
-                }
+              <h3 className="mb-2 text-lg font-medium text-gray-900">
+                No subservices found
+              </h3>
+              <p className="mb-6 text-gray-500">
+                {selectedCategory || searchTerm
+                  ? 'No subservices match your current filters.'
+                  : 'Get started by creating your first subservice.'}
               </p>
               <Link
                 href="/subservices/new"
-                className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md text-sm font-medium"
+                className="rounded-md bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700"
               >
                 Add Subservice
               </Link>
             </div>
           ) : (
-            <div className="bg-white shadow overflow-hidden sm:rounded-md">
+            <div className="overflow-hidden bg-white shadow sm:rounded-md">
               <ul className="divide-y divide-gray-200">
-                {subservices.map((subservice) => (
+                {subservices.map(subservice => (
                   <li key={subservice._id} className="px-6 py-4">
                     <div className="flex items-center justify-between">
-                      <div className="flex items-center space-x-4 flex-1">
+                      <div className="flex flex-1 items-center space-x-4">
                         {subservice.image && (
                           <Image
                             src={subservice.image.url}
                             alt={subservice.name}
                             width={48}
                             height={48}
-                            className="w-12 h-12 rounded-lg object-cover"
+                            className="h-12 w-12 rounded-lg object-cover"
                           />
                         )}
                         <div className="flex-1">
-                          <div className="flex items-center space-x-2 mb-1">
-                            <h3 className="text-lg font-medium text-gray-900">{subservice.name}</h3>
-                            {subservice.isFeatured && (
-                              <span className="inline-flex px-2 py-1 text-xs font-semibold rounded-full bg-yellow-100 text-yellow-800">
-                                Featured
-                              </span>
-                            )}
+                          <div className="mb-1 flex items-center space-x-2">
+                            <h3 className="text-lg font-medium text-gray-900">
+                              {subservice.name}
+                            </h3>
                           </div>
-                          <p className="text-sm text-gray-600 mb-2 line-clamp-2">
-                            {subservice.shortDescription || subservice.description}
+                          <p className="mb-2 line-clamp-2 text-sm text-gray-600">
+                            {subservice.shortDescription ||
+                              subservice.description}
                           </p>
                           <div className="flex flex-wrap items-center gap-4 text-xs text-gray-500">
-                            <span className="bg-blue-100 text-blue-800 px-2 py-1 rounded">
+                            <span className="rounded bg-blue-100 px-2 py-1 text-blue-800">
                               {getCategoryName(subservice)}
                             </span>
                             <span className="font-medium text-green-600">
                               {formatPrice(subservice)}
                             </span>
                             <span>Order: {subservice.displayOrder}</span>
-                            <span>Rating: {subservice.rating}/5 ({subservice.reviews_count} reviews)</span>
+                            <span>
+                              Rating: {subservice.rating}/5 (
+                              {subservice.reviews_count} reviews)
+                            </span>
                           </div>
                         </div>
                       </div>
-                      
-                      <div className="flex items-center space-x-2 ml-4">
-                        <span className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${
-                          subservice.isActive 
-                            ? 'bg-green-100 text-green-800' 
-                            : 'bg-red-100 text-red-800'
-                        }`}>
-                          {subservice.isActive ? 'Active' : 'Inactive'}
-                        </span>
-                        
-                        <button
-                          onClick={() => toggleFeatured(subservice._id, subservice.isFeatured)}
-                          className={`px-3 py-1 text-xs font-medium rounded ${
-                            subservice.isFeatured 
-                              ? 'bg-yellow-100 text-yellow-800 hover:bg-yellow-200' 
-                              : 'bg-gray-100 text-gray-800 hover:bg-gray-200'
+
+                      <div className="ml-4 flex items-center space-x-2">
+                        <span
+                          className={`inline-flex rounded-full px-2 py-1 text-xs font-semibold ${
+                            subservice.isActive
+                              ? 'bg-green-100 text-green-800'
+                              : 'bg-red-100 text-red-800'
                           }`}
                         >
-                          {subservice.isFeatured ? 'Unfeature' : 'Feature'}
-                        </button>
-                        
+                          {subservice.isActive ? 'Active' : 'Inactive'}
+                        </span>
+
                         <button
-                          onClick={() => toggleStatus(subservice._id, subservice.isActive)}
-                          className={`px-3 py-1 text-xs font-medium rounded ${
-                            subservice.isActive 
-                              ? 'bg-orange-100 text-orange-800 hover:bg-orange-200' 
+                          onClick={() =>
+                            toggleStatus(subservice._id, subservice.isActive)
+                          }
+                          disabled={statusLoading === subservice._id}
+                          className={`rounded px-3 py-1 text-xs font-medium disabled:cursor-not-allowed disabled:opacity-50 ${
+                            subservice.isActive
+                              ? 'bg-orange-100 text-orange-800 hover:bg-orange-200'
                               : 'bg-green-100 text-green-800 hover:bg-green-200'
                           }`}
                         >
-                          {subservice.isActive ? 'Deactivate' : 'Activate'}
+                          {statusLoading === subservice._id ? (
+                            <div className="flex items-center space-x-1">
+                              <div className="h-3 w-3 animate-spin rounded-full border-b border-current"></div>
+                              <span>
+                                {subservice.isActive
+                                  ? 'Deactivating...'
+                                  : 'Activating...'}
+                              </span>
+                            </div>
+                          ) : subservice.isActive ? (
+                            'Deactivate'
+                          ) : (
+                            'Activate'
+                          )}
                         </button>
-                        
+
                         <Link
                           href={`/subservices/${subservice._id}/edit`}
-                          className="bg-blue-100 text-blue-800 hover:bg-blue-200 px-3 py-1 text-xs font-medium rounded"
+                          className="rounded bg-blue-100 px-3 py-1 text-xs font-medium text-blue-800 hover:bg-blue-200"
                         >
                           Edit
                         </Link>
-                        
+
                         <button
                           onClick={() => handleDelete(subservice._id)}
                           disabled={deleteLoading === subservice._id}
-                          className="bg-red-100 text-red-800 hover:bg-red-200 px-3 py-1 text-xs font-medium rounded disabled:opacity-50"
+                          className="rounded bg-red-100 px-3 py-1 text-xs font-medium text-red-800 hover:bg-red-200 disabled:opacity-50"
                         >
-                          {deleteLoading === subservice._id ? 'Deleting...' : 'Delete'}
+                          {deleteLoading === subservice._id
+                            ? 'Deleting...'
+                            : 'Delete'}
                         </button>
                       </div>
                     </div>
