@@ -15,7 +15,8 @@ export function SEO({
   url,
   type = 'website',
 }: SEOProps) {
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://cafpotranto.it';
+  const siteUrl =
+    process.env.NEXT_PUBLIC_SITE_URL || 'https://cafpatronatoaz.com';
   const fullUrl = url ? `${siteUrl}${url}` : siteUrl;
   const imageUrl = image.startsWith('http') ? image : `${siteUrl}${image}`;
 
@@ -24,7 +25,7 @@ export function SEO({
       <title>{title}</title>
       <meta name="description" content={description} />
       <link rel="canonical" href={fullUrl} />
-      
+
       {/* Open Graph */}
       <meta property="og:type" content={type} />
       <meta property="og:title" content={title} />
@@ -34,19 +35,22 @@ export function SEO({
       <meta property="og:image:width" content="1200" />
       <meta property="og:image:height" content="630" />
       <meta property="og:image:alt" content={title} />
-      <meta property="og:site_name" content="CafPotranto Legal Services" />
-      
+      <meta property="og:site_name" content="CafPatronatoAZ Legal Services" />
+
       {/* Twitter */}
       <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:site" content="@cafpotranto" />
-      <meta name="twitter:creator" content="@cafpotranto" />
+      <meta name="twitter:site" content="@cafpatronatoaz" />
+      <meta name="twitter:creator" content="@cafpatronatoaz" />
       <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={description} />
       <meta name="twitter:image" content={imageUrl} />
-      
+
       {/* Additional meta tags */}
-      <meta name="author" content="CafPotranto Legal Services" />
-      <meta name="keywords" content="legal services, CAF services, Patronato, online procedures, work benefits, pensions, ISEE, NASpI, SPID" />
+      <meta name="author" content="CafPatronatoAZ Legal Services" />
+      <meta
+        name="keywords"
+        content="legal services, CAF services, Patronato, online procedures, work benefits, pensions, ISEE, NASpI, SPID"
+      />
     </Head>
   );
 }

@@ -4,8 +4,8 @@ export default function PrivacyPage() {
   return (
     <>
       <SEO
-        title="Privacy Policy - CafPotranto"
-        description="Informativa sulla privacy e utilizzo dei cookie di CafPotranto Servizi Legali"
+        title="Privacy Policy - CafPatronatoAZ"
+        description="Informativa sulla privacy e utilizzo dei cookie di CafPatronatoAZ Servizi Legali"
         url="/privacy"
       />
 
@@ -25,10 +25,10 @@ export default function PrivacyPage() {
                   <p className="text-new-light-navy mb-4">
                     La presente Privacy Policy descrive le modalità di
                     trattamento dei dati personali degli utenti che consultano
-                    il sito web di CafPotranto Servizi Legali.
+                    il sito web di CafPatronatoAZ Servizi Legali.
                   </p>
                   <p className="text-new-light-navy">
-                    Il titolare del trattamento è CafPotranto Servizi Legali,
+                    Il titolare del trattamento è CafPatronatoAZ Servizi Legali,
                     con sede legale in Via Lorenteggio 172, Milano 20147.
                   </p>
                 </section>

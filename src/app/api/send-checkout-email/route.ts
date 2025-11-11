@@ -252,7 +252,7 @@ export async function POST(request: NextRequest) {
               <div class="header">
                 <h1>🛒 Nuovo Ordine Ricevuto</h1>
                 <p style="margin: 10px 0 0; font-size: 14px; opacity: 0.9;">
-                  CAF Potranto - Sistema di Checkout
+                  CAF PatronatoAZ - Sistema di Checkout
                 </p>
               </div>
               
@@ -433,7 +433,7 @@ export async function POST(request: NextRequest) {
     const customerMailOptions = {
       from: process.env.GMAIL_USER,
       to: email,
-      subject: `✅ Conferma Ordine - ${orderId} - CAF Potranto`,
+      subject: `✅ Conferma Ordine - ${orderId} - CAF PatronatoAZ`,
       html: `
         <!DOCTYPE html>
         <html>
@@ -532,7 +532,7 @@ export async function POST(request: NextRequest) {
               <div class="header">
                 <h1>✅ Ordine Confermato!</h1>
                 <p style="margin: 10px 0 0; font-size: 16px; opacity: 0.9;">
-                  Grazie per aver scelto CAF Potranto
+                  Grazie per aver scelto CAF PatronatoAZ
                 </p>
               </div>
               

@@ -11,6 +11,7 @@ export default function CategoriesPage() {
   const [categories, setCategories] = useState<Category[]>([]);
   const [loading, setLoading] = useState(true);
   const [deleteLoading, setDeleteLoading] = useState<string | null>(null);
+  const [statusLoading, setStatusLoading] = useState<string | null>(null);
 
   useEffect(() => {
     fetchCategories();
@@ -19,9 +20,34 @@ export default function CategoriesPage() {
   const fetchCategories = async () => {
     try {
       setLoading(true);
-      const response = await apiClient.getCategories();
-      if (response.success && response.data) {
-        setCategories(response.data.categories || []);
+      // Admin panel should show ALL categories (both active and inactive)
+      // Make two parallel requests to get both active and inactive categories
+      const [activeResponse, inactiveResponse] = await Promise.all([
+        apiClient.getCategories({ limit: 100, active: true }),
+        apiClient.getCategories({ limit: 100, active: false }),
+      ]);
+
+      if (activeResponse.success && inactiveResponse.success) {
+        // Combine both active and inactive categories
+        const allCategories = [
+          ...(activeResponse.data?.categories || []),
+          ...(inactiveResponse.data?.categories || []),
+        ];
+
+        // Sort by displayOrder to maintain proper order
+        allCategories.sort(
+          (a, b) => (a.displayOrder || 0) - (b.displayOrder || 0)
+        );
+
+        setCategories(allCategories);
+      } else {
+        // Fallback: if one request fails, try to get at least some data
+        const successResponse = activeResponse.success
+          ? activeResponse
+          : inactiveResponse;
+        if (successResponse.success && successResponse.data) {
+          setCategories(successResponse.data.categories || []);
+        }
       }
     } catch (error) {
       console.error('Failed to fetch categories:', error);
@@ -55,9 +81,14 @@ export default function CategoriesPage() {
 
   const toggleStatus = async (id: string, isActive: boolean) => {
     try {
-      const response = await apiClient.updateCategory(id, { isActive: !isActive });
+      setStatusLoading(id);
+      const response = await apiClient.updateCategory(id, {
+        isActive: !isActive,
+      });
       if (response.success) {
-        toast.success(`Category ${!isActive ? 'activated' : 'deactivated'} successfully`);
+        toast.success(
+          `Category ${!isActive ? 'activated' : 'deactivated'} successfully`
+        );
         fetchCategories();
       } else {
         toast.error(response.message || 'Failed to update category');
@@ -65,13 +96,15 @@ export default function CategoriesPage() {
     } catch (error) {
       console.error('Update error:', error);
       toast.error('Failed to update category');
+    } finally {
+      setStatusLoading(null);
     }
   };
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+      <div className="flex min-h-screen items-center justify-center">
+        <div className="h-12 w-12 animate-spin rounded-full border-b-2 border-blue-600"></div>
       </div>
     );
   }
@@ -80,8 +113,8 @@ export default function CategoriesPage() {
     <div className="min-h-screen bg-gray-50">
       {/* Header */}
       <header className="bg-white shadow">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center py-6">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between py-6">
             <div>
               <h1 className="text-3xl font-bold text-gray-900">Categories</h1>
               <p className="text-gray-600">Manage your service categories</p>
@@ -89,13 +122,13 @@ export default function CategoriesPage() {
             <div className="flex space-x-4">
               <Link
                 href="/dashboard"
-                className="bg-gray-600 hover:bg-gray-700 text-white px-4 py-2 rounded-md text-sm font-medium"
+                className="rounded-md bg-gray-600 px-4 py-2 text-sm font-medium text-white hover:bg-gray-700"
               >
                 Back to Dashboard
               </Link>
               <Link
                 href="/categories/new"
-                className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md text-sm font-medium"
+                className="rounded-md bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700"
               >
                 Add Category
               </Link>
@@ -105,28 +138,37 @@ export default function CategoriesPage() {
       </header>
 
       {/* Main Content */}
-      <main className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
+      <main className="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8">
         <div className="px-4 py-6 sm:px-0">
           {categories.length === 0 ? (
-            <div className="text-center py-12">
-              <div className="w-24 h-24 mx-auto mb-4 text-gray-400">
+            <div className="py-12 text-center">
+              <div className="mx-auto mb-4 h-24 w-24 text-gray-400">
                 <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"
+                  />
                 </svg>
               </div>
-              <h3 className="text-lg font-medium text-gray-900 mb-2">No categories found</h3>
-              <p className="text-gray-500 mb-6">Get started by creating your first category.</p>
+              <h3 className="mb-2 text-lg font-medium text-gray-900">
+                No categories found
+              </h3>
+              <p className="mb-6 text-gray-500">
+                Get started by creating your first category.
+              </p>
               <Link
                 href="/categories/new"
-                className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md text-sm font-medium"
+                className="rounded-md bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700"
               >
                 Add Category
               </Link>
             </div>
           ) : (
-            <div className="bg-white shadow overflow-hidden sm:rounded-md">
+            <div className="overflow-hidden bg-white shadow sm:rounded-md">
               <ul className="divide-y divide-gray-200">
-                {categories.map((category) => (
+                {categories.map(category => (
                   <li key={category._id} className="px-6 py-4">
                     <div className="flex items-center justify-between">
                       <div className="flex items-center space-x-4">
@@ -136,13 +178,17 @@ export default function CategoriesPage() {
                             alt={category.name}
                             width={48}
                             height={48}
-                            className="w-12 h-12 rounded-lg object-cover"
+                            className="h-12 w-12 rounded-lg object-cover"
                           />
                         )}
                         <div>
-                          <h3 className="text-lg font-medium text-gray-900">{category.name}</h3>
-                          <p className="text-sm text-gray-500">{category.description}</p>
-                          <div className="flex items-center mt-1 space-x-4">
+                          <h3 className="text-lg font-medium text-gray-900">
+                            {category.name}
+                          </h3>
+                          <p className="text-sm text-gray-500">
+                            {category.description}
+                          </p>
+                          <div className="mt-1 flex items-center space-x-4">
                             <span className="text-xs text-gray-500">
                               Order: {category.displayOrder}
                             </span>
@@ -152,40 +198,60 @@ export default function CategoriesPage() {
                           </div>
                         </div>
                       </div>
-                      
+
                       <div className="flex items-center space-x-3">
-                        <span className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${
-                          category.isActive 
-                            ? 'bg-green-100 text-green-800' 
-                            : 'bg-red-100 text-red-800'
-                        }`}>
+                        <span
+                          className={`inline-flex rounded-full px-2 py-1 text-xs font-semibold ${
+                            category.isActive
+                              ? 'bg-green-100 text-green-800'
+                              : 'bg-red-100 text-red-800'
+                          }`}
+                        >
                           {category.isActive ? 'Active' : 'Inactive'}
                         </span>
-                        
+
                         <button
-                          onClick={() => toggleStatus(category._id, category.isActive)}
-                          className={`px-3 py-1 text-xs font-medium rounded ${
-                            category.isActive 
-                              ? 'bg-yellow-100 text-yellow-800 hover:bg-yellow-200' 
+                          onClick={() =>
+                            toggleStatus(category._id, category.isActive)
+                          }
+                          disabled={statusLoading === category._id}
+                          className={`rounded px-3 py-1 text-xs font-medium disabled:cursor-not-allowed disabled:opacity-50 ${
+                            category.isActive
+                              ? 'bg-yellow-100 text-yellow-800 hover:bg-yellow-200'
                               : 'bg-green-100 text-green-800 hover:bg-green-200'
                           }`}
                         >
-                          {category.isActive ? 'Deactivate' : 'Activate'}
+                          {statusLoading === category._id ? (
+                            <div className="flex items-center space-x-1">
+                              <div className="h-3 w-3 animate-spin rounded-full border-b border-current"></div>
+                              <span>
+                                {category.isActive
+                                  ? 'Deactivating...'
+                                  : 'Activating...'}
+                              </span>
+                            </div>
+                          ) : category.isActive ? (
+                            'Deactivate'
+                          ) : (
+                            'Activate'
+                          )}
                         </button>
-                        
+
                         <Link
                           href={`/categories/${category._id}/edit`}
-                          className="bg-blue-100 text-blue-800 hover:bg-blue-200 px-3 py-1 text-xs font-medium rounded"
+                          className="rounded bg-blue-100 px-3 py-1 text-xs font-medium text-blue-800 hover:bg-blue-200"
                         >
                           Edit
                         </Link>
-                        
+
                         <button
                           onClick={() => handleDelete(category._id)}
                           disabled={deleteLoading === category._id}
-                          className="bg-red-100 text-red-800 hover:bg-red-200 px-3 py-1 text-xs font-medium rounded disabled:opacity-50"
+                          className="rounded bg-red-100 px-3 py-1 text-xs font-medium text-red-800 hover:bg-red-200 disabled:opacity-50"
                         >
-                          {deleteLoading === category._id ? 'Deleting...' : 'Delete'}
+                          {deleteLoading === category._id
+                            ? 'Deleting...'
+                            : 'Delete'}
                         </button>
                       </div>
                     </div>

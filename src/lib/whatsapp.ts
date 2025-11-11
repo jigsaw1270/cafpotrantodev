@@ -365,7 +365,7 @@ export function openWhatsApp(data: WhatsAppMessage): void {
  */
 export const DEFAULT_WHATSAPP_CONFIG = {
   phone: '+393668735046', // CAF Monza WhatsApp business number
-  businessName: 'CafPotranto',
+  businessName: 'CafPatronatoAZ',
   businessHours: '9:00 - 18:00 (Lun-Ven)',
 };
 

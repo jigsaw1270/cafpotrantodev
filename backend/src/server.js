@@ -47,6 +47,11 @@ app.use(cors({
       return callback(null, true);
     }
     
+    // Allow development domain
+    if (origin === 'https://dev.cafpatronatoaz.com') {
+      return callback(null, true);
+    }
+    
     // Allow Vercel preview deployments for cafpotrantoclient
     if (origin.includes('cafpotrantoclient') && origin.includes('vercel.app')) {
       return callback(null, true);

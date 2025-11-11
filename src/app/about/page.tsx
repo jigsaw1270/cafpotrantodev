@@ -43,8 +43,8 @@ export default function About() {
   return (
     <>
       <SEO
-        title="Chi Siamo - CafPotranto Servizi Legali"
-        description="Scopri la nostra missione, valori e il team legale esperto di CafPotranto. Siamo dedicati a fornire servizi legali eccezionali e assistenza amministrativa."
+        title="Chi Siamo - CafPatronatoAZ Servizi Legali"
+        description="Scopri la nostra missione, valori e il team legale esperto di CafPatronatoAZ. Siamo dedicati a fornire servizi legali eccezionali e assistenza amministrativa."
         url="/about"
       />
 

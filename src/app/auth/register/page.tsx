@@ -62,8 +62,8 @@ export default function Register() {
   return (
     <>
       <SEO
-        title="Registrati - CafPotranto Dev"
-        description="Crea il tuo account CafPotranto Dev per iniziare con i nostri servizi di sviluppo web e strumenti di gestione progetti."
+        title="Registrati - CafPatronatoAZ Dev"
+        description="Crea il tuo account CafPatronatoAZ Dev per iniziare con i nostri servizi di sviluppo web e strumenti di gestione progetti."
         url="/auth/register"
       />
 
@@ -83,7 +83,7 @@ export default function Register() {
           <div className="text-center">
             <Link href="/" className="mb-8 inline-flex items-center space-x-2">
               <div className="bg-background h-8 w-8 rounded-full" />
-              <span className="text-lg font-bold">CafPotranto</span>
+              <span className="text-lg font-bold">CafPatronatoAZ</span>
             </Link>
             <h2 className="text-foreground text-3xl font-bold">
               Crea il tuo account

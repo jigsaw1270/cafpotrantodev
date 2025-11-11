@@ -72,7 +72,7 @@ export async function generateMetadata({
 
     if (!subserviceResponse.success || !subserviceResponse.data) {
       return {
-        title: 'Servizio non trovato - CafPotranto',
+        title: 'Servizio non trovato - CafPatronatoAZ',
         description: 'Il servizio richiesto non è stato trovato.',
       };
     }
@@ -80,10 +80,10 @@ export async function generateMetadata({
     const subservice = subserviceResponse.data.subservice;
 
     return {
-      title: `${subservice.name} - CafPotranto`,
+      title: `${subservice.name} - CafPatronatoAZ`,
       description: subservice.shortDescription || subservice.description,
       openGraph: {
-        title: `${subservice.name} - CafPotranto`,
+        title: `${subservice.name} - CafPatronatoAZ`,
         description: subservice.shortDescription || subservice.description,
         type: 'website',
         url: `/services/subservice/${subservice.slug}`,
@@ -93,7 +93,7 @@ export async function generateMetadata({
   } catch (error) {
     console.error('Error generating metadata for subservice:', error);
     return {
-      title: 'Servizio - CafPotranto',
+      title: 'Servizio - CafPatronatoAZ',
       description: 'Servizi legali e assistenza CAF professionali.',
     };
   }

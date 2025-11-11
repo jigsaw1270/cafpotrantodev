@@ -25,7 +25,7 @@ export default function BankTransferPaymentPage() {
   // Mock bank details
   const bankDetails = {
     bankName: 'Banca Intesa Sanpaolo',
-    accountHolder: 'CafPotranto S.r.l.',
+    accountHolder: 'CafPatronatoAZ S.r.l.',
     iban: 'IT60 X054 2811 1010 0000 0123 456',
     bic: 'BCITITMM',
     reference: `ORD-${Date.now()}`,

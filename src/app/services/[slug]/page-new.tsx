@@ -47,7 +47,7 @@ export async function generateMetadata({
 
     if (!categoriesResponse.success || !categoriesResponse.data) {
       return {
-        title: 'Categoria non trovata - CafPotranto',
+        title: 'Categoria non trovata - CafPatronatoAZ',
         description: 'La categoria richiesta non è stata trovata.',
       };
     }
@@ -58,16 +58,16 @@ export async function generateMetadata({
 
     if (!category) {
       return {
-        title: 'Categoria non trovata - CafPotranto',
+        title: 'Categoria non trovata - CafPatronatoAZ',
         description: 'La categoria richiesta non è stata trovata.',
       };
     }
 
     return {
-      title: `${category.name} - CafPotranto`,
+      title: `${category.name} - CafPatronatoAZ`,
       description: category.description,
       openGraph: {
-        title: `${category.name} - CafPotranto`,
+        title: `${category.name} - CafPatronatoAZ`,
         description: category.description,
         type: 'website',
         url: `/services/${category.slug}`,
@@ -77,7 +77,7 @@ export async function generateMetadata({
   } catch (error) {
     console.error('Error generating metadata for category:', error);
     return {
-      title: 'Categoria - CafPotranto',
+      title: 'Categoria - CafPatronatoAZ',
       description: 'Servizi legali e assistenza CAF professionali.',
     };
   }

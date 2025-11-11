@@ -139,7 +139,7 @@ export default function SubservicePage() {
   return (
     <>
       <SEO
-        title={`${subservice.name} - CafPotranto`}
+        title={`${subservice.name} - CafPatronatoAZ`}
         description={subservice.shortDescription || subservice.description}
         url={`/services/subservice/${subservice.slug}`}
       />

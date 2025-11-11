@@ -49,7 +49,6 @@ export default function EditSubservicePage() {
       reviews_count: 0,
       notes: '',
       isActive: true,
-      isFeatured: false,
       displayOrder: 1,
       tags: [],
       features: [],
@@ -95,7 +94,6 @@ export default function EditSubservicePage() {
           reviews_count: subserviceData.reviews_count,
           notes: subserviceData.notes || '',
           isActive: subserviceData.isActive,
-          isFeatured: subserviceData.isFeatured,
           displayOrder: subserviceData.displayOrder,
           tags: subserviceData.tags || [],
           features: subserviceData.features || [],
@@ -125,9 +123,33 @@ export default function EditSubservicePage() {
 
   const fetchCategories = useCallback(async () => {
     try {
-      const response = await apiClient.getCategories({ limit: 100 });
-      if (response.success && response.data) {
-        setCategories(response.data.categories || []);
+      // Admin should show ALL categories (both active and inactive) for subservice editing
+      const [activeResponse, inactiveResponse] = await Promise.all([
+        apiClient.getCategories({ limit: 100, active: true }),
+        apiClient.getCategories({ limit: 100, active: false }),
+      ]);
+
+      if (activeResponse.success && inactiveResponse.success) {
+        // Combine both active and inactive categories
+        const allCategories = [
+          ...(activeResponse.data?.categories || []),
+          ...(inactiveResponse.data?.categories || []),
+        ];
+
+        // Sort by displayOrder
+        allCategories.sort(
+          (a, b) => (a.displayOrder || 0) - (b.displayOrder || 0)
+        );
+
+        setCategories(allCategories);
+      } else {
+        // Fallback: if one request fails, try to get at least some data
+        const successResponse = activeResponse.success
+          ? activeResponse
+          : inactiveResponse;
+        if (successResponse.success && successResponse.data) {
+          setCategories(successResponse.data.categories || []);
+        }
       }
     } catch (error) {
       console.error('Failed to fetch categories:', error);
@@ -322,7 +344,8 @@ export default function EditSubservicePage() {
                         <option value="">Select a category</option>
                         {categories.map(category => (
                           <option key={category._id} value={category._id}>
-                            {category.name}
+                            {category.name}{' '}
+                            {!category.isActive ? '(Inactive)' : ''}
                           </option>
                         ))}
                       </select>
@@ -429,17 +452,6 @@ export default function EditSubservicePage() {
                           />
                           <span className="ml-2 text-sm text-gray-900">
                             Active
-                          </span>
-                        </label>
-                        <br />
-                        <label className="inline-flex items-center">
-                          <input
-                            {...register('isFeatured')}
-                            type="checkbox"
-                            className="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
-                          />
-                          <span className="ml-2 text-sm text-gray-900">
-                            Featured
                           </span>
                         </label>
                       </div>

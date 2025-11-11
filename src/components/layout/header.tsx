@@ -61,13 +61,13 @@ export function Header() {
                 className="h-8 w-8"
               >
                 <img
-                  src="/cafpotranto.svg"
-                  alt="CafPotranto Logo"
+                  src="/cafpatronatoaz.svg"
+                  alt="CafPatronatoAZ Logo"
                   className="h-full w-full"
                 />
               </motion.div>
               <span className="text-new-beige font-family-pathway-extreme hidden text-lg font-bold uppercase md:inline">
-                Caf-Potranto
+                Caf-PatronatoAZ
               </span>
             </Link>
 

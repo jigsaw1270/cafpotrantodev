@@ -53,8 +53,8 @@ const pathwayExtreme = localFont({
 
 export const metadata: Metadata = {
   title: {
-    default: 'CafPotranto - Servizi Legali e Assistenza Amministrativa',
-    template: '%s | CafPotranto',
+    default: 'CafPatronatoAZ - Servizi Legali e Assistenza Amministrativa',
+    template: '%s | CafPatronatoAZ',
   },
   description:
     'Servizi legali professionali per aziende e cittadini per gestire le procedure online. Assistenza specializzata con servizi CAF e Patronato, benefit lavorativi, pensioni e procedure amministrative.',
@@ -69,17 +69,17 @@ export const metadata: Metadata = {
     'NASpI',
     'SPID',
   ],
-  authors: [{ name: 'CafPotranto Servizi Legali' }],
-  creator: 'CafPotranto Servizi Legali',
+  authors: [{ name: 'CafPatronatoAZ Servizi Legali' }],
+  creator: 'CafPatronatoAZ Servizi Legali',
   metadataBase: new URL(
-    process.env.NEXT_PUBLIC_SITE_URL || 'https://cafpotranto.it'
+    process.env.NEXT_PUBLIC_SITE_URL || 'https://cafpatronatoaz.com'
   ),
   openGraph: {
     type: 'website',
     locale: 'it_IT',
-    url: process.env.NEXT_PUBLIC_SITE_URL || 'https://cafpotranto.it',
-    siteName: 'CafPotranto Servizi Legali',
-    title: 'CafPotranto - Servizi Legali e Assistenza Amministrativa',
+    url: process.env.NEXT_PUBLIC_SITE_URL || 'https://cafpatronatoaz.com',
+    siteName: 'CafPatronatoAZ Servizi Legali',
+    title: 'CafPatronatoAZ - Servizi Legali e Assistenza Amministrativa',
     description:
       'Servizi legali professionali per aziende e cittadini per gestire le procedure online.',
     images: [
@@ -87,15 +87,15 @@ export const metadata: Metadata = {
         url: '/og-image.jpg',
         width: 1200,
         height: 630,
-        alt: 'CafPotranto Servizi Legali',
+        alt: 'CafPatronatoAZ Servizi Legali',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    site: '@cafpotranto',
-    creator: '@cafpotranto',
-    title: 'CafPotranto - Servizi Legali e Assistenza Amministrativa',
+    site: '@cafpatronatoaz',
+    creator: '@cafpatronatoaz',
+    title: 'CafPatronatoAZ - Servizi Legali e Assistenza Amministrativa',
     description:
       'Servizi legali professionali per aziende e cittadini per gestire le procedure online.',
     images: ['/og-image.jpg'],
@@ -114,10 +114,10 @@ export const metadata: Metadata = {
   manifest: '/site.webmanifest',
   icons: {
     icon: [
-      { url: '/cafpotranto.svg', type: 'image/svg+xml' },
+      { url: '/cafpatronatoaz.svg', type: 'image/svg+xml' },
       { url: '/favicon.ico', sizes: '32x32' },
     ],
-    shortcut: '/cafpotranto.svg',
+    shortcut: '/cafpatronatoaz.svg',
     apple: '/apple-touch-icon.png',
   },
 };
