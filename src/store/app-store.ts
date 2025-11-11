@@ -38,7 +38,9 @@ interface AppState {
     message: string;
     timestamp: Date;
   }>;
-  addNotification: (notification: Omit<AppState['notifications'][0], 'id' | 'timestamp'>) => void;
+  addNotification: (
+    notification: Omit<AppState['notifications'][0], 'id' | 'timestamp'>
+  ) => void;
   removeNotification: (id: string) => void;
   clearNotifications: () => void;
 }
@@ -63,7 +65,8 @@ export const useAppStore = create<AppState>()(
 
       // UI state
       isSidebarOpen: false,
-      toggleSidebar: () => set(state => ({ isSidebarOpen: !state.isSidebarOpen })),
+      toggleSidebar: () =>
+        set(state => ({ isSidebarOpen: !state.isSidebarOpen })),
       setSidebarOpen: (isOpen: boolean) => set({ isSidebarOpen: isOpen }),
 
       // Loading states
@@ -90,8 +93,8 @@ export const useAppStore = create<AppState>()(
       clearNotifications: () => set({ notifications: [] }),
     }),
     {
-      name: 'cafpotranto-app-storage',
-      partialize: (state) => ({
+      name: 'cafpatronatoaz-app-storage',
+      partialize: state => ({
         isDarkMode: state.isDarkMode,
         user: state.user,
         isAuthenticated: state.isAuthenticated,

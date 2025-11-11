@@ -103,7 +103,7 @@ export default function Home() {
   return (
     <>
       <SEO
-        title="CafPotranto - Servizi Legali e Assistenza Amministrativa"
+        title="CafPatronatoAZ - Servizi Legali e Assistenza Amministrativa"
         description=" Offriamo servizi
 legali professionali
 rivolti ad aziende e

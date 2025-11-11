@@ -1,19 +1,20 @@
 export const siteConfig = {
-  name: 'CafPotranto Legal Services',
-  description: 'Professional legal services for businesses and citizens to manage online procedures. Expert assistance with CAF and Patronato services, work benefits, pensions, and administrative procedures.',
-  url: process.env.NEXT_PUBLIC_SITE_URL || 'https://cafpotranto.it',
+  name: 'CafPatronatoAZ Legal Services',
+  description:
+    'Professional legal services for businesses and citizens to manage online procedures. Expert assistance with CAF and Patronato services, work benefits, pensions, and administrative procedures.',
+  url: process.env.NEXT_PUBLIC_SITE_URL || 'https://cafpatronatoaz.com',
   ogImage: '/og-image.jpg',
   author: {
-    name: 'CafPotranto Legal Services',
-    twitter: '@cafpotranto',
-    github: 'https://github.com/cafpotranto',
-    linkedin: 'https://linkedin.com/company/cafpotranto',
+    name: 'CafPatronatoAZ Legal Services',
+    twitter: '@cafpatronatoaz',
+    github: 'https://github.com/cafpatronatoaz',
+    linkedin: 'https://linkedin.com/company/cafpatronatoaz',
   },
   links: {
-    twitter: 'https://twitter.com/cafpotranto',
-    github: 'https://github.com/cafpotranto',
-    linkedin: 'https://linkedin.com/company/cafpotranto',
-    email: 'info@cafpotranto.it',
+    twitter: 'https://twitter.com/cafpatronatoaz',
+    github: 'https://github.com/cafpatronatoaz',
+    linkedin: 'https://linkedin.com/company/cafpatronatoaz',
+    email: 'info@cafpatronatoaz.com',
   },
   keywords: [
     'legal services',

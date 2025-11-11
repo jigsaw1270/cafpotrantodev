@@ -1,4 +1,4 @@
-// Frontend types for CafPotranto website
+// Frontend types for CafPatronatoAZ website
 
 export interface ImageFile {
   filename: string;

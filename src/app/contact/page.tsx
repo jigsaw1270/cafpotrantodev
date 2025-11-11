@@ -102,7 +102,9 @@ export default function Contact() {
 
   // Handle email action - detect mobile vs desktop and open appropriate email service
   const handleEmailClick = (email: string) => {
-    const subject = encodeURIComponent('Richiesta informazioni - CafPotranto');
+    const subject = encodeURIComponent(
+      'Richiesta informazioni - CafPatronatoAZ'
+    );
     const body = encodeURIComponent(
       'Buongiorno,\n\nVorrei ricevere informazioni sui vostri servizi.\n\nGrazie'
     );
@@ -274,8 +276,8 @@ export default function Contact() {
   return (
     <>
       <SEO
-        title="Contattaci - CafPotranto Servizi Legali"
-        description="Contatta CafPotranto per servizi legali professionali e assistenza amministrativa. Siamo qui per aiutarti con tutte le tue esigenze legali."
+        title="Contattaci - CafPatronatoAZ Servizi Legali"
+        description="Contatta CafPatronatoAZ per servizi legali professionali e assistenza amministrativa. Siamo qui per aiutarti con tutte le tue esigenze legali."
         url="/contact"
       />
 

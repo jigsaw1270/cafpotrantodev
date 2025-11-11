@@ -44,8 +44,8 @@ export default function Login() {
   return (
     <>
       <SEO
-        title="Accedi - CafPotranto Dev"
-        description="Login to your CafPotranto Dev account to access your dashboard and manage your projects."
+        title="Accedi - CafPatronatoAZ Dev"
+        description="Login to your CafPatronatoAZ Dev account to access your dashboard and manage your projects."
         url="/auth/login"
       />
 
@@ -65,11 +65,11 @@ export default function Login() {
           <div className="text-center">
             <Link href="/" className="mb-8 inline-flex items-center space-x-2">
               <img
-                src="/cafpotranto.svg"
-                alt="CafPotranto Logo"
+                src="/cafpatronatoaz.svg"
+                alt="CafPatronatoAZ Logo"
                 className="h-8 w-8"
               />
-              <span className="text-lg font-bold">CafPotranto</span>
+              <span className="text-lg font-bold">CafPatronatoAZ</span>
             </Link>
             <h2 className="text-foreground text-3xl font-bold">Bentornato</h2>
             <p className="text-muted-foreground mt-2 text-sm">

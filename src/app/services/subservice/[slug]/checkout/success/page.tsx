@@ -192,10 +192,10 @@ export default function PaymentSuccessPage() {
                 📞 +39 123 456 789
               </a>
               <a
-                href="mailto:support@cafpotranto.com"
-                className="text-primary hover:text-primary/90 transition-colors"
+                href="mailto:support@cafpatronatoaz.com"
+                className="text-cyan hover:text-cyan/80 transition-colors"
               >
-                ✉️ support@cafpotranto.com
+                ✉️ support@cafpatronatoaz.com
               </a>
             </div>
           </motion.div>

@@ -282,7 +282,7 @@ export async function POST(request: NextRequest) {
               <div class="header">
                 <h1>✅ PAGAMENTO CONFERMATO!</h1>
                 <p style="margin: 10px 0 0; font-size: 14px; opacity: 0.9;">
-                  CAF Potranto - Ordine Completato
+                  CAF PatronatoAZ - Ordine Completato
                 </p>
               </div>
               
@@ -498,7 +498,7 @@ export async function POST(request: NextRequest) {
     const customerMailOptions = {
       from: process.env.GMAIL_USER,
       to: email,
-      subject: `🎉 Pagamento Confermato - ${orderId} - CAF Potranto`,
+      subject: `🎉 Pagamento Confermato - ${orderId} - CAF PatronatoAZ`,
       html: `
         <!DOCTYPE html>
         <html>
@@ -598,7 +598,7 @@ export async function POST(request: NextRequest) {
               <div class="header">
                 <h1>🎉 Pagamento Confermato!</h1>
                 <p style="margin: 10px 0 0; font-size: 16px; opacity: 0.9;">
-                  Grazie per aver scelto CAF Potranto
+                  Grazie per aver scelto CAF PatronatoAZ
                 </p>
               </div>
               

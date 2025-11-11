@@ -215,7 +215,7 @@ export default function FAQPage() {
   return (
     <>
       <SEO
-        title="FAQ - Domande Frequenti | CafPotranto"
+        title="FAQ - Domande Frequenti | CafPatronatoAZ"
         description="Trova risposte alle domande più frequenti sui nostri servizi CAF, Patronato, SPID, bonus e agevolazioni. Assistenza fiscale e previdenziale professionale."
         url="/faq"
       />

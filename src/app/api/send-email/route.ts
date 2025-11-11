@@ -225,7 +225,7 @@ export async function POST(request: NextRequest) {
               <div class="header">
                 <h1>📬 Nuova Richiesta di Contatto</h1>
                 <p style="margin: 10px 0 0; font-size: 14px; opacity: 0.9;">
-                  CAF Potranto - Sistema di Gestione Contatti
+                  CAF PatronatoAZ - Sistema di Gestione Contatti
                 </p>
               </div>
               
@@ -295,7 +295,7 @@ export async function POST(request: NextRequest) {
     const clientMailOptions = {
       from: process.env.GMAIL_USER,
       to: email,
-      subject: '✅ Conferma Ricezione - CAF Potranto',
+      subject: '✅ Conferma Ricezione - CAF PatronatoAZ',
       html: `
         <!DOCTYPE html>
         <html>
@@ -396,7 +396,7 @@ export async function POST(request: NextRequest) {
                 </div>
 
                 <div class="contact-info">
-                  <p style="margin: 5px 0;"><strong>📧 Email:</strong> info@cafpotranto.it</p>
+                  <p style="margin: 5px 0;"><strong>📧 Email:</strong> info@cafpatronatoaz.com</p>
                   <p style="margin: 5px 0;"><strong>📱 Telefono:</strong> +39 06 1234 5678</p>
                   <p style="margin: 5px 0;"><strong>📍 Indirizzo:</strong> Roma, Italia</p>
                 </div>

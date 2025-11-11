@@ -109,7 +109,7 @@ export default function CategoryPage() {
   return (
     <>
       <SEO
-        title={`${category.name} - CafPotranto`}
+        title={`${category.name} - CafPatronatoAZ`}
         description={category.description}
         url={`/services/${category.slug}`}
       />

@@ -111,7 +111,7 @@ export default function LavoraConNoi() {
   return (
     <>
       <SEO
-        title="Lavora con Noi - CafPotranto"
+        title="Lavora con Noi - CafPatronatoAZ"
         description="Unisciti al nostro team! Cerchiamo persone brillanti per rafforzare il nostro Centro di Assistenza Fiscale. Scopri le posizioni aperte e invia la tua candidatura."
         url="/lavora-con-noi"
       />

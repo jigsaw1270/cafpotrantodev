@@ -56,7 +56,7 @@ export default function Consulting() {
   return (
     <>
       <SEO
-        title="Consulenza Online - CafPotranto Servizi Legali"
+        title="Consulenza Online - CafPatronatoAZ Servizi Legali"
         description="Expert online consulting for work, family, pensions, and income support. Professional assistance with CAF and Patronato services and procedures."
         url="/consulting"
       />
@@ -218,7 +218,7 @@ export default function Consulting() {
                       Email Support
                     </h4>
                     <p className="text-accent-foreground">
-                      consulenza@cafpotranto.it
+                      consulenza@cafpatronatoaz.com
                     </p>
                   </div>
                 </div>
