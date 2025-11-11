@@ -1,7 +1,9 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import { useState, useEffect } from 'react';
 import CategoryCard from './CategoryCard';
+import CategoryCardMobile from './CategoryCardMobile';
 import { useCategories } from '@/hooks/useServicesData';
 import { AlertCircle, RefreshCw } from 'lucide-react';
 import Loader from '@/components/ui/loader';
@@ -12,6 +14,20 @@ interface CategoriesGridProps {
 
 export function CategoriesGrid({ className = '' }: CategoriesGridProps) {
   const { categories, error, isLoading, refetch } = useCategories();
+  const [isMobile, setIsMobile] = useState(false);
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+    const checkIfMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+
+    checkIfMobile();
+    window.addEventListener('resize', checkIfMobile);
+
+    return () => window.removeEventListener('resize', checkIfMobile);
+  }, []);
 
   // Function to determine grid columns based on category count
   const getGridColumns = (count: number) => {
@@ -93,11 +109,19 @@ export function CategoriesGrid({ className = '' }: CategoriesGridProps) {
             }}
             className="flex w-full justify-center"
           >
-            <CategoryCard
-              category={category}
-              subservicesCount={category.subservicesCount || 0}
-              index={index}
-            />
+            {isClient && isMobile ? (
+              <CategoryCardMobile
+                category={category}
+                subservicesCount={category.subservicesCount || 0}
+                index={index}
+              />
+            ) : (
+              <CategoryCard
+                category={category}
+                subservicesCount={category.subservicesCount || 0}
+                index={index}
+              />
+            )}
           </motion.div>
         ))}
       </motion.div>
