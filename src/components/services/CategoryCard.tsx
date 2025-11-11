@@ -99,9 +99,17 @@ export default function CategoryCard({
           height: 100%;
           position: relative;
           transform-style: preserve-3d;
+          -webkit-transform-style: preserve-3d;
+          -moz-transform-style: preserve-3d;
+          -ms-transform-style: preserve-3d;
           transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+          -webkit-transition: -webkit-transform 0.6s
+            cubic-bezier(0.175, 0.885, 0.32, 1.275);
           border-radius: 16px;
           box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+          /* Force hardware acceleration for iOS */
+          -webkit-transform: translateZ(0);
+          transform: translateZ(0);
         }
 
         .category-card:hover .card-content {
@@ -112,10 +120,35 @@ export default function CategoryCard({
         @media (max-width: 768px) {
           .card-content {
             transform: rotateY(180deg);
+            -webkit-transform: rotateY(180deg);
+            -moz-transform: rotateY(180deg);
+            -ms-transform: rotateY(180deg);
           }
 
           .category-card:hover .card-content {
             transform: rotateY(180deg);
+            -webkit-transform: rotateY(180deg);
+            -moz-transform: rotateY(180deg);
+            -ms-transform: rotateY(180deg);
+          }
+
+          /* Force hide front side on mobile to prevent text bleeding */
+          .front-side {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+            z-index: -1;
+            transform: rotateY(0deg);
+            -webkit-transform: rotateY(0deg);
+          }
+
+          .back-side {
+            opacity: 1;
+            visibility: visible;
+            pointer-events: auto;
+            z-index: 1;
+            transform: rotateY(180deg);
+            -webkit-transform: rotateY(180deg);
           }
         }
 
@@ -128,8 +161,12 @@ export default function CategoryCard({
           height: 100%;
           backface-visibility: hidden;
           -webkit-backface-visibility: hidden;
+          -moz-backface-visibility: hidden;
+          -ms-backface-visibility: hidden;
           border-radius: 16px;
           overflow: hidden;
+          transform-style: preserve-3d;
+          -webkit-transform-style: preserve-3d;
         }
 
         .front-side {
@@ -478,6 +515,31 @@ export default function CategoryCard({
 
           .back-description {
             font-size: 13px;
+          }
+        }
+
+        /* iOS Safari specific fixes */
+        @supports (-webkit-touch-callout: none) {
+          @media (max-width: 768px) {
+            .card-content {
+              /* Use 3D transform with better browser support */
+              transform: rotateY(180deg) translateZ(0);
+              -webkit-transform: rotateY(180deg) translateZ(0);
+            }
+
+            .front-side {
+              /* Completely remove from rendering tree on iOS mobile */
+              display: none !important;
+            }
+
+            .back-side {
+              /* Ensure back side is properly visible */
+              transform: rotateY(180deg) translateZ(0);
+              -webkit-transform: rotateY(180deg) translateZ(0);
+              display: flex !important;
+              backface-visibility: visible !important;
+              -webkit-backface-visibility: visible !important;
+            }
           }
         }
       `}</style>
