@@ -15,6 +15,7 @@ import GlossyButton from '@/components/ui/glossy-button';
 import CategoriesGrid from '@/components/services/CategoriesGrid';
 import { SEO } from '@/components/seo';
 import OfficeCarousel from '@/components/ui/office-carousel';
+import ServicePromiseMarquee from '@/components/ui/ServicePromiseMarquee';
 
 const features = [
   {
@@ -207,6 +208,9 @@ amministrative."
           </div>
         </div>
       </section>
+
+      {/* Service Promise Marquee */}
+      <ServicePromiseMarquee />
 
       {/* Service Categories Section */}
       <section className="bg-polka py-12 lg:py-24">

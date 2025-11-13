@@ -25,6 +25,7 @@ import {
   getBusinessHoursMessage,
 } from '@/lib/whatsapp';
 import Loader from '@/components/ui/loader';
+import ServicePromiseMarquee from '@/components/ui/ServicePromiseMarquee';
 
 export default function SubservicePage() {
   const params = useParams();
@@ -552,6 +553,7 @@ export default function SubservicePage() {
           <MessageCircle className="h-6 w-6" />
         </button>
       </div>
+      <ServicePromiseMarquee />
     </>
   );
 }

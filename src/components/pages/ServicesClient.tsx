@@ -15,6 +15,7 @@ import {
   CheckCircle,
 } from 'lucide-react';
 import GlossyButton from '@/components/ui/glossy-button';
+import ServicePromiseMarquee from '@/components/ui/ServicePromiseMarquee';
 
 const process = [
   {
@@ -118,6 +119,9 @@ export default function ServicesClient() {
         <div className="bg-light-teal/10 absolute -top-20 -right-20 h-40 w-40 rounded-full"></div>
         <div className="bg-dark-teal/10 absolute -bottom-10 -left-10 h-32 w-32 rounded-full"></div>
       </section>
+
+      {/* Service Promise Marquee */}
+      <ServicePromiseMarquee />
 
       {/* Categories Grid */}
       <section className="bg-new-navy/90 relative py-20 backdrop-blur-xl lg:py-24">

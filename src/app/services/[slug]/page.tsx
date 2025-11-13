@@ -11,6 +11,7 @@ import { Category, Subservice } from '@/lib/types';
 import apiClient from '@/lib/api';
 import SubserviceCard from '@/components/services/SubserviceCard';
 import Loader from '@/components/ui/loader';
+import ServicePromiseMarquee from '@/components/ui/ServicePromiseMarquee';
 
 export default function CategoryPage() {
   const params = useParams();
@@ -199,7 +200,7 @@ export default function CategoryPage() {
         <div className="bg-light-teal/10 absolute -top-20 -right-20 h-40 w-40 rounded-full"></div>
         <div className="bg-dark-teal/10 absolute -bottom-10 -left-10 h-32 w-32 rounded-full"></div>
       </section>
-
+      <ServicePromiseMarquee />
       {/* Subservices Grid */}
       <section className="bg-new-navy/95 relative py-16 backdrop-blur-xl">
         {/* Glassmorphism Background Elements */}

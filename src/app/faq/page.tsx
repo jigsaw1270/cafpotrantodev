@@ -14,6 +14,7 @@ import {
   FileText,
 } from 'lucide-react';
 import { SEO } from '@/components/seo';
+import ServicePromiseMarquee from '@/components/ui/ServicePromiseMarquee';
 
 const faqData = [
   {
@@ -278,6 +279,9 @@ export default function FAQPage() {
         <div className="bg-light-teal/10 absolute -top-20 -right-20 h-40 w-40 rounded-full"></div>
         <div className="bg-dark-teal/10 absolute -bottom-10 -left-10 h-32 w-32 rounded-full"></div>
       </section>
+
+      {/* Service Promise Marquee */}
+      <ServicePromiseMarquee />
 
       {/* FAQ Content */}
       <section className="bg-white-zigzag3d py-20 lg:py-24">

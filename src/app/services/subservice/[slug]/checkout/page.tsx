@@ -22,6 +22,7 @@ import Link from 'next/link';
 import { Subservice, Category } from '@/lib/types';
 import apiClient from '@/lib/api';
 import Loader from '@/components/ui/loader';
+import ServicePromiseMarquee from '@/components/ui/ServicePromiseMarquee';
 
 export default function CheckoutPage() {
   const params = useParams();
@@ -1411,6 +1412,7 @@ export default function CheckoutPage() {
           </div>
         </div>
       </div>
+      <ServicePromiseMarquee />
     </div>
   );
 }

@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { Award, Users, Target, Lightbulb } from 'lucide-react';
 import Image from 'next/image';
 import { SEO } from '@/components/seo';
+import ServicePromiseMarquee from '@/components/ui/ServicePromiseMarquee';
 
 const values = [
   {
@@ -102,6 +103,9 @@ export default function About() {
         <div className="bg-light-teal/10 absolute -top-20 -right-20 h-40 w-40 rounded-full"></div>
         <div className="bg-dark-teal/10 absolute -bottom-10 -left-10 h-32 w-32 rounded-full"></div>
       </section>
+
+      {/* Service Promise Marquee */}
+      <ServicePromiseMarquee />
 
       {/* Chi Siamo Section */}
       <section className="bg-new-navy py-20 lg:py-24">
