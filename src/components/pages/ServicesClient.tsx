@@ -309,7 +309,7 @@ export default function ServicesClient() {
                 viewport={{ once: true }}
                 className="mt-12 text-center"
               >
-                <p className="text-light-teal inline-block rounded-full border border-white/20 bg-white/10 px-6 py-2 text-sm font-medium backdrop-blur-md">
+                <p className="text-light-teal hidden rounded-full border border-white/20 bg-white/10 px-6 py-2 text-sm font-medium backdrop-blur-md">
                   Offerta limitata: primi 10 clienti ricevono il 20% di sconto
                 </p>
               </motion.div>

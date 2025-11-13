@@ -263,9 +263,13 @@ export default function FAQPage() {
               transition={{ duration: 0.7, delay: 0.2 }}
               className="mb-10 text-lg text-gray-700 lg:text-xl"
             >
-              Trova risposte alle domande più comuni sui nostri servizi CAF,
-              Patronato, SPID e bonus. Se non trovi quello che cerchi,
-              contattaci direttamente per una consulenza personalizzata.
+              In questa sezione trovi lerisposte alle domande più comuni sui
+              nostriservizi CAF e Patronato, sui requisiti necessariper le
+              pratiche e sulle principali agevolazionidisponibili. Il nostro
+              obiettivo è fornirtiinformazioni chiare e immediate per aiutarti
+              aorientarti tra procedure e documentazioni. Senon trovi ciò che
+              cerchi, non esitare acontattarci direttamente: il nostro team è a
+              tuadisposizione per offrirti supportopersonalizzato e cortese
             </motion.p>
           </div>
         </div>

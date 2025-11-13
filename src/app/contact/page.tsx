@@ -664,12 +664,12 @@ export default function Contact() {
               </span>
             </div>
             <h2 className="font-family-general-sans mb-6 text-4xl font-bold tracking-tight text-white drop-shadow-lg sm:text-5xl">
-              Trova la sede a te più{' '}
-              <span className="text-light-teal">vicina</span>
+              Visita i Nostri Uffici per una{' '}
+              <span className="text-light-teal">Consulenza</span>
             </h2>
             <p className="text-xl leading-relaxed text-white/80">
-              Contattaci per ricevere assistenza personalizzata: siamo sempre a
-              tua disposizione
+              Trova la sede a te più vicina e contattaci per ricevere assistenza
+              personalizzata: siamo sempre a tua disposizione
             </p>
           </motion.div>
 
@@ -817,7 +817,7 @@ export default function Contact() {
                     </div>
                     <div
                       onClick={() =>
-                        handleWhatsAppCall('3511721772', 'MILANO - Via Padova')
+                        handleWhatsAppCall('3512613000', 'MILANO - Via Padova')
                       }
                       className="bg-light-teal/20 hover:bg-light-teal/30 border-light-teal/30 group flex cursor-pointer items-center gap-3 rounded-xl border p-3 backdrop-blur-md transition-all duration-200 hover:scale-[1.02]"
                     >
@@ -825,7 +825,7 @@ export default function Contact() {
                         <Phone className="h-4 w-4 text-white" />
                       </div>
                       <span className="group-hover:text-light-teal font-medium text-white transition-colors">
-                        351.1721772
+                        3512613000
                       </span>
                     </div>
                     <div

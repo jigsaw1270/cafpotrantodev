@@ -155,15 +155,6 @@ export function Footer() {
               <div className="flex items-center gap-4">
                 <div className="hover:border-cyan/50 flex items-center justify-center rounded-lg border border-gray-800 bg-gray-900/30 p-3 transition-all">
                   <Image
-                    src="/images/footer/iso25012-footer.webp"
-                    alt="ISO 25012"
-                    width={80}
-                    height={80}
-                    className="h-16 w-auto object-contain"
-                  />
-                </div>
-                <div className="hover:border-cyan/50 flex items-center justify-center rounded-lg border border-gray-800 bg-gray-900/30 p-3 transition-all">
-                  <Image
                     src="/images/footer/LOGO-SINALP-con-CERCHIO-METALLIZZATO.png"
                     alt="SINALP"
                     width={80}

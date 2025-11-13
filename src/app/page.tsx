@@ -62,7 +62,7 @@ const officeLocations = [
   {
     name: 'MILANO VIA PADOVA',
     address: 'Via Padova, 288 - MILANO 20132',
-    phone: ['02.36576660', '389.2691768'],
+    phone: ['02.36755609', '3512613000'],
     email: 'CAFPADOVA288@GMAIL.COM',
     images: [
       '/images/office/office3 (1).jpg',
@@ -75,7 +75,7 @@ const officeLocations = [
   },
   {
     name: 'MONZA',
-    address: 'Via CARLO ALBERTO, 32 - MONZA 20900',
+    address: 'Via AMATI, 12/G - MONZA 20900',
     phone: ['039.2304625', '351.9467782'],
     email: 'CAFMONZA@GMAIL.COM',
     images: [
@@ -158,7 +158,7 @@ amministrative."
                 {' '}
                 Servizi Legali &
               </span>
-              <span className="text-yellow sm:text-5xl">
+              <span className="text-new-beige sm:text-5xl">
                 {' '}
                 <span className="sm:text-5xl"> Assistenza </span>
               </span>
@@ -222,9 +222,12 @@ amministrative."
               Le Nostre Categorie di Servizi
             </h2>
             <p className="text-new-light-navy mb-16 text-lg leading-relaxed">
-              Esplora la nostra gamma completa di servizi legali e assistenza
-              amministrativa. Ogni categoria offre supporto specializzato su
-              misura per le tue esigenze specifiche.
+              Scopri l’ampia offerta di servizi legali, fiscali e di assistenza
+              amministrativa che mettiamo a tua disposizione. Ogni categoria è
+              pensata per fornirti un supporto professionale, personalizzato e
+              in linea con le tue reali esigenze. Affidati alla nostra
+              esperienza per ricevere un’assistenza completa, chiara e puntuale
+              in ogni ambito di tua necessità
             </p>
           </motion.div>
 
@@ -394,8 +397,8 @@ amministrative."
               Visita i Nostri Uffici per una Consulenza
             </h2>
             <p className="text-new-light-navy text-lg leading-relaxed">
-              Siamo presenti in tre sedi strategiche per offrirti il miglior
-              servizio possibile. Prenota un appuntamento e vieni a trovarci.
+              Trova la sede a te più vicina e contattaci per ricevere assistenza
+              personalizzata: siamo sempre a tua disposizione
             </p>
           </motion.div>
 
