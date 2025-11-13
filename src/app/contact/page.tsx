@@ -22,9 +22,9 @@ const contactInfo = [
   {
     icon: Mail,
     title: 'Email',
-    content: 'CAFMONZA12@GMAIL.COM',
+    content: 'azcafpatronato@gmail.com',
     type: 'email' as const,
-    href: 'mailto:CAFMONZA12@GMAIL.COM',
+    href: 'mailto:azcafpatronato@gmail.com',
   },
   {
     icon: Phone,
