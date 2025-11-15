@@ -161,6 +161,7 @@ export function Combobox({
         'search-container font-family-pathway-extreme relative w-full',
         className
       )}
+      style={{ position: 'relative', zIndex: 99998 }}
     >
       <div className="relative">
         <Search className="text-muted-foreground absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2" />
@@ -198,8 +199,16 @@ export function Combobox({
       {open && (
         <div
           key="search-dropdown"
-          style={{ backgroundColor: '#E3C39D', borderColor: '#A4B5C4' }}
-          className="search-dropdown absolute top-full right-0 left-0 z-50 mt-1 max-h-[70vh] overflow-y-auto rounded-md border shadow-lg md:max-h-96"
+          style={{
+            backgroundColor: '#E3C39D',
+            borderColor: '#A4B5C4',
+            position: 'absolute',
+            zIndex: 99999,
+            top: '100%',
+            left: 0,
+            right: 0,
+          }}
+          className="search-dropdown mt-1 max-h-[70vh] overflow-y-auto rounded-md border shadow-lg md:max-h-96"
         >
           <div className="p-2">
             {loading ? (

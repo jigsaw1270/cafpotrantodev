@@ -43,25 +43,16 @@ export function Header() {
   }
 
   return (
-    <div className="fixed top-0 z-50 w-full">
+    <div className="fixed top-0 z-40 w-full">
       <div className="container mx-auto px-4 py-4">
         <motion.header
           initial={{ y: -100, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           exit={{ y: -100, opacity: 0 }}
           transition={{ type: 'spring', stiffness: 400, damping: 40 }}
-          className="navbar-with-lights bg-new-navy shadow-elegant border-cyan/20 supports-[backdrop-filter]:bg-new-navy/80 relative overflow-hidden rounded-2xl border backdrop-blur"
+          className="bg-new-navy shadow-elegant border-cyan/20 supports-[backdrop-filter]:bg-new-navy/80 rounded-2xl border backdrop-blur"
         >
-          {/* Ball-like light textures */}
-          <div className="pointer-events-none absolute inset-0">
-            <div className="light-orb light-orb-1" />
-            <div className="light-orb light-orb-2" />
-            <div className="light-orb light-orb-3" />
-            <div className="light-orb light-orb-4" />
-            <div className="light-orb light-orb-5" />
-            <div className="light-orb light-orb-6" />
-          </div>
-          <div className="relative z-10 flex h-16 items-center justify-between gap-4 px-6">
+          <div className="flex h-16 items-center justify-between gap-4 px-6">
             {/* Logo */}
             <Link href="/" className="flex shrink-0 items-center space-x-2">
               <motion.div
