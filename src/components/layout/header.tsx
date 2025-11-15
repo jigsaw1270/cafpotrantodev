@@ -44,7 +44,7 @@ export function Header() {
 
   return (
     <div className="fixed top-0 z-40 w-full">
-      <div className="container mx-auto px-4 py-4">
+      <div className="container mx-auto px-2 py-2 sm:px-4 sm:py-4">
         <motion.header
           initial={{ y: -100, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
@@ -52,13 +52,16 @@ export function Header() {
           transition={{ type: 'spring', stiffness: 400, damping: 40 }}
           className="bg-new-navy shadow-elegant border-cyan/20 supports-[backdrop-filter]:bg-new-navy/80 rounded-2xl border backdrop-blur"
         >
-          <div className="flex h-16 items-center justify-between gap-4 px-6">
+          <div className="flex h-14 items-center justify-between gap-2 px-3 sm:h-16 sm:gap-4 sm:px-6">
             {/* Logo */}
-            <Link href="/" className="flex shrink-0 items-center space-x-2">
+            <Link
+              href="/"
+              className="flex shrink-0 items-center space-x-2 lg:flex-1"
+            >
               <motion.div
                 whileHover={{ scale: 1.05 }}
                 transition={{ duration: 0.2 }}
-                className="h-8 w-8"
+                className="h-7 w-7 sm:h-8 sm:w-8"
               >
                 <img
                   src="/cafpatronatoaz.svg"
@@ -66,13 +69,13 @@ export function Header() {
                   className="h-full w-full"
                 />
               </motion.div>
-              <span className="text-new-beige font-family-pathway-extreme hidden text-lg font-bold uppercase md:inline">
+              <span className="text-new-beige font-family-pathway-extreme hidden text-base font-bold uppercase sm:text-lg lg:inline">
                 Caf-PatronatoAZ
               </span>
             </Link>
 
             {/* Desktop Navigation */}
-            <nav className="font-pathway-extreme-semibold text-md hidden md:flex md:items-center md:space-x-6 lg:space-x-8">
+            <nav className="font-pathway-extreme-semibold text-md hidden lg:flex lg:items-center lg:space-x-8">
               {navigation.map(link => {
                 const isActive = isActivePath(link.href);
                 return (
@@ -100,7 +103,7 @@ export function Header() {
             </nav>
 
             {/* Desktop Search Bar */}
-            <div className="hidden items-center gap-3 md:flex lg:gap-4">
+            <div className="hidden items-center gap-3 lg:flex lg:flex-1 lg:justify-end lg:gap-4">
               <motion.div
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
@@ -115,13 +118,13 @@ export function Header() {
               </motion.div>
             </div>
 
-            {/* Mobile: Search & Menu */}
-            <div className="flex items-center gap-2 md:hidden">
+            {/* Mobile & Tablet: Search & Menu */}
+            <div className="flex flex-1 items-center justify-end gap-1 sm:gap-2 lg:hidden">
               <motion.div
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.3 }}
-                className="flex-1"
+                className="w-full max-w-[140px] sm:max-w-[180px] md:max-w-[240px] md:flex-1"
                 suppressHydrationWarning
               >
                 <Combobox placeholder="Cerca..." className="mobile-search" />
