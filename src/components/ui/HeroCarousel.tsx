@@ -2,13 +2,12 @@
 
 import React, { useEffect, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Autoplay, Pagination } from 'swiper/modules';
+import { Autoplay } from 'swiper/modules';
 import Image from 'next/image';
 import Loader from '@/components/ui/loader';
 
 // Import Swiper styles
 import 'swiper/css';
-import 'swiper/css/pagination';
 
 interface HeroCarouselProps {
   children?: React.ReactNode;
@@ -44,11 +43,7 @@ const HeroCarousel: React.FC<HeroCarouselProps> = ({ children }) => {
       {/* Swiper Carousel */}
       <div className="absolute inset-0">
         <Swiper
-          modules={[Autoplay, Pagination]}
-          pagination={{
-            clickable: true,
-            dynamicBullets: false,
-          }}
+          modules={[Autoplay]}
           autoplay={{
             delay: 5000,
             disableOnInteraction: false,
@@ -141,49 +136,10 @@ const HeroCarousel: React.FC<HeroCarouselProps> = ({ children }) => {
           user-select: none;
         }
 
-        /* Pagination styling */
-        .mySwiper .swiper-pagination {
-          bottom: 60px;
-          z-index: 50 !important;
-          position: relative;
-          pointer-events: auto;
-        }
-
-        .mySwiper .swiper-pagination-bullet {
-          width: 8px;
-          height: 8px;
-          background: rgba(227, 195, 158, 0.4);
-          border: 1px solid rgba(227, 195, 158, 0.6);
-          opacity: 1;
-          transition: all 0.3s ease;
-          cursor: pointer;
-          margin: 0 6px;
-          pointer-events: auto;
-        }
-
-        .mySwiper .swiper-pagination-bullet-active {
-          background: rgba(227, 195, 158, 1);
-          border-color: rgba(227, 195, 158, 1);
-          box-shadow: 0 0 8px rgba(227, 195, 158, 0.8);
-        }
-
         /* Accessibility improvements */
         @media (prefers-reduced-motion: reduce) {
           .mySwiper {
             --swiper-transition-duration: 0ms !important;
-          }
-        }
-
-        /* High contrast mode */
-        @media (prefers-contrast: high) {
-          .mySwiper .swiper-pagination-bullet {
-            background: rgba(255, 255, 255, 0.6);
-            border-color: rgba(255, 255, 255, 0.8);
-          }
-
-          .mySwiper .swiper-pagination-bullet-active {
-            background: #ffffff;
-            border-color: #ffffff;
           }
         }
       `}</style>

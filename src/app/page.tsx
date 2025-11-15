@@ -50,7 +50,7 @@ const officeLocations = [
   {
     name: 'MILANO SEDE LEGALE',
     address: 'Via LORENTEGGIO, 172 - MILANO 20147',
-    phone: ['02.61460044', '349.5214147'],
+    phone: ['02.61460044', '3519671729'],
     email: 'CAFLORENTEGGIO@GMAIL.COM',
     images: [
       '/images/office/office2 (1).jpg',
@@ -78,7 +78,7 @@ const officeLocations = [
   {
     name: 'MONZA',
     address: 'Via AMATI, 12/G - MONZA 20900',
-    phone: ['039.2304625', '351.9467782'],
+    phone: ['039.2304625', '3668735046'],
     email: 'CAFMONZA@GMAIL.COM',
     images: [
       '/images/office/office1 (1).jpg',

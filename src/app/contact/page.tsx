@@ -27,23 +27,23 @@ const contactInfo = [
     href: 'mailto:azcafpatronato@gmail.com',
   },
   {
-    icon: Phone,
+    icon: MessageCircle,
     title: 'Milano Lorenteggio',
-    content: '+39 02 6146 0044',
+    content: '+3519671729',
     type: 'phone' as const,
-    phone: '0261460044',
+    phone: '3519671729',
   },
   {
-    icon: Phone,
+    icon: MessageCircle,
     title: 'Milano Padova',
-    content: '+39 02 3675 5609',
+    content: '+3512613000',
     type: 'phone' as const,
-    phone: '0236755609',
+    phone: '3512613000',
   },
   {
     icon: MessageCircle,
     title: 'CAF Monza',
-    content: '+39 366 8735 046',
+    content: '+3668735046',
     type: 'phone' as const,
     phone: '3668735046',
   },
@@ -728,7 +728,7 @@ export default function Contact() {
                     </div>
                     <div
                       onClick={() =>
-                        handleWhatsAppCall('3495214147', 'MILANO SEDE LEGALE')
+                        handleWhatsAppCall('3519671729', 'MILANO SEDE LEGALE')
                       }
                       className="bg-light-teal/20 hover:bg-light-teal/30 border-light-teal/30 group flex cursor-pointer items-center gap-3 rounded-xl border p-3 backdrop-blur-md transition-all duration-200 hover:scale-[1.02]"
                     >
@@ -736,7 +736,7 @@ export default function Contact() {
                         <Phone className="h-4 w-4 text-white" />
                       </div>
                       <span className="group-hover:text-light-teal font-medium text-white transition-colors">
-                        349.5214147
+                        351.9671729
                       </span>
                     </div>
                     <div
@@ -829,7 +829,7 @@ export default function Contact() {
                         <Phone className="h-4 w-4 text-white" />
                       </div>
                       <span className="group-hover:text-light-teal font-medium text-white transition-colors">
-                        3512613000
+                        351.2613000
                       </span>
                     </div>
                     <div

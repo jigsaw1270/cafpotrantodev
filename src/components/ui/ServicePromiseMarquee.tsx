@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 
 const ServicePromiseMarquee = () => {
   const marqueeText =
-    "Pratiche online senza pensieri! Ti contattiamo rapidamente e, se non inviamo la tua pratica entro 72 ore, rimborsiamo l'importo versato";
+    ' Pratiche online senza pensieri! Ti contattiamo rapidamente e, se non ti contattiamo entro 72 ore, rimborsiamo l’importo versato.';
   const [marqueeWidth, setMarqueeWidth] = useState(0);
   const marqueeRef = useRef<HTMLDivElement>(null);
 
