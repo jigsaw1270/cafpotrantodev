@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Pagination } from 'swiper/modules';
 import Image from 'next/image';
+import Loader from '@/components/ui/loader';
 
 // Import Swiper styles
 import 'swiper/css';
@@ -31,17 +32,8 @@ const HeroCarousel: React.FC<HeroCarouselProps> = ({ children }) => {
     return (
       <section className="relative min-h-screen overflow-hidden bg-gradient-to-br from-[#00A8CC] to-[#142850] pt-32 md:h-[calc(100vh-4rem)] md:pt-24">
         <div className="absolute inset-0 bg-black/50"></div>
-        <div className="relative z-10 container mx-auto flex h-full items-center px-8 py-0 md:py-0 lg:px-12">
-          <div className="mx-auto max-w-4xl text-center">
-            <div className="animate-pulse">
-              <div className="mb-4 h-12 rounded bg-white/20"></div>
-              <div className="mb-8 h-8 rounded bg-white/20"></div>
-              <div className="flex justify-center gap-4">
-                <div className="h-10 w-32 rounded bg-white/20"></div>
-                <div className="h-10 w-32 rounded bg-white/20"></div>
-              </div>
-            </div>
-          </div>
+        <div className="relative z-10 container mx-auto flex h-full items-center justify-center px-8 py-0 md:py-0 lg:px-12">
+          <Loader size="large" centered />
         </div>
       </section>
     );
@@ -90,21 +82,43 @@ const HeroCarousel: React.FC<HeroCarouselProps> = ({ children }) => {
       </div>
 
       {/* Content Overlay */}
-      <div className="relative z-10 container mx-auto flex h-full items-center px-8 lg:px-12">
-        <div className="mx-auto max-w-4xl text-center">{children}</div>
+      <div
+        className="relative z-10 container mx-auto flex h-full items-center px-8 lg:px-12"
+        style={{ minHeight: '400px' }}
+      >
+        <div
+          className="mx-auto max-w-4xl text-center"
+          style={{
+            minHeight: '200px',
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+          }}
+        >
+          {children}
+        </div>
       </div>
 
       <style jsx global>{`
+        /* Optimize font loading to prevent layout shift */
+        @font-face {
+          font-display: swap;
+        }
+
         .mySwiper {
           width: 100%;
           height: 100%;
           --swiper-theme-color: #e3c39d;
           cursor: default;
+          contain: layout style paint;
+          will-change: transform;
         }
 
         .carousel-image {
           transform: scale(1);
           filter: none;
+          contain: layout;
+          content-visibility: auto;
         }
 
         .mySwiper .swiper-slide {
@@ -115,6 +129,7 @@ const HeroCarousel: React.FC<HeroCarouselProps> = ({ children }) => {
           justify-content: center;
           align-items: center;
           position: relative;
+          contain: layout style;
         }
 
         .mySwiper .swiper-slide img {
