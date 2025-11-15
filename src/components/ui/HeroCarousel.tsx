@@ -34,11 +34,11 @@ const HeroCarousel: React.FC<HeroCarouselProps> = ({ children }) => {
         <div className="relative z-10 container mx-auto flex h-full items-center px-8 py-0 md:py-0 lg:px-12">
           <div className="mx-auto max-w-4xl text-center">
             <div className="animate-pulse">
-              <div className="h-12 bg-white/20 rounded mb-4"></div>
-              <div className="h-8 bg-white/20 rounded mb-8"></div>
-              <div className="flex gap-4 justify-center">
-                <div className="h-10 w-32 bg-white/20 rounded"></div>
-                <div className="h-10 w-32 bg-white/20 rounded"></div>
+              <div className="mb-4 h-12 rounded bg-white/20"></div>
+              <div className="mb-8 h-8 rounded bg-white/20"></div>
+              <div className="flex justify-center gap-4">
+                <div className="h-10 w-32 rounded bg-white/20"></div>
+                <div className="h-10 w-32 rounded bg-white/20"></div>
               </div>
             </div>
           </div>
@@ -71,36 +71,32 @@ const HeroCarousel: React.FC<HeroCarouselProps> = ({ children }) => {
           className="mySwiper hero-carousel-swiper"
           style={{ width: '100%', height: '100%' }}
         >
-          {carouselImages.map((image) => (
+          {carouselImages.map(image => (
             <SwiperSlide key={image.id}>
-              <div className="relative w-full h-full group">
+              <div className="group relative h-full w-full">
                 <Image
                   src={image.src}
                   alt={image.alt}
                   fill
                   priority={image.id <= 3}
-                  className="object-cover object-center transition-all duration-700 ease-in-out group-hover:grayscale group-hover:scale-105"
+                  className="object-cover object-center transition-all duration-700 ease-in-out group-hover:scale-105 group-hover:grayscale"
                   quality={90}
                   sizes="100vw"
                 />
                 {/* Gradient overlay for text readability */}
                 <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-black/30"></div>
-                
+
                 {/* Additional overlay on hover */}
-                <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+                <div className="absolute inset-0 bg-black/20 opacity-0 transition-opacity duration-700 group-hover:opacity-100"></div>
               </div>
             </SwiperSlide>
           ))}
         </Swiper>
-
-
       </div>
 
       {/* Content Overlay */}
       <div className="relative z-10 container mx-auto flex h-full items-center px-8 py-4 md:py-0 lg:px-12">
-        <div className="mx-auto max-w-4xl text-center">
-          {children}
-        </div>
+        <div className="mx-auto max-w-4xl text-center">{children}</div>
       </div>
 
       <style jsx global>{`
@@ -157,7 +153,7 @@ const HeroCarousel: React.FC<HeroCarouselProps> = ({ children }) => {
           .mySwiper .swiper-scrollbar {
             background: rgba(255, 255, 255, 0.3);
           }
-          
+
           .mySwiper .swiper-scrollbar-drag {
             background: #ffffff;
           }

@@ -138,18 +138,22 @@ amministrative."
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="font-family-general-sans mb-6 pt-0 sm:pt-8 text-4xl font-extrabold tracking-tight text-white sm:text-5xl"
+          className="font-family-general-sans mb-6 pt-0 text-4xl font-extrabold tracking-tight text-white sm:pt-8 sm:text-5xl"
           suppressHydrationWarning
         >
-          <span className="font-family-roundex text-shadow-light-teal text-6xl font-extrabold text-white text-shadow-lg sm:text-8xl pb-2 sm:pb-0">
-            CAF - PATRONATO <span className='text-5xl sm:text-8xl'>SINDACATO</span> <br />
+          <span className="font-family-roundex text-shadow-light-teal pb-2 text-6xl font-extrabold text-white text-shadow-lg sm:pb-0 sm:text-8xl">
+            CAF - PATRONATO{' '}
+            <span className="text-5xl sm:text-8xl">SINDACATO</span> <br />
           </span>
-          <span className="tracking-wide text-3xl sm:text-5xl mt-16"> Servizi Legali &</span>
+          <span className="mt-16 text-3xl tracking-wide sm:text-5xl">
+            {' '}
+            Servizi Legali &
+          </span>
           <span className="text-new-beige text-3xl sm:text-5xl">
             {' '}
-            <span className="sm:text-5xl text-3xl"> Assistenza </span>
+            <span className="text-3xl sm:text-5xl"> Assistenza </span>
           </span>
-          <span className="text-gradient-primary from-yellow to-cyan bg-gradient-to-r bg-clip-text text-transparent sm:text-5xl text-3xl">
+          <span className="text-gradient-primary from-yellow to-cyan bg-gradient-to-r bg-clip-text text-3xl text-transparent sm:text-5xl">
             {' '}
             Amministrativa
           </span>
