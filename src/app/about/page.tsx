@@ -162,7 +162,7 @@ export default function About() {
                   alt="Chi Siamo - Il nostro team di professionisti legali"
                   width={600}
                   height={400}
-                  className="h-full w-full object-cover transition-transform duration-300 hover:scale-105"
+                  className="h-full w-full object-cover transition-all duration-500 md:grayscale md:hover:scale-105 md:hover:grayscale-0"
                   priority
                 />
               </div>
@@ -217,7 +217,7 @@ export default function About() {
                   alt="La Nostra Visione - Futuro dei servizi legali"
                   width={600}
                   height={400}
-                  className="h-full w-full object-cover transition-transform duration-300 hover:scale-105"
+                  className="h-full w-full object-cover transition-all duration-500 md:grayscale md:hover:scale-105 md:hover:grayscale-0"
                 />
               </div>
             </motion.div>
@@ -272,7 +272,7 @@ export default function About() {
                   alt="La Nostra Missione - Servizi legali accessibili e professionali"
                   width={600}
                   height={400}
-                  className="h-full w-full object-cover transition-transform duration-300 hover:scale-105"
+                  className="h-full w-full object-cover transition-all duration-500 md:grayscale md:hover:scale-105 md:hover:grayscale-0"
                 />
               </div>
             </motion.div>
