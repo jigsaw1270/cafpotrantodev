@@ -50,14 +50,23 @@ export function Header() {
           animate={{ y: 0, opacity: 1 }}
           exit={{ y: -100, opacity: 0 }}
           transition={{ type: 'spring', stiffness: 400, damping: 40 }}
-          className="bg-new-navy shadow-elegant border-cyan/20 supports-[backdrop-filter]:bg-new-navy/95 rounded-2xl border backdrop-blur"
+          className="navbar-with-lights bg-new-navy shadow-elegant border-cyan/20 supports-[backdrop-filter]:bg-new-navy/80 relative overflow-hidden rounded-2xl border backdrop-blur"
         >
-          <div className="flex h-16 items-center justify-between gap-4 px-6">
+          {/* Ball-like light textures */}
+          <div className="pointer-events-none absolute inset-0">
+            <div className="light-orb light-orb-1" />
+            <div className="light-orb light-orb-2" />
+            <div className="light-orb light-orb-3" />
+            <div className="light-orb light-orb-4" />
+            <div className="light-orb light-orb-5" />
+            <div className="light-orb light-orb-6" />
+          </div>
+          <div className="relative z-10 flex h-16 items-center justify-between gap-4 px-6">
             {/* Logo */}
             <Link href="/" className="flex shrink-0 items-center space-x-2">
               <motion.div
-                whileHover={{ rotate: 360, scale: 1.1 }}
-                transition={{ duration: 0.3 }}
+                whileHover={{ scale: 1.05 }}
+                transition={{ duration: 0.2 }}
                 className="h-8 w-8"
               >
                 <img

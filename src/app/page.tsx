@@ -266,7 +266,7 @@ amministrative."
       </section>
 
       {/* Features Section */}
-      <section className="bg-new-white py-24">
+      <section className="bg-zigzag3d py-24">
         <div className="container mx-auto px-8 lg:px-12">
           <div className="mx-auto max-w-2xl text-center">
             <motion.h2
@@ -375,7 +375,7 @@ amministrative."
       </section>
 
       {/* Office Locations Section */}
-      <section className="bg-new-white py-24">
+      <section className="bg-circles py-24">
         <div className="container mx-auto px-8 lg:px-12">
           {/* Section Header */}
           <motion.div
