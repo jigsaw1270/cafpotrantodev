@@ -16,6 +16,7 @@ import CategoriesGrid from '@/components/services/CategoriesGrid';
 import { SEO } from '@/components/seo';
 import OfficeCarousel from '@/components/ui/office-carousel';
 import ServicePromiseMarquee from '@/components/ui/ServicePromiseMarquee';
+import HeroCarousel from '@/components/ui/HeroCarousel';
 
 const features = [
   {
@@ -131,83 +132,66 @@ amministrative."
 
       {/* Search section removed - now in navbar */}
 
-      {/* Hero Section */}
-      <section
-        className="relative min-h-screen overflow-hidden bg-cover bg-center bg-no-repeat pt-32 md:h-[calc(100vh-4rem)] md:pt-24"
-        style={{
-          backgroundImage:
-            'url(/images/banner.webp), url(/images/hero-banner.jpg)',
-        }}
-      >
-        {/* Dark Overlay for text readability */}
-        <div className="absolute inset-0 bg-black/50"></div>
+      {/* Hero Carousel Section */}
+      <HeroCarousel>
+        <motion.h1
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="font-family-general-sans mb-6 pt-0 sm:pt-8 text-4xl font-extrabold tracking-tight text-white sm:text-5xl"
+          suppressHydrationWarning
+        >
+          <span className="font-family-roundex text-shadow-light-teal text-6xl font-extrabold text-white text-shadow-lg sm:text-8xl pb-2 sm:pb-0">
+            CAF - PATRONATO <span className='text-5xl sm:text-8xl'>SINDACATO</span> <br />
+          </span>
+          <span className="tracking-wide text-3xl sm:text-5xl mt-16"> Servizi Legali &</span>
+          <span className="text-new-beige text-3xl sm:text-5xl">
+            {' '}
+            <span className="sm:text-5xl text-3xl"> Assistenza </span>
+          </span>
+          <span className="text-gradient-primary from-yellow to-cyan bg-gradient-to-r bg-clip-text text-transparent sm:text-5xl text-3xl">
+            {' '}
+            Amministrativa
+          </span>
+        </motion.h1>
 
-        {/* Content */}
-        <div className="relative z-10 container mx-auto flex h-full items-center px-8 py-12 md:py-0 lg:px-12">
-          <div className="mx-auto max-w-4xl text-center">
-            <motion.h1
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              className="font-family-general-sans mb-6 pt-8 text-4xl font-extrabold tracking-tight text-white sm:text-5xl"
-              suppressHydrationWarning
-            >
-              <span className="font-family-roundex text-shadow-light-teal text-4xl font-extrabold text-white text-shadow-lg sm:text-8xl">
-                CAF - PATRONATO SINDACATO <br />
-              </span>
-              <span className="tracking-wide sm:text-5xl">
-                {' '}
-                Servizi Legali &
-              </span>
-              <span className="text-new-beige sm:text-5xl">
-                {' '}
-                <span className="sm:text-5xl"> Assistenza </span>
-              </span>
-              <span className="text-gradient-primary from-yellow to-cyan bg-gradient-to-r bg-clip-text text-transparent sm:text-5xl">
-                {' '}
-                Amministrativa
-              </span>
-            </motion.h1>
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.1 }}
+          className="mb-4 text-xl font-semibold text-white"
+        >
+          ASSISTENZA FISCALE-SPORTELLO IMMIGRAZIONE-AGENZIA MULTISERVIZI
+        </motion.p>
 
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.1 }}
-              className="mb-4 text-2xl font-semibold text-white"
-            >
-              ASSISTENZA FISCALE-SPORTELLO IMMIGRAZIONE-AGENZIA MULTISERVIZI
-            </motion.p>
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+          className="font-family-general-sans mb-8 text-xl leading-relaxed text-white opacity-90"
+        >
+          Offriamo servizi legali professionali rivolti ad aziende e cittadini,
+          con particolare competenza nella gestione di procedure online.
+          Forniamo assistenza specializzata nell'ambito dei servizi CAF e
+          Patronato, inclusi benefici lavorativi, pratiche pensionistiche,
+          procedure per il rilascio e il rinnovo dei permessi di soggiorno,
+          nonché altre pratiche amministrative.
+        </motion.p>
 
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-              className="font-family-general-sans mb-8 text-xl leading-relaxed text-white opacity-90"
-            >
-              Offriamo servizi legali professionali rivolti ad aziende e
-              cittadini, con particolare competenza nella gestione di procedure
-              online. Forniamo assistenza specializzata nell'ambito dei servizi
-              CAF e Patronato, inclusi benefici lavorativi, pratiche
-              pensionistiche, procedure per il rilascio e il rinnovo dei
-              permessi di soggiorno, nonché altre pratiche amministrative.
-            </motion.p>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.3 }}
-              className="mb-8 flex flex-row items-center justify-center gap-3 sm:mb-0 sm:gap-4"
-            >
-              <GlossyButton onClick={handleServicesClick}>
-                I nostri servizi
-              </GlossyButton>
-              <GlossyButton onClick={handleContactClick}>
-                Consulenza gratuita
-              </GlossyButton>
-            </motion.div>
-          </div>
-        </div>
-      </section>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.3 }}
+          className="mb-8 flex flex-row items-center justify-center gap-3 sm:mb-0 sm:gap-4"
+        >
+          <GlossyButton onClick={handleServicesClick}>
+            I nostri servizi
+          </GlossyButton>
+          <GlossyButton onClick={handleContactClick}>
+            Consulenza gratuita
+          </GlossyButton>
+        </motion.div>
+      </HeroCarousel>
 
       {/* Service Promise Marquee */}
       <ServicePromiseMarquee />
