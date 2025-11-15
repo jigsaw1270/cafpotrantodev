@@ -2,12 +2,12 @@
 
 import React, { useEffect, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Autoplay, Scrollbar } from 'swiper/modules';
+import { Autoplay, Pagination } from 'swiper/modules';
 import Image from 'next/image';
 
 // Import Swiper styles
 import 'swiper/css';
-import 'swiper/css/scrollbar';
+import 'swiper/css/pagination';
 
 interface HeroCarouselProps {
   children?: React.ReactNode;
@@ -52,42 +52,37 @@ const HeroCarousel: React.FC<HeroCarouselProps> = ({ children }) => {
       {/* Swiper Carousel */}
       <div className="absolute inset-0">
         <Swiper
-          modules={[Autoplay, Scrollbar]}
-          scrollbar={{
-            hide: true,
+          modules={[Autoplay, Pagination]}
+          pagination={{
+            clickable: true,
+            dynamicBullets: false,
           }}
           autoplay={{
             delay: 5000,
             disableOnInteraction: false,
-            pauseOnMouseEnter: true,
           }}
           loop={true}
           speed={1000}
-          grabCursor={true}
-          allowTouchMove={true}
-          touchRatio={1}
-          touchAngle={45}
-          simulateTouch={true}
+          grabCursor={false}
+          allowTouchMove={false}
+          simulateTouch={false}
           className="mySwiper hero-carousel-swiper"
           style={{ width: '100%', height: '100%' }}
         >
           {carouselImages.map(image => (
             <SwiperSlide key={image.id}>
-              <div className="group relative h-full w-full">
+              <div className="relative h-full w-full">
                 <Image
                   src={image.src}
                   alt={image.alt}
                   fill
                   priority={image.id <= 3}
-                  className="object-cover object-center transition-all duration-700 ease-in-out group-hover:scale-105 group-hover:grayscale"
+                  className="carousel-image object-cover object-center"
                   quality={90}
                   sizes="100vw"
                 />
                 {/* Gradient overlay for text readability */}
                 <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-black/30"></div>
-
-                {/* Additional overlay on hover */}
-                <div className="absolute inset-0 bg-black/20 opacity-0 transition-opacity duration-700 group-hover:opacity-100"></div>
               </div>
             </SwiperSlide>
           ))}
@@ -95,7 +90,7 @@ const HeroCarousel: React.FC<HeroCarouselProps> = ({ children }) => {
       </div>
 
       {/* Content Overlay */}
-      <div className="relative z-10 container mx-auto flex h-full items-center px-8 py-4 md:py-0 lg:px-12">
+      <div className="relative z-10 container mx-auto flex h-full items-center px-8 lg:px-12">
         <div className="mx-auto max-w-4xl text-center">{children}</div>
       </div>
 
@@ -104,11 +99,12 @@ const HeroCarousel: React.FC<HeroCarouselProps> = ({ children }) => {
           width: 100%;
           height: 100%;
           --swiper-theme-color: #e3c39d;
-          cursor: grab;
+          cursor: default;
         }
 
-        .mySwiper:active {
-          cursor: grabbing;
+        .carousel-image {
+          transform: scale(1);
+          filter: none;
         }
 
         .mySwiper .swiper-slide {
@@ -130,32 +126,49 @@ const HeroCarousel: React.FC<HeroCarouselProps> = ({ children }) => {
           user-select: none;
         }
 
-        /* Scrollbar styling */
-        .mySwiper .swiper-scrollbar {
-          background: rgba(0, 0, 0, 0.1);
-          border-radius: 10px;
+        /* Pagination styling */
+        .mySwiper .swiper-pagination {
+          bottom: 60px;
+          z-index: 50 !important;
+          position: relative;
+          pointer-events: auto;
         }
 
-        .mySwiper .swiper-scrollbar-drag {
-          background: #e3c39d;
-          border-radius: 10px;
+        .mySwiper .swiper-pagination-bullet {
+          width: 8px;
+          height: 8px;
+          background: rgba(227, 195, 158, 0.4);
+          border: 1px solid rgba(227, 195, 158, 0.6);
+          opacity: 1;
+          transition: all 0.3s ease;
+          cursor: pointer;
+          margin: 0 6px;
+          pointer-events: auto;
+        }
+
+        .mySwiper .swiper-pagination-bullet-active {
+          background: rgba(227, 195, 158, 1);
+          border-color: rgba(227, 195, 158, 1);
+          box-shadow: 0 0 8px rgba(227, 195, 158, 0.8);
         }
 
         /* Accessibility improvements */
         @media (prefers-reduced-motion: reduce) {
-          .mySwiper .swiper-slide img {
-            transition: none !important;
+          .mySwiper {
+            --swiper-transition-duration: 0ms !important;
           }
         }
 
         /* High contrast mode */
         @media (prefers-contrast: high) {
-          .mySwiper .swiper-scrollbar {
-            background: rgba(255, 255, 255, 0.3);
+          .mySwiper .swiper-pagination-bullet {
+            background: rgba(255, 255, 255, 0.6);
+            border-color: rgba(255, 255, 255, 0.8);
           }
 
-          .mySwiper .swiper-scrollbar-drag {
+          .mySwiper .swiper-pagination-bullet-active {
             background: #ffffff;
+            border-color: #ffffff;
           }
         }
       `}</style>
