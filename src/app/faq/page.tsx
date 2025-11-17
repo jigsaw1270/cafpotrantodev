@@ -424,13 +424,13 @@ export default function FAQPage() {
             >
               <div className="from-dark-teal/20 to-new-beige/40 border-dark-teal/20 hover:border-dark-teal/40 rounded-2xl border bg-gradient-to-br p-8 transition-all duration-300 hover:scale-105">
                 <div className="text-dark-teal mb-2 text-4xl font-bold lg:text-5xl">
-                  100%
+                  Gratuiti
                 </div>
                 <div className="text-new-white mb-2 text-lg font-semibold">
-                  Garanzia
+                  Molti servizi
                 </div>
                 <div className="text-new-dim-cyan text-sm">
-                  O rimborso entro 72 ore
+                  Senza alcun costo aggiuntivo
                 </div>
               </div>
             </motion.div>

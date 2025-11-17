@@ -65,7 +65,7 @@ const officeLocations = [
     name: 'MILANO VIA PADOVA',
     address: 'Via Padova, 288 - MILANO 20132',
     phone: ['02.36755609', '3512613000'],
-    email: 'CAFPADOVA288@GMAIL.COM',
+    email: 'AZCAFPADOVA@GMAIL.COM',
     images: [
       '/images/office/office3 (1).jpg',
       '/images/office/office3 (2).jpg',
@@ -78,8 +78,8 @@ const officeLocations = [
   {
     name: 'MONZA',
     address: 'Via AMATI, 12/G - MONZA 20900',
-    phone: ['039.2304625', '3668735046'],
-    email: 'CAFMONZA@GMAIL.COM',
+    phone: ['039.5986985', '3668735046'],
+    email: 'CAFMONZA12@GMAIL.COM',
     images: [
       '/images/office/office1 (1).jpg',
       '/images/office/office1 (2).jpg',

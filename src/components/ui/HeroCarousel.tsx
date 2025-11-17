@@ -78,7 +78,7 @@ const HeroCarousel: React.FC<HeroCarouselProps> = ({ children }) => {
 
       {/* Content Overlay */}
       <div
-        className="relative z-10 container mx-auto flex h-full items-center px-8 lg:px-12"
+        className="relative z-10 container mx-auto flex h-full items-center px-6 lg:px-12"
         style={{ minHeight: '400px' }}
       >
         <div

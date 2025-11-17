@@ -191,7 +191,7 @@ export default function SubservicePage() {
                 </h1>
 
                 {/* Service Meta */}
-                <div className="mb-6 flex flex-wrap items-center gap-4">
+                <div className="mb-6 hidden flex-wrap items-center gap-4">
                   {subservice.rating > 0 && (
                     <div className="bg-light-teal/10 border-light-teal/30 flex items-center gap-1 rounded-full border px-3 py-1">
                       <Star className="h-5 w-5 fill-current text-yellow-500" />

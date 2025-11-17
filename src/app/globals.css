@@ -454,13 +454,13 @@ body {
 }
 
 .prose li::marker {
-  color: var(--cyan);
+  color: var(--navy-dark);
 }
 
 .prose blockquote {
   font-weight: 500;
   font-style: italic;
-  border-left: 0.25rem solid var(--cyan);
+  border-left: 0.25rem solid var(--navy-dark);
   quotes: '\201C' '\201D' '\2018' '\2019';
   margin-top: 1.6rem;
   margin-bottom: 1.6rem;
