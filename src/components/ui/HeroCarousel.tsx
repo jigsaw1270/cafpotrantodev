@@ -29,9 +29,9 @@ const HeroCarousel: React.FC<HeroCarouselProps> = ({ children }) => {
 
   if (!mounted) {
     return (
-      <section className="relative min-h-screen overflow-hidden bg-gradient-to-br from-[#00A8CC] to-[#142850] pt-32 md:h-[calc(100vh-4rem)] md:pt-24">
+      <section className="xs:pt-32 relative min-h-screen overflow-hidden bg-gradient-to-br from-[#00A8CC] to-[#142850] pt-28 md:h-[calc(100vh-4rem)] md:pt-24">
         <div className="absolute inset-0 bg-black/50"></div>
-        <div className="relative z-10 container mx-auto flex h-full items-center justify-center px-8 py-0 md:py-0 lg:px-12">
+        <div className="xs:px-4 relative z-10 container mx-auto flex h-full items-center justify-center px-3 py-0 sm:px-8 md:py-0 lg:px-12">
           <Loader size="large" centered />
         </div>
       </section>
@@ -39,7 +39,7 @@ const HeroCarousel: React.FC<HeroCarouselProps> = ({ children }) => {
   }
 
   return (
-    <section className="relative min-h-screen overflow-hidden pt-32 md:h-[calc(100vh-4rem)] md:pt-24">
+    <section className="xs:pt-32 relative min-h-screen overflow-hidden pt-28 md:h-[calc(100vh-4rem)] md:pt-24">
       {/* Swiper Carousel */}
       <div className="absolute inset-0">
         <Swiper
@@ -78,13 +78,13 @@ const HeroCarousel: React.FC<HeroCarouselProps> = ({ children }) => {
 
       {/* Content Overlay */}
       <div
-        className="relative z-10 container mx-auto flex h-full items-center px-6 lg:px-12"
-        style={{ minHeight: '400px' }}
+        className="xs:px-4 relative z-10 container mx-auto flex h-full items-center px-3 sm:px-6 lg:px-12"
+        style={{ minHeight: '350px' }}
       >
         <div
-          className="mx-auto max-w-4xl text-center"
+          className="xs:max-w-sm mx-auto w-full max-w-xs text-center sm:max-w-4xl"
           style={{
-            minHeight: '200px',
+            minHeight: '180px',
             display: 'flex',
             flexDirection: 'column',
             justifyContent: 'center',
@@ -134,6 +134,17 @@ const HeroCarousel: React.FC<HeroCarouselProps> = ({ children }) => {
           object-fit: cover;
           pointer-events: none;
           user-select: none;
+        }
+
+        /* Very small screens optimization (< 400px) */
+        @media (max-width: 399px) {
+          .mySwiper .swiper-slide {
+            font-size: 14px;
+          }
+
+          .carousel-image {
+            object-position: center center;
+          }
         }
 
         /* Accessibility improvements */

@@ -8,6 +8,9 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      screens: {
+        xs: '400px', // Custom breakpoint for very small screens
+      },
       colors: {
         // New elegant navy palette
         'navy-dark': '#142850',
