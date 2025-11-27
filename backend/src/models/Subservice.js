@@ -28,11 +28,7 @@ const subserviceSchema = new mongoose.Schema({
     required: [true, 'Starting price is required'],
     min: [0, 'Price cannot be negative'],
   },
-  secretarialFees: {
-    type: Number,
-    min: [0, 'Secretarial fees cannot be negative'],
-    default: 6,
-  },
+  // secretarialFees removed: no longer used in pricing or required
   vatPercentage: {
     type: Number,
     min: [0, 'VAT percentage cannot be negative'],
@@ -193,7 +189,7 @@ subserviceSchema.virtual('formattedPrice').get(function() {
 
 // Virtual for subtotal (service fee + secretarial fees)
 subserviceSchema.virtual('subtotal').get(function() {
-  return this.price_start + (this.secretarialFees || 0);
+  return this.price_start;
 });
 
 // Virtual for VAT amount
@@ -219,7 +215,6 @@ subserviceSchema.virtual('pricingBreakdown').get(function() {
   
   return {
     serviceFee: formatter.format(this.price_start),
-    secretarialFees: formatter.format(this.secretarialFees || 0),
     subtotal: formatter.format(this.subtotal),
     vatPercentage: this.vatPercentage || 22,
     vatAmount: formatter.format(this.vatAmount),

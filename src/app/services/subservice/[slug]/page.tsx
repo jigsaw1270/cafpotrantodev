@@ -54,11 +54,23 @@ export default function SubservicePage() {
 
         // Get the category details
         if (foundSubservice.categoryId) {
-          const categoryResponse = await apiClient.getCategoryById(
-            foundSubservice.categoryId
-          );
-          if (categoryResponse.success && categoryResponse.data) {
-            setCategory(categoryResponse.data);
+          let categoryId: string;
+          if (typeof foundSubservice.categoryId === 'string') {
+            categoryId = foundSubservice.categoryId;
+          } else if (
+            typeof foundSubservice.categoryId === 'object' &&
+            foundSubservice.categoryId !== null &&
+            '._id' in foundSubservice.categoryId
+          ) {
+            categoryId = (foundSubservice.categoryId as { _id: string })._id;
+          } else {
+            categoryId = '';
+          }
+          if (categoryId) {
+            const categoryResponse = await apiClient.getCategoryById(categoryId);
+            if (categoryResponse.success && categoryResponse.data) {
+              setCategory(categoryResponse.data);
+            }
           }
         }
       } catch (err) {
@@ -356,28 +368,11 @@ export default function SubservicePage() {
                       </span>
                     </div>
 
-                    {/* Secretarial Fees */}
-                    {subservice.secretarialFees &&
-                      subservice.secretarialFees > 0 && (
-                        <div className="flex items-center justify-between">
-                          <span className="text-sm text-black/70">
-                            Oneri di segreteria:
-                          </span>
-                          <span className="font-medium text-black">
-                            €{subservice.secretarialFees.toFixed(2)}
-                          </span>
-                        </div>
-                      )}
-
                     {/* Subtotal */}
                     <div className="flex items-center justify-between border-t border-b border-white/30 py-2">
                       <span className="font-medium text-black">Subtotale:</span>
                       <span className="font-medium text-black">
-                        €
-                        {(
-                          (subservice.secretarialFees || 0) +
-                          subservice.price_start
-                        ).toFixed(2)}
+                        €{subservice.price_start.toFixed(2)}
                       </span>
                     </div>
 
@@ -389,9 +384,7 @@ export default function SubservicePage() {
                       <span className="font-medium text-black">
                         €
                         {(
-                          ((subservice.secretarialFees || 0) +
-                            subservice.price_start) *
-                          ((subservice.vatPercentage || 22) / 100)
+                          subservice.price_start * ((subservice.vatPercentage || 22) / 100)
                         ).toFixed(2)}
                       </span>
                     </div>
@@ -404,15 +397,13 @@ export default function SubservicePage() {
                       <span className="text-light-teal text-lg font-bold">
                         €
                         {(
-                          ((subservice.secretarialFees || 0) +
-                            subservice.price_start) *
-                          (1 + (subservice.vatPercentage || 22) / 100)
+                          subservice.price_start * (1 + (subservice.vatPercentage || 22) / 100)
                         ).toFixed(2)}
                       </span>
                     </div>
 
                     {subservice.estimatedDuration && (
-                      <div className="mt-3 flex items-center justify-between border-t border-white/30 pt-3">
+                      <div className="mt-3 hidden  items-center justify-between border-t border-white/30 pt-3">
                         <span className="text-md text-black/70">
                           Durata stimata:
                         </span>
