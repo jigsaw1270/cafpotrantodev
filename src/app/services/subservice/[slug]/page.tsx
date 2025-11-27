@@ -243,7 +243,8 @@ export default function SubservicePage() {
                 <div className="prose prose-lg text-new-light-navy service-content">
                   {/* Rich text description */}
                   <div
-                    className="prose text-new-light-navy service-content max-w-12 leading-relaxed"
+                    className="prose text-new-light-navy service-content w-full max-w-sm leading-relaxed"
+                    style={{ maxWidth: '46rem' }}
                     dangerouslySetInnerHTML={{
                       __html: markdownToHtml(subservice.description),
                     }}
@@ -422,37 +423,32 @@ export default function SubservicePage() {
                   transition={{ duration: 0.5, delay: 0.4 }}
                   className="border-light-teal/30 rounded-3xl border bg-white/95 p-6 shadow-2xl backdrop-blur-xl"
                 >
-                  <h3 className="text-light-teal mb-4 text-lg font-bold drop-shadow-lg">
+                  <h3 className="text-light-teal mb-2 text-lg font-bold drop-shadow-lg">
                     Opzioni di Pagamento
                   </h3>
 
                   <div className="space-y-3">
-                    <div className="border-light-teal/30 bg-light-teal/10 flex items-center gap-3 rounded-xl border p-3 backdrop-blur-md">
+                    <div className="border-light-teal/30 bg-light-teal/10 flex items-center gap-2 rounded-xl border p-2 backdrop-blur-md">
                       <CreditCard className="text-light-teal h-5 w-5" />
                       <span className="text-sm font-medium text-black">
                         Carta di Credito/Debito
                       </span>
                     </div>
 
-                    <div className="border-light-teal/30 bg-light-teal/10 flex items-center gap-3 rounded-xl border p-3 backdrop-blur-md">
+                    <div className="border-light-teal/30 bg-light-teal/10 flex items-center gap-2 rounded-xl border p-2 backdrop-blur-md">
                       <Building className="text-light-teal h-5 w-5" />
                       <span className="text-sm font-medium text-black">
                         Bonifico Bancario
                       </span>
                     </div>
 
-                    <div className="border-light-teal/30 bg-light-teal/10 flex items-center gap-3 rounded-xl border p-3 backdrop-blur-md">
+                    <div className="border-light-teal/30 bg-light-teal/10 flex items-center gap-2 rounded-xl border p-2 backdrop-blur-md">
                       <Banknote className="text-light-teal h-5 w-5" />
                       <span className="text-sm font-medium text-black">
                         Contanti (in ufficio)
                       </span>
                     </div>
                   </div>
-
-                  <p className="mt-4 text-xs text-black/60">
-                    * Le opzioni di pagamento disponibili verranno confermate
-                    durante la consultazione
-                  </p>
                 </motion.div>
 
                 {/* Contact Actions */}
@@ -495,12 +491,12 @@ export default function SubservicePage() {
                   initial={{ opacity: 0, x: 20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.5, delay: 0.6 }}
-                  className="border-light-teal/30 bg-light-teal/10 rounded-2xl border p-4 backdrop-blur-md"
+                  className="border-light-teal/30 bg-light-teal/10 rounded-2xl border p-3 backdrop-blur-md"
                 >
-                  <h4 className="text-new-navy mb-2 font-medium">
+                  <h4 className="text-new-navy mb-1 font-medium">
                     💡 Nota Importante
                   </h4>
-                  <p className="text-sm text-blue-800">
+                  <p className="text-xs text-blue-800">
                     Per un preventivo accurato, ti consigliamo di contattarci
                     per una consulenza gratuita in cui potremo valutare le tue
                     esigenze specifiche.
