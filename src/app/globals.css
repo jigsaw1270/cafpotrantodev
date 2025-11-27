@@ -817,10 +817,10 @@ body.translated-rtl .notranslate {
 
 /* Polka Dot Background Pattern */
 .bg-polka {
-  background-color: #e3c39e;
+  background-color: #fafafd;
   opacity: 1;
-  background-image: radial-gradient(#efefef 1.25px, #e3c39e 1.25px);
-  background-size: 25px 25px;
+  background-image: radial-gradient(#1b1f6278 1.1px, #fafafd 1.1px);
+  background-size: 31px 31px;
 }
 
 .bg-circles {

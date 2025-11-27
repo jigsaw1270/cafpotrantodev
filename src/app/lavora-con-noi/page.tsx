@@ -380,7 +380,7 @@ export default function LavoraConNoi() {
               <GlossyButton onClick={handleWhatsAppClick} className="px-6 py-3">
                 <div className="flex items-center justify-center gap-2">
                   <Phone className="h-5 w-5" />
-                  <span>WhatsApp: 349.521.4147</span>
+                  <span>+3668735046</span>
                 </div>
               </GlossyButton>
             </div>
