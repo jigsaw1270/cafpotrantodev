@@ -213,6 +213,36 @@ function FAQItem({ question }: FAQItemProps) {
 }
 
 export default function FAQPage() {
+  // Basic FAQ data
+  const basicFaq = [
+    {
+      question: 'Che cos’è il CAF e quali servizi offre?',
+      answer:
+        'Il CAF (Centro di Assistenza Fiscale) è un centro autorizzato che offre assistenza fiscale ai contribuenti. I nostri servizi includono: dichiarazione dei redditi (730 e Unico), calcolo ISEE, assistenza per bonus e agevolazioni fiscali, consulenza su detrazioni e deduzioni, e supporto per pratiche INPS.',
+    },
+    {
+      question: 'Quanto costa la dichiarazione dei redditi?',
+      answer:
+        'La dichiarazione dei redditi tramite CAF per dipendenti, pensionati, lavoratori autonomi e altri soggetti prevede un costo. L’importo verrà comunicato preventivamente durante la consulenza.',
+    },
+    {
+      question: 'Come richiedere la pensione?',
+      answer:
+        "Per richiedere la pensione, occorre presentare domanda all'INPS almeno 3 mesi prima della data di decorrenza. Ci occupiamo noi di tutta la pratica: verifica dei requisiti, calcolo dell'importo, presentazione della domanda e follow-up.",
+    },
+    {
+      question: 'I vostri servizi sono gratuiti?',
+      answer:
+        'I nostri servizi non sono gratuiti: prevedono un costo che varia a seconda della pratica richiesta. L’importo verrà sempre comunicato preventivamente, in modo chiaro e trasparente, prima dell’avvio della consulenza o della lavorazione della pratica.',
+    },
+    {
+      question: 'Offrite consulenza online?',
+      answer:
+        'Sì, offriamo consulenze telefoniche per diverse tipologie di pratiche. È possibile inviarci i documenti tramite email o WhatsApp in modo sicuro e organizzare una consulenza a distanza. Alcune pratiche, tuttavia, richiedono necessariamente la presenza fisica.',
+    },
+  ];
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
+
   return (
     <>
       <SEO
@@ -287,6 +317,69 @@ export default function FAQPage() {
       <section className="bg-white-zigzag3d py-20 lg:py-24">
         <div className="container mx-auto px-6 lg:px-12">
           <div className="mx-auto max-w-5xl">
+            {/* --- Basic FAQ Section --- */}
+            <div className="mb-16">
+              <div className="mb-12 text-center">
+                <h2 className="text-new-navy font-family-general-sans text-3xl font-bold tracking-tight lg:text-4xl">
+                  Domande frequenti di base
+                </h2>
+                <div className="from-dark-teal to-light-teal mx-auto h-1 w-1/2 rounded-full bg-gradient-to-r"></div>
+              </div>
+              <div className="grid grid-cols-1 gap-6">
+                {basicFaq.map((item, idx) => (
+                  <motion.div
+                    key={item.question}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5 }}
+                    viewport={{ once: true }}
+                    className="w-full"
+                  >
+                    <div className="border-new-dim-cyan/20 group w-full overflow-hidden rounded-xl border bg-white shadow-lg transition-all duration-300 hover:shadow-xl">
+                      <button
+                        className="group-hover:bg-new-beige/10 flex w-full items-center justify-between px-6 py-5 text-left transition-colors duration-300"
+                        onClick={() =>
+                          setOpenIndex(openIndex === idx ? null : idx)
+                        }
+                        aria-expanded={openIndex === idx}
+                      >
+                        <h3 className="text-new-navy font-family-general-sans w-full pr-4 text-lg font-semibold">
+                          {item.question}
+                        </h3>
+                        <motion.div
+                          animate={{ rotate: openIndex === idx ? 180 : 0 }}
+                          transition={{ duration: 0.3 }}
+                          className="flex-shrink-0"
+                        >
+                          <ChevronDown className="text-dark-teal h-6 w-6" />
+                        </motion.div>
+                      </button>
+                      <AnimatePresence>
+                        {openIndex === idx && (
+                          <motion.div
+                            initial={{ height: 0, opacity: 0 }}
+                            animate={{ height: 'auto', opacity: 1 }}
+                            exit={{ height: 0, opacity: 0 }}
+                            transition={{ duration: 0.4, ease: 'easeInOut' }}
+                            className="overflow-hidden"
+                          >
+                            <div className="from-new-beige/5 to-light-teal/5 border-new-dim-cyan/20 border-t bg-gradient-to-r px-6 py-5">
+                              <p className="text-new-light-navy leading-relaxed">
+                                {item.answer}
+                              </p>
+                            </div>
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+            {/* --- END Basic FAQ Section --- */}
+
+            {/* --- COMMENTED OUT: Previous FAQ Sections --- */}
+            {/*
             {faqData.map((category, categoryIndex) => (
               <motion.div
                 key={category.category}
@@ -326,6 +419,7 @@ export default function FAQPage() {
                 </div>
               </motion.div>
             ))}
+            */}
           </div>
         </div>
       </section>
