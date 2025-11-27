@@ -67,7 +67,8 @@ export default function SubservicePage() {
             categoryId = '';
           }
           if (categoryId) {
-            const categoryResponse = await apiClient.getCategoryById(categoryId);
+            const categoryResponse =
+              await apiClient.getCategoryById(categoryId);
             if (categoryResponse.success && categoryResponse.data) {
               setCategory(categoryResponse.data);
             }
@@ -158,7 +159,7 @@ export default function SubservicePage() {
       />
 
       {/* Back Navigation */}
-      <div className="bg-new-beige container mx-auto px-8 pt-6 lg:px-12">
+      {/* <div className="bg-new-beige container mx-auto px-8 pt-6 lg:px-12">
         <div className="flex items-center gap-2 text-sm">
           <Link
             href="/services"
@@ -180,11 +181,11 @@ export default function SubservicePage() {
           <span className="text-new-light-navy">/</span>
           <span className="text-new-light-navy">{subservice.name}</span>
         </div>
-      </div>
+      </div> */}
 
       {/* Service Header */}
       <section className="bg-new-beige py-12">
-        <div className="container mx-auto px-8 lg:px-12">
+        <div className="container mx-auto px-8 pt-16 lg:px-12 lg:pt-20">
           <div className="grid grid-cols-1 gap-12 lg:grid-cols-3">
             {/* Main Content */}
             <div className="lg:col-span-2">
@@ -195,9 +196,6 @@ export default function SubservicePage() {
                 transition={{ duration: 0.5 }}
                 className="mb-8"
               >
-                <div className="bg-dark-teal mb-4 inline-block rounded-full px-4 py-2 text-sm font-semibold tracking-wide text-white uppercase">
-                  Servizio Professionale
-                </div>
                 <h1 className="text-new-navy mb-4 text-3xl font-bold lg:text-4xl">
                   {subservice.name}
                 </h1>
@@ -242,10 +240,10 @@ export default function SubservicePage() {
                 <h2 className="text-new-navy mb-4 text-2xl font-bold">
                   Descrizione del Servizio
                 </h2>
-                <div className="prose prose-lg text-new-light-navy service-content max-w-none">
+                <div className="prose prose-lg text-new-light-navy service-content">
                   {/* Rich text description */}
                   <div
-                    className="prose text-new-light-navy service-content leading-relaxed"
+                    className="prose text-new-light-navy service-content max-w-12 leading-relaxed"
                     dangerouslySetInnerHTML={{
                       __html: markdownToHtml(subservice.description),
                     }}
@@ -384,7 +382,8 @@ export default function SubservicePage() {
                       <span className="font-medium text-black">
                         €
                         {(
-                          subservice.price_start * ((subservice.vatPercentage || 22) / 100)
+                          subservice.price_start *
+                          ((subservice.vatPercentage || 22) / 100)
                         ).toFixed(2)}
                       </span>
                     </div>
@@ -397,13 +396,14 @@ export default function SubservicePage() {
                       <span className="text-light-teal text-lg font-bold">
                         €
                         {(
-                          subservice.price_start * (1 + (subservice.vatPercentage || 22) / 100)
+                          subservice.price_start *
+                          (1 + (subservice.vatPercentage || 22) / 100)
                         ).toFixed(2)}
                       </span>
                     </div>
 
                     {subservice.estimatedDuration && (
-                      <div className="mt-3 hidden  items-center justify-between border-t border-white/30 pt-3">
+                      <div className="mt-3 hidden items-center justify-between border-t border-white/30 pt-3">
                         <span className="text-md text-black/70">
                           Durata stimata:
                         </span>

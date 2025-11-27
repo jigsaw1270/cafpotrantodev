@@ -121,7 +121,7 @@ export default function CategoryPage() {
       </div>
 
       {/* Back Navigation */}
-      <div className="bg-new-beige container mx-auto px-8 pt-6 lg:px-12">
+      {/* <div className="bg-new-beige container mx-auto px-8 pt-6 lg:px-12">
         <Link
           href="/services"
           className="text-new-navy hover:text-dark-teal mb-4 inline-flex items-center gap-2 font-medium transition-colors"
@@ -129,7 +129,7 @@ export default function CategoryPage() {
           <ArrowLeft className="h-4 w-4" />
           Torna ai servizi
         </Link>
-      </div>
+      </div> */}
 
       {/* Category Banner */}
       <section className="bg-new-beige relative overflow-hidden py-16">
